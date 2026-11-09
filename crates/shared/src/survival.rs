@@ -929,7 +929,7 @@ pub fn preview_socket_placement(
         player_position[1],
         player_position[2] + dir[2] * 3.0,
     ];
-    let snap = |v: f32| ((v / BUILD_GRID_SIZE).round() * BUILD_GRID_SIZE).clamp(-27.0, 27.0);
+    let snap = |v: f32| ((v / BUILD_GRID_SIZE).round() * BUILD_GRID_SIZE).clamp(-5000.0, 5000.0);
     let mut gx = snap(forward[0]);
     let mut gz = snap(forward[2]);
 
@@ -995,11 +995,11 @@ impl Biome {
     pub const ALL: [Self; 4] = [Self::Temperate, Self::Desert, Self::Jungle, Self::Winter];
 
     pub fn at(position: [f32; 3]) -> Self {
-        if position[2] < -15.0 {
+        if -position[2] > 600.0 {
             Self::Winter
-        } else if position[2] > 15.0 {
+        } else if -position[2] < -700.0 {
             Self::Desert
-        } else if position[0] > 15.0 {
+        } else if position[0] > 1800.0 || position[0] < -2800.0 {
             Self::Jungle
         } else {
             Self::Temperate
@@ -3501,11 +3501,11 @@ mod tests {
         let mut world = SurvivalWorld::new(MapId::Polygon);
         world.join(PlayerId(1));
         assert_eq!(Biome::at([0.0, 0.0, 0.0]), Biome::Temperate);
-        assert_eq!(Biome::at([0.0, 0.0, -20.0]), Biome::Winter);
-        assert_eq!(Biome::at([0.0, 0.0, 20.0]), Biome::Desert);
-        assert_eq!(Biome::at([20.0, 0.0, 0.0]), Biome::Jungle);
+        assert_eq!(Biome::at([0.0, 0.0, -1500.0]), Biome::Winter);
+        assert_eq!(Biome::at([0.0, 0.0, 1500.0]), Biome::Desert);
+        assert_eq!(Biome::at([2000.0, 0.0, 0.0]), Biome::Jungle);
 
-        let winter_pos = [0.0, 1.0, -20.0];
+        let winter_pos = [0.0, 1.0, -1500.0];
         let env_cold = world.environment_at(ServerTick(15), winter_pos);
         assert_eq!(env_cold.biome, Biome::Winter);
         assert!(env_cold.ambient_temp_c < 0.0);

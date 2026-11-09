@@ -11,6 +11,8 @@ pub mod input;
 pub mod launch;
 #[path = "../../../crates/shared/src/level.rs"]
 pub mod level;
+#[path = "../../../crates/shared/src/map_projection.rs"]
+pub mod map_projection;
 #[path = "../../../crates/client_core/src/metrics.rs"]
 pub mod metrics;
 #[path = "../../../crates/shared/src/movement.rs"]

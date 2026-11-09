@@ -6,3 +6,4 @@
 /assets/imported_models/
 *.invite
 /export/
+/tools/asset_unpacker/target/

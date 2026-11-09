@@ -12,6 +12,7 @@ pub mod metrics;
 mod online;
 mod online_metrics;
 pub mod storage;
+mod terrain;
 
 pub use application::build_app;
 pub use launch::{ClientOptions, LaunchCommand, parse_args};

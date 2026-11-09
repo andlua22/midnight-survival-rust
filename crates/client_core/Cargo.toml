@@ -16,5 +16,6 @@ bevy_egui.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 shared = { path = "../shared" }
+midnight_map_data = { path = "../map_data" }
 midnight_network = { path = "../network" }
 

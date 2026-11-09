@@ -5,6 +5,7 @@ edition.workspace = true
 rust-version.workspace = true
 
 [dependencies]
+midnight_map_data = { path = "../map_data" }
 bevy = { workspace = true, features = ["std", "async_executor"] }
 bevy_rapier3d.workspace = true
 serde.workspace = true

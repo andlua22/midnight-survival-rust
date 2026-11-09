@@ -801,12 +801,12 @@ def main():
             else:
                 print(f"Notice: No new placement records found in archive. Preserving existing {placements_path} if present.")
 
-    # Automatically invoke terrain texture baker to turn raw splatmaps into realistic terrain textures
+    # Verify and guard direct authentic per-chunk textures from lite4.0.apk
     try:
         import bake_terrain_textures
         bake_terrain_textures.main()
     except Exception as e:
-        print(f"Warning: could not run bake_terrain_textures: {e}")
+        print(f"Warning: could not run texture integrity check: {e}")
 
     print(f"Done in {time.time() - t0:.2f}s!")
 

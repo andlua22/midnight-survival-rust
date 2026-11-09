@@ -1,0 +1,582 @@
+{
+  "apk": "export/lite4.0.apk",
+  "assets": [
+    {
+      "cab": "BuildPlayer-junshijidi_terrain_06.sharedAssets",
+      "class_counts": {
+        "1": 1,
+        "115": 2,
+        "142": 1,
+        "150": 1,
+        "21": 2,
+        "23": 1,
+        "28": 2,
+        "33": 1,
+        "363": 1,
+        "4": 1,
+        "43": 2
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-0bc9ce17ff019440e43b8eb24d2b47b0/CAB-0bc9ce17ff019440e43b8eb24d2b47b0",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-25f9676e028cfe5dbf9f7cd5c45f3cf1/CAB-25f9676e028cfe5dbf9f7cd5c45f3cf1",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-421336eb5940622f29984912b8f297ce/CAB-421336eb5940622f29984912b8f297ce",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-44c91f63f5cbf279d2fe06fbdcfe900b/CAB-44c91f63f5cbf279d2fe06fbdcfe900b",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-7cb948de0d6dd1f3286c1d6930561c08/CAB-7cb948de0d6dd1f3286c1d6930561c08",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-7ceef5dca7be20991ed3cd8d553b5f34/CAB-7ceef5dca7be20991ed3cd8d553b5f34",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-b99e201845a48115c6b6a24e89d01efe/CAB-b99e201845a48115c6b6a24e89d01efe",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [
+        {
+          "byte_count": 156,
+          "class_id": 23,
+          "path_id": "14",
+          "properties": {
+            "m_AdditionalVertexStreams": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_CastShadows": 1,
+            "m_DynamicOccludee": 1,
+            "m_Enabled": true,
+            "m_EnlightenVertexStream": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 12
+            },
+            "m_LightProbeUsage": 0,
+            "m_LightProbeVolumeOverride": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_LightmapIndex": 65535,
+            "m_LightmapIndexDynamic": 65535,
+            "m_LightmapTilingOffset": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_LightmapTilingOffsetDynamic": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_Materials": [
+              {
+                "m_FileID": 0,
+                "m_PathID": 0
+              }
+            ],
+            "m_MotionVectors": 1,
+            "m_ProbeAnchor": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_RayTraceProcedural": 0,
+            "m_RayTracingMode": 2,
+            "m_ReceiveShadows": 1,
+            "m_ReflectionProbeUsage": 0,
+            "m_RendererPriority": 0,
+            "m_RenderingLayerMask": 1,
+            "m_SortingLayer": 0,
+            "m_SortingLayerID": 0,
+            "m_SortingOrder": 0,
+            "m_StaticBatchInfo": {
+              "firstSubMesh": 0,
+              "subMeshCount": 0
+            },
+            "m_StaticBatchRoot": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_StaticShadowCaster": 0
+          }
+        },
+        {
+          "byte_count": 24,
+          "class_id": 33,
+          "path_id": "15",
+          "properties": {
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 12
+            },
+            "m_Mesh": {
+              "m_FileID": 0,
+              "m_PathID": 7
+            }
+          }
+        }
+      ],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    },
+    {
+      "cab": "BuildPlayer-junshijidi_terrain_06",
+      "class_counts": {
+        "1": 5,
+        "104": 1,
+        "114": 2,
+        "157": 1,
+        "196": 1,
+        "23": 2,
+        "29": 1,
+        "33": 2,
+        "4": 5,
+        "64": 2,
+        "65": 1,
+        "850595691": 1
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/BuildPlayer-junshijidi_terrain_06/BuildPlayer-junshijidi_terrain_06.sharedAssets",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [
+        {
+          "byte_count": 156,
+          "class_id": 23,
+          "path_id": "11",
+          "properties": {
+            "m_AdditionalVertexStreams": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_CastShadows": 0,
+            "m_DynamicOccludee": 1,
+            "m_Enabled": true,
+            "m_EnlightenVertexStream": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 4
+            },
+            "m_LightProbeUsage": 0,
+            "m_LightProbeVolumeOverride": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_LightmapIndex": 65535,
+            "m_LightmapIndexDynamic": 65535,
+            "m_LightmapTilingOffset": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_LightmapTilingOffsetDynamic": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_Materials": [
+              {
+                "m_FileID": 1,
+                "m_PathID": 4
+              }
+            ],
+            "m_MotionVectors": 1,
+            "m_ProbeAnchor": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_RayTraceProcedural": 0,
+            "m_RayTracingMode": 2,
+            "m_ReceiveShadows": 1,
+            "m_ReflectionProbeUsage": 0,
+            "m_RendererPriority": 0,
+            "m_RenderingLayerMask": 1,
+            "m_SortingLayer": 0,
+            "m_SortingLayerID": 0,
+            "m_SortingOrder": 0,
+            "m_StaticBatchInfo": {
+              "firstSubMesh": 0,
+              "subMeshCount": 0
+            },
+            "m_StaticBatchRoot": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_StaticShadowCaster": 0
+          }
+        },
+        {
+          "byte_count": 156,
+          "class_id": 23,
+          "path_id": "12",
+          "properties": {
+            "m_AdditionalVertexStreams": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_CastShadows": 1,
+            "m_DynamicOccludee": 1,
+            "m_Enabled": true,
+            "m_EnlightenVertexStream": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 5
+            },
+            "m_LightProbeUsage": 1,
+            "m_LightProbeVolumeOverride": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_LightmapIndex": 65535,
+            "m_LightmapIndexDynamic": 65535,
+            "m_LightmapTilingOffset": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_LightmapTilingOffsetDynamic": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_Materials": [
+              {
+                "m_FileID": 1,
+                "m_PathID": 3
+              }
+            ],
+            "m_MotionVectors": 1,
+            "m_ProbeAnchor": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_RayTraceProcedural": 0,
+            "m_RayTracingMode": 2,
+            "m_ReceiveShadows": 1,
+            "m_ReflectionProbeUsage": 1,
+            "m_RendererPriority": 0,
+            "m_RenderingLayerMask": 1,
+            "m_SortingLayer": 0,
+            "m_SortingLayerID": 0,
+            "m_SortingOrder": 0,
+            "m_StaticBatchInfo": {
+              "firstSubMesh": 0,
+              "subMeshCount": 0
+            },
+            "m_StaticBatchRoot": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_StaticShadowCaster": 0
+          }
+        },
+        {
+          "byte_count": 24,
+          "class_id": 33,
+          "path_id": "14",
+          "properties": {
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 4
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 8
+            }
+          }
+        },
+        {
+          "byte_count": 24,
+          "class_id": 33,
+          "path_id": "15",
+          "properties": {
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 5
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 7
+            }
+          }
+        },
+        {
+          "byte_count": 48,
+          "class_id": 64,
+          "path_id": "16",
+          "properties": {
+            "m_Convex": false,
+            "m_CookingOptions": 30,
+            "m_Enabled": true,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 5
+            },
+            "m_IsTrigger": false,
+            "m_Material": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 7
+            }
+          }
+        },
+        {
+          "byte_count": 48,
+          "class_id": 64,
+          "path_id": "17",
+          "properties": {
+            "m_Convex": false,
+            "m_CookingOptions": 30,
+            "m_Enabled": true,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 4
+            },
+            "m_IsTrigger": false,
+            "m_Material": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 8
+            }
+          }
+        }
+      ],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    }
+  ],
+  "bundle": "assets/scene/junshijidi_terrain_06.ab"
+}

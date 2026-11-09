@@ -9,7 +9,7 @@ use bevy::{
     prelude::*,
     render::{
         RenderPlugin,
-        render_resource::{Extent3d, TextureDimension, TextureFormat},
+        render_resource::{Extent3d, Face, TextureDimension, TextureFormat},
         renderer::RenderAdapterInfo,
         settings::{Backends, PowerPreference, RenderCreation, WgpuSettings},
     },
@@ -47,6 +47,10 @@ use crate::{
 
 use bevy::audio::{AudioPlayer, PlaybackSettings};
 
+pub use crate::terrain::TerrainSplatMaterial;
+pub use crate::terrain::spawn as spawn_imported_terrain;
+use crate::terrain::ImportedTerrainActive;
+
 #[derive(Resource)]
 struct RuntimeOptions(ClientOptions);
 
@@ -72,6 +76,39 @@ pub struct MapTextures {
     pub loading_bg: Handle<Image>,
     pub loading_bar_bg: Handle<Image>,
     pub loading_bar_fill: Handle<Image>,
+}
+
+#[derive(Resource, Clone)]
+pub struct UiSpriteAssets {
+    pub minimap_frame: Handle<Image>,
+    pub minimap_bg: Handle<Image>,
+    pub player_arrow: Handle<Image>,
+    pub player_cone: Handle<Image>,
+    pub day_night_bg: Handle<Image>,
+    pub sun_icon: Handle<Image>,
+    pub moon_icon: Handle<Image>,
+    pub coord_bg: Handle<Image>,
+    pub bar_bg: Handle<Image>,
+    pub bar_fill_hp: Handle<Image>,
+    pub bar_fill_energy: Handle<Image>,
+    pub hotbar_slot: Handle<Image>,
+    pub hotbar_select: Handle<Image>,
+    pub btn_fire_bg: Handle<Image>,
+    pub btn_fire_icon: Handle<Image>,
+    pub btn_aim_bg: Handle<Image>,
+    pub btn_aim_icon: Handle<Image>,
+    pub btn_jump: Handle<Image>,
+    pub btn_crouch: Handle<Image>,
+    pub btn_reload: Handle<Image>,
+    pub joystick_bg: Handle<Image>,
+    pub map_close: Handle<Image>,
+    pub map_zoom_in: Handle<Image>,
+    pub map_zoom_out: Handle<Image>,
+    pub sound_foot: Handle<Image>,
+    pub sound_car: Handle<Image>,
+    pub sound_gun: Handle<Image>,
+    pub airdrop_icon: Handle<Image>,
+    pub cargo_icon: Handle<Image>,
 }
 
 #[derive(Resource, Clone)]
@@ -245,26 +282,7 @@ struct FrameMonitor {
 }
 
 fn resolve_asset_root() -> String {
-    for candidate in ["assets", "../../assets", "../assets"] {
-        let p = std::path::Path::new(candidate);
-        if p.join("imported_map").exists() {
-            if let Ok(canon) = std::fs::canonicalize(p) {
-                return canon.to_string_lossy().to_string();
-            }
-            return candidate.to_string();
-        }
-    }
-    if let Ok(exe) = std::env::current_exe() {
-        let mut cur = exe.parent();
-        while let Some(parent) = cur {
-            let candidate = parent.join("assets");
-            if candidate.join("imported_map").exists() {
-                return candidate.to_string_lossy().to_string();
-            }
-            cur = parent.parent();
-        }
-    }
-    "assets".to_string()
+    shared::level::asset_root().to_string_lossy().into_owned()
 }
 
 pub fn build_app(options: ClientOptions, storage: Box<dyn StorageService>) -> App {
@@ -326,6 +344,7 @@ pub fn build_app(options: ClientOptions, storage: Box<dyn StorageService>) -> Ap
             SharedSimulationPlugin,
             EguiPlugin::default(),
             OnlinePlugin,
+            MaterialPlugin::<TerrainSplatMaterial>::default(),
             bevy::remote::RemotePlugin::default(),
             bevy::remote::http::RemoteHttpPlugin::default(),
         ))
@@ -334,6 +353,7 @@ pub fn build_app(options: ClientOptions, storage: Box<dyn StorageService>) -> Ap
         .init_resource::<CameraPerspective>()
         .init_resource::<SpatialPlacementGrid>()
         .add_systems(Startup, setup_scene)
+        .add_systems(PostStartup, place_imported_player)
         .add_systems(
             Update,
             (
@@ -355,25 +375,18 @@ pub fn build_app(options: ClientOptions, storage: Box<dyn StorageService>) -> Ap
     app
 }
 
-fn build_bevy_mesh(rec: &shared::level::ImportedMeshRecord) -> Mesh {
+pub(crate) fn build_bevy_mesh(rec: &shared::level::ImportedMeshRecord) -> Mesh {
     let mut mesh = Mesh::new(
         bevy::mesh::PrimitiveTopology::TriangleList,
         bevy::asset::RenderAssetUsages::default(),
     );
     mesh.insert_attribute(Mesh::ATTRIBUTE_POSITION, rec.positions.clone());
     mesh.insert_attribute(Mesh::ATTRIBUTE_NORMAL, rec.normals.clone());
-    let is_road = rec.name.to_ascii_lowercase().contains("road")
-        || rec.texture.to_ascii_lowercase().contains("road");
-    let uvs = if is_road {
-        rec.uvs
-            .iter()
-            .map(|&[u, v]| [u, 1.0 - v])
-            .collect::<Vec<_>>()
-    } else {
-        rec.uvs.clone()
-    };
-    mesh.insert_attribute(Mesh::ATTRIBUTE_UV_0, uvs);
+    mesh.insert_attribute(Mesh::ATTRIBUTE_UV_0, rec.uvs.clone());
     mesh.insert_indices(bevy::mesh::Indices::U32(rec.indices.clone()));
+    if !rec.tangents.is_empty() {
+        mesh.insert_attribute(Mesh::ATTRIBUTE_TANGENT, rec.tangents.clone());
+    }
     mesh
 }
 
@@ -780,6 +793,7 @@ fn setup_scene(
     mut survival: ResMut<SimulationSurvival>,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
+    mut splat_materials: ResMut<Assets<TerrainSplatMaterial>>,
     mut images: ResMut<Assets<Image>>,
     mut grid: ResMut<SpatialPlacementGrid>,
 ) {
@@ -1057,7 +1071,7 @@ fn setup_scene(
             } else {
                 AlphaMode::Opaque
             },
-            cull_mode: None,
+            cull_mode: if is_foliage { None } else { Some(Face::Back) },
             double_sided: is_foliage,
             perceptual_roughness: 0.85,
             ..default()
@@ -1067,92 +1081,37 @@ fn setup_scene(
             .insert(rec.name.clone(), (mesh_handle, mat_handle));
     }
 
-    let terrain_records = shared::level::load_imported_terrain_records();
-    if !terrain_records.is_empty() {
+    let terrain_package = match shared::level::load_imported_terrain() {
+        Ok(package) => package,
+        Err(error) => {
+            error!("Canonical terrain package is invalid: {error}");
+            commands.write_message(AppExit::error());
+            return;
+        }
+    };
+    let terrain_loaded = terrain_package.is_some();
+    if let Some(package) = terrain_package {
         info!(
-            "Loaded {} imported XAPK island sectors/roads (A-01..D-56) and {} 3D models",
-            terrain_records.len(),
+            "Loaded {} validated APK terrain/road meshes; {} legacy models remain pending source reconstruction",
+            package.records.len(),
             tool_assets.imported_models.len()
         );
-        physics.0.insert_imported_terrain(&terrain_records);
+        if let Err(error) = physics.0.insert_canonical_terrain(&package) {
+            error!("Cannot construct source terrain colliders: {error}");
+            commands.write_message(AppExit::error());
+            return;
+        }
 
         // Remove test NPCs, enemies, bosses, vehicles, and demo resource nodes from the island world
         survival.0.npcs.clear();
         survival.0.vehicles.clear();
         survival.0.nodes.clear();
-        let mut tex_mat_cache: std::collections::BTreeMap<String, Handle<StandardMaterial>> =
-            std::collections::BTreeMap::new();
-        for rec in &terrain_records {
-            let lower_name = rec.name.to_ascii_lowercase();
-            if lower_name.contains("jichang")
-                || lower_name.contains("gangkou")
-                || lower_name.contains("feiqichangfang")
-                || lower_name.contains("maoyiqu")
-                || lower_name.contains("shiyanshi")
-                || lower_name.contains("object006")
-            {
-                continue;
-            }
-            let is_road = rec.name.to_ascii_lowercase().contains("road")
-                || rec.texture.to_ascii_lowercase().contains("road");
-            let tex_name = if !is_road {
-                let upper = rec.name.to_ascii_uppercase();
-                let sector_tex = format!("{upper}.png");
-                if std::path::Path::new(&format!("assets/imported_map/textures/{sector_tex}"))
-                    .exists()
-                {
-                    sector_tex
-                } else {
-                    // West chunks save as JUNSHIJIDI_TERRAIN_XX.png
-                    rec.texture.clone()
-                }
-            } else {
-                rec.texture.clone()
-            };
-            let mat = tex_mat_cache
-                .entry(tex_name.clone())
-                .or_insert_with(|| {
-                    let tex: Handle<Image> = if is_road {
-                        asset_server
-                            .load_builder()
-                            .with_settings(|settings: &mut bevy::image::ImageLoaderSettings| {
-                                settings.sampler = bevy::image::ImageSampler::Descriptor(
-                                    bevy::image::ImageSamplerDescriptor {
-                                        address_mode_u: bevy::image::ImageAddressMode::ClampToEdge,
-                                        address_mode_v: bevy::image::ImageAddressMode::Repeat,
-                                        ..default()
-                                    },
-                                );
-                            })
-                            .load(format!("imported_map/textures/{}", tex_name))
-                    } else {
-                        asset_server.load(format!("imported_map/textures/{}", tex_name))
-                    };
-                    materials.add(StandardMaterial {
-                        base_color: Color::WHITE,
-                        base_color_texture: Some(tex),
-                        alpha_mode: if is_road {
-                            AlphaMode::Blend
-                        } else {
-                            AlphaMode::Opaque
-                        },
-                        depth_bias: if is_road { 80.0 } else { 0.0 },
-                        perceptual_roughness: if is_road { 0.88 } else { 0.94 },
-                        cull_mode: None,
-                        ..default()
-                    })
-                })
-                .clone();
-            let mesh_handle = meshes.add(build_bevy_mesh(rec));
-            commands.spawn((
-                TerrainSectorChunk {
-                    center: Vec3::from_array(rec.center),
-                    is_road,
-                },
-                Mesh3d(mesh_handle),
-                MeshMaterial3d(mat),
-                Transform::default(),
-            ));
+
+        if let Err(error) = crate::terrain::spawn(&mut commands, &asset_server, &package,
+            &mut meshes, &mut materials, &mut splat_materials) {
+            error!("Cannot render source terrain materials: {error}");
+            commands.write_message(AppExit::error());
+            return;
         }
 
         // Authentic Ocean and Inland Water meshes from mditu.ab
@@ -1163,6 +1122,8 @@ fn setup_scene(
             perceptual_roughness: 0.05,
             metallic: 0.15,
             reflectance: 0.60,
+            cull_mode: None,
+            double_sided: true,
             ..default()
         });
         let inland_water_mat = materials.add(StandardMaterial {
@@ -1171,13 +1132,25 @@ fn setup_scene(
             perceptual_roughness: 0.08,
             metallic: 0.10,
             reflectance: 0.55,
+            cull_mode: None,
+            double_sided: true,
+            ..default()
+        });
+        let seabed_mat = materials.add(StandardMaterial {
+            base_color: Color::srgb(0.12, 0.14, 0.13),
+            perceptual_roughness: 0.95,
+            reflectance: 0.10,
+            cull_mode: Some(Face::Back),
             ..default()
         });
         if !water_records.is_empty() {
             for w in water_records {
                 let is_inland = w.name.contains("neilushui");
+                let is_seabed = w.name.contains("haidi");
                 let mat = if is_inland {
                     inland_water_mat.clone()
+                } else if is_seabed {
+                    seabed_mat.clone()
                 } else {
                     ocean_mat.clone()
                 };
@@ -1185,27 +1158,22 @@ fn setup_scene(
                 commands.spawn((
                     Mesh3d(mesh_handle),
                     MeshMaterial3d(mat),
-                    Transform::from_xyz(0.0, -0.05, 0.0),
+                    Transform::from_xyz(0.0, if is_seabed { -0.5 } else { -0.05 }, 0.0),
                 ));
             }
-        } else {
-            commands.spawn((
-                Mesh3d(unit_cube.clone()),
-                MeshMaterial3d(ocean_mat),
-                Transform::from_xyz(0.0, -0.4, 0.0).with_scale(Vec3::new(6000.0, 0.5, 6000.0)),
-            ));
         }
+        commands.spawn((
+            Mesh3d(unit_cube.clone()),
+            MeshMaterial3d(ocean_mat.clone()),
+            Transform::from_xyz(0.0, -0.4, 0.0).with_scale(Vec3::new(14000.0, 0.5, 14000.0)),
+        ));
 
         // Partition scenic placements from sceneinfo/*.oc into spatial grid cells (180m x 180m)
         for plc in shared::level::load_imported_placements() {
-            if plc.kind == 2 {
-                // Exclude giant monolithic cliff slabs (stone_dayanshi_03/07) that blocked the central island fields
-                continue;
-            }
-            // Exclude placements near central spawn to eliminate obstructions and demo artifacts
+            // Exclude placements directly on top of central spawn to avoid trapping player inside a prop
             let dx = plc.position[0] - 0.0;
             let dz = plc.position[2] - 12.0;
-            if dx * dx + dz * dz < 35.0 * 35.0 {
+            if dx * dx + dz * dz < 25.0 * 25.0 {
                 continue;
             }
             let cx = (plc.position[0] / CHUNK_CELL_SIZE).floor() as i32;
@@ -1224,13 +1192,33 @@ fn setup_scene(
                     let mut cell_entities = Vec::with_capacity(placements.len());
                     for plc in placements {
                         let model_key = match plc.kind {
+                            0 => "tree_temperate",
                             1 => "tree_jungle",
-                            3 => "grass_clump",
-                            4 => {
-                                if tool_assets.imported_models.contains_key("rock_small") {
-                                    "rock_small"
+                            2 => {
+                                let hash = ((plc.position[0] as i32 * 59) ^ (plc.position[2] as i32 * 37)).abs();
+                                match hash % 4 {
+                                    0 if tool_assets.imported_models.contains_key("rock_boulder") => "rock_boulder",
+                                    1 if tool_assets.imported_models.contains_key("rock_node") => "rock_node",
+                                    2 if tool_assets.imported_models.contains_key("rock_small") => "rock_small",
+                                    _ if tool_assets.imported_models.contains_key("ore_stone") => "ore_stone",
+                                    _ => "rock_boulder",
+                                }
+                            }
+                            3 => {
+                                let hash = ((plc.position[0] as i32 * 41) ^ (plc.position[2] as i32 * 23)).abs();
+                                if hash % 25 == 0 && tool_assets.imported_models.contains_key("clothes_cloth") {
+                                    "clothes_cloth"
                                 } else {
-                                    "rock_node"
+                                    "grass_clump"
+                                }
+                            }
+                            4 => {
+                                let hash = ((plc.position[0] as i32 * 31) ^ (plc.position[2] as i32 * 17)).abs();
+                                match hash % 3 {
+                                    0 if tool_assets.imported_models.contains_key("ore_stone") => "ore_stone",
+                                    1 if tool_assets.imported_models.contains_key("ore_sulfur") => "ore_sulfur",
+                                    _ if tool_assets.imported_models.contains_key("ore_iron") => "ore_iron",
+                                    _ => "rock_node",
                                 }
                             }
                             5 => "building_gas_station",
@@ -1242,22 +1230,37 @@ fn setup_scene(
                             11 => "building_pylon",
                             12 => "building_watchtower",
                             13 => "prop_fence",
-                            14 => "prop_military_box",
+                            14 => {
+                                if tool_assets.imported_models.contains_key("military_crate") {
+                                    "military_crate"
+                                } else {
+                                    "supply_crate"
+                                }
+                            }
+                            15 => "clothes_cloth",
                             _ => "tree_temperate",
                         };
                         if let Some((m_h, mat_h)) = tool_assets.imported_models.get(model_key) {
                             let pos_vec = Vec3::from_array(plc.position);
+                            let (final_rot, final_scale) = if plc.kind == 2 {
+                                let hash = ((plc.position[0] as i32 * 17) ^ (plc.position[2] as i32 * 43)).abs();
+                                let rot_jitter = Quat::from_rotation_y((hash % 360) as f32 * std::f32::consts::PI / 180.0);
+                                let scale_jitter = 0.8 + ((hash % 100) as f32 / 100.0) * 0.7;
+                                (rot_jitter * Quat::from_array(plc.rotation), plc.scale * scale_jitter)
+                            } else {
+                                (Quat::from_array(plc.rotation), plc.scale)
+                            };
                             let e = commands
                                 .spawn((
                                     ScenicPlacementMarker {
                                         position: pos_vec,
-                                        scale: plc.scale,
+                                        scale: final_scale,
                                     },
                                     Mesh3d(m_h.clone()),
                                     MeshMaterial3d(mat_h.clone()),
                                     Transform::from_translation(pos_vec)
-                                        .with_rotation(Quat::from_array(plc.rotation))
-                                        .with_scale(Vec3::splat(plc.scale)),
+                                        .with_rotation(final_rot)
+                                        .with_scale(Vec3::splat(final_scale)),
                                 ))
                                 .id();
                             cell_entities.push(e);
@@ -1323,6 +1326,39 @@ fn setup_scene(
     };
     commands.insert_resource(map_textures);
 
+    let ui_sprite_assets = UiSpriteAssets {
+        minimap_frame: asset_server.load("ui/sprites/1BattlePanel_ann_f.png"),
+        minimap_bg: asset_server.load("ui/sprites/BattlePanel2_dt_bg_1.png"),
+        player_arrow: asset_server.load("ui/sprites/1BattlePanel_zhixiang_1.png"),
+        player_cone: asset_server.load("ui/sprites/1BattlePanel_zhixiang_fangxiang.png"),
+        day_night_bg: asset_server.load("ui/sprites/1BattlePanel_tq_bg.png"),
+        sun_icon: asset_server.load("ui/sprites/1BattlePanel_zhouye_ty.png"),
+        moon_icon: asset_server.load("ui/sprites/1BattlePanel_zhouye_yl.png"),
+        coord_bg: asset_server.load("ui/sprites/BattlePanel2_map_djs.png"),
+        bar_bg: asset_server.load("ui/sprites/1BattlePanel_xue_bg_1.png"),
+        bar_fill_hp: asset_server.load("ui/sprites/1BattlePanel_buttle_fang_3.png"),
+        bar_fill_energy: asset_server.load("ui/sprites/1BattlePanel_buttle_fang_energy.png"),
+        hotbar_slot: asset_server.load("ui/sprites/1BattlePanel_buttle_fang_1.png"),
+        hotbar_select: asset_server.load("ui/sprites/1BattlePanel_buttle_fang_3.png"),
+        btn_fire_bg: asset_server.load("ui/sprites/BattlePanel2_car_yaogan_5.png"),
+        btn_fire_icon: asset_server.load("ui/sprites/BattlePanel_fire.png"),
+        btn_aim_bg: asset_server.load("ui/sprites/BattlePanel2_car_yaogan_4.png"),
+        btn_aim_icon: asset_server.load("ui/sprites/1BattlePanel_sj_2.png"),
+        btn_jump: asset_server.load("ui/sprites/1BattlePanel_cz_t.png"),
+        btn_crouch: asset_server.load("ui/sprites/1BattlePanel_cz_dun.png"),
+        btn_reload: asset_server.load("ui/sprites/1BattlePanel_cz_hd.png"),
+        joystick_bg: asset_server.load("ui/sprites/BattlePanel2_car_yaogan_1.png"),
+        map_close: asset_server.load("ui/sprites/com_ty_gb_1.png"),
+        map_zoom_in: asset_server.load("ui/sprites/BattleMapPanel_bg_4.png"),
+        map_zoom_out: asset_server.load("ui/sprites/BattleMapPanel_bg_2.png"),
+        sound_foot: asset_server.load("ui/sprites/1BattlePanel_sy_jiaobu.png"),
+        sound_car: asset_server.load("ui/sprites/1BattlePanel_sy_che.png"),
+        sound_gun: asset_server.load("ui/sprites/1BattlePanell_sy_qiang.png"),
+        airdrop_icon: asset_server.load("ui/sprites/1BattlePanel_map_tb_kt.png"),
+        cargo_icon: asset_server.load("ui/sprites/1BattlePanel_map_huolun.png"),
+    };
+    commands.insert_resource(ui_sprite_assets);
+
     commands.insert_resource(tool_assets.clone());
 
     commands.spawn((
@@ -1377,7 +1413,7 @@ fn setup_scene(
             ));
         });
 
-    if terrain_records.is_empty() {
+    if !terrain_loaded {
         // Fallback 4 Biomes visual surface pads (used only when imported XAPK terrain is absent)
         for (center, half_extents, biome) in [
             ([0.0, 0.015, -20.0], [29.6, 0.015, 10.0], Biome::Winter),
@@ -1423,7 +1459,7 @@ fn setup_scene(
         &unit_cube,
         &power_off_material,
         &tool_assets,
-        !terrain_records.is_empty(),
+        terrain_loaded,
     );
 
     commands
@@ -1894,15 +1930,37 @@ fn spawn_jungle_and_radtown_scenery(
     }
 }
 
+fn place_imported_player(
+    imported: Option<Res<ImportedTerrainActive>>,
+    mut physics: ResMut<shared::SimulationWorld>,
+    mut players: Query<(&shared::simulation::PlayerIdentity, &mut Transform, &mut SimulationPose, &mut CharacterMotion), With<LocalPlayer>>,
+) {
+    if imported.is_none() { return; }
+    for (id, mut transform, mut pose, mut motion) in &mut players {
+        let xz = [transform.translation.x, transform.translation.z];
+        let Some(position) = physics.0.surface_spawn_at(xz, Some(id.0)) else {
+            error!("No free canonical terrain surface at the player's initial coordinates");
+            continue;
+        };
+        let state = shared::protocol::PlayerState::at(position);
+        transform.translation = Vec3::from_array(position);
+        pose.previous = transform.translation;
+        pose.current = transform.translation;
+        motion.0 = state.motion;
+        physics.0.set_player(id.0, state);
+    }
+}
+
 fn attach_geometry(
     mut commands: Commands,
+    imported: Option<Res<ImportedTerrainActive>>,
     tool_assets: Res<ToolAssets>,
     geometry: Query<(Entity, &LevelGeometry), Added<LevelGeometry>>,
     resource_nodes: Query<(Entity, &ResourceNodeMarker), Added<ResourceNodeMarker>>,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
-    if !shared::level::load_imported_terrain_records().is_empty() {
+    if imported.is_some() {
         for (entity, _) in &geometry {
             commands.entity(entity).despawn();
         }
@@ -3421,13 +3479,33 @@ fn stream_world_chunks(
                 let mut cell_entities = Vec::with_capacity(placements.len());
                 for plc in placements {
                     let model_key = match plc.kind {
+                        0 => "tree_temperate",
                         1 => "tree_jungle",
-                        3 => "grass_clump",
-                        4 => {
-                            if tool_assets.imported_models.contains_key("rock_small") {
-                                "rock_small"
+                        2 => {
+                            let hash = ((plc.position[0] as i32 * 59) ^ (plc.position[2] as i32 * 37)).abs();
+                            match hash % 4 {
+                                0 if tool_assets.imported_models.contains_key("rock_boulder") => "rock_boulder",
+                                1 if tool_assets.imported_models.contains_key("rock_node") => "rock_node",
+                                2 if tool_assets.imported_models.contains_key("rock_small") => "rock_small",
+                                _ if tool_assets.imported_models.contains_key("ore_stone") => "ore_stone",
+                                _ => "rock_boulder",
+                            }
+                        }
+                        3 => {
+                            let hash = ((plc.position[0] as i32 * 41) ^ (plc.position[2] as i32 * 23)).abs();
+                            if hash % 25 == 0 && tool_assets.imported_models.contains_key("clothes_cloth") {
+                                "clothes_cloth"
                             } else {
-                                "rock_node"
+                                "grass_clump"
+                            }
+                        }
+                        4 => {
+                            let hash = ((plc.position[0] as i32 * 31) ^ (plc.position[2] as i32 * 17)).abs();
+                            match hash % 3 {
+                                0 if tool_assets.imported_models.contains_key("ore_stone") => "ore_stone",
+                                1 if tool_assets.imported_models.contains_key("ore_sulfur") => "ore_sulfur",
+                                _ if tool_assets.imported_models.contains_key("ore_iron") => "ore_iron",
+                                _ => "rock_node",
                             }
                         }
                         5 => "building_gas_station",
@@ -3439,22 +3517,37 @@ fn stream_world_chunks(
                         11 => "building_pylon",
                         12 => "building_watchtower",
                         13 => "prop_fence",
-                        14 => "prop_military_box",
+                        14 => {
+                            if tool_assets.imported_models.contains_key("military_crate") {
+                                "military_crate"
+                            } else {
+                                "supply_crate"
+                            }
+                        }
+                        15 => "clothes_cloth",
                         _ => "tree_temperate",
                     };
                     if let Some((m_h, mat_h)) = tool_assets.imported_models.get(model_key) {
                         let pos_vec = Vec3::from_array(plc.position);
+                        let (final_rot, final_scale) = if plc.kind == 2 {
+                            let hash = ((plc.position[0] as i32 * 17) ^ (plc.position[2] as i32 * 43)).abs();
+                            let rot_jitter = Quat::from_rotation_y((hash % 360) as f32 * std::f32::consts::PI / 180.0);
+                            let scale_jitter = 0.8 + ((hash % 100) as f32 / 100.0) * 0.7;
+                            (rot_jitter * Quat::from_array(plc.rotation), plc.scale * scale_jitter)
+                        } else {
+                            (Quat::from_array(plc.rotation), plc.scale)
+                        };
                         let e = commands
                             .spawn((
                                 ScenicPlacementMarker {
                                     position: pos_vec,
-                                    scale: plc.scale,
+                                    scale: final_scale,
                                 },
                                 Mesh3d(m_h.clone()),
                                 MeshMaterial3d(mat_h.clone()),
                                 Transform::from_translation(pos_vec)
-                                    .with_rotation(Quat::from_array(plc.rotation))
-                                    .with_scale(Vec3::splat(plc.scale)),
+                                    .with_rotation(final_rot)
+                                    .with_scale(Vec3::splat(final_scale)),
                             ))
                             .id();
                         cell_entities.push(e);
@@ -3470,7 +3563,8 @@ fn stream_world_chunks(
 fn sync_audio_effects(
     mut commands: Commands,
     time: Res<Time<Real>>,
-    interface: Res<Interface>,
+    clock: Res<SimulationClock>,
+    mut interface: ResMut<Interface>,
     survival: Res<SimulationSurvival>,
     telemetry: Res<Telemetry>,
     audio: Option<Res<AudioAssets>>,
@@ -3498,6 +3592,11 @@ fn sync_audio_effects(
             audio.gunshot_ak.clone()
         };
         commands.spawn((AudioPlayer::new(sound), PlaybackSettings::DESPAWN));
+        interface.add_sound_cue(
+            crate::hud_painter::SoundCueKind::Gunfire,
+            telemetry.player_position,
+            1.0,
+        );
     }
     audio_state.prev_shot_trace = interface.last_shot_trace.is_some();
 
@@ -3535,10 +3634,36 @@ fn sync_audio_effects(
                     audio.footstep_grass.clone()
                 };
                 commands.spawn((AudioPlayer::new(step_sound), PlaybackSettings::DESPAWN));
+                interface.add_sound_cue(
+                    crate::hud_painter::SoundCueKind::Footstep,
+                    telemetry.player_position,
+                    0.65,
+                );
             }
         } else {
             audio_state.footstep_timer = 0.1;
         }
+    }
+
+    // Emit sound cues for active moving vehicles
+    for v in &survival.0.vehicles {
+        if v.driver.is_some() && v.health > 0 {
+            interface.add_sound_cue(
+                crate::hud_painter::SoundCueKind::Vehicle,
+                v.position,
+                0.85,
+            );
+        }
+    }
+
+    // Periodic distant airdrop cue along the ocean perimeter
+    if clock.tick.is_multiple_of(300) {
+        let (ship_pos, _) = cargo_ship_transform(ServerTick(clock.tick));
+        interface.add_sound_cue(
+            crate::hud_painter::SoundCueKind::Airdrop,
+            ship_pos,
+            0.75,
+        );
     }
 
     // 4. Player damage / Hurt sound

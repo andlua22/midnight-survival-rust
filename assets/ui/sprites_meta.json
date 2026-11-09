@@ -1,0 +1,10859 @@
+{
+  "1BattlePanel_buttle_fang_3": {
+    "width": 94,
+    "height": 94,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_zhixiang_2": {
+    "width": 80,
+    "height": 80,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_carrier_tanchu": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "BattlePanel_zsjzx": {
+    "width": 180,
+    "height": 182,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_new_nag_bz_2": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_car_sc": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_zixingche_tiaoyue": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_Map_lv": {
+    "width": 36,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanell_bb": {
+    "width": 98,
+    "height": 103,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "BattlePanel_single_icon_position": {
+    "width": 44,
+    "height": 44,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_zz_2": {
+    "width": 59,
+    "height": 76,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_tq_bg": {
+    "width": 189,
+    "height": 29,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_buff_jie": {
+    "width": 30,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_map_tb_kt": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "BattlePanel_shang": {
+    "width": 110,
+    "height": 110,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_car_js": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_ann_f": {
+    "width": 62,
+    "height": 62,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_zhixiang_fangxiang": {
+    "width": 128,
+    "height": 128,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "tb_biaojihong_01": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_sy_jiaobu_s": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_zhizuo": {
+    "width": 86,
+    "height": 86,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "BattlePanel_zsjzd3": {
+    "width": 30,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_tb_zz_2": {
+    "width": 97,
+    "height": 92,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "shortcut_01": {
+    "width": 66,
+    "height": 48,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_buff_xue_jia": {
+    "width": 25,
+    "height": 24,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_map_tb_fb": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_xue_bg_1": {
+    "width": 64,
+    "height": 33,
+    "border": [
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_buttle_fang_energy": {
+    "width": 94,
+    "height": 94,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_cz_t": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_zt_xiaopeijian": {
+    "width": 26,
+    "height": 26,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "BattlePanel_fire": {
+    "width": 81,
+    "height": 78,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_dj_ry": {
+    "width": 26,
+    "height": 26,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_zhouye_ty": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_sz_bg_5": {
+    "width": 80,
+    "height": 80,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_zunxing_5": {
+    "width": 23,
+    "height": 13,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_yy_qb": {
+    "width": 54,
+    "height": 58,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_fei_2": {
+    "width": 121,
+    "height": 101,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel_xia": {
+    "width": 110,
+    "height": 110,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_yy_jj": {
+    "width": 34,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_sanjiao": {
+    "width": 51,
+    "height": 33,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_cz_hd": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel_chilun2": {
+    "width": 36,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_buff_shui": {
+    "width": 31,
+    "height": 31,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_zt_peijiandi": {
+    "width": 26,
+    "height": 26,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_map_di_2_2": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanell_yy_qb": {
+    "width": 54,
+    "height": 58,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_tb_ck": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_qiehuan_2": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_xiexingdi": {
+    "width": 117,
+    "height": 56,
+    "border": [
+      57.0,
+      0.0,
+      51.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_zuo_shang_infoBG_1": {
+    "width": 311,
+    "height": 39,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "Battlepanel_jiangli1": {
+    "width": 54,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_sy_zaiju_jt": {
+    "width": 21,
+    "height": 18,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_qiehuan_1": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_tb_ch": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanell_yj": {
+    "width": 85,
+    "height": 67,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel_time": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_map_tb_sw": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "guangdun_xuetiao_xue": {
+    "width": 352,
+    "height": 72,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_zixingche_jiasu": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_buttle_fang_32": {
+    "width": 94,
+    "height": 94,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_shengmingzhidi": {
+    "width": 64,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_sy_che": {
+    "width": 49,
+    "height": 106,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_chat_2": {
+    "width": 42,
+    "height": 35,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "BattlePanel_zsjzd": {
+    "width": 100,
+    "height": 94,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_paihang": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_h_k_1": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_sz_bg_3": {
+    "width": 33,
+    "height": 47,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "BattlePanel_dikuang": {
+    "width": 95,
+    "height": 95,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_zunxing_6": {
+    "width": 63,
+    "height": 116,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_zhixiang_1": {
+    "width": 80,
+    "height": 80,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1battlePanel_czq": {
+    "width": 94,
+    "height": 82,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_sy_jiaobu_di": {
+    "width": 45,
+    "height": 56,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_zaiju_che": {
+    "width": 60,
+    "height": 22,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_tb_db": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_sy_zhandou_di": {
+    "width": 45,
+    "height": 56,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_zhixiang_4": {
+    "width": 80,
+    "height": 80,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_sz": {
+    "width": 70,
+    "height": 69,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_carrier_jiashi_1": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "tb_biaojicheng_02": {
+    "width": 56,
+    "height": 56,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_sy_zaiju_dis": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_zuo_shang_info": {
+    "width": 172,
+    "height": 83,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "BattlePanel_chilun": {
+    "width": 53,
+    "height": 53,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_tb_q": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanell_sc": {
+    "width": 100,
+    "height": 100,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel_jindutiao": {
+    "width": 95,
+    "height": 95,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_zhixiang_5": {
+    "width": 85,
+    "height": 85,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_cart_js": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_zuo_shang_infophb": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_zuo_shang_infogl": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_zunxing_4": {
+    "width": 24,
+    "height": 74,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "tb_fl": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_sj_3": {
+    "width": 128,
+    "height": 117,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_h_c_1": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "BattlePanel_Shell": {
+    "width": 85,
+    "height": 86,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_zhouye_yl": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_zunxing_2": {
+    "width": 20,
+    "height": 6,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_sy_zaiju_di": {
+    "width": 45,
+    "height": 56,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1battlePanel_bt1": {
+    "width": 94,
+    "height": 82,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_yy_dw": {
+    "width": 54,
+    "height": 58,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_zuo_shang_infoZZ": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePane_com_buff_rn": {
+    "width": 35,
+    "height": 42,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_fei_1": {
+    "width": 121,
+    "height": 101,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_h_k": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_qx_zt_kj": {
+    "width": 83,
+    "height": 81,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "tb_biaojicheng_01": {
+    "width": 56,
+    "height": 56,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_tb_zz_1": {
+    "width": 97,
+    "height": 92,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "Battlepanel_shichao1": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_sy_jiaobu": {
+    "width": 203,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_tb_lt": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_di_cb": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      15.0,
+      15.0,
+      15.0,
+      15.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_zunxing_3": {
+    "width": 8,
+    "height": 8,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_map_huolun": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "BattlePanel_quick_bg_yellow": {
+    "width": 58,
+    "height": 74,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_h_c1": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_cart_js_1": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_zunxing_1": {
+    "width": 11,
+    "height": 11,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_h_f_1": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_buttle_fang_1": {
+    "width": 101,
+    "height": 101,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_sy_xy": {
+    "width": 43,
+    "height": 161,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "wurenji_button": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "BattlePanel_MachineGun": {
+    "width": 90,
+    "height": 62,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_yy_st": {
+    "width": 54,
+    "height": 58,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePane_setting_shiqu5": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_zhixiang_3": {
+    "width": 80,
+    "height": 80,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_xuan8": {
+    "width": 77,
+    "height": 77,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_h_f": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "battlepanel_mimamen": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "1BattlePanel_buff_fs": {
+    "width": 35,
+    "height": 35,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_yy_ht": {
+    "width": 54,
+    "height": 58,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_zuo_shang_info2": {
+    "width": 75,
+    "height": 67,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_car_lb": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanell_sy_qiang": {
+    "width": 203,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1battlePanel_bt2": {
+    "width": 94,
+    "height": 82,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_Map_huang": {
+    "width": 36,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_sy_qiang1": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "battlepanel_lj": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "guangdun_xuetiao_di": {
+    "width": 352,
+    "height": 72,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_map_lingdigui": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_cl_2": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_sz_bg_4": {
+    "width": 69,
+    "height": 65,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_setting_shiqu2": {
+    "width": 104,
+    "height": 104,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_cz_hy": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_bag_zd": {
+    "width": 26,
+    "height": 26,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_fei_3": {
+    "width": 121,
+    "height": 101,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_jz_di_1": {
+    "width": 161,
+    "height": 47,
+    "border": [
+      41.0,
+      0.0,
+      38.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_biaoxue": {
+    "width": 172,
+    "height": 92,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_map_di_2_1": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_buttle_diban": {
+    "width": 36,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_cart_hz": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_quit": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_cart_dc": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_cz_pa": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_buff_xue": {
+    "width": 30,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_dz_bt": {
+    "width": 73,
+    "height": 74,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "BattlePanel_dolphin": {
+    "width": 60,
+    "height": 64,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_zuo_shang_infomx": {
+    "width": 42,
+    "height": 42,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_sj_2": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_TIP_23": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_Map_lan": {
+    "width": 36,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_map_xiaojianjiao": {
+    "width": 42,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "tb_biaojihong_02": {
+    "width": 56,
+    "height": 56,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "wurenji_map": {
+    "width": 126,
+    "height": 126,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_yy_xz": {
+    "width": 66,
+    "height": 66,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_Map_hong": {
+    "width": 36,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_cz_dun": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_tb_dj": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_Map_huibai": {
+    "width": 36,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "BattlePanel_single_bg_yellow": {
+    "width": 52,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_cl_1": {
+    "width": 30,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_zuo_shang_infoBG": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "BattlePanel_danger_user": {
+    "width": 44,
+    "height": 44,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "1BattlePanel_zuo_shang_infojj": {
+    "width": 31,
+    "height": 33,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_badge_map_mark": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_tb_lz": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_zuo_shang_infoGH": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "ActivityWar_small": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "1BattlePane_setting_shiqu4": {
+    "width": 104,
+    "height": 104,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "BattlePanel_zsjzd1": {
+    "width": 8,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "1BattlePanel_chat_1": {
+    "width": 97,
+    "height": 49,
+    "border": [
+      40.0,
+      20.0,
+      40.0,
+      20.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel.ab"
+  },
+  "BattlePanel2_zhankai": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_carrier_bg_1": {
+    "width": 62,
+    "height": 9,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_rocker_feiji_1": {
+    "width": 160,
+    "height": 208,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_YINGSHUI2": {
+    "width": 114,
+    "height": 122,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_car_fangxiangpan": {
+    "width": 310,
+    "height": 310,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_carrier_cat_you": {
+    "width": 84,
+    "height": 8,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_st_an_!": {
+    "width": 130,
+    "height": 130,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleCar_arrow": {
+    "width": 140,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePlane2_jiqiang": {
+    "width": 100,
+    "height": 94,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattleCar_BtnBG": {
+    "width": 244,
+    "height": 244,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_carrier_feiji": {
+    "width": 64,
+    "height": 117,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_cz_tz": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_car_yaogan_1": {
+    "width": 330,
+    "height": 330,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_yy_xiaiqian": {
+    "width": 130,
+    "height": 108,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_carrier_car_1": {
+    "width": 55,
+    "height": 84,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_btn_1": {
+    "width": 34,
+    "height": 104,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_quick_mark": {
+    "width": 56,
+    "height": 56,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePlane2_zhunxing": {
+    "width": 180,
+    "height": 182,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_jiantou": {
+    "width": 18,
+    "height": 18,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_car_yaogan_4": {
+    "width": 89,
+    "height": 89,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_car_yaogan_2": {
+    "width": 160,
+    "height": 160,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_Haitun_js": {
+    "width": 110,
+    "height": 110,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_xue": {
+    "width": 18,
+    "height": 18,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_car_zidongbengpao2": {
+    "width": 72,
+    "height": 56,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_carrier_craft": {
+    "width": 95,
+    "height": 184,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_map_djs": {
+    "width": 252,
+    "height": 31,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_Yuzhouhj_kong": {
+    "width": 14,
+    "height": 18,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_car_fx": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleCar_BtnFg": {
+    "width": 102,
+    "height": 99,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_YINGHSUAI1": {
+    "width": 114,
+    "height": 122,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_Di_1": {
+    "width": 154,
+    "height": 124,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_ss_sj": {
+    "width": 37,
+    "height": 37,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_Yuzhouhj_shi": {
+    "width": 14,
+    "height": 18,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_carrier_zixingche": {
+    "width": 72,
+    "height": 124,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_quick_icon_medicine": {
+    "width": 74,
+    "height": 74,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_penshe": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_quick_icon_equip": {
+    "width": 74,
+    "height": 74,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_dz": {
+    "width": 512,
+    "height": 512,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePlane2_zidan": {
+    "width": 8,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_daojishidiban": {
+    "width": 867,
+    "height": 148,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_quick_icon_defend": {
+    "width": 74,
+    "height": 74,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_carrier_mt_1": {
+    "width": 64,
+    "height": 117,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_daodan": {
+    "width": 30,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_quick_icon_vehicle": {
+    "width": 74,
+    "height": 74,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_yy_shangfu": {
+    "width": 130,
+    "height": 108,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_carrier_you 1": {
+    "width": 14,
+    "height": 14,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_car_yaogan_3": {
+    "width": 160,
+    "height": 160,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_jishiqi": {
+    "width": 344,
+    "height": 344,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_quick_icon_attack": {
+    "width": 74,
+    "height": 74,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_talent": {
+    "width": 70,
+    "height": 59,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_gz_4": {
+    "width": 92,
+    "height": 66,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_Yuzhouhj": {
+    "width": 64,
+    "height": 134,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_you": {
+    "width": 18,
+    "height": 18,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_carrier_chuan": {
+    "width": 59,
+    "height": 137,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_diban_1": {
+    "width": 14,
+    "height": 124,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_st_an_2": {
+    "width": 130,
+    "height": 130,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_ss_lx": {
+    "width": 438,
+    "height": 131,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_shouqi": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_home": {
+    "width": 70,
+    "height": 59,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_zhanbao": {
+    "width": 70,
+    "height": 59,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_xue_bg_4": {
+    "width": 269,
+    "height": 35,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_shouce": {
+    "width": 70,
+    "height": 59,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_tanhao": {
+    "width": 48,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattleCar_SheCheng": {
+    "width": 28,
+    "height": 100,
+    "border": [
+      0.0,
+      10.0,
+      0.0,
+      10.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_dt_bg_1": {
+    "width": 69,
+    "height": 68,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_carrier_zuo_1": {
+    "width": 14,
+    "height": 18,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleCar_keduchi-2": {
+    "width": 14,
+    "height": 100,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_car_yaogan_5": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattlePanel2_zd_bp_2": {
+    "width": 112,
+    "height": 98,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "jy_yuzhouhaojiezsjxiaotubiao": {
+    "width": 64,
+    "height": 134,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_carrier_xue": {
+    "width": 14,
+    "height": 14,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_carrier_zuo_2": {
+    "width": 14,
+    "height": 18,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleCar_arrow2": {
+    "width": 20,
+    "height": 20,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_quick_icon_assemble": {
+    "width": 74,
+    "height": 74,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "BattlePanel2_shangdian": {
+    "width": 70,
+    "height": 59,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlepanel2.ab"
+  },
+  "NewBattlepanel_yangqi": {
+    "width": 127,
+    "height": 197,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_orange": {
+    "width": 54,
+    "height": 149,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_tuijingqi2": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_O2": {
+    "width": 33,
+    "height": 32,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_blue": {
+    "width": 54,
+    "height": 149,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_tuijingqi": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_meiyou": {
+    "width": 33,
+    "height": 32,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_yangqiping": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_foot2": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_red1": {
+    "width": 54,
+    "height": 149,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_qianshuijing": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_qianshuifu": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_qianshuishebei2": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_meiyou1": {
+    "width": 33,
+    "height": 32,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewBattlepanel_foot": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_qianshuijing2": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_qianshuishebei": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_yangqiping2": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_qianshuifu2": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "NewBattlepanel_red": {
+    "width": 54,
+    "height": 149,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/newbattlepanel.ab"
+  },
+  "BattleMapPanel2_btn_delete": {
+    "width": 114,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_icon_safedoor": {
+    "width": 79,
+    "height": 79,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_shouhuojitubiao1": {
+    "width": 60,
+    "height": 64,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel__hong": {
+    "width": 36,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_tubiao1": {
+    "width": 60,
+    "height": 64,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel2_btn_type": {
+    "width": 254,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_bg_5": {
+    "width": 63,
+    "height": 47,
+    "border": [
+      19.0,
+      19.0,
+      19.0,
+      19.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleMapPanel__lan": {
+    "width": 36,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_fenggexian": {
+    "width": 190,
+    "height": 2,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleMapPanel_lvsebiaoji": {
+    "width": 52,
+    "height": 52,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_gz_xz_2": {
+    "width": 74,
+    "height": 74,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_map_tb_9": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_hldj_lingdiguilan": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleMapPanel2_btn_clear": {
+    "width": 114,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_gz_4": {
+    "width": 92,
+    "height": 66,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel__jiashi_1": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_ldg_wh": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_map_tb_20": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel__huang": {
+    "width": 36,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_map_tb_4": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_4": {
+    "width": 60,
+    "height": 64,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_map_tb_22": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_gz_xz": {
+    "width": 74,
+    "height": 74,
+    "border": [
+      35.0,
+      35.0,
+      35.0,
+      35.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_map_tb_5": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_h_c": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_zhixiang_4": {
+    "width": 80,
+    "height": 80,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_icon_dolphin": {
+    "width": 60,
+    "height": 64,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_Kongxizhuangzhi": {
+    "width": 80,
+    "height": 80,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleMapPanel_di_2_1": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleMapPanel_map_tb_17": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_map_tb_15": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel__huibai": {
+    "width": 36,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleMapPanel_fishingpoint": {
+    "width": 66,
+    "height": 66,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_map_tb_19_1": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel2_single_icon_attack": {
+    "width": 44,
+    "height": 44,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_map_tb_3": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel2_single_icon_item": {
+    "width": 44,
+    "height": 44,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel__di_2_2": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleMapPanel_block_b1": {
+    "width": 810,
+    "height": 810,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_zhixiang_5": {
+    "width": 85,
+    "height": 85,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_waterpoint": {
+    "width": 66,
+    "height": 66,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_map_tb_11": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_hldj_kxfw": {
+    "width": 100,
+    "height": 100,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleMapPanel_hldj_lingdiguihong": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "tubiao_zikafang": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_map_tb_19": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_map_tb_10": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_tubiao3": {
+    "width": 60,
+    "height": 64,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_badge_map_mark": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "tubiao_lvkafang": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_zhixiang_fangxiang": {
+    "width": 128,
+    "height": 128,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_icon_fallout": {
+    "width": 79,
+    "height": 79,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_bg_4": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleMapPanel_bg_3": {
+    "width": 254,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_icon_monster": {
+    "width": 66,
+    "height": 66,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_zisebiaoji": {
+    "width": 52,
+    "height": 52,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_zhixiang_2": {
+    "width": 80,
+    "height": 80,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_map_tb_14": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_kl_1": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel2_single_bg_yellow": {
+    "width": 52,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_map_tb_18": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_bg_d": {
+    "width": 10,
+    "height": 4,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_explosionpoint": {
+    "width": 66,
+    "height": 66,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_fushe": {
+    "width": 79,
+    "height": 79,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "tubiao_lankafang": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_lansebiaoji": {
+    "width": 52,
+    "height": 52,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_icon_dirty": {
+    "width": 79,
+    "height": 79,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_map_tb_7": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_map_tb_21": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_map_tb_2": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel__tb_fb": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleMapPanel_bg_2": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleMapPanel_deliverypoint": {
+    "width": 66,
+    "height": 66,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_tubiao2": {
+    "width": 60,
+    "height": 64,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_bg_1": {
+    "width": 114,
+    "height": 44,
+    "border": [
+      64.0,
+      0.0,
+      31.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel2_single_icon_defend": {
+    "width": 44,
+    "height": 44,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_zaiju_che": {
+    "width": 60,
+    "height": 22,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_lingdigui": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleMapPanel__lv": {
+    "width": 36,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_huolun": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_zhixiang_1": {
+    "width": 80,
+    "height": 80,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_gz_3": {
+    "width": 80,
+    "height": 68,
+    "border": [
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_gz_5": {
+    "width": 4,
+    "height": 98,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel_zhixiang_3": {
+    "width": 80,
+    "height": 80,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlemappanel.ab"
+  },
+  "BattleMapPanel__tb_sw": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleMapPanel__tb_kt": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShopOutBattlePanel_zc_an_1_on": {
+    "width": 17,
+    "height": 28,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewWardRankingPanel_di1": {
+    "width": 84,
+    "height": 106,
+    "border": [
+      38.0,
+      49.0,
+      35.0,
+      47.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_dui": {
+    "width": 54,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "connmon_cangkuxian": {
+    "width": 4,
+    "height": 5,
+    "border": [
+      1.0,
+      2.0,
+      1.0,
+      2.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "YueqiandPanel_Di_3": {
+    "width": 36,
+    "height": 36,
+    "border": [
+      17.0,
+      17.0,
+      17.0,
+      17.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_s_cir": {
+    "width": 57,
+    "height": 57,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_sanjipanel_zz_2": {
+    "width": 59,
+    "height": 76,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BaseBossRefreshTimePanel_guanbi": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_gray_di": {
+    "width": 84,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_set_gxk": {
+    "width": 46,
+    "height": 46,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "anniu-2": {
+    "width": 63,
+    "height": 152,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_money_jinbi": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_zuoxuan": {
+    "width": 193,
+    "height": 115,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_wzd_3": {
+    "width": 246,
+    "height": 47,
+    "border": [
+      45.0,
+      0.0,
+      41.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_n_add": {
+    "width": 26,
+    "height": 26,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "P_disan-1": {
+    "width": 118,
+    "height": 95,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_set_jdt": {
+    "width": 50,
+    "height": 10,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShoppingPanell_task_6": {
+    "width": 120,
+    "height": 114,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_anniu_3": {
+    "width": 306,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newbedgivepanel_2": {
+    "width": 106,
+    "height": 95,
+    "border": [
+      35.0,
+      35.0,
+      35.0,
+      35.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "LaxinPanel_anniu3": {
+    "width": 219,
+    "height": 44,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "UAV_Enter_4": {
+    "width": 776,
+    "height": 776,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_ty_gb_1": {
+    "width": 316,
+    "height": 86,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_bg_ann_5": {
+    "width": 324,
+    "height": 86,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BagAndBuildPanel_tu10": {
+    "width": 49,
+    "height": 53,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_shang_an_1": {
+    "width": 266,
+    "height": 47,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "LadderBuyTypePanel_v_02": {
+    "width": 86,
+    "height": 86,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "AlertBoxTwo_3s_bg_1": {
+    "width": 72,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "MailPanel_bg_6": {
+    "width": 267,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_wzk_3": {
+    "width": 36,
+    "height": 30,
+    "border": [
+      16.0,
+      11.0,
+      16.0,
+      12.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_baattle_2": {
+    "width": 163,
+    "height": 60,
+    "border": [
+      75.0,
+      28.0,
+      79.0,
+      28.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Lantu_Shitou": {
+    "width": 36,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_shangyeqian": {
+    "width": 193,
+    "height": 81,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_ty_jq_+": {
+    "width": 42,
+    "height": 42,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel_tub": {
+    "width": 144,
+    "height": 128,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "LadderTaskPanel_bg_C1": {
+    "width": 102,
+    "height": 95,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_tj_jia": {
+    "width": 43,
+    "height": 43,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewShopOutBattlePanel_aniu1": {
+    "width": 176,
+    "height": 74,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewDianlu_xny_anniu": {
+    "width": 197,
+    "height": 193,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_set_plus_di": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "LuckyBagPanel_wenhao": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewAchievementPanel_8": {
+    "width": 110,
+    "height": 110,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_di_ch": {
+    "width": 42,
+    "height": 42,
+    "border": [
+      15.0,
+      15.0,
+      15.0,
+      15.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShoppingPanell_task_5": {
+    "width": 120,
+    "height": 114,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_tc_duihao": {
+    "width": 34,
+    "height": 24,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel2huangzhezhao": {
+    "width": 94,
+    "height": 94,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "StorePanel-yiguihuanzhuang-4": {
+    "width": 64,
+    "height": 52,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Lantu_Jingtie": {
+    "width": 36,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_back_anniu-3": {
+    "width": 46,
+    "height": 46,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "LaxinPanel_anniu1": {
+    "width": 120,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "LeaderboardPanel_xuanzhong": {
+    "width": 120,
+    "height": 116,
+    "border": [
+      47.0,
+      49.0,
+      51.0,
+      48.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "tb_zqb": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_settle_fenge": {
+    "width": 22,
+    "height": 4,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Lantu_Cailiao": {
+    "width": 36,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_bg_tubiaodi": {
+    "width": 111,
+    "height": 111,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "salepanel_huizhang": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "StorePanel-yiguihuanzhuang-bg": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Lantu_Xuanzhong": {
+    "width": 564,
+    "height": 133,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CivilizationInfoPanel_lock1": {
+    "width": 31,
+    "height": 31,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ActivityNewPanel_bg_7": {
+    "width": 406,
+    "height": 56,
+    "border": [
+      191.0,
+      0.0,
+      191.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "EstablishPanel_xingbie-nv": {
+    "width": 48,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShoppingPanell_task_1": {
+    "width": 30,
+    "height": 46,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "AchievementPanel_chenchuandi": {
+    "width": 8,
+    "height": 8,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "tiao_11": {
+    "width": 728,
+    "height": 42,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShopOutBattlePanel_tj_bg_1": {
+    "width": 41,
+    "height": 22,
+    "border": [
+      19.0,
+      0.0,
+      19.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "MainPanel_bg_9": {
+    "width": 6,
+    "height": 6,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "UAV_Image_9": {
+    "width": 250,
+    "height": 42,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ActivityNewPanel_bg_1": {
+    "width": 308,
+    "height": 88,
+    "border": [
+      142.0,
+      0.0,
+      146.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewShopOutBattlePanel_danju1": {
+    "width": 58,
+    "height": 56,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "HeadkdomPanel_bg_3": {
+    "width": 145,
+    "height": 46,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "SurvivalGuidePanel_suo": {
+    "width": 26,
+    "height": 26,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "btn_yidong": {
+    "width": 46,
+    "height": 46,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_common_lvjia": {
+    "width": 43,
+    "height": 43,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_anniu_1": {
+    "width": 267,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "danyao-1": {
+    "width": 30,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "com_item_kuang_2": {
+    "width": 140,
+    "height": 140,
+    "border": [
+      40.0,
+      55.0,
+      40.0,
+      40.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WarChoiceConfirmPanel_1": {
+    "width": 36,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_item_kuang_4": {
+    "width": 104,
+    "height": 104,
+    "border": [
+      46.0,
+      45.0,
+      45.0,
+      46.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_fg_xian": {
+    "width": 25,
+    "height": 4,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_baattle_5": {
+    "width": 242,
+    "height": 94,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "MainTimeMallPanel_tishi": {
+    "width": 46,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "DistributeDonloadPanel_download3": {
+    "width": 31,
+    "height": 27,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_del_1": {
+    "width": 61,
+    "height": 61,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "tb_lb_tmyx": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShopOutBattlePanel_tj_bg_2": {
+    "width": 11,
+    "height": 11,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CarDiyPanel_gantan": {
+    "width": 42,
+    "height": 38,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "MainPanel_bg_6": {
+    "width": 6,
+    "height": 6,
+    "border": [
+      2.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_item_kuang_1": {
+    "width": 140,
+    "height": 140,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "lz_nf_2": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "cj_jindutiao-1": {
+    "width": 14,
+    "height": 14,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_wzd_5": {
+    "width": 110,
+    "height": 45,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TeamTaskPanel_bg_6": {
+    "width": 27,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_money_fhjndb": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "FirePower_Diban_shibai": {
+    "width": 1986,
+    "height": 400,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel_zhandou": {
+    "width": 209,
+    "height": 182,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_common_sanjipanel_hd": {
+    "width": 48,
+    "height": 48,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_huoyue": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_zt_13": {
+    "width": 50,
+    "height": 43,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WarChoicePanel_bg_12": {
+    "width": 38,
+    "height": 38,
+    "border": [
+      15.0,
+      15.0,
+      15.0,
+      15.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_yellow": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "StorePanel-yiguihuanzhuang-2": {
+    "width": 64,
+    "height": 52,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_tip_TStanhao": {
+    "width": 32,
+    "height": 28,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_jiantou-lv": {
+    "width": 20,
+    "height": 26,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewDianluPanel_xiugai": {
+    "width": 39,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_db_01": {
+    "width": 100,
+    "height": 100,
+    "border": [
+      35.0,
+      35.0,
+      35.0,
+      35.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newcommon_miaoshudi": {
+    "width": 126,
+    "height": 126,
+    "border": [
+      58.0,
+      61.0,
+      52.0,
+      52.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_set_jdt_hk": {
+    "width": 21,
+    "height": 24,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShopOutBattlePanel_zp_1": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Lantu_Jianzhu": {
+    "width": 36,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WarChoicePanel_bg_1": {
+    "width": 51,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WarChoicePanel_bg_5": {
+    "width": 18,
+    "height": 27,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_rename": {
+    "width": 42,
+    "height": 44,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "AlertBoxTwo_3s_bg_2": {
+    "width": 333,
+    "height": 39,
+    "border": [
+      190.0,
+      0.0,
+      133.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_baattle_3": {
+    "width": 233,
+    "height": 86,
+    "border": [
+      105.0,
+      0.0,
+      105.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "mask_sidesfade": {
+    "width": 64,
+    "height": 64,
+    "border": [
+      16.0,
+      16.0,
+      16.0,
+      16.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "FirePopupPanel_you": {
+    "width": 98,
+    "height": 80,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_bg_g1": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      20.0,
+      20.0,
+      20.0,
+      20.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Common_zhuangshi": {
+    "width": 54,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_show_text_di_3": {
+    "width": 382,
+    "height": 224,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "anniu_koushao": {
+    "width": 80,
+    "height": 80,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewDianluPanel_4lvsen": {
+    "width": 4,
+    "height": 4,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_wzd_4": {
+    "width": 246,
+    "height": 47,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Fifa2022WorldCupLotteryQuiz_anniu2": {
+    "width": 146,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TimeLimitedSkinPanel_di": {
+    "width": 442,
+    "height": 115,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WoodPanel_b": {
+    "width": 88,
+    "height": 72,
+    "border": [
+      35.0,
+      35.0,
+      35.0,
+      35.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel_xuanzhong": {
+    "width": 178,
+    "height": 178,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "LadderBuyTypePanel_anniu_L": {
+    "width": 403,
+    "height": 87,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WarChoicePanel_sousuo": {
+    "width": 42,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewShopOutBattlePanel_danju2": {
+    "width": 58,
+    "height": 56,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Fifa2022WorldCupLotteryQuiz_anniu1": {
+    "width": 146,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newshopoutbattlepanel_xz_1": {
+    "width": 119,
+    "height": 123,
+    "border": [
+      45.0,
+      45.0,
+      45.0,
+      45.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "YueqiandPanel_Yiwanc": {
+    "width": 72,
+    "height": 71,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ls_woodpanel_1": {
+    "width": 60,
+    "height": 61,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "LaxinPanel_diban": {
+    "width": 154,
+    "height": 194,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_rightup_btn": {
+    "width": 150,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_di_ch": {
+    "width": 42,
+    "height": 42,
+    "border": [
+      15.0,
+      15.0,
+      15.0,
+      15.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewDianlu_nl_di": {
+    "width": 169,
+    "height": 10,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_set_duihao": {
+    "width": 55,
+    "height": 41,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newcommon_xianshi": {
+    "width": 28,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewDianlu_jian": {
+    "width": 46,
+    "height": 46,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TeamTaskPanel_bg_7": {
+    "width": 76,
+    "height": 86,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Fifa2022WorldCupLotteryQuiz_anniu3": {
+    "width": 146,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_x_anniu_1": {
+    "width": 51,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_gx_di_1": {
+    "width": 48,
+    "height": 48,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "InforPanel_fengexian-2": {
+    "width": 1,
+    "height": 2,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShopOutBattlePanel_zk_bg_2": {
+    "width": 68,
+    "height": 68,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_teamtask_wenhao": {
+    "width": 59,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WarChoicePanel_bg_4": {
+    "width": 6,
+    "height": 6,
+    "border": [
+      2.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "PlayerLauncherPanel_gantan": {
+    "width": 34,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_di_cb": {
+    "width": 42,
+    "height": 42,
+    "border": [
+      15.0,
+      15.0,
+      15.0,
+      15.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "FirePower_Mvp2": {
+    "width": 43,
+    "height": 23,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Common_landi": {
+    "width": 388,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel_jiao1": {
+    "width": 80,
+    "height": 32,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newcommontongyongdi": {
+    "width": 93,
+    "height": 86,
+    "border": [
+      38.0,
+      36.0,
+      38.0,
+      34.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BagAndBuildPanel_common_lv": {
+    "width": 52,
+    "height": 34,
+    "border": [
+      23.0,
+      16.0,
+      23.0,
+      15.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BagAndBuildPanel_xiangxaijiantou": {
+    "width": 63,
+    "height": 25,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_bz_1": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShopOutBattlePanel_xz_1": {
+    "width": 228,
+    "height": 200,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ls_common_shurukuang": {
+    "width": 73,
+    "height": 68,
+    "border": [
+      31.0,
+      30.0,
+      30.0,
+      27.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Icon_Di": {
+    "width": 2,
+    "height": 2,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_gantaihao-1": {
+    "width": 42,
+    "height": 42,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "StorePanel-yiguihuanzhuang-5": {
+    "width": 64,
+    "height": 52,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_xiulitubiao": {
+    "width": 36,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "connmon_shiqu": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewWeaponsinpanel_qiehuan": {
+    "width": 89,
+    "height": 89,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel_jiao4": {
+    "width": 38,
+    "height": 44,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_gb_2": {
+    "width": 74,
+    "height": 74,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_common_zsj_di_4": {
+    "width": 44,
+    "height": 44,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WarehouseGetOutPanel_wenhao": {
+    "width": 42,
+    "height": 42,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_huadongdi": {
+    "width": 15,
+    "height": 26,
+    "border": [
+      6.0,
+      12.0,
+      6.0,
+      12.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "cj_jiantou-1": {
+    "width": 48,
+    "height": 74,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_sanjiao": {
+    "width": 17,
+    "height": 28,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_bag_yifangru": {
+    "width": 55,
+    "height": 55,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "FirePower_Di5": {
+    "width": 384,
+    "height": 354,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CarDiyPanel_zhandoulidiban-1": {
+    "width": 350,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "xinxidiban-1": {
+    "width": 916,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BaseLeaderboardPanel_bg_4": {
+    "width": 894,
+    "height": 10,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "PlayerLauncherPanel_fashe2": {
+    "width": 47,
+    "height": 51,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "zp_zhongguojie": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_bag_zd": {
+    "width": 26,
+    "height": 26,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_tab_001": {
+    "width": 324,
+    "height": 86,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "AlertBoxTwo_tip_an11": {
+    "width": 70,
+    "height": 68,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewDianlu_hd_di2": {
+    "width": 155,
+    "height": 9,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "FirePower_Leaderboard_zhezhao": {
+    "width": 300,
+    "height": 288,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TimeLimitedSkinPanel_queren": {
+    "width": 301,
+    "height": 75,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BagAndBuildPanel_xiexia": {
+    "width": 123,
+    "height": 123,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ls_com_ty_db_1": {
+    "width": 63,
+    "height": 75,
+    "border": [
+      26.0,
+      32.0,
+      26.0,
+      30.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "InforPanel_fengexian-1": {
+    "width": 820,
+    "height": 1,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_yesgz": {
+    "width": 74,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "UAV_Icon_1_Base": {
+    "width": 100,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TeamTaskPanel_buttle_2": {
+    "width": 69,
+    "height": 68,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel1_zhezhao": {
+    "width": 216,
+    "height": 192,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_zz_wpk": {
+    "width": 121,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "UAV_Image_6": {
+    "width": 210,
+    "height": 10,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_tip_di__+": {
+    "width": 32,
+    "height": 32,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_smallbtn_on": {
+    "width": 148,
+    "height": 71,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newcommonhongtiao": {
+    "width": 90,
+    "height": 55,
+    "border": [
+      40.0,
+      25.0,
+      38.0,
+      22.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Common_jishidi": {
+    "width": 100,
+    "height": 45,
+    "border": [
+      37.0,
+      0.0,
+      39.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ActivityNewPanel_bg_4": {
+    "width": 255,
+    "height": 86,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_time": {
+    "width": 34,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "connmon_zhizao": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_anniu_2": {
+    "width": 267,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel_jiao2": {
+    "width": 80,
+    "height": 32,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShopOutBattlePanel_jq_d_1": {
+    "width": 560,
+    "height": 6,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "LaxinPanel_anniu2": {
+    "width": 120,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_money_ndb_1": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_lv": {
+    "width": 26,
+    "height": 26,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_tip_di_-": {
+    "width": 32,
+    "height": 32,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Lantu_Mutou": {
+    "width": 36,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Guide_tishi1": {
+    "width": 50,
+    "height": 42,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_xzd_02": {
+    "width": 266,
+    "height": 47,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_tip_TSdiban1": {
+    "width": 32,
+    "height": 28,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BagAndBuildPanel_xiaohongdi": {
+    "width": 52,
+    "height": 34,
+    "border": [
+      23.0,
+      14.0,
+      22.0,
+      13.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewMainPanel_liaotian": {
+    "width": 66,
+    "height": 64,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "biaoti-guanbi": {
+    "width": 33,
+    "height": 32,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "connmon_cangkujiantou": {
+    "width": 28,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "zuduijiahao": {
+    "width": 86,
+    "height": 86,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_item_zt_sd": {
+    "width": 41,
+    "height": 41,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "StorePanel_shiyongzhong": {
+    "width": 112,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_item_kuang_3": {
+    "width": 134,
+    "height": 134,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ConvertShopPanel_anniu_4": {
+    "width": 364,
+    "height": 85,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "StorePanelnPanel_bg_1": {
+    "width": 365,
+    "height": 71,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_kaiqi": {
+    "width": 60,
+    "height": 61,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_eye_anniu-2": {
+    "width": 46,
+    "height": 46,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_tip_ts1": {
+    "width": 46,
+    "height": 42,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_gouxuan_0": {
+    "width": 38,
+    "height": 38,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "connmon_huizhi": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "FirePower_VS": {
+    "width": 229,
+    "height": 200,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_black_di": {
+    "width": 10,
+    "height": 10,
+    "border": [
+      2.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_rewardpanel_4": {
+    "width": 123,
+    "height": 39,
+    "border": [
+      57.0,
+      0.0,
+      55.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_tip_ts": {
+    "width": 32,
+    "height": 28,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newcom_chatpanel1_renwu": {
+    "width": 62,
+    "height": 45,
+    "border": [
+      18.0,
+      13.0,
+      16.0,
+      14.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "task_myq": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_btn_big_close": {
+    "width": 52,
+    "height": 52,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ChatPanel_laba_2": {
+    "width": 38,
+    "height": 43,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewWeaponsinpanel_chakan": {
+    "width": 89,
+    "height": 89,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "P_dier-1": {
+    "width": 118,
+    "height": 95,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CivilizationInfoPanel_normal": {
+    "width": 120,
+    "height": 152,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TeamTaskPanel_xue_d": {
+    "width": 30,
+    "height": 30,
+    "border": [
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "StorePanel_c_btn": {
+    "width": 291,
+    "height": 6,
+    "border": [
+      133.0,
+      2.0,
+      0.0,
+      2.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Establish_biaotidiban-1": {
+    "width": 438,
+    "height": 24,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "MainPanel_tb_lt": {
+    "width": 30,
+    "height": 27,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "anniu-1": {
+    "width": 63,
+    "height": 152,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_x_anniu_2": {
+    "width": 110,
+    "height": 54,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "jiqiangtazhunxin-jindu1": {
+    "width": 26,
+    "height": 96,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "com_xl_bg_1": {
+    "width": 38,
+    "height": 38,
+    "border": [
+      15.0,
+      15.0,
+      15.0,
+      15.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleCustomPanel_sj_2": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "NewMainPanel_jianbiandi": {
+    "width": 312,
+    "height": 31,
+    "border": [
+      137.0,
+      0.0,
+      138.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "connmon_fengexian": {
+    "width": 4,
+    "height": 1,
+    "border": [
+      1.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "UseTimePanel_shiyong_1": {
+    "width": 64,
+    "height": 64,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_rw_di_11": {
+    "width": 36,
+    "height": 32,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newcommon_zuoyeqianxain": {
+    "width": 130,
+    "height": 3,
+    "border": [
+      52.0,
+      0.0,
+      55.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ChestPanel_suo-1": {
+    "width": 88,
+    "height": 48,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "login_kefu": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ActivityNewPanel_ann_1": {
+    "width": 202,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "connmon_cangkudi": {
+    "width": 176,
+    "height": 74,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_n_jian": {
+    "width": 26,
+    "height": 26,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_item_zt_bhs": {
+    "width": 41,
+    "height": 41,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShoppingPanell_task_11": {
+    "width": 964,
+    "height": 12,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_money_dianquan": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_peijiandi": {
+    "width": 33,
+    "height": 33,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_jiantou1": {
+    "width": 14,
+    "height": 13,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newcom_bg_1": {
+    "width": 119,
+    "height": 109,
+    "border": [
+      47.0,
+      47.0,
+      48.0,
+      49.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_item_k_3": {
+    "width": 121,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "connmon_shangcheng": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShopOutBattlePanel_zc_an_1": {
+    "width": 324,
+    "height": 86,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "UAV_Button_Close": {
+    "width": 106,
+    "height": 106,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShopOutBattlePanel_bg_4": {
+    "width": 6,
+    "height": 6,
+    "border": [
+      2.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ChestPanel_baoxiang-1": {
+    "width": 84,
+    "height": 82,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_common__xiafnagfenge": {
+    "width": 336,
+    "height": 137,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "StorePanel-yiguihuanzhuang-1": {
+    "width": 64,
+    "height": 52,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_set_di_xbt": {
+    "width": 46,
+    "height": 35,
+    "border": [
+      2.0,
+      2.0,
+      3.0,
+      2.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_xxt": {
+    "width": 6,
+    "height": 88,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewDianlu_jia": {
+    "width": 46,
+    "height": 46,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleTankPanel_ditiao": {
+    "width": 135,
+    "height": 316,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "common_jiantou2": {
+    "width": 14,
+    "height": 7,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TeamMessagePanel_gantanhao": {
+    "width": 160,
+    "height": 170,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_baattle_1": {
+    "width": 163,
+    "height": 60,
+    "border": [
+      77.0,
+      26.0,
+      77.0,
+      26.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_bg_g4": {
+    "width": 64,
+    "height": 64,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShoppingPanell_task_4": {
+    "width": 120,
+    "height": 114,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Lantu_Weixuanz": {
+    "width": 424,
+    "height": 92,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "chestpanel_yaoshiwupingtubiao": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewShoppingPanell_task_8": {
+    "width": 205,
+    "height": 228,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "coml_jiaobiao": {
+    "width": 34,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_xiazailiang": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShoppingPanell_task_xz1": {
+    "width": 120,
+    "height": 114,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "LeaderboardPanell_xz_1": {
+    "width": 228,
+    "height": 200,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_ylq_1": {
+    "width": 189,
+    "height": 188,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "zp_hongbao_1": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "P_diyi-1": {
+    "width": 118,
+    "height": 95,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_wpk_0": {
+    "width": 121,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_anniu3": {
+    "width": 280,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_buff_jie": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_stzt": {
+    "width": 6,
+    "height": 61,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "close": {
+    "width": 135,
+    "height": 313,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Common_hogndi": {
+    "width": 388,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_gb": {
+    "width": 33,
+    "height": 32,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "UAV_Image_5": {
+    "width": 58,
+    "height": 10,
+    "border": [
+      20.0,
+      0.0,
+      20.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "UAV_Enter_2": {
+    "width": 2048,
+    "height": 1551,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "LadderTaskPanel_heizhezhao": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_tc_touying-1": {
+    "width": 4,
+    "height": 7,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel_jiao3": {
+    "width": 38,
+    "height": 44,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_gx_di_2": {
+    "width": 40,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_creat_db": {
+    "width": 203,
+    "height": 169,
+    "border": [
+      92.0,
+      76.0,
+      97.0,
+      74.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "YueqiandPanel_Di_4": {
+    "width": 94,
+    "height": 94,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_money_tfd_2": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_hei-1": {
+    "width": 26,
+    "height": 26,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_huoliduijue": {
+    "width": 235,
+    "height": 121,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Guide_tishi3": {
+    "width": 320,
+    "height": 100,
+    "border": [
+      152.0,
+      47.0,
+      150.0,
+      47.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_common_tili": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_bz_3": {
+    "width": 44,
+    "height": 44,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_tc_db": {
+    "width": 6,
+    "height": 6,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newcommon_gouhaodi": {
+    "width": 48,
+    "height": 48,
+    "border": [
+      20.0,
+      20.0,
+      19.0,
+      21.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_hy_zt_wgz": {
+    "width": 74,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewWeaponsinpanel_zhanshi": {
+    "width": 89,
+    "height": 89,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "SurvivalGuidePanel_bian1": {
+    "width": 1591,
+    "height": 4,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ChestPanel_s_lock": {
+    "width": 34,
+    "height": 38,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "task_pg": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_tj_jian": {
+    "width": 37,
+    "height": 7,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_xuanzhong": {
+    "width": 80,
+    "height": 71,
+    "border": [
+      30.0,
+      29.0,
+      29.0,
+      27.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_jiantou3": {
+    "width": 14,
+    "height": 19,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_bg_b2": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      15.0,
+      15.0,
+      15.0,
+      15.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_common_neibudi": {
+    "width": 106,
+    "height": 95,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_bg_ann_1": {
+    "width": 185,
+    "height": 47,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ChestPanel_baoxiang-2": {
+    "width": 84,
+    "height": 82,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_item_k_2": {
+    "width": 20,
+    "height": 20,
+    "border": [
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_left_brt": {
+    "width": 324,
+    "height": 86,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_nrl_bg_3": {
+    "width": 30,
+    "height": 30,
+    "border": [
+      14.0,
+      14.0,
+      14.0,
+      14.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WarChoiceConfirmPanel_4": {
+    "width": 36,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "AchievementPanel_tianfubg12": {
+    "width": 856,
+    "height": 925,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "StorePanel-yiguihuanzhuang-3": {
+    "width": 64,
+    "height": 52,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShopOutBattlePanel_zk_bg_1": {
+    "width": 68,
+    "height": 68,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_blackbase_nolight": {
+    "width": 64,
+    "height": 64,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WarChoiceConfirmPanel_3": {
+    "width": 36,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_huaxiangyi": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "mask_leftrightfade": {
+    "width": 64,
+    "height": 64,
+    "border": [
+      30.0,
+      0.0,
+      30.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CompetitionPanel_liuyan": {
+    "width": 48,
+    "height": 38,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newcommon_kaiqi": {
+    "width": 60,
+    "height": 61,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_gb_2": {
+    "width": 49,
+    "height": 58,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_name_fl": {
+    "width": 83,
+    "height": 18,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_fg_yuan": {
+    "width": 11,
+    "height": 7,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_common_tanvchufenge": {
+    "width": 85,
+    "height": 3,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "InforRenamePanel_gaiming": {
+    "width": 100,
+    "height": 100,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_zj_suo": {
+    "width": 62,
+    "height": 64,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newbag_1": {
+    "width": 46,
+    "height": 64,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_item_k_4": {
+    "width": 84,
+    "height": 84,
+    "border": [
+      30.0,
+      36.0,
+      34.0,
+      28.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_di_cb": {
+    "width": 42,
+    "height": 42,
+    "border": [
+      15.0,
+      15.0,
+      15.0,
+      15.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "UAV_Enter_5": {
+    "width": 452,
+    "height": 452,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ActivityNewPanel_bg_6": {
+    "width": 365,
+    "height": 71,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_shuguangqundao": {
+    "width": 235,
+    "height": 121,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BagAndBuildPanel_bgl_jiaobiao": {
+    "width": 34,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShoppingPanell_lv_1": {
+    "width": 189,
+    "height": 188,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newcom_line_2": {
+    "width": 8,
+    "height": 8,
+    "border": [
+      3.0,
+      3.0,
+      3.0,
+      3.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Common_fengetiao": {
+    "width": 2,
+    "height": 26,
+    "border": [
+      1.0,
+      11.0,
+      1.0,
+      11.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShopOutBattlePanel_tj_bg_3": {
+    "width": 11,
+    "height": 11,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "FastchatPanel_liaotianqipao": {
+    "width": 86,
+    "height": 87,
+    "border": [
+      55.0,
+      57.0,
+      23.0,
+      23.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel1_xiala": {
+    "width": 42,
+    "height": 42,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_bag_s_1": {
+    "width": 25,
+    "height": 25,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "head_1": {
+    "width": 168,
+    "height": 168,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_gouhaodi": {
+    "width": 48,
+    "height": 48,
+    "border": [
+      20.0,
+      20.0,
+      19.0,
+      21.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Lantu_Tie": {
+    "width": 36,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_xdb_01": {
+    "width": 4,
+    "height": 92,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BagAndBuildPanel_bg_1": {
+    "width": 656,
+    "height": 72,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "DistributeDonloadPanel_lock": {
+    "width": 525,
+    "height": 320,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "StoreSaleTcPanel_2": {
+    "width": 298,
+    "height": 88,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel1_dingtiao": {
+    "width": 635,
+    "height": 46,
+    "border": [
+      411.0,
+      0.0,
+      114.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newcommon_guanbi_1": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewMainPanel_dibian1": {
+    "width": 154,
+    "height": 11,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_chose_kuang": {
+    "width": 65,
+    "height": 64,
+    "border": [
+      4.0,
+      28.0,
+      26.0,
+      6.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "AchievementPanel_jiantou": {
+    "width": 18,
+    "height": 13,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_xl_bg_3": {
+    "width": 18,
+    "height": 12,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "DistributeDonloadPanel_download2": {
+    "width": 38,
+    "height": 8,
+    "border": [
+      14.0,
+      0.0,
+      14.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_txk": {
+    "width": 84,
+    "height": 84,
+    "border": [
+      32.0,
+      32.0,
+      32.0,
+      32.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "FirstPunchPanel_13_Title_Di": {
+    "width": 774,
+    "height": 272,
+    "border": [
+      322.0,
+      0.0,
+      311.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_common_shopxuanzhong": {
+    "width": 80,
+    "height": 80,
+    "border": [
+      35.0,
+      33.0,
+      32.0,
+      30.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BagAndBuildPanel_jiahao": {
+    "width": 52,
+    "height": 52,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_bag_jiantou": {
+    "width": 61,
+    "height": 86,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ActivityNewPanel_jd_2": {
+    "width": 150,
+    "height": 13,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "MailPanel_bg_1": {
+    "width": 365,
+    "height": 71,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WarChoicePanel_bg_8": {
+    "width": 58,
+    "height": 37,
+    "border": [
+      7.0,
+      24.0,
+      44.0,
+      7.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ChatPanel_bg_1": {
+    "width": 63,
+    "height": 47,
+    "border": [
+      23.0,
+      23.0,
+      23.0,
+      23.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_baattle_4": {
+    "width": 233,
+    "height": 86,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel_tub1": {
+    "width": 144,
+    "height": 128,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewDianlu_xny_anniu1": {
+    "width": 197,
+    "height": 193,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newcommon_tianjia": {
+    "width": 60,
+    "height": 61,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_money_txz": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_buff_xue": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "FirePopupPanel_jia": {
+    "width": 98,
+    "height": 80,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_common_zuoxuan": {
+    "width": 193,
+    "height": 115,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "SurvivalGuidePanel_ditiao11": {
+    "width": 819,
+    "height": 42,
+    "border": [
+      341.0,
+      0.0,
+      339.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_common_sanjipanel_zz_s": {
+    "width": 46,
+    "height": 64,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "InforPanel_zh": {
+    "width": 32,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_zw": {
+    "width": 49,
+    "height": 53,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel_jiao5": {
+    "width": 38,
+    "height": 44,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_money_tfd_1": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "DistributeDonloadPanel_download1": {
+    "width": 83,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BagAndBuildPanel_bg_23": {
+    "width": 145,
+    "height": 46,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_lock": {
+    "width": 31,
+    "height": 31,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_bag_di_2": {
+    "width": 127,
+    "height": 129,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_bs_wupingdi_2": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ChestPanel_bg_1": {
+    "width": 45,
+    "height": 45,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "VipPanel_Fengexian": {
+    "width": 1913,
+    "height": 4,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Common_biaoqian": {
+    "width": 245,
+    "height": 35,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_saijiling": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newcommon_xiaoshangyeqain": {
+    "width": 154,
+    "height": 60,
+    "border": [
+      69.0,
+      28.0,
+      70.0,
+      23.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_xiaolvdi": {
+    "width": 52,
+    "height": 34,
+    "border": [
+      20.0,
+      14.0,
+      20.0,
+      13.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_wenmingdalu": {
+    "width": 235,
+    "height": 121,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newcommon_xuanzhongdi": {
+    "width": 191,
+    "height": 115,
+    "border": [
+      86.0,
+      52.0,
+      84.0,
+      44.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewShopOutBattlePanel_jiantou": {
+    "width": 28,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_rw_di_1": {
+    "width": 36,
+    "height": 32,
+    "border": [
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_hdb_01": {
+    "width": 6,
+    "height": 6,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_com_bg_an_1": {
+    "width": 174,
+    "height": 4,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "UAV_Image_8": {
+    "width": 10,
+    "height": 10,
+    "border": [
+      3.0,
+      3.0,
+      3.0,
+      3.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_bs_wupingdi": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_friendpanel_weiguanzhu": {
+    "width": 74,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "connmon_cangkufengexian": {
+    "width": 2,
+    "height": 66,
+    "border": [
+      1.0,
+      32.0,
+      1.0,
+      31.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_tuzhiwenhao": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TeamTaskPanel_tean_dx": {
+    "width": 35,
+    "height": 35,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "InforPanel_di_1": {
+    "width": 88,
+    "height": 88,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Lantu_jianbian": {
+    "width": 746,
+    "height": 14,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "UAV_Enter_6": {
+    "width": 776,
+    "height": 776,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ActivityNewPanel_xuanzhong": {
+    "width": 207,
+    "height": 86,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "connmon_ronglu": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "AlertBoxTwo_tip_an2": {
+    "width": 36,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel1_di": {
+    "width": 10,
+    "height": 10,
+    "border": [
+      2.0,
+      1.0,
+      2.0,
+      1.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WarChoicePanel_bg_2": {
+    "width": 394,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TeamTaskPanel_rw_1": {
+    "width": 21,
+    "height": 24,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel2_zhezhao": {
+    "width": 94,
+    "height": 94,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_zt_12": {
+    "width": 39,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_limingzhidi": {
+    "width": 235,
+    "height": 121,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_zhekou1": {
+    "width": 92,
+    "height": 95,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewDianluPanel_4xiangsuhuangxian": {
+    "width": 4,
+    "height": 4,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_bg_b1": {
+    "width": 42,
+    "height": 42,
+    "border": [
+      15.0,
+      15.0,
+      15.0,
+      15.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "AlertBoxTwo_com_buff_fs1": {
+    "width": 70,
+    "height": 68,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_niudanquan": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newbag_common_xiaopeijian": {
+    "width": 33,
+    "height": 33,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newcommon_guanbi": {
+    "width": 76,
+    "height": 76,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShoppingPanell_task_10": {
+    "width": 86,
+    "height": 20,
+    "border": [
+      38.0,
+      8.0,
+      38.0,
+      8.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "tankegongji-1": {
+    "width": 148,
+    "height": 146,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "newcommon_huakuai": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "jiqiangtazhunxin-jindu2": {
+    "width": 26,
+    "height": 96,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "yjs_jj": {
+    "width": 382,
+    "height": 224,
+    "border": [
+      117.0,
+      81.0,
+      146.0,
+      60.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_tip_TSdiban2": {
+    "width": 32,
+    "height": 28,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_rongyuxunzhang": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "jindutiao-2": {
+    "width": 14,
+    "height": 14,
+    "border": [
+      11.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_laddertaskpanel_quan": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "EstablishPanel_xingbie-nan": {
+    "width": 48,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CivilizationInfoPanel_Wenhao": {
+    "width": 34,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ActivityNewPanel_jd_1": {
+    "width": 146,
+    "height": 9,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "MailPanel_bg_7": {
+    "width": 267,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_bg_g2": {
+    "width": 474,
+    "height": 39,
+    "border": [
+      362.0,
+      0.0,
+      99.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "UseTimePanell_shiyong_di": {
+    "width": 64,
+    "height": 64,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WarChoicePanel_tuijianjiaobiao": {
+    "width": 90,
+    "height": 80,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WarChoicePanel_gz": {
+    "width": 64,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_tc_xzk": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WarChoicePanel_haoyou": {
+    "width": 50,
+    "height": 38,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "CommunityLordPanel_fanye": {
+    "width": 40,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_wzk_2": {
+    "width": 22,
+    "height": 22,
+    "border": [
+      8.0,
+      8.0,
+      8.0,
+      8.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WarChoicePanel_bg_11": {
+    "width": 44,
+    "height": 42,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "Lantu_Diji": {
+    "width": 36,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewShoppingPanell_task_xz2": {
+    "width": 120,
+    "height": 114,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewDianlu_xny_di": {
+    "width": 212,
+    "height": 192,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "LuckyBagPanel_close": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleCustomPanel_fire": {
+    "width": 81,
+    "height": 78,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "AlertBoxTwo_tip_an3": {
+    "width": 333,
+    "height": 39,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "newcommon_juxing": {
+    "width": 82,
+    "height": 86,
+    "border": [
+      34.0,
+      38.0,
+      33.0,
+      37.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_xl_bg_2": {
+    "width": 10,
+    "height": 10,
+    "border": [
+      3.0,
+      3.0,
+      3.0,
+      3.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleCustomPanel_buttle_fang_1": {
+    "width": 101,
+    "height": 101,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "CommunityLordPanel_bg_ann_3": {
+    "width": 185,
+    "height": 47,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ActivityNewPanel_ann_2": {
+    "width": 202,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_friendpanel_zaixian": {
+    "width": 9,
+    "height": 9,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_xianshi": {
+    "width": 28,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewDianlu_hd_2": {
+    "width": 151,
+    "height": 7,
+    "border": [
+      70.0,
+      0.0,
+      70.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_set_jdt_di": {
+    "width": 50,
+    "height": 10,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_s_red_zz": {
+    "width": 112,
+    "height": 22,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewDianluPanel_heixian": {
+    "width": 10,
+    "height": 10,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TeamTaskPanel_map_tb_sw": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TeamTaskPanel_xue_d_1": {
+    "width": 21,
+    "height": 13,
+    "border": [
+      10.0,
+      0.0,
+      10.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_common_activit": {
+    "width": 63,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "connmon_yanjiu": {
+    "width": 70,
+    "height": 70,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "UAV_Logo": {
+    "width": 487,
+    "height": 422,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_bz_2": {
+    "width": 34,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShopOutBattlePanel_bg_1": {
+    "width": 228,
+    "height": 202,
+    "border": [
+      70.0,
+      70.0,
+      70.0,
+      70.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_item_xzk": {
+    "width": 65,
+    "height": 64,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ActivityNewPanel_bg_8": {
+    "width": 1039,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_srk": {
+    "width": 38,
+    "height": 38,
+    "border": [
+      18.0,
+      18.0,
+      18.0,
+      18.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewDianlu_huangsejiahao": {
+    "width": 76,
+    "height": 76,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_act_anniu": {
+    "width": 282,
+    "height": 51,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel1_bofang": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewDianlu_nl_1": {
+    "width": 165,
+    "height": 8,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ls_juntuaninforpanel_kuaijiedi": {
+    "width": 102,
+    "height": 61,
+    "border": [
+      44.0,
+      0.0,
+      43.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_shoppingpanel_mutoupian": {
+    "width": 98,
+    "height": 34,
+    "border": [
+      46.0,
+      21.0,
+      46.0,
+      12.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "WarChoicePanel_bg_7": {
+    "width": 85,
+    "height": 96,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ActivityNewPanel_bg_5": {
+    "width": 20,
+    "height": 20,
+    "border": [
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "LadderTaskPanel_xuanzhong": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      20.0,
+      20.0,
+      20.0,
+      17.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_new": {
+    "width": 73,
+    "height": 51,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ChangewholeskinPanel_biaoti22": {
+    "width": 6,
+    "height": 6,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_money_jinbi2": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "NewMainPanel_shuzikuang2": {
+    "width": 22,
+    "height": 24,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_b_cir": {
+    "width": 89,
+    "height": 89,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_item_k_1": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "SalvageShipPanel_bg_1": {
+    "width": 365,
+    "height": 71,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShopOutBattlePanel_zk_1": {
+    "width": 112,
+    "height": 22,
+    "border": [
+      39.0,
+      0.0,
+      68.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "StorePanel_cifenyeqian1-23": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ChestPanel_xingyunzhi-1": {
+    "width": 38,
+    "height": 38,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShoppingPanell_task_9": {
+    "width": 100,
+    "height": 32,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_bag_zz_zd_1005": {
+    "width": 14,
+    "height": 22,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "UAV_Enter_1": {
+    "width": 2048,
+    "height": 1551,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleTankPanel_ditiao1": {
+    "width": 34,
+    "height": 292,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "WarChoiceConfirmPanel_5": {
+    "width": 97,
+    "height": 36,
+    "border": [
+      14.0,
+      14.0,
+      15.0,
+      14.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "TalentPanel2_di": {
+    "width": 134,
+    "height": 134,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "MailPanel_bg_8": {
+    "width": 50,
+    "height": 50,
+    "border": [
+      19.0,
+      19.0,
+      19.0,
+      19.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "ShopOutBattlePanel_jianmiandiban-1": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_bag_jiahao": {
+    "width": 65,
+    "height": 65,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "common_fbdhq": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "new_listlight": {
+    "width": 106,
+    "height": 13,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_tuceng123": {
+    "width": 35,
+    "height": 34,
+    "border": [
+      15.0,
+      14.0,
+      16.0,
+      13.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "com_wzk": {
+    "width": 22,
+    "height": 22,
+    "border": [
+      3.0,
+      3.0,
+      3.0,
+      3.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "zuofanye": {
+    "width": 81,
+    "height": 282,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/common.ab"
+  },
+  "BattleCustomPanel_sz_bg_3": {
+    "width": 33,
+    "height": 47,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_setting_shiqu2": {
+    "width": 104,
+    "height": 104,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_gantanhao": {
+    "width": 160,
+    "height": 170,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_sz_bg_4": {
+    "width": 69,
+    "height": 65,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_tb_d": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_cz_tz": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_6_huakuai": {
+    "width": 41,
+    "height": 37,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_chat_1": {
+    "width": 97,
+    "height": 49,
+    "border": [
+      38.0,
+      19.0,
+      38.0,
+      19.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_carrier_tanchu": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_carrier_shache": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_carrier_laba": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_jz_di_1": {
+    "width": 161,
+    "height": 47,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_bg_22": {
+    "width": 33,
+    "height": 32,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_car_yaogan_5": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_xuanzhong_di_2": {
+    "width": 33,
+    "height": 36,
+    "border": [
+      14.0,
+      14.0,
+      14.0,
+      14.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_yy_shangfu": {
+    "width": 130,
+    "height": 108,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_tb_ty": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_car_yaogan_3": {
+    "width": 160,
+    "height": 160,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanell_xuan8": {
+    "width": 77,
+    "height": 77,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_bt1": {
+    "width": 94,
+    "height": 82,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_yj": {
+    "width": 85,
+    "height": 67,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_pickup": {
+    "width": 60,
+    "height": 60,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_carrier_huanzuo_1": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_cz_hd": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_dz_bt": {
+    "width": 73,
+    "height": 74,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_new_cd_1": {
+    "width": 85,
+    "height": 67,
+    "border": [
+      67.0,
+      0.0,
+      12.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_sz": {
+    "width": 70,
+    "height": 69,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_tb_jz": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_xuetiaodi2": {
+    "width": 60,
+    "height": 20,
+    "border": [
+      28.0,
+      0.0,
+      27.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_chat_2": {
+    "width": 42,
+    "height": 35,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_ann_f": {
+    "width": 62,
+    "height": 62,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_tb_jj": {
+    "width": 83,
+    "height": 81,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_car_fangxiangpan": {
+    "width": 310,
+    "height": 310,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_tb_sz": {
+    "width": 48,
+    "height": 48,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_carrier_jiasu": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_sz_bg_5": {
+    "width": 80,
+    "height": 80,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_xuanzhong_di_1": {
+    "width": 142,
+    "height": 142,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_team_di1": {
+    "width": 160,
+    "height": 170,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_com_di_cb": {
+    "width": 42,
+    "height": 42,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_fanhuinew": {
+    "width": 125,
+    "height": 57,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_chezai": {
+    "width": 231,
+    "height": 97,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_zhizuo": {
+    "width": 86,
+    "height": 86,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_bt2": {
+    "width": 94,
+    "height": 82,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_car_yaogan_4": {
+    "width": 89,
+    "height": 89,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_beibao": {
+    "width": 67,
+    "height": 72,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_buttle_fang_3": {
+    "width": 94,
+    "height": 94,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_bg_21": {
+    "width": 141,
+    "height": 48,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_yy_xiaiqian": {
+    "width": 130,
+    "height": 108,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_carrier_zuo": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_shouqi": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_6_ditiao3": {
+    "width": 55,
+    "height": 42,
+    "border": [
+      23.0,
+      0.0,
+      22.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_paihang": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_carrier_youmen": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_car_yaogan_2": {
+    "width": 160,
+    "height": 160,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_shengmingzhidi": {
+    "width": 64,
+    "height": 30,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_bg_23": {
+    "width": 26,
+    "height": 18,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_st_an_!": {
+    "width": 130,
+    "height": 130,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_TIP_23": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanell_cart_dc": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_carrier_jiashi_1": {
+    "width": 112,
+    "height": 112,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_tb_p": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_quick_mark": {
+    "width": 56,
+    "height": 56,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_6_fangxiang": {
+    "width": 66,
+    "height": 66,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_zhizao": {
+    "width": 70,
+    "height": 65,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleCustomPanel_car_yaogan_1": {
+    "width": 330,
+    "height": 330,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlecustompanel.ab"
+  },
+  "BattleInfoPanelTwoPanel_8": {
+    "width": 315,
+    "height": 258,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battleinfopaneltwopanel.ab"
+  },
+  "BattleInfoPanelTwoPanel_fh_2": {
+    "width": 364,
+    "height": 85,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battleinfopaneltwopanel.ab"
+  },
+  "BattleInfoPanelTwoPanel_4": {
+    "width": 315,
+    "height": 258,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battleinfopaneltwopanel.ab"
+  },
+  "BattleInfoPanelTwoPanel_fh": {
+    "width": 248,
+    "height": 44,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battleinfopaneltwopanel.ab"
+  },
+  "BattleInfoPanelTwoPanel_bg_1": {
+    "width": 247,
+    "height": 44,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battleinfopaneltwopanel.ab"
+  },
+  "BattleInfoPanelTwoPanel_2": {
+    "width": 256,
+    "height": 537,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battleinfopaneltwopanel.ab"
+  },
+  "BattleInfoPanelTwoPanel_sc": {
+    "width": 315,
+    "height": 258,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battleinfopaneltwopanel.ab"
+  },
+  "BattleInfoPanelTwoPanel_5": {
+    "width": 315,
+    "height": 258,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battleinfopaneltwopanel.ab"
+  },
+  "BattleInfoPanelTwoPanel_bg_2": {
+    "width": 100,
+    "height": 100,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battleinfopaneltwopanel.ab"
+  },
+  "BattleInfoPanelTwoPanel_3": {
+    "width": 256,
+    "height": 537,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battleinfopaneltwopanel.ab"
+  },
+  "BattleInfoPanelTwoPanel_7": {
+    "width": 256,
+    "height": 537,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battleinfopaneltwopanel.ab"
+  },
+  "kaijing-11": {
+    "width": 66,
+    "height": 436,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "tankepaozhunxin-2": {
+    "width": 88,
+    "height": 88,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "kaijing-10": {
+    "width": 536,
+    "height": 536,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "jiqiangtazhunxin-4": {
+    "width": 61,
+    "height": 61,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "tankepaozhunxin-jiantou": {
+    "width": 14,
+    "height": 24,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "tankepaozhunxin-1": {
+    "width": 36,
+    "height": 36,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "tanke-2": {
+    "width": 124,
+    "height": 61,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "ditu-1": {
+    "width": 2048,
+    "height": 1157,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "jiqiangtazhunxin-5": {
+    "width": 61,
+    "height": 61,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "jiqiangtazhunxin-2": {
+    "width": 61,
+    "height": 61,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "fangxiang-2": {
+    "width": 240,
+    "height": 240,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "jiqiangtazhunxin-3": {
+    "width": 61,
+    "height": 61,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "kaijing-8": {
+    "width": 306,
+    "height": 2,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "kaijing-7": {
+    "width": 314,
+    "height": 314,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "tanke-3": {
+    "width": 49,
+    "height": 108,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "kaijing-2": {
+    "width": 28,
+    "height": 34,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "kaijing-3": {
+    "width": 218,
+    "height": 218,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "kaijing-4": {
+    "width": 24,
+    "height": 28,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "wp_fantankedan": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "kaijing-6": {
+    "width": 336,
+    "height": 336,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "kaijing-9": {
+    "width": 160,
+    "height": 2,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "wp_tankedan": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "tankepaozhunxin-3": {
+    "width": 226,
+    "height": 102,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "fangxiang-1": {
+    "width": 140,
+    "height": 40,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "tanke-1": {
+    "width": 70,
+    "height": 135,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "kaijing-1": {
+    "width": 44,
+    "height": 44,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "tankepao_01": {
+    "width": 120,
+    "height": 120,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "jiqiangtazhunxin-1": {
+    "width": 136,
+    "height": 136,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "fangxiang-3": {
+    "width": 74,
+    "height": 74,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "kaijing-5": {
+    "width": 398,
+    "height": 378,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "BattleTankPanel_huaijing": {
+    "width": 265,
+    "height": 265,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battletankpanel.ab"
+  },
+  "BattleZhanLiPanel_Image_PromoteBase": {
+    "width": 532,
+    "height": 133,
+    "border": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bundle": "assets/uiatlas/battlezhanlipanel.ab"
+  }
+}

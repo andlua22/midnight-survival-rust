@@ -39,6 +39,7 @@ pub struct CollisionWorld {
     players: BTreeMap<PlayerId, (ColliderHandle, PlayerState)>,
     structures: BTreeMap<u32, Vec<ColliderHandle>>,
     initial_colliders: Vec<ColliderHandle>,
+    imported_ground: bool,
 }
 
 impl CollisionWorld {
@@ -72,6 +73,7 @@ impl CollisionWorld {
             players: BTreeMap::new(),
             structures: BTreeMap::new(),
             initial_colliders: Vec::new(),
+            imported_ground: false,
         };
         let mut handles = Vec::new();
         for shape in map_geometry(map) {
@@ -90,15 +92,13 @@ impl CollisionWorld {
         for node in crate::survival::map_resource_nodes(map) {
             let r = node.kind.radius() * 0.65;
             let h = node.kind.height() * 0.5;
-            handles.push(
-                world
-                    .colliders
-                    .insert(ColliderBuilder::cuboid(r, h, r).translation(Vec3::new(
+            let handle = world.colliders.insert(ColliderBuilder::cuboid(r, h, r).translation(Vec3::new(
                         node.position[0],
                         node.position[1] + h,
                         node.position[2],
-                    ))),
-            );
+                    )));
+            handles.push(handle);
+            world.initial_colliders.push(handle);
         }
         world.refresh(&handles, &[]);
         world
@@ -264,39 +264,30 @@ impl CollisionWorld {
         }
     }
 
-    pub fn insert_imported_terrain(&mut self, chunks: &[crate::level::ImportedMeshRecord]) {
+    pub fn insert_canonical_terrain(&mut self, package: &midnight_map_data::TerrainPackage) -> Result<(), midnight_map_data::ArchiveError> {
+        // Prepare every source collider before replacing the current world.
+        // Renderer names and texture filenames do not decide collision presence.
+        let builders = package.collision_records().map(|chunk| {
+            midnight_map_data::validate_mesh(chunk)?;
+            let vertices = chunk.positions.iter().map(|position| Vec3::from_array(*position)).collect();
+            let triangles = chunk.indices.as_chunks::<3>().0.to_vec();
+            ColliderBuilder::trimesh(vertices, triangles).map_err(|error| {
+                midnight_map_data::ArchiveError::Invalid(format!("{}: {error}", chunk.name))
+            })
+        }).collect::<Result<Vec<_>, _>>()?;
+        if builders.is_empty() {
+            return Err(midnight_map_data::ArchiveError::Invalid("canonical map has no enabled source colliders".into()));
+        }
         let removed = std::mem::take(&mut self.initial_colliders);
         for &h in &removed {
             self.colliders
                 .remove(h, &mut self.islands, &mut self.bodies, &mut self.soft_bodies, false);
         }
-        let mut handles = Vec::new();
-        for chunk in chunks {
-            let lower = chunk.name.to_ascii_lowercase();
-            if lower.contains("road")
-                || lower.contains("jichang")
-                || lower.contains("gangkou")
-                || lower.contains("feiqichangfang")
-                || lower.contains("maoyiqu")
-                || lower.contains("shiyanshi")
-                || lower.contains("object006")
-                || chunk.indices.len() < 3
-            {
-                continue;
-            }
-            let vertices: Vec<Vec3> = chunk
-                .positions
-                .iter()
-                .map(|p| Vec3::new(p[0], p[1], p[2]))
-                .collect();
-            let tris: Vec<[u32; 3]> = chunk.indices.as_chunks::<3>().0.to_vec();
-            if let Ok(builder) = ColliderBuilder::trimesh(vertices, tris) {
-                handles.push(self.colliders.insert(builder));
-            }
-        }
-        if !handles.is_empty() || !removed.is_empty() {
-            self.refresh(&handles, &removed);
-        }
+        let handles = builders.into_iter().map(|builder| self.colliders.insert(builder)).collect::<Vec<_>>();
+        self.initial_colliders = handles.clone();
+        self.imported_ground = true;
+        self.refresh(&handles, &removed);
+        Ok(())
     }
 
     pub fn free_at(&self, position: [f32; 3], exclude: Option<PlayerId>) -> bool {
@@ -351,13 +342,30 @@ impl CollisionWorld {
         // The south of the polygon is deliberately clear of test obstacles.
         for row in 0..12 {
             for col in 0..20 {
-                let p = [-14.25 + col as f32 * 1.5, 2.0, 9.0 + row as f32 * 1.5];
+                let x = -14.25 + col as f32 * 1.5;
+                let z = 9.0 + row as f32 * 1.5;
+                let p = if self.imported_ground {
+                    let Some(position) = self.surface_spawn_at([x, z], exclude) else { continue; };
+                    position
+                } else { [x, 2.0, z] };
                 if self.free_at(p, exclude) {
                     return Some(p);
                 }
             }
         }
         None
+    }
+
+    /// Place the capsule above the canonical source surface, rather than the
+    /// test arena's fixed Y=2. Only terrain colliders participate in this ray.
+    pub fn surface_spawn_at(&self, xz: [f32; 2], exclude: Option<PlayerId>) -> Option<[f32; 3]> {
+        let terrain = |handle: ColliderHandle, _: &Collider| self.initial_colliders.contains(&handle);
+        let query = self.query(QueryFilter { predicate: Some(&terrain), ..Default::default() });
+        let ray = Ray::new(Vec3::new(xz[0], 1024.0, xz[1]), -Vec3::Y);
+        let (_, hit) = query.cast_ray_and_get_normal(&ray, 2048.0, true)?;
+        let point = ray.point_at(hit.time_of_impact);
+        let position = [point.x, point.y + PLAYER_HALF_SEGMENT + PLAYER_RADIUS + 0.05, point.z];
+        self.free_at(position, exclude).then_some(position)
     }
 
     pub fn step(&mut self, id: PlayerId, command: PlayerInputCommand) -> Option<PlayerState> {
@@ -425,6 +433,111 @@ impl CollisionWorld {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn terrain_package() -> midnight_map_data::TerrainPackage {
+        use midnight_map_data::{FileIdentity, MeshRecord, SceneMesh, SourceApk, SourceCollider,
+            SourceMaterial, SourceObject, TERRAIN_MANIFEST_VERSION, TerrainManifest, mesh_bounds};
+        let mut records = Vec::new();
+        let mut meshes = BTreeMap::new();
+        for (index, (name, height, size, enabled, is_trigger)) in [
+            ("terrain", 10.0, 60.0, true, false),
+            ("road", 12.0, 4.0, true, false),
+            ("disabled", 20.0, 60.0, false, false),
+            ("trigger", 30.0, 60.0, true, true),
+        ].into_iter().enumerate() {
+            let record = MeshRecord {
+                name: name.into(), texture: String::new(), center: [0.0, height, 0.0],
+                positions: vec![[-size, height, -size], [size, height, -size], [size, height, size], [-size, height, size]],
+                normals: vec![[0.0, 1.0, 0.0]; 4], tangents: Vec::new(), uvs: vec![[0.0, 0.0], [1.0, 0.0], [1.0, 1.0], [0.0, 1.0]],
+                indices: vec![0, 2, 1, 0, 3, 2],
+            };
+            let source = SourceObject { bundle: "fixture".into(), cab: "CAB-scene".into(), path_id: format!("-{index}") };
+            let material = SourceMaterial {
+                source: source.clone(), name: name.into(), shader: source.clone(), shader_name: "_URP/LambertLit".into(),
+                textures: BTreeMap::new(), floats: BTreeMap::new(), colors: BTreeMap::new(), shader_defaults: BTreeMap::new(),
+                texture_defaults: BTreeMap::new(), valid_keywords: Vec::new(), render_queue: -1,
+            };
+            meshes.insert(name.into(), SceneMesh {
+                source: source.clone(), game_object: source.clone(),
+                world_transform: [1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0],
+                bounds: mesh_bounds(&record), material,
+                collider: Some(SourceCollider { source: source.clone(), mesh: source, enabled, is_trigger, convex: false, cooking_options: 30 }),
+            });
+            records.push(record);
+        }
+        midnight_map_data::TerrainPackage {
+            root: "fixture".into(), records,
+            manifest: TerrainManifest {
+                schema_version: TERRAIN_MANIFEST_VERSION,
+                source_apk: SourceApk { path: "fixture.apk".into(), sha256: "a".repeat(64), byte_count: 1 },
+                coordinate_frame: "bevy_right_handed_y_up".into(), uv_origin: "top_left".into(),
+                geometry: FileIdentity { path: "meshes.bin".into(), sha256: "b".repeat(64) }, meshes, limitations: Vec::new(),
+            },
+        }
+    }
+
+    #[test]
+    fn canonical_map_replaces_demo_geometry_and_resources_but_keeps_players() {
+        let mut world = CollisionWorld::new(MapId::Polygon);
+        let old_handles = world.initial_colliders.clone();
+        let player = PlayerId(5);
+        let state = PlayerState::at([100.0, 15.0, 100.0]);
+        world.set_player(player, state);
+        world.insert_canonical_terrain(&terrain_package()).unwrap();
+        assert!(old_handles.into_iter().all(|handle| world.colliders.get(handle).is_none()));
+        assert_eq!(world.initial_colliders.len(), 2);
+        assert_eq!(world.state(player).unwrap().position, state.position);
+        assert!(world.cast_ray([100.0, 100.0, 0.0], [0.0, -1.0, 0.0], 200.0, None).is_none());
+    }
+
+    #[test]
+    fn source_road_collision_sets_spawn_height_and_disabled_or_trigger_surfaces_do_not() {
+        let mut world = CollisionWorld::new(MapId::Polygon);
+        world.insert_canonical_terrain(&terrain_package()).unwrap();
+        let offset = PLAYER_HALF_SEGMENT + PLAYER_RADIUS + 0.05;
+        for (xz, height) in [([0.0, 0.0], 12.0), ([15.0, 15.0], 10.0)] {
+            let position = world.surface_spawn_at(xz, None).unwrap();
+            assert_eq!([position[0], position[2]], xz);
+            assert!((position[1] - (height + offset)).abs() < 1e-4, "{position:?}");
+        }
+        assert!(world.surface_spawn_at([100.0, 100.0], None).is_none());
+        let id = PlayerId(1);
+        world.set_player(id, PlayerState::at([0.0, 12.0 + offset, 0.0]));
+        assert!(world.surface_spawn_at([0.0, 0.0], None).is_none());
+        assert!(world.surface_spawn_at([0.0, 0.0], Some(id)).is_some());
+    }
+
+    #[test]
+    fn a_character_lands_on_the_imported_surface_at_its_actual_height() {
+        let mut world = CollisionWorld::new(MapId::Polygon);
+        world.insert_canonical_terrain(&terrain_package()).unwrap();
+        let id = PlayerId(1);
+        world.set_player(id, PlayerState::at([15.0, 25.0, 15.0]));
+        for tick in 0..240 {
+            world.step(id, PlayerInputCommand { tick_id: tick, move_vec: [0.0; 2], look_delta: [0.0; 2], jump: false, sprint: false }).unwrap();
+        }
+        let state = world.state(id).unwrap();
+        let resting_height = 10.0 + PLAYER_HALF_SEGMENT + PLAYER_RADIUS;
+        assert!((state.position[1] - resting_height).abs() < 0.1, "{state:?}");
+        assert!(state.motion.grounded);
+    }
+
+    #[test]
+    fn invalid_or_empty_replacement_preserves_the_previous_collision_world() {
+        let mut world = CollisionWorld::new(MapId::Polygon);
+        world.insert_canonical_terrain(&terrain_package()).unwrap();
+        let original_handles = world.initial_colliders.clone();
+        let original_spawn = world.surface_spawn_at([0.0, 0.0], None);
+        let mut broken = terrain_package();
+        broken.records[1].indices[0] = 99;
+        assert!(world.insert_canonical_terrain(&broken).is_err());
+        assert_eq!(world.initial_colliders, original_handles);
+        assert_eq!(world.surface_spawn_at([0.0, 0.0], None), original_spawn);
+        for source in broken.manifest.meshes.values_mut() { source.collider.as_mut().unwrap().enabled = false; }
+        assert!(world.insert_canonical_terrain(&broken).is_err());
+        assert_eq!(world.initial_colliders, original_handles);
+        assert_eq!(world.surface_spawn_at([0.0, 0.0], None), original_spawn);
+    }
 
     #[test]
     fn opposing_capsules_cannot_exchange_sides_or_overlap() {

@@ -1,4 +1,5 @@
 use shared::{
+    map_projection,
     protocol::ServerTick,
     survival::{
         Biome, Inventory, ItemKind, MAX_CALORIES, MAX_HEALTH, MAX_HYDRATION, NUCLEAR_STRIKE_CENTER,
@@ -18,6 +19,55 @@ const INK: Color32 = Color32::from_rgb(224, 232, 233);
 const MUTED: Color32 = Color32::from_rgb(142, 160, 164);
 const ACCENT: Color32 = Color32::from_rgb(106, 207, 183);
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum SoundCueKind {
+    Footstep,
+    Gunfire,
+    Vehicle,
+    Airdrop,
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct VisualSoundCue {
+    pub kind: SoundCueKind,
+    pub world_pos: [f32; 3],
+    pub age_ticks: u32,
+    pub intensity: f32,
+}
+
+#[derive(Clone, Copy, Default)]
+pub struct UiTexturesIds {
+    pub minimap_frame: Option<egui::TextureId>,
+    pub minimap_bg: Option<egui::TextureId>,
+    pub player_arrow: Option<egui::TextureId>,
+    pub player_cone: Option<egui::TextureId>,
+    pub day_night_bg: Option<egui::TextureId>,
+    pub sun_icon: Option<egui::TextureId>,
+    pub moon_icon: Option<egui::TextureId>,
+    pub coord_bg: Option<egui::TextureId>,
+    pub bar_bg: Option<egui::TextureId>,
+    pub bar_fill_hp: Option<egui::TextureId>,
+    pub bar_fill_energy: Option<egui::TextureId>,
+    pub hotbar_slot: Option<egui::TextureId>,
+    pub hotbar_select: Option<egui::TextureId>,
+    pub btn_fire_bg: Option<egui::TextureId>,
+    pub btn_fire_icon: Option<egui::TextureId>,
+    pub btn_aim_bg: Option<egui::TextureId>,
+    pub btn_aim_icon: Option<egui::TextureId>,
+    pub btn_jump: Option<egui::TextureId>,
+    pub btn_crouch: Option<egui::TextureId>,
+    pub btn_reload: Option<egui::TextureId>,
+    pub joystick_bg: Option<egui::TextureId>,
+    pub map_close: Option<egui::TextureId>,
+    pub map_zoom_in: Option<egui::TextureId>,
+    pub map_zoom_out: Option<egui::TextureId>,
+    pub sound_foot: Option<egui::TextureId>,
+    pub sound_car: Option<egui::TextureId>,
+    pub sound_gun: Option<egui::TextureId>,
+    pub airdrop_icon: Option<egui::TextureId>,
+    pub cargo_icon: Option<egui::TextureId>,
+}
+
 pub struct MinimapContext<'a> {
     pub player_position: [f32; 3],
     pub yaw: f32,
@@ -32,6 +82,8 @@ pub struct MinimapContext<'a> {
     pub marker_tex_id: Option<egui::TextureId>,
     pub cargo_tex_id: Option<egui::TextureId>,
     pub vehicle_tex_id: Option<egui::TextureId>,
+    pub sound_cues: &'a [VisualSoundCue],
+    pub ui_tex: UiTexturesIds,
 }
 
 impl<'a> Default for MinimapContext<'a> {
@@ -50,6 +102,8 @@ impl<'a> Default for MinimapContext<'a> {
             marker_tex_id: None,
             cargo_tex_id: None,
             vehicle_tex_id: None,
+            sound_cues: &[],
+            ui_tex: UiTexturesIds::default(),
         }
     }
 }
@@ -66,11 +120,11 @@ pub fn paint_widget(
     let mut painter = painter.with_clip_rect(rect);
     painter.set_opacity(opacity);
     match id {
-        WidgetId::HealthBars => health(&painter, rect, scale, &survival.vitals),
-        WidgetId::Hotbar => hotbar(&painter, rect, scale, &survival.inventory),
+        WidgetId::HealthBars => health(&painter, rect, scale, &survival.vitals, map_ctx),
+        WidgetId::Hotbar => hotbar(&painter, rect, scale, &survival.inventory, map_ctx),
         WidgetId::Minimap => minimap(&painter, rect, scale, &survival.vitals, map_ctx),
-        WidgetId::VirtualJoystickLeft => joystick(&painter, rect),
-        _ => action_button(&painter, rect, id, scale),
+        WidgetId::VirtualJoystickLeft => joystick(&painter, rect, map_ctx),
+        _ => action_button(&painter, rect, id, scale, map_ctx),
     }
 }
 
@@ -88,7 +142,7 @@ fn panel(painter: &Painter, rect: Rect, scale: f32) {
     );
 }
 
-fn health(painter: &Painter, rect: Rect, scale: f32, vitals: &Vitals) {
+fn health(painter: &Painter, rect: Rect, scale: f32, vitals: &Vitals, ctx: &MinimapContext<'_>) {
     panel(painter, rect, scale);
     let origin = rect.min;
     let text = |x, y, value: &str, color, size| {
@@ -123,19 +177,27 @@ fn health(painter: &Painter, rect: Rect, scale: f32, vitals: &Vitals) {
         ("НОРМА", ACCENT)
     };
     text(158.0, 9.0, status_label, status_color, 10.0);
-    for (index, (label, current, max, color)) in [
-        ("ЗДОРОВ’Я", vitals.health, MAX_HEALTH, ACCENT),
+    for (index, (label, current, max, color, fill_tex)) in [
+        (
+            "ЗДОРОВ’Я",
+            vitals.health,
+            MAX_HEALTH,
+            ACCENT,
+            ctx.ui_tex.bar_fill_hp,
+        ),
         (
             "ВОДА",
             vitals.hydration,
             MAX_HYDRATION,
             Color32::from_rgb(104, 166, 223),
+            ctx.ui_tex.bar_fill_energy,
         ),
         (
             "ЇЖА",
             vitals.calories,
             MAX_CALORIES,
             Color32::from_rgb(224, 178, 96),
+            ctx.ui_tex.bar_fill_energy,
         ),
     ]
     .into_iter()
@@ -147,19 +209,43 @@ fn health(painter: &Painter, rect: Rect, scale: f32, vitals: &Vitals) {
         text(190.0, top, &value, INK, 11.0);
         let track = Rect::from_min_size(
             origin + Vec2::new(90.0, top + 3.0) * scale,
-            Vec2::new(88.0, 7.0) * scale,
+            Vec2::new(88.0, 8.0) * scale,
         );
-        painter.rect_filled(track, 2.0 * scale, Color32::from_rgb(28, 41, 47));
+        if let Some(bg_tex) = ctx.ui_tex.bar_bg {
+            painter.image(
+                bg_tex,
+                track,
+                Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+                Color32::WHITE,
+            );
+        } else {
+            painter.rect_filled(track, 2.0 * scale, Color32::from_rgb(28, 41, 47));
+        }
         let ratio = (current / max).clamp(0.0, 1.0);
         if ratio > 0.0 {
             let fill =
                 Rect::from_min_size(track.min, Vec2::new(track.width() * ratio, track.height()));
-            painter.rect_filled(fill, 2.0 * scale, color);
+            if let Some(f_tex) = fill_tex {
+                painter.image(
+                    f_tex,
+                    fill,
+                    Rect::from_min_max(Pos2::ZERO, Pos2::new(ratio, 1.0)),
+                    Color32::WHITE,
+                );
+            } else {
+                painter.rect_filled(fill, 2.0 * scale, color);
+            }
         }
     }
 }
 
-fn hotbar(painter: &Painter, rect: Rect, scale: f32, inventory: &Inventory) {
+fn hotbar(
+    painter: &Painter,
+    rect: Rect,
+    scale: f32,
+    inventory: &Inventory,
+    ctx: &MinimapContext<'_>,
+) {
     panel(painter, rect, scale);
     let padding = 5.0 * scale;
     let width = (rect.width() - padding * 7.0) / 6.0;
@@ -168,14 +254,32 @@ fn hotbar(painter: &Painter, rect: Rect, scale: f32, inventory: &Inventory) {
             rect.min + Vec2::new(padding + slot as f32 * (width + padding), padding),
             Vec2::new(width, rect.height() - padding * 2.0),
         );
-        painter.rect_filled(slot_rect, 4.0 * scale, Color32::from_rgb(29, 42, 47));
-        if slot == inventory.active_slot as usize {
-            painter.rect_stroke(
+        if let Some(slot_tex) = ctx.ui_tex.hotbar_slot {
+            painter.image(
+                slot_tex,
                 slot_rect,
-                4.0 * scale,
-                Stroke::new(1.6 * scale, ACCENT),
-                StrokeKind::Inside,
+                Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+                Color32::WHITE,
             );
+        } else {
+            painter.rect_filled(slot_rect, 4.0 * scale, Color32::from_rgb(29, 42, 47));
+        }
+        if slot == inventory.active_slot as usize {
+            if let Some(sel_tex) = ctx.ui_tex.hotbar_select {
+                painter.image(
+                    sel_tex,
+                    slot_rect.expand(2.0 * scale),
+                    Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+                    Color32::from_rgba_unmultiplied(255, 230, 120, 220),
+                );
+            } else {
+                painter.rect_stroke(
+                    slot_rect,
+                    4.0 * scale,
+                    Stroke::new(1.6 * scale, ACCENT),
+                    StrokeKind::Inside,
+                );
+            }
         }
         if let Some(stack) = inventory.hotbar[slot] {
             paint_item_icon(painter, slot_rect.center(), scale * 0.9, stack.kind);
@@ -559,24 +663,45 @@ pub fn paint_item_icon(painter: &Painter, center: Pos2, scale: f32, kind: ItemKi
     }
 }
 
-/// World XZ -> map position. North is -Z (the direction the player faces at yaw 0),
-/// drawn at the top of the map, matching the compass and heading arrow.
-/// The overview texture spans `MAP_OVERVIEW_HALF_EXTENT` metres around the origin.
+fn paint_rotated_image(
+    painter: &Painter,
+    texture: egui::TextureId,
+    rect: Rect,
+    bearing: f32,
+    color: Color32,
+) {
+    let mut mesh = egui::Mesh::with_texture(texture);
+    mesh.add_rect_with_uv(
+        rect,
+        Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+        color,
+    );
+    let (sin, cos) = bearing.sin_cos();
+    let center = rect.center();
+    for vertex in &mut mesh.vertices {
+        let offset = vertex.pos - center;
+        vertex.pos = center
+            + Vec2::new(
+                cos * offset.x - sin * offset.y,
+                sin * offset.x + cos * offset.y,
+            );
+    }
+    painter.add(Shape::mesh(mesh));
+}
+
+/// World XZ -> map position, with +Z drawn at the top.
+/// `MAP_OVERVIEW_HALF_EXTENT` is the current overview calibration.
 pub fn world_to_map_pos(map: Rect, world_xz: [f32; 2]) -> Pos2 {
-    let half = shared::level::MAP_OVERVIEW_HALF_EXTENT;
-    let u = ((world_xz[0] + half) / (2.0 * half)).clamp(0.0, 1.0);
-    // Bevy -Z is north; the overview PNG is drawn north-up, so v grows southward.
-    let v = ((world_xz[1] + half) / (2.0 * half)).clamp(0.0, 1.0);
+    let [u, v] =
+        map_projection::world_to_overview_uv(world_xz, shared::level::MAP_OVERVIEW_HALF_EXTENT)
+            .map(|uv| uv.clamp(0.0, 1.0));
     Pos2::new(map.min.x + u * map.width(), map.min.y + v * map.height())
 }
 
 pub fn map_pos_to_world(map: Rect, pos: Pos2) -> [f32; 2] {
-    let half = shared::level::MAP_OVERVIEW_HALF_EXTENT;
     let u = ((pos.x - map.min.x) / map.width()).clamp(0.0, 1.0);
     let v = ((pos.y - map.min.y) / map.height()).clamp(0.0, 1.0);
-    let wx = u * 2.0 * half - half;
-    let wz = v * 2.0 * half - half;
-    [wx, wz]
+    map_projection::overview_uv_to_world([u, v], shared::level::MAP_OVERVIEW_HALF_EXTENT)
 }
 
 pub fn paint_tactical_map(
@@ -688,6 +813,107 @@ pub fn paint_tactical_map(
         }
     }
 
+    // Western Military Rocket Base Island (junshijidi) tactical grid & rocket marker
+    let mil_grid_stroke = Stroke::new(
+        scale * 0.65,
+        Color32::from_rgba_unmultiplied(240, 190, 80, 55),
+    );
+    let mil_col_xs = [-4350.0, -4150.0, -3800.0, -3450.0, -3200.0];
+    let mil_row_zs = [-750.0, -570.0, -200.0, 150.0, 320.0];
+    for &x in &mil_col_xs {
+        painter.line_segment(
+            [
+                world_to_map_pos(map, [x, -750.0]),
+                world_to_map_pos(map, [x, 320.0]),
+            ],
+            mil_grid_stroke,
+        );
+    }
+    for &z in &mil_row_zs {
+        painter.line_segment(
+            [
+                world_to_map_pos(map, [-4350.0, z]),
+                world_to_map_pos(map, [-3200.0, z]),
+            ],
+            mil_grid_stroke,
+        );
+    }
+    for r in 0..4 {
+        for c in 0..4 {
+            let wx = (mil_col_xs[c] + mil_col_xs[c + 1]) * 0.5;
+            let wz = (mil_row_zs[r] + mil_row_zs[r + 1]) * 0.5;
+            let code = shared::level::sector_label_at([wx, 0.0, wz]);
+            let cell_min = world_to_map_pos(map, [mil_col_xs[c], mil_row_zs[r]]);
+            painter.text(
+                cell_min + Vec2::new(1.5, 1.5) * scale,
+                Align2::LEFT_TOP,
+                code,
+                grid_font.clone(),
+                Color32::from_rgba_unmultiplied(255, 215, 100, 130),
+            );
+        }
+    }
+
+    // Authentic Rocket Launcher Facility Marker (InitLauncherPos from BattleMapPanel.cs)
+    let launcher_pos = world_to_map_pos(map, [-3750.0, -550.0]);
+    painter.circle_filled(
+        launcher_pos,
+        5.5 * scale,
+        Color32::from_rgba_unmultiplied(240, 75, 45, 180),
+    );
+    painter.circle_stroke(
+        launcher_pos,
+        8.5 * scale,
+        Stroke::new(1.4 * scale, Color32::from_rgb(255, 195, 75)),
+    );
+    painter.line_segment(
+        [
+            launcher_pos - Vec2::new(11.0 * scale, 0.0),
+            launcher_pos + Vec2::new(11.0 * scale, 0.0),
+        ],
+        Stroke::new(0.9 * scale, Color32::from_rgb(255, 215, 80)),
+    );
+    painter.line_segment(
+        [
+            launcher_pos - Vec2::new(0.0, 11.0 * scale),
+            launcher_pos + Vec2::new(0.0, 11.0 * scale),
+        ],
+        Stroke::new(0.9 * scale, Color32::from_rgb(255, 215, 80)),
+    );
+    painter.text(
+        launcher_pos + Vec2::new(0.0, -12.0 * scale),
+        Align2::CENTER_BOTTOM,
+        "РАКЕТНИЙ КОМПЛЕКС (LAUNCHER)",
+        FontId::proportional(8.0 * scale),
+        Color32::from_rgb(255, 215, 90),
+    );
+    painter.text(
+        launcher_pos + Vec2::new(0.0, 12.0 * scale),
+        Align2::CENTER_TOP,
+        "ВІЙСЬКОВА БАЗА [JUNSHIJIDI]",
+        FontId::proportional(7.5 * scale),
+        Color32::from_rgb(235, 180, 80),
+    );
+
+    // Visual sound cues on tactical map
+    for cue in ctx.sound_cues {
+        let spos = world_to_map_pos(map, [cue.world_pos[0], cue.world_pos[2]]);
+        let alpha = (cue.intensity.clamp(0.0, 1.0) * 200.0) as u8;
+        let radius = match cue.kind {
+            SoundCueKind::Gunfire => 9.0 * scale,
+            SoundCueKind::Airdrop => 14.0 * scale,
+            SoundCueKind::Vehicle => 7.0 * scale,
+            SoundCueKind::Footstep => 4.0 * scale,
+        };
+        let color = match cue.kind {
+            SoundCueKind::Gunfire => Color32::from_rgba_unmultiplied(255, 55, 40, alpha),
+            SoundCueKind::Airdrop => Color32::from_rgba_unmultiplied(75, 220, 245, alpha),
+            SoundCueKind::Vehicle => Color32::from_rgba_unmultiplied(250, 210, 50, alpha),
+            SoundCueKind::Footstep => Color32::from_rgba_unmultiplied(255, 175, 55, alpha),
+        };
+        painter.circle_stroke(spos, radius, Stroke::new(1.2 * scale, color));
+    }
+
     // Nuclear Strike Blast Zone
     if ctx.nuclear.is_active() {
         let nuke_pos = world_to_map_pos(map, [NUCLEAR_STRIKE_CENTER[0], NUCLEAR_STRIKE_CENTER[2]]);
@@ -724,7 +950,7 @@ pub fn paint_tactical_map(
             ship_pos3[2].clamp(-ship_lim, ship_lim),
         ],
     );
-    if let Some(cargo_tex) = ctx.cargo_tex_id {
+    if let Some(cargo_tex) = ctx.cargo_tex_id.or(ctx.ui_tex.cargo_icon) {
         let ship_rect = Rect::from_center_size(ship_map, Vec2::splat(22.0 * scale));
         painter.image(
             cargo_tex,
@@ -794,20 +1020,20 @@ pub fn paint_tactical_map(
 
     // Local player marker & vision arrow
     let player_pos = world_to_map_pos(map, [ctx.player_position[0], ctx.player_position[2]]);
-    let (sin, cos) = (-ctx.yaw).sin_cos();
+    let (sin, cos) = map_projection::yaw_to_map_bearing(ctx.yaw).sin_cos();
     // Glowing direction vision cone
     let cone_len = 20.0 * scale;
     let cone_half_w = 7.5 * scale;
-    let tip = player_pos + Vec2::new(-sin * cone_len, -cos * cone_len);
+    let tip = player_pos + Vec2::new(sin * cone_len, -cos * cone_len);
     let left = player_pos
         + Vec2::new(
-            -cos * cone_half_w + sin * 3.0 * scale,
-            sin * cone_half_w + cos * 3.0 * scale,
+            -cos * cone_half_w - sin * 3.0 * scale,
+            -sin * cone_half_w + cos * 3.0 * scale,
         );
     let right = player_pos
         + Vec2::new(
-            cos * cone_half_w + sin * 3.0 * scale,
-            -sin * cone_half_w + cos * 3.0 * scale,
+            cos * cone_half_w - sin * 3.0 * scale,
+            sin * cone_half_w + cos * 3.0 * scale,
         );
     painter.add(Shape::convex_polygon(
         vec![player_pos, left, tip, right],
@@ -844,9 +1070,9 @@ pub fn paint_tactical_map(
     painter.text(
         map.left_center() + Vec2::new(4.0 * scale, 0.0),
         Align2::LEFT_CENTER,
-        "ЗАХІД",
+        "ЗАХІД (ВІЙСЬКОВИЙ ОСТРІВ)",
         card_font.clone(),
-        MUTED,
+        Color32::from_rgb(245, 210, 110),
     );
     painter.text(
         map.right_center() - Vec2::new(4.0 * scale, 0.0),
@@ -862,6 +1088,44 @@ pub fn paint_tactical_map(
         Stroke::new(scale, Color32::from_rgb(62, 86, 92)),
         StrokeKind::Inside,
     );
+
+    // Authentic Map Zoom Controls from BattleMapPanel
+    if let Some(in_tex) = ctx.ui_tex.map_zoom_in {
+        let btn_rect = Rect::from_center_size(
+            map.right_top() + Vec2::new(-22.0 * scale, 30.0 * scale),
+            Vec2::splat(26.0 * scale),
+        );
+        painter.image(
+            in_tex,
+            btn_rect,
+            Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+            Color32::WHITE,
+        );
+    }
+    if let Some(out_tex) = ctx.ui_tex.map_zoom_out {
+        let btn_rect = Rect::from_center_size(
+            map.right_top() + Vec2::new(-22.0 * scale, 62.0 * scale),
+            Vec2::splat(26.0 * scale),
+        );
+        painter.image(
+            out_tex,
+            btn_rect,
+            Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+            Color32::WHITE,
+        );
+    }
+    if let Some(close_tex) = ctx.ui_tex.map_close {
+        let btn_rect = Rect::from_center_size(
+            map.right_top() + Vec2::new(-22.0 * scale, -10.0 * scale),
+            Vec2::splat(20.0 * scale),
+        );
+        painter.image(
+            close_tex,
+            btn_rect,
+            Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+            Color32::WHITE,
+        );
+    }
 }
 
 pub fn paint_radar_minimap(painter: &Painter, map: Rect, scale: f32, ctx: &MinimapContext<'_>) {
@@ -869,21 +1133,27 @@ pub fn paint_radar_minimap(painter: &Painter, map: Rect, scale: f32, ctx: &Minim
     let radius = map.width().min(map.height()) * 0.46;
     let radar_range = 150.0_f32; // 150 meters local radar range
 
+    if let Some(bg_tex) = ctx.ui_tex.minimap_bg {
+        let bg_rect = Rect::from_center_size(center, Vec2::splat(radius * 2.05));
+        painter.image(
+            bg_tex,
+            bg_rect,
+            Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+            Color32::from_rgba_unmultiplied(255, 255, 255, 200),
+        );
+    }
+
     // Radar circular base & satellite overview sampling
     if let Some(map_tex) = ctx.map_tex_id {
         let span = 2.0 * shared::level::MAP_OVERVIEW_HALF_EXTENT;
-        let u_center = (ctx.player_position[0] + span * 0.5) / span;
-        let v_center = (ctx.player_position[2] + span * 0.5) / span;
+        let [u_center, v_center] = map_projection::world_to_overview_uv(
+            [ctx.player_position[0], ctx.player_position[2]],
+            shared::level::MAP_OVERVIEW_HALF_EXTENT,
+        );
         let half_span = radar_range / span;
         let uv = Rect::from_min_max(
-            Pos2::new(
-                (u_center - half_span).clamp(0.0, 1.0),
-                (v_center - half_span).clamp(0.0, 1.0),
-            ),
-            Pos2::new(
-                (u_center + half_span).clamp(0.0, 1.0),
-                (v_center + half_span).clamp(0.0, 1.0),
-            ),
+            Pos2::new(u_center - half_span, v_center - half_span),
+            Pos2::new(u_center + half_span, v_center + half_span),
         );
         let radar_rect = Rect::from_center_size(center, Vec2::splat(radius * 2.0));
         let sub_painter = painter.with_clip_rect(radar_rect);
@@ -948,13 +1218,14 @@ pub fn paint_radar_minimap(painter: &Painter, map: Rect, scale: f32, ctx: &Minim
         Stroke::new(0.6 * scale, Color32::from_rgba_unmultiplied(50, 78, 84, 90)),
     );
 
-    // World coordinate to local radar offset: +X is right (east), -Z is North (up on radar)
+    // World coordinate to local radar offset: +X is right and +Z is up.
     let to_radar = |wx: f32, wz: f32| -> (Vec2, f32) {
-        let dx = wx - ctx.player_position[0];
-        let dz = wz - ctx.player_position[2];
-        let sx = (dx / radar_range) * radius;
-        let sy = (dz / radar_range) * radius;
-        let offset = Vec2::new(sx, sy);
+        let offset = Vec2::from(map_projection::world_to_radar_offset(
+            [wx, wz],
+            [ctx.player_position[0], ctx.player_position[2]],
+            radar_range,
+            radius,
+        ));
         let dist = offset.length();
         (offset, dist)
     };
@@ -1061,34 +1332,117 @@ pub fn paint_radar_minimap(painter: &Painter, map: Rect, scale: f32, ctx: &Minim
         }
     }
 
+    // Directional Visual Sound Cues (Footsteps, Gunfire, Vehicles, Airdrop)
+    for cue in ctx.sound_cues {
+        let (offset, dist) = to_radar(cue.world_pos[0], cue.world_pos[2]);
+        let is_inside = dist <= radius - 4.0 * scale;
+        let pos = if is_inside {
+            center + offset
+        } else {
+            let dir = offset / dist.max(0.001);
+            center + dir * (radius - 5.0 * scale)
+        };
+        let cue_tex = match cue.kind {
+            SoundCueKind::Footstep => ctx.ui_tex.sound_foot,
+            SoundCueKind::Vehicle => ctx.ui_tex.sound_car,
+            SoundCueKind::Gunfire => ctx.ui_tex.sound_gun,
+            SoundCueKind::Airdrop => ctx.ui_tex.airdrop_icon,
+        };
+        let alpha = (cue.intensity.clamp(0.0, 1.0) * 230.0) as u8;
+        if let Some(tex) = cue_tex {
+            let icon_size = Vec2::splat(16.0 * scale);
+            painter.image(
+                tex,
+                Rect::from_center_size(pos, icon_size),
+                Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+                Color32::from_rgba_unmultiplied(255, 255, 255, alpha),
+            );
+        } else {
+            match cue.kind {
+                SoundCueKind::Footstep => {
+                    let col = Color32::from_rgba_unmultiplied(255, 175, 55, alpha);
+                    painter.circle_filled(pos - Vec2::new(1.8 * scale, 0.0), 2.0 * scale, col);
+                    painter.circle_filled(pos + Vec2::new(1.8 * scale, 0.0), 2.0 * scale, col);
+                }
+                SoundCueKind::Gunfire => {
+                    let col = Color32::from_rgba_unmultiplied(255, 60, 40, alpha);
+                    painter.circle_filled(pos, 3.8 * scale, col);
+                    painter.circle_stroke(pos, 6.5 * scale, Stroke::new(1.4 * scale, col));
+                    let dir = (pos - center).normalized();
+                    painter.line_segment(
+                        [pos - dir * 3.0 * scale, pos + dir * 6.0 * scale],
+                        Stroke::new(1.6 * scale, col),
+                    );
+                }
+                SoundCueKind::Vehicle => {
+                    let col = Color32::from_rgba_unmultiplied(250, 210, 50, alpha);
+                    painter.rect_filled(
+                        Rect::from_center_size(pos, Vec2::splat(5.5 * scale)),
+                        1.2 * scale,
+                        col,
+                    );
+                    painter.circle_stroke(pos, 6.5 * scale, Stroke::new(1.0 * scale, col));
+                }
+                SoundCueKind::Airdrop => {
+                    let col = Color32::from_rgba_unmultiplied(75, 220, 245, alpha);
+                    painter.circle_filled(pos, 3.5 * scale, col);
+                    painter.circle_stroke(pos, 8.0 * scale, Stroke::new(1.2 * scale, col));
+                }
+            }
+        }
+    }
+
     // Local player in radar center: vision cone + heading arrow
-    let (sin, cos) = (-ctx.yaw).sin_cos();
-    let cone_len = 16.0 * scale;
-    let cone_half_w = 6.0 * scale;
-    let tip = center + Vec2::new(-sin * cone_len, -cos * cone_len);
-    let left = center
-        + Vec2::new(
-            -cos * cone_half_w + sin * 2.5 * scale,
-            sin * cone_half_w + cos * 2.5 * scale,
+    let bearing = map_projection::yaw_to_map_bearing(ctx.yaw);
+    let (sin, cos) = bearing.sin_cos();
+    if let Some(cone_tex) = ctx.ui_tex.player_cone {
+        // The extracted cone points down; the extracted arrow points up.
+        paint_rotated_image(
+            painter,
+            cone_tex,
+            Rect::from_center_size(center, Vec2::splat(28.0 * scale)),
+            bearing + std::f32::consts::PI,
+            Color32::from_rgba_unmultiplied(255, 255, 255, 175),
         );
-    let right = center
-        + Vec2::new(
-            cos * cone_half_w + sin * 2.5 * scale,
-            -sin * cone_half_w + cos * 2.5 * scale,
+    } else {
+        let cone_len = 16.0 * scale;
+        let cone_half_w = 6.0 * scale;
+        let tip = center + Vec2::new(sin * cone_len, -cos * cone_len);
+        let left = center
+            + Vec2::new(
+                -cos * cone_half_w - sin * 2.5 * scale,
+                -sin * cone_half_w + cos * 2.5 * scale,
+            );
+        let right = center
+            + Vec2::new(
+                cos * cone_half_w - sin * 2.5 * scale,
+                sin * cone_half_w + cos * 2.5 * scale,
+            );
+        painter.add(Shape::convex_polygon(
+            vec![center, left, tip, right],
+            Color32::from_rgba_unmultiplied(106, 207, 183, 115),
+            Stroke::NONE,
+        ));
+    }
+
+    if let Some(arrow_tex) = ctx.ui_tex.player_arrow {
+        paint_rotated_image(
+            painter,
+            arrow_tex,
+            Rect::from_center_size(center, Vec2::splat(20.0 * scale)),
+            bearing,
+            Color32::WHITE,
         );
-    painter.add(Shape::convex_polygon(
-        vec![center, left, tip, right],
-        Color32::from_rgba_unmultiplied(106, 207, 183, 115),
-        Stroke::NONE,
-    ));
-    let arrow = [[0.0, -9.5], [-5.0, 5.5], [0.0, 2.5], [5.0, 5.5]]
-        .map(|[x, y]| center + Vec2::new(cos * x - sin * y, sin * x + cos * y) * scale)
-        .to_vec();
-    painter.add(Shape::convex_polygon(
-        arrow,
-        ACCENT,
-        Stroke::new(1.0 * scale, Color32::from_rgb(14, 23, 29)),
-    ));
+    } else {
+        let arrow = [[0.0, -9.5], [-5.0, 5.5], [0.0, 2.5], [5.0, 5.5]]
+            .map(|[x, y]| center + Vec2::new(cos * x - sin * y, sin * x + cos * y) * scale)
+            .to_vec();
+        painter.add(Shape::convex_polygon(
+            arrow,
+            ACCENT,
+            Stroke::new(1.0 * scale, Color32::from_rgb(14, 23, 29)),
+        ));
+    }
     painter.circle_filled(center, 2.6 * scale, Color32::WHITE);
 
     // Compass cardinal markers
@@ -1121,6 +1475,200 @@ pub fn paint_radar_minimap(painter: &Painter, map: Rect, scale: f32, ctx: &Minim
         comp_font,
         MUTED,
     );
+    // Authentic circular frame overlay from 1BattlePanel_ann_f.png
+    if let Some(frame_tex) = ctx.ui_tex.minimap_frame {
+        painter.image(
+            frame_tex,
+            Rect::from_center_size(center, Vec2::splat(radius * 2.22)),
+            Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+            Color32::WHITE,
+        );
+    }
+}
+
+/// Horizontal compass ribbon across the top of the HUD (_compassShowAngle / _mSound2IconInCompass from BattleMinimap.cs)
+pub fn paint_compass_bar(
+    painter: &Painter,
+    center_top: Pos2,
+    scale: f32,
+    ctx: &MinimapContext<'_>,
+) {
+    let width = 360.0 * scale;
+    let height = 30.0 * scale;
+    let rect = Rect::from_center_size(
+        center_top + Vec2::new(0.0, height * 0.5),
+        Vec2::new(width, height),
+    );
+
+    // Background tape with subtle border
+    painter.rect_filled(
+        rect,
+        6.0 * scale,
+        Color32::from_rgba_unmultiplied(14, 23, 29, 195),
+    );
+    painter.rect_stroke(
+        rect,
+        6.0 * scale,
+        Stroke::new(
+            1.0 * scale,
+            Color32::from_rgba_unmultiplied(55, 75, 82, 140),
+        ),
+        StrokeKind::Inside,
+    );
+
+    let player_yaw_deg = map_projection::yaw_to_map_bearing(ctx.yaw).to_degrees();
+    let center_x = rect.center().x;
+    let fov_deg = 90.0_f32; // 90° FOV ribbon
+    let pixels_per_deg = (width * 0.86) / fov_deg;
+    let tick_y_bottom = rect.max.y - 3.5 * scale;
+
+    // Center aiming pip / indicator
+    painter.line_segment(
+        [
+            Pos2::new(center_x, rect.min.y + 2.0 * scale),
+            Pos2::new(center_x, rect.min.y + 7.0 * scale),
+        ],
+        Stroke::new(1.8 * scale, ACCENT),
+    );
+
+    // Ticks and cardinal labels
+    let min_deg = (player_yaw_deg - fov_deg * 0.5).floor() as i32;
+    let max_deg = (player_yaw_deg + fov_deg * 0.5).ceil() as i32;
+    let start_tick = (min_deg / 5) * 5;
+
+    let font_cardinal = FontId::proportional(8.5 * scale);
+    let font_num = FontId::proportional(7.0 * scale);
+
+    for deg_i in (start_tick..=max_deg).step_by(5) {
+        let norm_deg = (deg_i as f32).rem_euclid(360.0);
+        let diff = (deg_i as f32 - player_yaw_deg + 540.0).rem_euclid(360.0) - 180.0;
+        if diff.abs() > fov_deg * 0.5 {
+            continue;
+        }
+        let x = center_x + diff * pixels_per_deg;
+        let is_major = (deg_i % 15) == 0;
+        let tick_len = if is_major { 7.0 * scale } else { 3.5 * scale };
+        let stroke_col = if is_major {
+            Color32::from_rgba_unmultiplied(220, 235, 235, 175)
+        } else {
+            Color32::from_rgba_unmultiplied(140, 160, 165, 95)
+        };
+        painter.line_segment(
+            [
+                Pos2::new(x, tick_y_bottom - tick_len),
+                Pos2::new(x, tick_y_bottom),
+            ],
+            Stroke::new(1.0 * scale, stroke_col),
+        );
+
+        if is_major {
+            let label = match (norm_deg.round() as u32) % 360 {
+                0 => Some(("ПН", ACCENT)),
+                45 => Some(("ПН-СХ", INK)),
+                90 => Some(("СХ", INK)),
+                135 => Some(("ПД-СХ", INK)),
+                180 => Some(("ПД", INK)),
+                225 => Some(("ПД-ЗХ", INK)),
+                270 => Some(("ЗХ", INK)),
+                315 => Some(("ПН-ЗХ", INK)),
+                _ => None,
+            };
+            if let Some((text, color)) = label {
+                painter.text(
+                    Pos2::new(x, rect.min.y + 3.0 * scale),
+                    Align2::CENTER_TOP,
+                    text,
+                    font_cardinal.clone(),
+                    color,
+                );
+            } else if (norm_deg.round() as u32) % 30 == 0 {
+                painter.text(
+                    Pos2::new(x, rect.min.y + 4.0 * scale),
+                    Align2::CENTER_TOP,
+                    format!("{:.0}", norm_deg),
+                    font_num.clone(),
+                    MUTED,
+                );
+            }
+        }
+    }
+
+    // Directional Sound Icons on Compass Tape (_mSound2IconInCompass from BattleMinimap.cs)
+    for cue in ctx.sound_cues {
+        let dx = cue.world_pos[0] - ctx.player_position[0];
+        let dz = cue.world_pos[2] - ctx.player_position[2];
+        let cue_deg = map_projection::world_bearing([dx, dz]).to_degrees();
+        let diff = (cue_deg - player_yaw_deg + 540.0).rem_euclid(360.0) - 180.0;
+        let clamped_diff = diff.clamp(-fov_deg * 0.48, fov_deg * 0.48);
+        let x = center_x + clamped_diff * pixels_per_deg;
+        let y = rect.center().y;
+        let alpha = (cue.intensity.clamp(0.0, 1.0) * 255.0) as u8;
+
+        match cue.kind {
+            SoundCueKind::Gunfire => {
+                let col = Color32::from_rgba_unmultiplied(255, 60, 40, alpha);
+                painter.circle_filled(Pos2::new(x, y), 3.2 * scale, col);
+                painter.circle_stroke(Pos2::new(x, y), 5.5 * scale, Stroke::new(1.2 * scale, col));
+            }
+            SoundCueKind::Footstep => {
+                let col = Color32::from_rgba_unmultiplied(255, 180, 55, alpha);
+                painter.circle_filled(Pos2::new(x - 1.5 * scale, y), 1.6 * scale, col);
+                painter.circle_filled(Pos2::new(x + 1.5 * scale, y), 1.6 * scale, col);
+            }
+            SoundCueKind::Vehicle => {
+                let col = Color32::from_rgba_unmultiplied(250, 215, 50, alpha);
+                painter.rect_filled(
+                    Rect::from_center_size(Pos2::new(x, y), Vec2::splat(4.8 * scale)),
+                    1.0 * scale,
+                    col,
+                );
+            }
+            SoundCueKind::Airdrop => {
+                let col = Color32::from_rgba_unmultiplied(75, 220, 245, alpha);
+                painter.circle_filled(Pos2::new(x, y), 2.8 * scale, col);
+                painter.circle_stroke(Pos2::new(x, y), 5.0 * scale, Stroke::new(1.0 * scale, col));
+            }
+        }
+    }
+
+    // Waypoint Pin Marker on Compass Tape (GBattlePanelMarkDir)
+    if let Some(marker) = ctx.marker {
+        let dx = marker[0] - ctx.player_position[0];
+        let dz = marker[1] - ctx.player_position[2];
+        let dist = (dx * dx + dz * dz).sqrt();
+        let marker_deg = map_projection::world_bearing([dx, dz]).to_degrees();
+        let diff = (marker_deg - player_yaw_deg + 540.0).rem_euclid(360.0) - 180.0;
+        let is_edge = diff.abs() > fov_deg * 0.47;
+        let clamped_diff = diff.clamp(-fov_deg * 0.47, fov_deg * 0.47);
+        let x = center_x + clamped_diff * pixels_per_deg;
+        let y = rect.center().y;
+
+        let pin_col = Color32::from_rgb(255, 205, 60);
+        painter.circle_filled(Pos2::new(x, y), 3.5 * scale, pin_col);
+        painter.circle_stroke(
+            Pos2::new(x, y),
+            5.2 * scale,
+            Stroke::new(1.0 * scale, Color32::BLACK),
+        );
+        if is_edge {
+            let arrow_char = if diff < 0.0 { "◀" } else { "▶" };
+            painter.text(
+                Pos2::new(x, y - 7.5 * scale),
+                Align2::CENTER_CENTER,
+                arrow_char,
+                FontId::proportional(7.5 * scale),
+                pin_col,
+            );
+        } else {
+            painter.text(
+                Pos2::new(x, y + 7.5 * scale),
+                Align2::CENTER_TOP,
+                format!("{:.0}m", dist),
+                FontId::proportional(7.0 * scale),
+                pin_col,
+            );
+        }
+    }
 }
 
 fn minimap(
@@ -1130,148 +1678,254 @@ fn minimap(
     _vitals: &Vitals,
     map_ctx: &MinimapContext<'_>,
 ) {
-    panel(painter, rect, scale);
+    if map_ctx.ui_tex.minimap_frame.is_none() {
+        panel(painter, rect, scale);
+    }
     let map = Rect::from_min_size(
         rect.min + Vec2::splat(8.0 * scale),
         Vec2::splat(156.0 * scale),
     );
+    if let Some(backplate) = map_ctx.ui_tex.minimap_frame {
+        painter.image(
+            backplate,
+            map,
+            Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+            Color32::WHITE,
+        );
+    }
     paint_radar_minimap(painter, map, scale, map_ctx);
 
-    // Dynamic compass heading readout at top
-    let deg = ((-map_ctx.yaw).to_degrees().rem_euclid(360.0)) as u32;
-    let dir_str = match deg {
-        338..=360 | 0..=22 => "ПН",
-        23..=67 => "ПН-СХ",
-        68..=112 => "СХ",
-        113..=157 => "ПД-СХ",
-        158..=202 => "ПД",
-        203..=247 => "ПД-ЗХ",
-        248..=292 => "ЗХ",
-        _ => "ПН-ЗХ",
-    };
-    painter.text(
-        rect.center_top() + Vec2::new(0.0, 5.0 * scale),
-        Align2::CENTER_TOP,
-        format!("{dir_str} {deg}°"),
-        FontId::proportional(9.0 * scale),
-        ACCENT,
-    );
+    // Day/Night and Weather bar at the top of the minimap (_zhou_ye from BattleMinimap.cs)
+    if let Some(dn_bg) = map_ctx.ui_tex.day_night_bg {
+        let bar_size = Vec2::new(140.0, 16.0) * scale;
+        let bar_rect =
+            Rect::from_center_size(rect.center_top() + Vec2::new(0.0, 7.0 * scale), bar_size);
+        painter.image(
+            dn_bg,
+            bar_rect,
+            Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+            Color32::WHITE,
+        );
+        let icon_tex = if map_ctx.tick.0 % 2400 < 1200 {
+            map_ctx.ui_tex.sun_icon
+        } else {
+            map_ctx.ui_tex.moon_icon
+        };
+        if let Some(itex) = icon_tex {
+            let icon_rect = Rect::from_center_size(bar_rect.center(), Vec2::splat(18.0 * scale));
+            painter.image(
+                itex,
+                icon_rect,
+                Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+                Color32::WHITE,
+            );
+        }
+    } else {
+        // Dynamic compass heading readout at top
+        let deg = map_projection::yaw_to_map_bearing(map_ctx.yaw).to_degrees() as u32;
+        let dir_str = match deg {
+            338..=360 | 0..=22 => "ПН",
+            23..=67 => "ПН-СХ",
+            68..=112 => "СХ",
+            113..=157 => "ПД-СХ",
+            158..=202 => "ПД",
+            203..=247 => "ПД-ЗХ",
+            248..=292 => "ЗХ",
+            _ => "ПН-ЗХ",
+        };
+        painter.text(
+            rect.center_top() + Vec2::new(0.0, 5.0 * scale),
+            Align2::CENTER_TOP,
+            format!("{dir_str} {deg}°"),
+            FontId::proportional(9.0 * scale),
+            ACCENT,
+        );
+    }
 
     let biome = Biome::at(map_ctx.player_position);
     let sector = shared::level::sector_label_at(map_ctx.player_position);
+    if let Some(coord_tex) = map_ctx.ui_tex.coord_bg {
+        let coord_rect = Rect::from_center_size(
+            rect.center_bottom() - Vec2::new(0.0, 9.0 * scale),
+            Vec2::new(140.0, 18.0) * scale,
+        );
+        painter.image(
+            coord_tex,
+            coord_rect,
+            Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+            Color32::WHITE,
+        );
+    }
     painter.text(
         rect.center_bottom() - Vec2::new(0.0, 6.5 * scale),
         Align2::CENTER_BOTTOM,
         format!(
-            "[{}] {} · X: {:.0} Z: {:.0} · [M]",
+            "[{}] {} · X: {:.0} Z: {:.0}",
             sector,
             biome.short_label(),
             map_ctx.player_position[0],
             map_ctx.player_position[2],
         ),
         FontId::proportional(8.0 * scale),
-        MUTED,
+        INK,
     );
 }
 
-fn joystick(painter: &Painter, rect: Rect) {
+fn joystick(painter: &Painter, rect: Rect, ctx: &MinimapContext<'_>) {
     let center = rect.center();
     let radius = rect.width().min(rect.height()) * 0.46;
-    painter.circle_filled(
-        center,
-        radius,
-        Color32::from_rgba_unmultiplied(14, 23, 29, 190),
-    );
-    painter.circle_stroke(center, radius, Stroke::new(1.5_f32, MUTED));
-    painter.circle_stroke(
-        center,
-        radius * 0.65,
-        Stroke::new(1.0_f32, Color32::from_rgb(58, 83, 88)),
-    );
+    if let Some(joy_bg) = ctx.ui_tex.joystick_bg {
+        painter.image(
+            joy_bg,
+            Rect::from_center_size(center, Vec2::splat(radius * 2.1)),
+            Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+            Color32::from_rgba_unmultiplied(255, 255, 255, 220),
+        );
+    } else {
+        painter.circle_filled(
+            center,
+            radius,
+            Color32::from_rgba_unmultiplied(14, 23, 29, 190),
+        );
+        painter.circle_stroke(center, radius, Stroke::new(1.5_f32, MUTED));
+        painter.circle_stroke(
+            center,
+            radius * 0.65,
+            Stroke::new(1.0_f32, Color32::from_rgb(58, 83, 88)),
+        );
+    }
     painter.circle_filled(
         center,
         radius * 0.27,
-        Color32::from_rgba_unmultiplied(106, 207, 183, 150),
+        Color32::from_rgba_unmultiplied(106, 207, 183, 160),
     );
 }
 
-fn action_button(painter: &Painter, rect: Rect, id: WidgetId, scale: f32) {
+fn action_button(
+    painter: &Painter,
+    rect: Rect,
+    id: WidgetId,
+    scale: f32,
+    ctx: &MinimapContext<'_>,
+) {
     let center = rect.center();
     let radius = rect.width().min(rect.height()) * 0.46;
-    painter.circle_filled(
-        center,
-        radius,
-        Color32::from_rgba_unmultiplied(14, 23, 29, 220),
-    );
-    painter.circle_stroke(center, radius, Stroke::new(scale, MUTED));
-    let icon = center - Vec2::new(0.0, 6.0 * scale);
-    let stroke = Stroke::new(1.8 * scale, INK);
-    let label = match id {
-        WidgetId::FireButtonLeft | WidgetId::FireButtonRight | WidgetId::AimButton => {
-            painter.circle_stroke(icon, 8.0 * scale, stroke);
-            for direction in [Vec2::X, -Vec2::X, Vec2::Y, -Vec2::Y] {
-                painter.line_segment(
-                    [
-                        icon + direction * 5.0 * scale,
-                        icon + direction * 12.0 * scale,
-                    ],
-                    stroke,
+
+    match id {
+        WidgetId::FireButtonLeft | WidgetId::FireButtonRight => {
+            if let Some(bg_tex) = ctx.ui_tex.btn_fire_bg {
+                painter.image(
+                    bg_tex,
+                    Rect::from_center_size(center, Vec2::splat(radius * 2.0)),
+                    Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+                    Color32::WHITE,
                 );
-            }
-            if id == WidgetId::AimButton {
-                "ПРИЦІЛ"
             } else {
-                "ВОГОНЬ"
+                painter.circle_filled(
+                    center,
+                    radius,
+                    Color32::from_rgba_unmultiplied(14, 23, 29, 220),
+                );
+                painter.circle_stroke(center, radius, Stroke::new(scale, MUTED));
+            }
+            if let Some(icon_tex) = ctx.ui_tex.btn_fire_icon {
+                painter.image(
+                    icon_tex,
+                    Rect::from_center_size(center, Vec2::splat(radius * 1.15)),
+                    Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+                    Color32::WHITE,
+                );
+            } else {
+                let icon = center - Vec2::new(0.0, 6.0 * scale);
+                let stroke = Stroke::new(1.8 * scale, INK);
+                painter.circle_stroke(icon, 8.0 * scale, stroke);
+            }
+        }
+        WidgetId::AimButton => {
+            if let Some(bg_tex) = ctx.ui_tex.btn_aim_bg {
+                painter.image(
+                    bg_tex,
+                    Rect::from_center_size(center, Vec2::splat(radius * 2.0)),
+                    Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+                    Color32::WHITE,
+                );
+            } else {
+                painter.circle_filled(
+                    center,
+                    radius,
+                    Color32::from_rgba_unmultiplied(14, 23, 29, 220),
+                );
+                painter.circle_stroke(center, radius, Stroke::new(scale, MUTED));
+            }
+            if let Some(icon_tex) = ctx.ui_tex.btn_aim_icon {
+                painter.image(
+                    icon_tex,
+                    Rect::from_center_size(center, Vec2::splat(radius * 1.15)),
+                    Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+                    Color32::WHITE,
+                );
             }
         }
         WidgetId::JumpButton => {
-            painter.line_segment(
-                [
-                    icon + Vec2::new(0.0, 11.0) * scale,
-                    icon - Vec2::new(0.0, 10.0) * scale,
-                ],
-                stroke,
-            );
-            painter.line_segment(
-                [
-                    icon + Vec2::new(-8.0, -2.0) * scale,
-                    icon + Vec2::new(0.0, -10.0) * scale,
-                ],
-                stroke,
-            );
-            painter.line_segment(
-                [
-                    icon + Vec2::new(8.0, -2.0) * scale,
-                    icon + Vec2::new(0.0, -10.0) * scale,
-                ],
-                stroke,
-            );
-            "СТРИБОК"
+            if let Some(btn_tex) = ctx.ui_tex.btn_jump {
+                painter.image(
+                    btn_tex,
+                    Rect::from_center_size(center, Vec2::splat(radius * 2.0)),
+                    Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+                    Color32::WHITE,
+                );
+            } else {
+                painter.circle_filled(
+                    center,
+                    radius,
+                    Color32::from_rgba_unmultiplied(14, 23, 29, 220),
+                );
+                painter.circle_stroke(center, radius, Stroke::new(scale, MUTED));
+            }
         }
         WidgetId::CrouchButton => {
-            painter.circle_stroke(icon - Vec2::new(0.0, 8.0) * scale, 4.0 * scale, stroke);
-            painter.line_segment([icon, icon + Vec2::new(8.0, 6.0) * scale], stroke);
-            painter.line_segment(
-                [
-                    icon + Vec2::new(8.0, 6.0) * scale,
-                    icon + Vec2::new(-7.0, 11.0) * scale,
-                ],
-                stroke,
-            );
-            "СІСТИ"
+            if let Some(btn_tex) = ctx.ui_tex.btn_crouch {
+                painter.image(
+                    btn_tex,
+                    Rect::from_center_size(center, Vec2::splat(radius * 2.0)),
+                    Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+                    Color32::WHITE,
+                );
+            } else {
+                painter.circle_filled(
+                    center,
+                    radius,
+                    Color32::from_rgba_unmultiplied(14, 23, 29, 220),
+                );
+                painter.circle_stroke(center, radius, Stroke::new(scale, MUTED));
+            }
         }
         WidgetId::ReloadButton => {
-            painter.circle_stroke(icon, 10.0 * scale, stroke);
-            painter.line_segment(
-                [
-                    icon + Vec2::new(8.0, -6.0) * scale,
-                    icon + Vec2::new(12.0, -11.0) * scale,
-                ],
-                stroke,
-            );
-            "ЗАРЯД"
+            if let Some(btn_tex) = ctx.ui_tex.btn_reload {
+                painter.image(
+                    btn_tex,
+                    Rect::from_center_size(center, Vec2::splat(radius * 2.0)),
+                    Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)),
+                    Color32::WHITE,
+                );
+            } else {
+                painter.circle_filled(
+                    center,
+                    radius,
+                    Color32::from_rgba_unmultiplied(14, 23, 29, 220),
+                );
+                painter.circle_stroke(center, radius, Stroke::new(scale, MUTED));
+            }
         }
         _ => {
+            painter.circle_filled(
+                center,
+                radius,
+                Color32::from_rgba_unmultiplied(14, 23, 29, 220),
+            );
+            painter.circle_stroke(center, radius, Stroke::new(scale, MUTED));
+            let icon = center - Vec2::new(0.0, 6.0 * scale);
+            let stroke = Stroke::new(1.8 * scale, INK);
             painter.rect_stroke(
                 Rect::from_center_size(icon, Vec2::new(18.0, 20.0) * scale),
                 3.0 * scale,
@@ -1285,16 +1939,15 @@ fn action_button(painter: &Painter, rect: Rect, id: WidgetId, scale: f32) {
                 ],
                 stroke,
             );
-            "РЮКЗАК"
+            painter.text(
+                center + Vec2::new(0.0, 18.0 * scale),
+                Align2::CENTER_CENTER,
+                "РЮКЗАК",
+                FontId::proportional(8.5 * scale),
+                INK,
+            );
         }
-    };
-    painter.text(
-        center + Vec2::new(0.0, 18.0 * scale),
-        Align2::CENTER_CENTER,
-        label,
-        FontId::proportional(8.5 * scale),
-        INK,
-    );
+    }
 }
 
 pub fn crosshair(ctx: &egui::Context) {

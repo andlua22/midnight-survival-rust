@@ -1,0 +1,984 @@
+{
+  "apk": "export/lite4.0.apk",
+  "assets": [
+    {
+      "cab": "BuildPlayer-A-22.sharedAssets",
+      "class_counts": {
+        "142": 1,
+        "150": 1,
+        "21": 1,
+        "28": 1,
+        "43": 2
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-19d6c9f392ece1f3c8b98c93305e365b/CAB-19d6c9f392ece1f3c8b98c93305e365b",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-28703630312b65974b36a2accc8ec86a/CAB-28703630312b65974b36a2accc8ec86a",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-3b8e9ffbb8dd58cd1e1c40909b89dfb8/CAB-3b8e9ffbb8dd58cd1e1c40909b89dfb8",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-b99e201845a48115c6b6a24e89d01efe/CAB-b99e201845a48115c6b6a24e89d01efe",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-ba21f26e1924df97e112edb76c9236b3/CAB-ba21f26e1924df97e112edb76c9236b3",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-f230b0922fb25baf80d6f98db28853e2/CAB-f230b0922fb25baf80d6f98db28853e2",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [
+        {
+          "byte_count": 11052,
+          "class_id": 43,
+          "path_id": "5",
+          "properties": {
+            "m_BakedConvexCollisionMesh": {
+              "byte_count": 0,
+              "preview": [],
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "m_BakedTriangleCollisionMesh": {
+              "byte_count": 6960,
+              "preview": [
+                78,
+                88,
+                83,
+                1,
+                77,
+                69,
+                83,
+                72,
+                15,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ],
+              "sha256": "fdfe523660c584b3d1f2bc5152dfc14f63b3d4ccf58fac44580b6ec7efd8bf93"
+            },
+            "m_BindPose": [],
+            "m_BoneNameHashes": [],
+            "m_BonesAABB": [],
+            "m_CompressedMesh": {
+              "m_BoneIndices": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              },
+              "m_FloatColors": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_NormalSigns": {
+                "m_BitSize": 1,
+                "m_Data": {
+                  "byte_count": 23,
+                  "preview": [
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255
+                  ],
+                  "sha256": "be708023f605c56d0cb0582b0a28a8535509f9a66a8e7804cd9db3b55e464ef8"
+                },
+                "m_NumItems": 184
+              },
+              "m_Normals": {
+                "m_BitSize": 10,
+                "m_Data": {
+                  "byte_count": 460,
+                  "preview": [
+                    39,
+                    92,
+                    87,
+                    136,
+                    145,
+                    13,
+                    52,
+                    7,
+                    10,
+                    148,
+                    146,
+                    205,
+                    28,
+                    67,
+                    124,
+                    168
+                  ],
+                  "sha256": "4770a1365859566da44a00f542b2ded7331de4a555c1d5600b914950f9da2667"
+                },
+                "m_NumItems": 368,
+                "m_Range": 0.45955973863601685,
+                "m_Start": -0.2735922932624817
+              },
+              "m_TangentSigns": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              },
+              "m_Tangents": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_Triangles": {
+                "m_BitSize": 8,
+                "m_Data": {
+                  "byte_count": 810,
+                  "preview": [
+                    0,
+                    1,
+                    2,
+                    1,
+                    0,
+                    3,
+                    3,
+                    4,
+                    1,
+                    5,
+                    3,
+                    0,
+                    4,
+                    3,
+                    6,
+                    6
+                  ],
+                  "sha256": "f0b823844735df25ac994578906e05d19a7487e6c4493619bd2a4c160c6c75cb"
+                },
+                "m_NumItems": 810
+              },
+              "m_UV": {
+                "m_BitSize": 22,
+                "m_Data": {
+                  "byte_count": 1012,
+                  "preview": [
+                    0,
+                    0,
+                    64,
+                    43,
+                    184,
+                    120,
+                    207,
+                    3,
+                    48,
+                    249,
+                    136,
+                    0,
+                    0,
+                    0,
+                    147,
+                    143
+                  ],
+                  "sha256": "57c12a95daf8b7a08f89c00c93a5283e5f869dc339a12b9f9308543d660bc281"
+                },
+                "m_NumItems": 368,
+                "m_Range": 50.38895034790039,
+                "m_Start": 0.0
+              },
+              "m_UVInfo": 5,
+              "m_Vertices": {
+                "m_BitSize": 20,
+                "m_Data": {
+                  "byte_count": 1380,
+                  "preview": [
+                    57,
+                    67,
+                    105,
+                    23,
+                    18,
+                    168,
+                    234,
+                    143,
+                    232,
+                    147,
+                    66,
+                    43,
+                    113,
+                    160,
+                    254,
+                    231
+                  ],
+                  "sha256": "a17a85ed790fce112f571b8891711de8848256d820c01c43a555e2e5aad4539b"
+                },
+                "m_NumItems": 552,
+                "m_Range": 2014.483154296875,
+                "m_Start": -1947.5738525390625
+              },
+              "m_Weights": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              }
+            },
+            "m_IndexBuffer": {
+              "byte_count": 0,
+              "preview": [],
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "m_IndexFormat": 0,
+            "m_IsReadable": false,
+            "m_KeepIndices": true,
+            "m_KeepVertices": true,
+            "m_LocalAABB": {
+              "m_Center": {
+                "x": -690.3480834960938,
+                "y": -1871.096435546875,
+                "z": 61.281005859375
+              },
+              "m_Extent": {
+                "x": 94.61849975585938,
+                "y": 76.47940063476562,
+                "z": 5.6302170753479
+              }
+            },
+            "m_MeshCompression": 1,
+            "m_MeshMetrics[0]": 105.02215576171875,
+            "m_MeshMetrics[1]": 1.0,
+            "m_MeshUsageFlags": 16,
+            "m_Name": "road_a22",
+            "m_RootBoneNameHash": 0,
+            "m_Shapes": {
+              "channels": [],
+              "fullWeights": [],
+              "shapes": [],
+              "vertices": []
+            },
+            "m_StreamData": {
+              "offset": 0,
+              "path": "",
+              "size": 0
+            },
+            "m_SubMeshes": [
+              {
+                "baseVertex": 0,
+                "firstByte": 0,
+                "firstVertex": 0,
+                "indexCount": 810,
+                "localAABB": {
+                  "m_Center": {
+                    "x": -690.3480834960938,
+                    "y": -1871.096435546875,
+                    "z": 61.281005859375
+                  },
+                  "m_Extent": {
+                    "x": 94.6165771484375,
+                    "y": 76.47747802734375,
+                    "z": 5.6282958984375
+                  }
+                },
+                "topology": 0,
+                "vertexCount": 184
+              }
+            ],
+            "m_VariableBoneCountWeights": {
+              "m_Data": []
+            },
+            "m_VertexData": {
+              "m_Channels": [
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                }
+              ],
+              "m_DataSize": {
+                "byte_count": 0,
+                "preview": [],
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "m_VertexCount": 0
+            }
+          }
+        },
+        {
+          "byte_count": 123568,
+          "class_id": 43,
+          "path_id": "6",
+          "properties": {
+            "m_BakedConvexCollisionMesh": {
+              "byte_count": 0,
+              "preview": [],
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "m_BakedTriangleCollisionMesh": {
+              "byte_count": 65650,
+              "preview": [
+                78,
+                88,
+                83,
+                1,
+                77,
+                69,
+                83,
+                72,
+                15,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ],
+              "sha256": "3434979a9352faaa8c8c9e8d1c30f05db6189ad227b30efa76791bd3faf81f85"
+            },
+            "m_BindPose": [],
+            "m_BoneNameHashes": [],
+            "m_BonesAABB": [],
+            "m_CompressedMesh": {
+              "m_BoneIndices": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              },
+              "m_FloatColors": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_NormalSigns": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              },
+              "m_Normals": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_TangentSigns": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              },
+              "m_Tangents": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_Triangles": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              },
+              "m_UV": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_UVInfo": 0,
+              "m_Vertices": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_Weights": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              }
+            },
+            "m_IndexBuffer": {
+              "byte_count": 14508,
+              "preview": [
+                0,
+                0,
+                1,
+                0,
+                2,
+                0,
+                0,
+                0,
+                2,
+                0,
+                3,
+                0,
+                4,
+                0,
+                0,
+                0
+              ],
+              "sha256": "54b86c2a6064928592f18cba74e4f7790c8f1eddc60235ef5c18da3237904e6f"
+            },
+            "m_IndexFormat": 0,
+            "m_IsReadable": true,
+            "m_KeepIndices": false,
+            "m_KeepVertices": false,
+            "m_LocalAABB": {
+              "m_Center": {
+                "x": -800.0,
+                "y": -2000.0,
+                "z": 49.4769172668457
+              },
+              "m_Extent": {
+                "x": 200.00009155273438,
+                "y": 200.0,
+                "z": 42.24290084838867
+              }
+            },
+            "m_MeshCompression": 0,
+            "m_MeshMetrics[0]": 168257.046875,
+            "m_MeshMetrics[1]": 1.0,
+            "m_MeshUsageFlags": 16,
+            "m_Name": "A-22",
+            "m_RootBoneNameHash": 0,
+            "m_Shapes": {
+              "channels": [],
+              "fullWeights": [],
+              "shapes": [],
+              "vertices": []
+            },
+            "m_StreamData": {
+              "offset": 0,
+              "path": "",
+              "size": 0
+            },
+            "m_SubMeshes": [
+              {
+                "baseVertex": 0,
+                "firstByte": 0,
+                "firstVertex": 0,
+                "indexCount": 7254,
+                "localAABB": {
+                  "m_Center": {
+                    "x": -800.0,
+                    "y": -2000.0,
+                    "z": 49.4769172668457
+                  },
+                  "m_Extent": {
+                    "x": 200.00009155273438,
+                    "y": 200.0,
+                    "z": 42.24290084838867
+                  }
+                },
+                "topology": 0,
+                "vertexCount": 1344
+              }
+            ],
+            "m_VariableBoneCountWeights": {
+              "m_Data": []
+            },
+            "m_VertexData": {
+              "m_Channels": [
+                {
+                  "dimension": 3,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 3,
+                  "format": 0,
+                  "offset": 12,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 2,
+                  "format": 0,
+                  "offset": 24,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                }
+              ],
+              "m_DataSize": {
+                "byte_count": 43008,
+                "preview": [
+                  1,
+                  144,
+                  23,
+                  196,
+                  0,
+                  128,
+                  9,
+                  197,
+                  136,
+                  142,
+                  5,
+                  65,
+                  29,
+                  234,
+                  30,
+                  62
+                ],
+                "sha256": "04afc226b31c97f4598aa448fa743392c523dd71ebd5165d601e327a8422f6c9"
+              },
+              "m_VertexCount": 1344
+            }
+          }
+        }
+      ],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    },
+    {
+      "cab": "BuildPlayer-A-22",
+      "class_counts": {
+        "1": 2,
+        "104": 1,
+        "157": 1,
+        "196": 1,
+        "23": 2,
+        "33": 2,
+        "4": 2,
+        "64": 2,
+        "850595691": 1
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/BuildPlayer-A-22/BuildPlayer-A-22.sharedAssets",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-ba21f26e1924df97e112edb76c9236b3/CAB-ba21f26e1924df97e112edb76c9236b3",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    }
+  ],
+  "bundle": "assets/scene/a-22.ab"
+}

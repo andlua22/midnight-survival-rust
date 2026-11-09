@@ -5,6 +5,7 @@ pub mod authority;
 mod capsule_query;
 pub mod input;
 pub mod level;
+pub mod map_projection;
 pub mod movement;
 pub mod physics;
 pub mod prediction;

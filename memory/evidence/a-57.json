@@ -1,0 +1,1641 @@
+{
+  "apk": "export/lite4.0.apk",
+  "assets": [
+    {
+      "cab": "BuildPlayer-A-57.sharedAssets",
+      "class_counts": {
+        "142": 1,
+        "150": 1,
+        "21": 1,
+        "28": 1,
+        "43": 2
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-0bc9ce17ff019440e43b8eb24d2b47b0/CAB-0bc9ce17ff019440e43b8eb24d2b47b0",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-19d6c9f392ece1f3c8b98c93305e365b/CAB-19d6c9f392ece1f3c8b98c93305e365b",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-25f9676e028cfe5dbf9f7cd5c45f3cf1/CAB-25f9676e028cfe5dbf9f7cd5c45f3cf1",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-b99e201845a48115c6b6a24e89d01efe/CAB-b99e201845a48115c6b6a24e89d01efe",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-ba21f26e1924df97e112edb76c9236b3/CAB-ba21f26e1924df97e112edb76c9236b3",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-f230b0922fb25baf80d6f98db28853e2/CAB-f230b0922fb25baf80d6f98db28853e2",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [
+        {
+          "byte_count": 964,
+          "class_id": 21,
+          "path_id": "3",
+          "properties": {
+            "disabledShaderPasses": [],
+            "m_BuildTextureStacks": [],
+            "m_CustomRenderQueue": 2100,
+            "m_DoubleSidedGI": false,
+            "m_EnableInstancingVariants": true,
+            "m_InvalidKeywords": [],
+            "m_LightmapFlags": 4,
+            "m_Name": "A-57",
+            "m_SavedProperties": {
+              "m_Colors": [
+                [
+                  "_SpecColor",
+                  {
+                    "a": 1.0,
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                  }
+                ],
+                [
+                  "_Tiling3",
+                  {
+                    "a": 0.0,
+                    "b": 0.0,
+                    "g": 120.0,
+                    "r": 120.0
+                  }
+                ]
+              ],
+              "m_Floats": {
+                "item_count": 20,
+                "preview": [
+                  [
+                    "MATERIAL_QUALITY",
+                    0.0
+                  ],
+                  [
+                    "_Bump1",
+                    1.0
+                  ],
+                  [
+                    "_Bump2",
+                    1.0
+                  ],
+                  [
+                    "_Bump3",
+                    1.0
+                  ],
+                  [
+                    "_Bump4",
+                    1.0
+                  ],
+                  [
+                    "_EnableNormal",
+                    0.0
+                  ],
+                  [
+                    "_Layer4",
+                    0.0
+                  ],
+                  [
+                    "_Note",
+                    1.0
+                  ],
+                  [
+                    "_ShininessL0",
+                    0.078125
+                  ],
+                  [
+                    "_ShininessL1",
+                    0.078125
+                  ],
+                  [
+                    "_ShininessL2",
+                    0.078125
+                  ],
+                  [
+                    "_ShininessL3",
+                    0.078125
+                  ],
+                  [
+                    "_Splat0_S",
+                    40.0
+                  ],
+                  [
+                    "_Splat0_Smoothness",
+                    0.078125
+                  ],
+                  [
+                    "_Splat1_S",
+                    60.0
+                  ],
+                  [
+                    "_Splat1_Smoothness",
+                    0.078125
+                  ]
+                ],
+                "truncated": true
+              },
+              "m_Ints": [],
+              "m_TexEnvs": [
+                [
+                  "_Control",
+                  {
+                    "m_Offset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "m_Scale": {
+                      "x": 1.0,
+                      "y": 1.0
+                    },
+                    "m_Texture": {
+                      "m_FileID": 0,
+                      "m_PathID": 4
+                    }
+                  }
+                ],
+                [
+                  "_Splat0",
+                  {
+                    "m_Offset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "m_Scale": {
+                      "x": 40.0,
+                      "y": 40.0
+                    },
+                    "m_Texture": {
+                      "m_FileID": 7,
+                      "m_PathID": -2788301330146647766
+                    }
+                  }
+                ],
+                [
+                  "_Splat0_Normal",
+                  {
+                    "m_Offset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "m_Scale": {
+                      "x": 1.0,
+                      "y": 1.0
+                    },
+                    "m_Texture": {
+                      "m_FileID": 0,
+                      "m_PathID": 0
+                    }
+                  }
+                ],
+                [
+                  "_Splat1",
+                  {
+                    "m_Offset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "m_Scale": {
+                      "x": 60.0,
+                      "y": 60.0
+                    },
+                    "m_Texture": {
+                      "m_FileID": 4,
+                      "m_PathID": 8575179320874626964
+                    }
+                  }
+                ],
+                [
+                  "_Splat1_Normal",
+                  {
+                    "m_Offset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "m_Scale": {
+                      "x": 1.0,
+                      "y": 1.0
+                    },
+                    "m_Texture": {
+                      "m_FileID": 0,
+                      "m_PathID": 0
+                    }
+                  }
+                ],
+                [
+                  "_Splat2",
+                  {
+                    "m_Offset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "m_Scale": {
+                      "x": 60.0,
+                      "y": 60.0
+                    },
+                    "m_Texture": {
+                      "m_FileID": 3,
+                      "m_PathID": 8552800249427300603
+                    }
+                  }
+                ],
+                [
+                  "_Splat2_Normal",
+                  {
+                    "m_Offset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "m_Scale": {
+                      "x": 1.0,
+                      "y": 1.0
+                    },
+                    "m_Texture": {
+                      "m_FileID": 0,
+                      "m_PathID": 0
+                    }
+                  }
+                ],
+                [
+                  "_Splat3",
+                  {
+                    "m_Offset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "m_Scale": {
+                      "x": 90.0,
+                      "y": 90.0
+                    },
+                    "m_Texture": {
+                      "m_FileID": 2,
+                      "m_PathID": -4153666475499856375
+                    }
+                  }
+                ],
+                [
+                  "_Splat3_Normal",
+                  {
+                    "m_Offset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "m_Scale": {
+                      "x": 1.0,
+                      "y": 1.0
+                    },
+                    "m_Texture": {
+                      "m_FileID": 0,
+                      "m_PathID": 0
+                    }
+                  }
+                ]
+              ]
+            },
+            "m_Shader": {
+              "m_FileID": 5,
+              "m_PathID": -1302531423149963743
+            },
+            "m_ValidKeywords": [],
+            "stringTagMap": [
+              [
+                "RenderType",
+                "Opaque"
+              ]
+            ]
+          }
+        },
+        {
+          "byte_count": 158568,
+          "class_id": 28,
+          "path_id": "4",
+          "properties": {
+            "image data": {
+              "byte_count": 158432,
+              "preview": [
+                111,
+                128,
+                191,
+                1,
+                64,
+                0,
+                176,
+                170,
+                129,
+                144,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sha256": "688894a8b535161540b7601f3080a399112c3ff48450f744368ff38cc318b98a"
+            },
+            "m_ColorSpace": 0,
+            "m_CompleteImageSize": 158432,
+            "m_DownscaleFallback": false,
+            "m_ForcedFallbackFormat": 4,
+            "m_Height": 512,
+            "m_IgnoreMasterTextureLimit": false,
+            "m_ImageCount": 1,
+            "m_IsAlphaChannelOptional": false,
+            "m_IsPreProcessed": false,
+            "m_IsReadable": true,
+            "m_LightmapFormat": 0,
+            "m_MipCount": 10,
+            "m_MipsStripped": 0,
+            "m_Name": "A-57",
+            "m_OriginalAssetGuid": {
+              "data[0]": 0,
+              "data[1]": 0,
+              "data[2]": 0,
+              "data[3]": 0
+            },
+            "m_OriginalHeight": 0,
+            "m_OriginalWidth": 0,
+            "m_PlatformBlob": {
+              "byte_count": 0,
+              "preview": [],
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "m_StreamData": {
+              "offset": 0,
+              "path": "",
+              "size": 0
+            },
+            "m_StreamingMipmaps": false,
+            "m_StreamingMipmapsPriority": 0,
+            "m_TextureDimension": 2,
+            "m_TextureFormat": 50,
+            "m_TextureSettings": {
+              "m_Aniso": 1,
+              "m_FilterMode": 1,
+              "m_MipBias": 0.0,
+              "m_WrapU": 1,
+              "m_WrapV": 1,
+              "m_WrapW": 1
+            },
+            "m_Width": 512
+          }
+        },
+        {
+          "byte_count": 115328,
+          "class_id": 43,
+          "path_id": "5",
+          "properties": {
+            "m_BakedConvexCollisionMesh": {
+              "byte_count": 0,
+              "preview": [],
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "m_BakedTriangleCollisionMesh": {
+              "byte_count": 60357,
+              "preview": [
+                78,
+                88,
+                83,
+                1,
+                77,
+                69,
+                83,
+                72,
+                15,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ],
+              "sha256": "0d93768906a708e4ffc5baedca22a51c249206a640fd7bbf43cead48662045e4"
+            },
+            "m_BindPose": [],
+            "m_BoneNameHashes": [],
+            "m_BonesAABB": [],
+            "m_CompressedMesh": {
+              "m_BoneIndices": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              },
+              "m_FloatColors": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_NormalSigns": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              },
+              "m_Normals": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_TangentSigns": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              },
+              "m_Tangents": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_Triangles": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              },
+              "m_UV": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_UVInfo": 0,
+              "m_Vertices": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_Weights": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              }
+            },
+            "m_IndexBuffer": {
+              "byte_count": 13734,
+              "preview": [
+                0,
+                0,
+                1,
+                0,
+                2,
+                0,
+                1,
+                0,
+                0,
+                0,
+                3,
+                0,
+                4,
+                0,
+                3,
+                0
+              ],
+              "sha256": "939ea4c3cd8b6d71b3e6e331e748aac565684dc8639688e8ff936053e517fe9f"
+            },
+            "m_IndexFormat": 0,
+            "m_IsReadable": true,
+            "m_KeepIndices": false,
+            "m_KeepVertices": false,
+            "m_LocalAABB": {
+              "m_Center": {
+                "x": 0.0,
+                "y": 7.62939453125e-6,
+                "z": 21.279855728149414
+              },
+              "m_Extent": {
+                "x": 200.0,
+                "y": 200.0,
+                "z": 13.277776718139648
+              }
+            },
+            "m_MeshCompression": 0,
+            "m_MeshMetrics[0]": 165681.40625,
+            "m_MeshMetrics[1]": 1.0,
+            "m_MeshUsageFlags": 16,
+            "m_Name": "A-57",
+            "m_RootBoneNameHash": 0,
+            "m_Shapes": {
+              "channels": [],
+              "fullWeights": [],
+              "shapes": [],
+              "vertices": []
+            },
+            "m_StreamData": {
+              "offset": 0,
+              "path": "",
+              "size": 0
+            },
+            "m_SubMeshes": [
+              {
+                "baseVertex": 0,
+                "firstByte": 0,
+                "firstVertex": 0,
+                "indexCount": 6867,
+                "localAABB": {
+                  "m_Center": {
+                    "x": 0.0,
+                    "y": 7.62939453125e-6,
+                    "z": 21.279855728149414
+                  },
+                  "m_Extent": {
+                    "x": 200.0,
+                    "y": 200.0,
+                    "z": 13.277776718139648
+                  }
+                },
+                "topology": 0,
+                "vertexCount": 1276
+              }
+            ],
+            "m_VariableBoneCountWeights": {
+              "m_Data": []
+            },
+            "m_VertexData": {
+              "m_Channels": [
+                {
+                  "dimension": 3,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 3,
+                  "format": 0,
+                  "offset": 12,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 2,
+                  "format": 0,
+                  "offset": 24,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                }
+              ],
+              "m_DataSize": {
+                "byte_count": 40832,
+                "preview": [
+                  0,
+                  24,
+                  18,
+                  67,
+                  0,
+                  0,
+                  72,
+                  195,
+                  146,
+                  114,
+                  239,
+                  65,
+                  165,
+                  10,
+                  76,
+                  61
+                ],
+                "sha256": "ae048fc02dfa8b5e5f5ddbfd84f0276a1b8b3a4ef7acd522492796a3fae0f1e9"
+              },
+              "m_VertexCount": 1276
+            }
+          }
+        },
+        {
+          "byte_count": 54588,
+          "class_id": 43,
+          "path_id": "6",
+          "properties": {
+            "m_BakedConvexCollisionMesh": {
+              "byte_count": 0,
+              "preview": [],
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "m_BakedTriangleCollisionMesh": {
+              "byte_count": 27395,
+              "preview": [
+                78,
+                88,
+                83,
+                1,
+                77,
+                69,
+                83,
+                72,
+                15,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ],
+              "sha256": "072a0cc4d9112abdddf3033076f92da8de5c8361e962c9229678f36fea9e8d0f"
+            },
+            "m_BindPose": [],
+            "m_BoneNameHashes": [],
+            "m_BonesAABB": [],
+            "m_CompressedMesh": {
+              "m_BoneIndices": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              },
+              "m_FloatColors": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_NormalSigns": {
+                "m_BitSize": 1,
+                "m_Data": {
+                  "byte_count": 176,
+                  "preview": [
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255,
+                    248,
+                    255,
+                    255,
+                    255,
+                    255,
+                    255
+                  ],
+                  "sha256": "2ea43bc57f4fdcf43c785348f757e22837a5d6bc0210dc048a66e50764873c9f"
+                },
+                "m_NumItems": 1405
+              },
+              "m_Normals": {
+                "m_BitSize": 10,
+                "m_Data": {
+                  "byte_count": 3513,
+                  "preview": [
+                    103,
+                    149,
+                    119,
+                    86,
+                    121,
+                    103,
+                    149,
+                    7,
+                    9,
+                    68,
+                    144,
+                    64,
+                    4,
+                    9,
+                    68,
+                    139
+                  ],
+                  "sha256": "4d78f10459c4f3ffc1bc9caa026e64e1a3c654b9fb08b5b72f56e50a5160d52c"
+                },
+                "m_NumItems": 2810,
+                "m_Range": 0.5157324075698853,
+                "m_Start": -0.21833264827728271
+              },
+              "m_TangentSigns": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              },
+              "m_Tangents": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_Triangles": {
+                "m_BitSize": 11,
+                "m_Data": {
+                  "byte_count": 4121,
+                  "preview": [
+                    0,
+                    8,
+                    128,
+                    0,
+                    6,
+                    64,
+                    128,
+                    2,
+                    24,
+                    224,
+                    0,
+                    8,
+                    72,
+                    128,
+                    2,
+                    22
+                  ],
+                  "sha256": "9dadab34bf99d74dc39ea0f9255c84c3b1c22a0bcfef6e1c5bfe976e366ad365"
+                },
+                "m_NumItems": 2997
+              },
+              "m_UV": {
+                "m_BitSize": 24,
+                "m_Data": {
+                  "byte_count": 8430,
+                  "preview": [
+                    116,
+                    32,
+                    0,
+                    58,
+                    16,
+                    231,
+                    162,
+                    140,
+                    0,
+                    116,
+                    114,
+                    231,
+                    162,
+                    140,
+                    0,
+                    58
+                  ],
+                  "sha256": "ea0fd6584b70f8a2a1387f36525fa4e965b062905f36c7650bb7f1aaf7f2a008"
+                },
+                "m_NumItems": 2810,
+                "m_Range": 378.63067626953125,
+                "m_Start": 0.0
+              },
+              "m_UVInfo": 5,
+              "m_Vertices": {
+                "m_BitSize": 20,
+                "m_Data": {
+                  "byte_count": 10538,
+                  "preview": [
+                    78,
+                    242,
+                    207,
+                    130,
+                    20,
+                    20,
+                    238,
+                    200,
+                    243,
+                    249,
+                    110,
+                    67,
+                    129,
+                    177,
+                    142,
+                    170
+                  ],
+                  "sha256": "302fed8e1bc2eba28a554377f927724003d54e5b2556108170d51042f6ddec70"
+                },
+                "m_NumItems": 4215,
+                "m_Range": 408.74713134765625,
+                "m_Start": -204.791015625
+              },
+              "m_Weights": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              }
+            },
+            "m_IndexBuffer": {
+              "byte_count": 0,
+              "preview": [],
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "m_IndexFormat": 0,
+            "m_IsReadable": false,
+            "m_KeepIndices": false,
+            "m_KeepVertices": false,
+            "m_LocalAABB": {
+              "m_Center": {
+                "x": -0.37094879150390625,
+                "y": -18.86791229248047,
+                "z": 21.184871673583984
+              },
+              "m_Extent": {
+                "x": 204.32748413085938,
+                "y": 185.92349243164062,
+                "z": 2.6462132930755615
+              }
+            },
+            "m_MeshCompression": 1,
+            "m_MeshMetrics[0]": 113.14933776855469,
+            "m_MeshMetrics[1]": 1.0,
+            "m_MeshUsageFlags": 16,
+            "m_Name": "road_a57",
+            "m_RootBoneNameHash": 0,
+            "m_Shapes": {
+              "channels": [],
+              "fullWeights": [],
+              "shapes": [],
+              "vertices": []
+            },
+            "m_StreamData": {
+              "offset": 0,
+              "path": "",
+              "size": 0
+            },
+            "m_SubMeshes": [
+              {
+                "baseVertex": 0,
+                "firstByte": 0,
+                "firstVertex": 0,
+                "indexCount": 2997,
+                "localAABB": {
+                  "m_Center": {
+                    "x": -0.37094879150390625,
+                    "y": -18.86791229248047,
+                    "z": 21.184871673583984
+                  },
+                  "m_Extent": {
+                    "x": 204.32708740234375,
+                    "y": 185.923095703125,
+                    "z": 2.6458234786987305
+                  }
+                },
+                "topology": 0,
+                "vertexCount": 1405
+              }
+            ],
+            "m_VariableBoneCountWeights": {
+              "m_Data": []
+            },
+            "m_VertexData": {
+              "m_Channels": [
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                }
+              ],
+              "m_DataSize": {
+                "byte_count": 0,
+                "preview": [],
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "m_VertexCount": 0
+            }
+          }
+        }
+      ],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    },
+    {
+      "cab": "BuildPlayer-A-57",
+      "class_counts": {
+        "1": 2,
+        "104": 1,
+        "157": 1,
+        "196": 1,
+        "23": 2,
+        "33": 2,
+        "4": 2,
+        "64": 2,
+        "850595691": 1
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/BuildPlayer-A-57/BuildPlayer-A-57.sharedAssets",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-ba21f26e1924df97e112edb76c9236b3/CAB-ba21f26e1924df97e112edb76c9236b3",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [
+        {
+          "byte_count": 67,
+          "class_id": 1,
+          "path_id": "1",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 3
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 7
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 5
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 9
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 18,
+            "m_Name": "A-57",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 67,
+          "class_id": 1,
+          "path_id": "2",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 4
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 8
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 6
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 10
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "a57",
+            "m_Tag": 20020
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "3",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 1
+            },
+            "m_LocalPosition": {
+              "x": -0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalRotation": {
+              "w": 0.7071068286895752,
+              "x": -0.7071068286895752,
+              "y": 0.0,
+              "z": -0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "4",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 2
+            },
+            "m_LocalPosition": {
+              "x": -0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalRotation": {
+              "w": 0.7071068286895752,
+              "x": -0.7071068286895752,
+              "y": 0.0,
+              "z": -0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 156,
+          "class_id": 23,
+          "path_id": "5",
+          "properties": {
+            "m_AdditionalVertexStreams": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_CastShadows": 0,
+            "m_DynamicOccludee": 1,
+            "m_Enabled": true,
+            "m_EnlightenVertexStream": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 1
+            },
+            "m_LightProbeUsage": 1,
+            "m_LightProbeVolumeOverride": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_LightmapIndex": 65535,
+            "m_LightmapIndexDynamic": 65535,
+            "m_LightmapTilingOffset": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_LightmapTilingOffsetDynamic": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_Materials": [
+              {
+                "m_FileID": 1,
+                "m_PathID": 3
+              }
+            ],
+            "m_MotionVectors": 1,
+            "m_ProbeAnchor": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_RayTraceProcedural": 0,
+            "m_RayTracingMode": 2,
+            "m_ReceiveShadows": 1,
+            "m_ReflectionProbeUsage": 1,
+            "m_RendererPriority": 0,
+            "m_RenderingLayerMask": 1,
+            "m_SortingLayer": 0,
+            "m_SortingLayerID": 0,
+            "m_SortingOrder": 0,
+            "m_StaticBatchInfo": {
+              "firstSubMesh": 0,
+              "subMeshCount": 0
+            },
+            "m_StaticBatchRoot": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_StaticShadowCaster": 0
+          }
+        },
+        {
+          "byte_count": 156,
+          "class_id": 23,
+          "path_id": "6",
+          "properties": {
+            "m_AdditionalVertexStreams": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_CastShadows": 1,
+            "m_DynamicOccludee": 1,
+            "m_Enabled": true,
+            "m_EnlightenVertexStream": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 2
+            },
+            "m_LightProbeUsage": 1,
+            "m_LightProbeVolumeOverride": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_LightmapIndex": 65535,
+            "m_LightmapIndexDynamic": 65535,
+            "m_LightmapTilingOffset": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_LightmapTilingOffsetDynamic": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_Materials": [
+              {
+                "m_FileID": 2,
+                "m_PathID": -785419025507962388
+              }
+            ],
+            "m_MotionVectors": 1,
+            "m_ProbeAnchor": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_RayTraceProcedural": 0,
+            "m_RayTracingMode": 2,
+            "m_ReceiveShadows": 1,
+            "m_ReflectionProbeUsage": 1,
+            "m_RendererPriority": 0,
+            "m_RenderingLayerMask": 1,
+            "m_SortingLayer": 0,
+            "m_SortingLayerID": 0,
+            "m_SortingOrder": 0,
+            "m_StaticBatchInfo": {
+              "firstSubMesh": 0,
+              "subMeshCount": 0
+            },
+            "m_StaticBatchRoot": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_StaticShadowCaster": 0
+          }
+        },
+        {
+          "byte_count": 24,
+          "class_id": 33,
+          "path_id": "7",
+          "properties": {
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 1
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 5
+            }
+          }
+        },
+        {
+          "byte_count": 24,
+          "class_id": 33,
+          "path_id": "8",
+          "properties": {
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 2
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 6
+            }
+          }
+        }
+      ],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    }
+  ],
+  "bundle": "assets/scene/a-57.ab"
+}

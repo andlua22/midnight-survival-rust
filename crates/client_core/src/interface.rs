@@ -14,10 +14,10 @@ use shared::{
 };
 
 use crate::{
-    application::{AudioAssets, CameraPerspective, MapTextures},
+    application::{AudioAssets, CameraPerspective, MapTextures, UiSpriteAssets},
     editor::HudEditor,
     hud::{HudLayout, HudPreset, WidgetAnchor, WidgetId},
-    hud_painter::{self, MinimapContext},
+    hud_painter::{self, MinimapContext, UiTexturesIds},
     online::Online,
     storage::StorageService,
 };
@@ -55,6 +55,7 @@ pub(crate) struct Interface {
     pub loading_progress: f32,
     pub loading_tip_idx: usize,
     pub loading_timer: f32,
+    pub sound_cues: Vec<hud_painter::VisualSoundCue>,
     theme_initialized: bool,
 }
 
@@ -94,8 +95,34 @@ impl Interface {
             loading_progress: 0.0,
             loading_tip_idx: 0,
             loading_timer: 0.0,
+            sound_cues: Vec::new(),
             theme_initialized: false,
         }
+    }
+
+    pub fn add_sound_cue(
+        &mut self,
+        kind: hud_painter::SoundCueKind,
+        world_pos: [f32; 3],
+        intensity: f32,
+    ) {
+        self.sound_cues.push(hud_painter::VisualSoundCue {
+            kind,
+            world_pos,
+            age_ticks: 0,
+            intensity,
+        });
+        if self.sound_cues.len() > 32 {
+            self.sound_cues.remove(0);
+        }
+    }
+
+    pub fn tick_sound_cues(&mut self) {
+        self.sound_cues.retain_mut(|cue| {
+            cue.age_ticks += 1;
+            cue.intensity *= 0.94;
+            cue.age_ticks < 90 && cue.intensity > 0.05
+        });
     }
 
     pub fn begin_editing(&mut self) {
@@ -379,9 +406,10 @@ pub(crate) fn draw_interface(
     mut nodes: Query<&mut ResourceNodeMarker>,
     mut exit: MessageWriter<AppExit>,
     mut commands: Commands,
-    (audio_assets, map_textures, perspective, mut windows): (
+    (audio_assets, map_textures, ui_sprite_assets, perspective, mut windows): (
         Option<Res<AudioAssets>>,
         Option<Res<MapTextures>>,
+        Option<Res<UiSpriteAssets>>,
         Option<ResMut<CameraPerspective>>,
         Query<&mut Window, With<bevy::window::PrimaryWindow>>,
     ),
@@ -407,6 +435,44 @@ pub(crate) fn draw_interface(
     } else {
         (None, None, None, None, None, None, None)
     };
+
+    let ui_tex_ids = if let Some(ui_sprites) = &ui_sprite_assets {
+        UiTexturesIds {
+            minimap_frame: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.minimap_frame.clone()))),
+            minimap_bg: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.minimap_bg.clone()))),
+            player_arrow: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.player_arrow.clone()))),
+            player_cone: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.player_cone.clone()))),
+            day_night_bg: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.day_night_bg.clone()))),
+            sun_icon: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.sun_icon.clone()))),
+            moon_icon: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.moon_icon.clone()))),
+            coord_bg: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.coord_bg.clone()))),
+            bar_bg: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.bar_bg.clone()))),
+            bar_fill_hp: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.bar_fill_hp.clone()))),
+            bar_fill_energy: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.bar_fill_energy.clone()))),
+            hotbar_slot: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.hotbar_slot.clone()))),
+            hotbar_select: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.hotbar_select.clone()))),
+            btn_fire_bg: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_fire_bg.clone()))),
+            btn_fire_icon: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_fire_icon.clone()))),
+            btn_aim_bg: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_aim_bg.clone()))),
+            btn_aim_icon: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_aim_icon.clone()))),
+            btn_jump: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_jump.clone()))),
+            btn_crouch: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_crouch.clone()))),
+            btn_reload: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_reload.clone()))),
+            joystick_bg: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.joystick_bg.clone()))),
+            map_close: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.map_close.clone()))),
+            map_zoom_in: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.map_zoom_in.clone()))),
+            map_zoom_out: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.map_zoom_out.clone()))),
+            sound_foot: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.sound_foot.clone()))),
+            sound_car: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.sound_car.clone()))),
+            sound_gun: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.sound_gun.clone()))),
+            airdrop_icon: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.airdrop_icon.clone()))),
+            cargo_icon: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.cargo_icon.clone()))),
+        }
+    } else {
+        UiTexturesIds::default()
+    };
+
+    interface.tick_sound_cues();
 
     let Ok(ctx) = contexts.ctx_mut() else {
         return;
@@ -438,6 +504,7 @@ pub(crate) fn draw_interface(
             &mut nodes,
             map_tex_id,
             marker_tex_id,
+            ui_tex_ids,
         );
         if matches!(interface.mode, UiMode::Playing | UiMode::Benchmark) {
             hud_painter::crosshair(ctx);
@@ -651,6 +718,7 @@ pub(crate) fn draw_interface(
             marker_tex_id,
             cargo_tex_id,
             vehicle_tex_id,
+            ui_tex_ids,
             audio_assets.as_deref(),
             &mut commands,
             perspective,
@@ -1356,6 +1424,7 @@ fn draw_widgets(
     nodes: &mut Query<&mut ResourceNodeMarker>,
     map_tex_id: Option<egui::TextureId>,
     marker_tex_id: Option<egui::TextureId>,
+    ui_tex_ids: UiTexturesIds,
 ) {
     let editing = interface.mode == UiMode::Editor;
     let interactive_hud = matches!(
@@ -1421,6 +1490,8 @@ fn draw_widgets(
                     marker_tex_id,
                     cargo_tex_id: None,
                     vehicle_tex_id: None,
+                    sound_cues: &interface.sound_cues,
+                    ui_tex: ui_tex_ids,
                 };
                 hud_painter::paint_widget(
                     ui.painter(),
@@ -1485,6 +1556,41 @@ fn draw_widgets(
                 }
             });
     }
+
+    if matches!(interface.mode, UiMode::Playing | UiMode::Benchmark) {
+        let map_ctx = MinimapContext {
+            player_position: telemetry.player_position,
+            yaw: telemetry.yaw,
+            nodes: &survival.0.nodes,
+            structures: &survival.0.structures,
+            npcs: &survival.0.npcs,
+            vehicles: &survival.0.vehicles,
+            nuclear: survival.0.nuclear,
+            tick: ServerTick(clock.tick),
+            marker: interface.map_marker,
+            map_tex_id,
+            marker_tex_id,
+            cargo_tex_id: None,
+            vehicle_tex_id: None,
+            sound_cues: &interface.sound_cues,
+            ui_tex: ui_tex_ids,
+        };
+        egui::Area::new(egui::Id::new("hud-compass-bar"))
+            .order(egui::Order::Background)
+            .fixed_pos(egui::pos2(
+                viewport_rect.center().x - 180.0,
+                viewport_rect.min.y + 10.0,
+            ))
+            .interactable(false)
+            .show(ctx, |ui| {
+                let scale = 1.0;
+                let (rect, _) = ui.allocate_exact_size(
+                    egui::vec2(360.0 * scale, 34.0 * scale),
+                    egui::Sense::hover(),
+                );
+                hud_painter::paint_compass_bar(ui.painter(), rect.center_top(), scale, &map_ctx);
+            });
+    }
 }
 
 #[allow(clippy::too_many_arguments)]
@@ -1499,6 +1605,7 @@ fn draw_map(
     marker_tex_id: Option<egui::TextureId>,
     cargo_tex_id: Option<egui::TextureId>,
     vehicle_tex_id: Option<egui::TextureId>,
+    ui_tex_ids: UiTexturesIds,
     audio_assets: Option<&AudioAssets>,
     commands: &mut Commands,
     mut perspective: Option<ResMut<CameraPerspective>>,
@@ -1565,6 +1672,8 @@ fn draw_map(
                 marker_tex_id,
                 cargo_tex_id,
                 vehicle_tex_id,
+                sound_cues: &interface.sound_cues,
+                ui_tex: ui_tex_ids,
             };
             hud_painter::paint_tactical_map(ui.painter(), map_rect, 1.0, &map_ctx, true);
 
@@ -2593,8 +2702,15 @@ fn draw_loading(
         });
 
     // Middle Tip Card (Rotating Authentic Tips)
+    static AUTHENTIC_TIPS: std::sync::OnceLock<Vec<String>> = std::sync::OnceLock::new();
+    let auth_tips = AUTHENTIC_TIPS.get_or_init(shared::level::load_imported_loading_tips);
     let tip_idx = interface.loading_tip_idx % LOADING_TIPS.len();
     let (tip_ua, tip_en) = LOADING_TIPS[tip_idx];
+    let auth_tip = if !auth_tips.is_empty() {
+        auth_tips.get(interface.loading_tip_idx % auth_tips.len()).map(|s| s.as_str())
+    } else {
+        None
+    };
 
     egui::Area::new(egui::Id::new("loading_tip_panel"))
         .anchor(egui::Align2::CENTER_BOTTOM, egui::vec2(0.0, -tip_margin))
@@ -2623,8 +2739,8 @@ fn draw_loading(
                         ui.add_space(6.0);
                         ui.label(
                             egui::RichText::new(tip_ua)
-                                .size(14.0)
-                                .color(egui::Color32::from_rgb(240, 245, 250)),
+                            .size(14.0)
+                            .color(egui::Color32::from_rgb(240, 245, 250)),
                         );
                         ui.add_space(3.0);
                         ui.label(
@@ -2633,6 +2749,14 @@ fn draw_loading(
                                 .italics()
                                 .color(egui::Color32::from_rgb(160, 185, 205)),
                         );
+                        if let Some(auth) = auth_tip {
+                            ui.add_space(3.0);
+                            ui.label(
+                                egui::RichText::new(format!("原版提示: {}", auth))
+                                    .size(11.0)
+                                    .color(egui::Color32::from_rgb(230, 200, 140)),
+                            );
+                        }
                     });
                 });
         });

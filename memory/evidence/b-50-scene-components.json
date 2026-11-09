@@ -1,0 +1,1468 @@
+{
+  "apk": "export/lite4.0.apk",
+  "assets": [
+    {
+      "cab": "BuildPlayer-B-50.sharedAssets",
+      "class_counts": {
+        "115": 1,
+        "142": 1,
+        "150": 1,
+        "21": 4,
+        "28": 4,
+        "363": 1,
+        "43": 5
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-0bc9ce17ff019440e43b8eb24d2b47b0/CAB-0bc9ce17ff019440e43b8eb24d2b47b0",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-19d6c9f392ece1f3c8b98c93305e365b/CAB-19d6c9f392ece1f3c8b98c93305e365b",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-25f9676e028cfe5dbf9f7cd5c45f3cf1/CAB-25f9676e028cfe5dbf9f7cd5c45f3cf1",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-421336eb5940622f29984912b8f297ce/CAB-421336eb5940622f29984912b8f297ce",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-7cb948de0d6dd1f3286c1d6930561c08/CAB-7cb948de0d6dd1f3286c1d6930561c08",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-7ceef5dca7be20991ed3cd8d553b5f34/CAB-7ceef5dca7be20991ed3cd8d553b5f34",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-b99e201845a48115c6b6a24e89d01efe/CAB-b99e201845a48115c6b6a24e89d01efe",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-ba21f26e1924df97e112edb76c9236b3/CAB-ba21f26e1924df97e112edb76c9236b3",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-f230b0922fb25baf80d6f98db28853e2/CAB-f230b0922fb25baf80d6f98db28853e2",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    },
+    {
+      "cab": "BuildPlayer-B-50",
+      "class_counts": {
+        "1": 7,
+        "104": 1,
+        "114": 2,
+        "157": 1,
+        "196": 1,
+        "23": 5,
+        "29": 1,
+        "33": 5,
+        "4": 7,
+        "64": 5,
+        "850595691": 1
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/BuildPlayer-B-50/BuildPlayer-B-50.sharedAssets",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-ba21f26e1924df97e112edb76c9236b3/CAB-ba21f26e1924df97e112edb76c9236b3",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [
+        {
+          "byte_count": 67,
+          "class_id": 1,
+          "path_id": "1",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 8
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 21
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 15
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 26
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 18,
+            "m_Name": "B-50",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 87,
+          "class_id": 1,
+          "path_id": "2",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 9
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 22
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 16
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 27
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 35
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 18,
+            "m_Name": "Hupo_B-50_02",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 35,
+          "class_id": 1,
+          "path_id": "3",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 10
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "nodelete",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 75,
+          "class_id": 1,
+          "path_id": "4",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 11
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 23
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 17
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 28
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 18,
+            "m_Name": "Hupo_B-50",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 87,
+          "class_id": 1,
+          "path_id": "5",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 12
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 24
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 18
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 29
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 36
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 18,
+            "m_Name": "maoyiqu_01",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 35,
+          "class_id": 1,
+          "path_id": "6",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 13
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "nodelete",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 67,
+          "class_id": 1,
+          "path_id": "7",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 14
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 25
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 19
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 30
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "b50",
+            "m_Tag": 20020
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "8",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 1
+            },
+            "m_LocalPosition": {
+              "x": -0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalRotation": {
+              "w": 0.7071068286895752,
+              "x": -0.7071068286895752,
+              "y": 0.0,
+              "z": -0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "9",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 10
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 2
+            },
+            "m_LocalPosition": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalRotation": {
+              "w": 0.7071068286895752,
+              "x": -0.7071068286895752,
+              "y": -0.0,
+              "z": -0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 92,
+          "class_id": 4,
+          "path_id": "10",
+          "properties": {
+            "m_Children": [
+              {
+                "m_FileID": 0,
+                "m_PathID": 11
+              },
+              {
+                "m_FileID": 0,
+                "m_PathID": 9
+              }
+            ],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 3
+            },
+            "m_LocalPosition": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalRotation": {
+              "w": 1.0,
+              "x": -0.0,
+              "y": -0.0,
+              "z": -0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "11",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 10
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 4
+            },
+            "m_LocalPosition": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalRotation": {
+              "w": 0.7071068286895752,
+              "x": -0.7071068286895752,
+              "y": -0.0,
+              "z": -0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "12",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 13
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 5
+            },
+            "m_LocalPosition": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalRotation": {
+              "w": 0.7071068286895752,
+              "x": -0.7071068286895752,
+              "y": -0.0,
+              "z": -0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 80,
+          "class_id": 4,
+          "path_id": "13",
+          "properties": {
+            "m_Children": [
+              {
+                "m_FileID": 0,
+                "m_PathID": 12
+              }
+            ],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 6
+            },
+            "m_LocalPosition": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalRotation": {
+              "w": 1.0,
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "14",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 7
+            },
+            "m_LocalPosition": {
+              "x": -0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalRotation": {
+              "w": 0.7071068286895752,
+              "x": -0.7071068286895752,
+              "y": 0.0,
+              "z": -0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 156,
+          "class_id": 23,
+          "path_id": "15",
+          "properties": {
+            "m_AdditionalVertexStreams": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_CastShadows": 0,
+            "m_DynamicOccludee": 1,
+            "m_Enabled": true,
+            "m_EnlightenVertexStream": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 1
+            },
+            "m_LightProbeUsage": 1,
+            "m_LightProbeVolumeOverride": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_LightmapIndex": 65535,
+            "m_LightmapIndexDynamic": 65535,
+            "m_LightmapTilingOffset": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_LightmapTilingOffsetDynamic": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_Materials": [
+              {
+                "m_FileID": 1,
+                "m_PathID": 3
+              }
+            ],
+            "m_MotionVectors": 1,
+            "m_ProbeAnchor": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_RayTraceProcedural": 0,
+            "m_RayTracingMode": 2,
+            "m_ReceiveShadows": 1,
+            "m_ReflectionProbeUsage": 1,
+            "m_RendererPriority": 0,
+            "m_RenderingLayerMask": 1,
+            "m_SortingLayer": 0,
+            "m_SortingLayerID": 0,
+            "m_SortingOrder": 0,
+            "m_StaticBatchInfo": {
+              "firstSubMesh": 0,
+              "subMeshCount": 0
+            },
+            "m_StaticBatchRoot": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_StaticShadowCaster": 0
+          }
+        },
+        {
+          "byte_count": 156,
+          "class_id": 23,
+          "path_id": "16",
+          "properties": {
+            "m_AdditionalVertexStreams": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_CastShadows": 1,
+            "m_DynamicOccludee": 1,
+            "m_Enabled": true,
+            "m_EnlightenVertexStream": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 2
+            },
+            "m_LightProbeUsage": 0,
+            "m_LightProbeVolumeOverride": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_LightmapIndex": 65535,
+            "m_LightmapIndexDynamic": 65535,
+            "m_LightmapTilingOffset": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_LightmapTilingOffsetDynamic": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_Materials": [
+              {
+                "m_FileID": 1,
+                "m_PathID": 4
+              }
+            ],
+            "m_MotionVectors": 1,
+            "m_ProbeAnchor": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_RayTraceProcedural": 0,
+            "m_RayTracingMode": 2,
+            "m_ReceiveShadows": 1,
+            "m_ReflectionProbeUsage": 0,
+            "m_RendererPriority": 0,
+            "m_RenderingLayerMask": 1,
+            "m_SortingLayer": 0,
+            "m_SortingLayerID": 0,
+            "m_SortingOrder": 0,
+            "m_StaticBatchInfo": {
+              "firstSubMesh": 0,
+              "subMeshCount": 0
+            },
+            "m_StaticBatchRoot": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_StaticShadowCaster": 0
+          }
+        },
+        {
+          "byte_count": 156,
+          "class_id": 23,
+          "path_id": "17",
+          "properties": {
+            "m_AdditionalVertexStreams": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_CastShadows": 1,
+            "m_DynamicOccludee": 1,
+            "m_Enabled": true,
+            "m_EnlightenVertexStream": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 4
+            },
+            "m_LightProbeUsage": 0,
+            "m_LightProbeVolumeOverride": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_LightmapIndex": 65535,
+            "m_LightmapIndexDynamic": 65535,
+            "m_LightmapTilingOffset": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_LightmapTilingOffsetDynamic": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_Materials": [
+              {
+                "m_FileID": 1,
+                "m_PathID": 5
+              }
+            ],
+            "m_MotionVectors": 1,
+            "m_ProbeAnchor": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_RayTraceProcedural": 0,
+            "m_RayTracingMode": 2,
+            "m_ReceiveShadows": 1,
+            "m_ReflectionProbeUsage": 0,
+            "m_RendererPriority": 0,
+            "m_RenderingLayerMask": 1,
+            "m_SortingLayer": 0,
+            "m_SortingLayerID": 0,
+            "m_SortingOrder": 0,
+            "m_StaticBatchInfo": {
+              "firstSubMesh": 0,
+              "subMeshCount": 0
+            },
+            "m_StaticBatchRoot": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_StaticShadowCaster": 0
+          }
+        },
+        {
+          "byte_count": 156,
+          "class_id": 23,
+          "path_id": "18",
+          "properties": {
+            "m_AdditionalVertexStreams": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_CastShadows": 1,
+            "m_DynamicOccludee": 1,
+            "m_Enabled": true,
+            "m_EnlightenVertexStream": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 5
+            },
+            "m_LightProbeUsage": 0,
+            "m_LightProbeVolumeOverride": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_LightmapIndex": 65535,
+            "m_LightmapIndexDynamic": 65535,
+            "m_LightmapTilingOffset": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_LightmapTilingOffsetDynamic": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_Materials": [
+              {
+                "m_FileID": 1,
+                "m_PathID": 6
+              }
+            ],
+            "m_MotionVectors": 1,
+            "m_ProbeAnchor": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_RayTraceProcedural": 0,
+            "m_RayTracingMode": 2,
+            "m_ReceiveShadows": 1,
+            "m_ReflectionProbeUsage": 0,
+            "m_RendererPriority": 0,
+            "m_RenderingLayerMask": 1,
+            "m_SortingLayer": 0,
+            "m_SortingLayerID": 0,
+            "m_SortingOrder": 0,
+            "m_StaticBatchInfo": {
+              "firstSubMesh": 0,
+              "subMeshCount": 0
+            },
+            "m_StaticBatchRoot": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_StaticShadowCaster": 0
+          }
+        },
+        {
+          "byte_count": 156,
+          "class_id": 23,
+          "path_id": "19",
+          "properties": {
+            "m_AdditionalVertexStreams": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_CastShadows": 1,
+            "m_DynamicOccludee": 1,
+            "m_Enabled": true,
+            "m_EnlightenVertexStream": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 7
+            },
+            "m_LightProbeUsage": 1,
+            "m_LightProbeVolumeOverride": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_LightmapIndex": 65535,
+            "m_LightmapIndexDynamic": 65535,
+            "m_LightmapTilingOffset": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_LightmapTilingOffsetDynamic": {
+              "w": 0.0,
+              "x": 1.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "m_Materials": [
+              {
+                "m_FileID": 2,
+                "m_PathID": -785419025507962388
+              }
+            ],
+            "m_MotionVectors": 1,
+            "m_ProbeAnchor": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_RayTraceProcedural": 0,
+            "m_RayTracingMode": 2,
+            "m_ReceiveShadows": 1,
+            "m_ReflectionProbeUsage": 1,
+            "m_RendererPriority": 0,
+            "m_RenderingLayerMask": 1,
+            "m_SortingLayer": 0,
+            "m_SortingLayerID": 0,
+            "m_SortingOrder": 0,
+            "m_StaticBatchInfo": {
+              "firstSubMesh": 0,
+              "subMeshCount": 0
+            },
+            "m_StaticBatchRoot": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_StaticShadowCaster": 0
+          }
+        },
+        {
+          "byte_count": 24,
+          "class_id": 33,
+          "path_id": "21",
+          "properties": {
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 1
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 13
+            }
+          }
+        },
+        {
+          "byte_count": 24,
+          "class_id": 33,
+          "path_id": "22",
+          "properties": {
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 2
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 15
+            }
+          }
+        },
+        {
+          "byte_count": 24,
+          "class_id": 33,
+          "path_id": "23",
+          "properties": {
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 4
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 14
+            }
+          }
+        },
+        {
+          "byte_count": 24,
+          "class_id": 33,
+          "path_id": "24",
+          "properties": {
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 5
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 11
+            }
+          }
+        },
+        {
+          "byte_count": 24,
+          "class_id": 33,
+          "path_id": "25",
+          "properties": {
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 7
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 12
+            }
+          }
+        },
+        {
+          "byte_count": 48,
+          "class_id": 64,
+          "path_id": "26",
+          "properties": {
+            "m_Convex": false,
+            "m_CookingOptions": 30,
+            "m_Enabled": true,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 1
+            },
+            "m_IsTrigger": false,
+            "m_Material": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 13
+            }
+          }
+        },
+        {
+          "byte_count": 48,
+          "class_id": 64,
+          "path_id": "27",
+          "properties": {
+            "m_Convex": false,
+            "m_CookingOptions": 30,
+            "m_Enabled": true,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 2
+            },
+            "m_IsTrigger": false,
+            "m_Material": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 15
+            }
+          }
+        },
+        {
+          "byte_count": 48,
+          "class_id": 64,
+          "path_id": "28",
+          "properties": {
+            "m_Convex": false,
+            "m_CookingOptions": 30,
+            "m_Enabled": true,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 4
+            },
+            "m_IsTrigger": false,
+            "m_Material": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 14
+            }
+          }
+        },
+        {
+          "byte_count": 48,
+          "class_id": 64,
+          "path_id": "29",
+          "properties": {
+            "m_Convex": false,
+            "m_CookingOptions": 30,
+            "m_Enabled": true,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 5
+            },
+            "m_IsTrigger": false,
+            "m_Material": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 11
+            }
+          }
+        },
+        {
+          "byte_count": 48,
+          "class_id": 64,
+          "path_id": "30",
+          "properties": {
+            "m_Convex": false,
+            "m_CookingOptions": 30,
+            "m_Enabled": true,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 7
+            },
+            "m_IsTrigger": false,
+            "m_Material": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 12
+            }
+          }
+        },
+        {
+          "byte_count": 333,
+          "class_id": 104,
+          "path_id": "31",
+          "properties": {
+            "m_AmbientEquatorColor": {
+              "a": 1.0,
+              "b": 0.13300000131130219,
+              "g": 0.125,
+              "r": 0.11400000005960464
+            },
+            "m_AmbientGroundColor": {
+              "a": 1.0,
+              "b": 0.03500000014901161,
+              "g": 0.0430000014603138,
+              "r": 0.04699999839067459
+            },
+            "m_AmbientIntensity": 1.0,
+            "m_AmbientMode": 0,
+            "m_AmbientProbe": {
+              "sh[ 0]": 0.0,
+              "sh[ 1]": 0.0,
+              "sh[ 2]": 0.0,
+              "sh[ 3]": 0.0,
+              "sh[ 4]": 0.0,
+              "sh[ 5]": 0.0,
+              "sh[ 6]": 0.0,
+              "sh[ 7]": 0.0,
+              "sh[ 8]": 0.0,
+              "sh[ 9]": 0.0,
+              "sh[10]": 0.0,
+              "sh[11]": 0.0,
+              "sh[12]": 0.0,
+              "sh[13]": 0.0,
+              "sh[14]": 0.0,
+              "sh[15]": 0.0,
+              "sh[16]": 0.0,
+              "sh[17]": 0.0,
+              "sh[18]": 0.0,
+              "sh[19]": 0.0,
+              "sh[20]": 0.0,
+              "sh[21]": 0.0,
+              "sh[22]": 0.0,
+              "sh[23]": 0.0,
+              "sh[24]": 0.0,
+              "sh[25]": 0.0,
+              "sh[26]": 0.0
+            },
+            "m_AmbientSkyColor": {
+              "a": 1.0,
+              "b": 0.5199999809265137,
+              "g": 0.5,
+              "r": 0.5
+            },
+            "m_CustomReflection": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_DefaultReflectionMode": 0,
+            "m_DefaultReflectionResolution": 128,
+            "m_FlareFadeSpeed": 3.0,
+            "m_FlareStrength": 1.0,
+            "m_Fog": false,
+            "m_FogColor": {
+              "a": 1.0,
+              "b": 0.5,
+              "g": 0.5,
+              "r": 0.5
+            },
+            "m_FogDensity": 0.009999999776482582,
+            "m_FogMode": 3,
+            "m_GeneratedSkyboxReflection": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_HaloStrength": 0.5,
+            "m_HaloTexture": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_IndirectSpecularColor": {
+              "a": 1.0,
+              "b": 0.0,
+              "g": 0.0,
+              "r": 0.0
+            },
+            "m_LinearFogEnd": 300.0,
+            "m_LinearFogStart": 0.0,
+            "m_ReflectionBounces": 1,
+            "m_ReflectionIntensity": 1.0,
+            "m_SkyboxMaterial": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_SpotCookie": {
+              "m_FileID": 3,
+              "m_PathID": 10001
+            },
+            "m_SubtractiveShadowColor": {
+              "a": 1.0,
+              "b": 0.6269999742507935,
+              "g": 0.4779999852180481,
+              "r": 0.41999998688697815
+            },
+            "m_Sun": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_UseRadianceAmbientProbe": false
+          }
+        }
+      ],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    }
+  ],
+  "bundle": "assets/scene/b-50.ab"
+}

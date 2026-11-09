@@ -2100,6 +2100,7 @@ version = "0.1.0"
 dependencies = [
  "bevy",
  "bevy_egui",
+ "midnight_map_data",
  "midnight_network",
  "serde",
  "serde_json",
@@ -3778,6 +3779,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "midnight_map_data"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "sha2",
+]
+
+[[package]]
 name = "midnight_network"
 version = "0.1.0"
 dependencies = [
@@ -5372,6 +5382,7 @@ version = "0.1.0"
 dependencies = [
  "bevy",
  "bevy_rapier3d",
+ "midnight_map_data",
  "serde",
  "serde_json",
 ]
