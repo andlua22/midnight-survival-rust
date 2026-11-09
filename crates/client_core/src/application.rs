@@ -1155,20 +1155,46 @@ fn setup_scene(
             ));
         }
 
-        // Ocean water plane surrounding the 6x6 km island (sea level ~0)
+        // Authentic Ocean and Inland Water meshes from mditu.ab
+        let water_records = shared::level::load_imported_water_records();
         let ocean_mat = materials.add(StandardMaterial {
-            base_color: Color::srgba(0.04, 0.28, 0.42, 0.88),
+            base_color: Color::srgba(0.04, 0.28, 0.42, 0.82),
             alpha_mode: AlphaMode::Blend,
-            perceptual_roughness: 0.06,
-            metallic: 0.12,
-            reflectance: 0.50,
+            perceptual_roughness: 0.05,
+            metallic: 0.15,
+            reflectance: 0.60,
             ..default()
         });
-        commands.spawn((
-            Mesh3d(unit_cube.clone()),
-            MeshMaterial3d(ocean_mat),
-            Transform::from_xyz(0.0, -0.4, 0.0).with_scale(Vec3::new(6000.0, 0.5, 6000.0)),
-        ));
+        let inland_water_mat = materials.add(StandardMaterial {
+            base_color: Color::srgba(0.06, 0.32, 0.38, 0.80),
+            alpha_mode: AlphaMode::Blend,
+            perceptual_roughness: 0.08,
+            metallic: 0.10,
+            reflectance: 0.55,
+            ..default()
+        });
+        if !water_records.is_empty() {
+            for w in water_records {
+                let is_inland = w.name.contains("neilushui");
+                let mat = if is_inland {
+                    inland_water_mat.clone()
+                } else {
+                    ocean_mat.clone()
+                };
+                let mesh_handle = meshes.add(build_bevy_mesh(&w));
+                commands.spawn((
+                    Mesh3d(mesh_handle),
+                    MeshMaterial3d(mat),
+                    Transform::from_xyz(0.0, -0.05, 0.0),
+                ));
+            }
+        } else {
+            commands.spawn((
+                Mesh3d(unit_cube.clone()),
+                MeshMaterial3d(ocean_mat),
+                Transform::from_xyz(0.0, -0.4, 0.0).with_scale(Vec3::new(6000.0, 0.5, 6000.0)),
+            ));
+        }
 
         // Partition scenic placements from sceneinfo/*.oc into spatial grid cells (180m x 180m)
         for plc in shared::level::load_imported_placements() {

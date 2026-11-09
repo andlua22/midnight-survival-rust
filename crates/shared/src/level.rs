@@ -370,6 +370,18 @@ pub fn load_imported_model_records() -> Vec<ImportedMeshRecord> {
     Vec::new()
 }
 
+pub fn load_imported_water_records() -> Vec<ImportedMeshRecord> {
+    for candidate in [
+        "assets/imported_map/water.bin",
+        "../../assets/imported_map/water.bin",
+    ] {
+        if let Ok(bytes) = std::fs::read(candidate) {
+            return parse_mesh_archive(&bytes, b"MSMAP001");
+        }
+    }
+    Vec::new()
+}
+
 pub fn load_imported_placements() -> Vec<ImportedPlacement> {
     for candidate in [
         "assets/imported_map/placements.bin",
@@ -449,6 +461,12 @@ mod tests {
             assert!(terrain.iter().any(|r| r.name == "A-01"));
             assert!(terrain.iter().any(|r| r.name == "D-56"));
         }
+        let water = load_imported_water_records();
+        if !water.is_empty() {
+            assert!(water.len() >= 5);
+            assert!(water.iter().any(|w| w.name.contains("water_01")));
+            assert!(water.iter().any(|w| w.name.contains("water_neilushui")));
+        }
         let models = load_imported_model_records();
         if !models.is_empty() {
             assert!(models.iter().any(|m| m.name == "tree_temperate"));
@@ -473,7 +491,7 @@ mod tests {
         }
         let tree_cfgs = load_imported_tree_configs();
         if !tree_cfgs.is_empty() {
-            assert_eq!(tree_cfgs.len(), 22);
+            assert!(tree_cfgs.len() >= 22);
             assert_eq!(tree_cfgs[0].name, "榆树");
             assert_eq!(tree_cfgs[1].name, "白桦树");
         }

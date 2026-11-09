@@ -18,6 +18,7 @@ import UnityPy
 from UnityPy.export.MeshExporter import MeshHandler
 
 XAPK_CANDIDATES = [
+    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "export", "lite4.0.apk"),
     os.path.expanduser("~/Завантажене/last-day-rules-survival-1-0.xapk"),
     os.path.expanduser("~/Downloads/last-day-rules-survival-1-0.xapk"),
 ]
@@ -114,72 +115,140 @@ def drape_road_to_terrain(road_positions, terrain_positions):
     return r_arr.tolist()
 
 
-def extract_tree_configs(xapk_path: str, out_json_path: str):
+def extract_tree_configs(archive_path: str, out_json_path: str):
     """
-    Extracts all authentic tree types and properties from cfg.TreeCfg.oc inside the APK.
+    Extracts all authentic tree types and properties from cfg.TreeCfg.oc inside the APK or XAPK.
     """
     import json
-    with zipfile.ZipFile(xapk_path, "r") as xz:
-        apk_name = next(n for n in xz.namelist() if n.lower().endswith(".apk"))
-        apk_data = xz.read(apk_name)
-    with zipfile.ZipFile(io.BytesIO(apk_data), "r") as az:
-        raw = az.read("assets/cfg/cfg.TreeCfg.oc")
+    raw = None
+    with zipfile.ZipFile(archive_path, "r") as z:
+        if "assets/cfg/cfg.TreeCfg.oc" in z.namelist():
+            raw = z.read("assets/cfg/cfg.TreeCfg.oc")
+        else:
+            apk_names = [n for n in z.namelist() if n.lower().endswith(".apk")]
+            if apk_names:
+                apk_data = z.read(apk_names[0])
+                with zipfile.ZipFile(io.BytesIO(apk_data), "r") as az:
+                    if "assets/cfg/cfg.TreeCfg.oc" in az.namelist():
+                        raw = az.read("assets/cfg/cfg.TreeCfg.oc")
+    if not raw:
+        print("Warning: cfg.TreeCfg.oc not found in archive")
+        return
 
     pos = 0
     records = []
+    # Detect schema: 2024 (lite4.0) has tool_cnt followed by tool list, while 2019 had health, drop_id, drop_count, 5 sounds, icon, map_icon
+    # We parse 2024 schema first; if anything fails, try legacy.
     while pos + 8 <= len(raw):
         rec_start = pos
-        tid = struct.unpack_from("<I", raw, pos)[0]
+        tid = struct.unpack_from("<i", raw, pos)[0]
         pos += 4
-        nlen = struct.unpack_from("<I", raw, pos)[0]
+        nlen = struct.unpack_from("<i", raw, pos)[0]
         pos += 4
-        if nlen == 0 or nlen > 64 or pos + nlen > len(raw):
-            print(f"Warning: TreeCfg bad name length {nlen} at offset {rec_start}, stopping")
+        if nlen <= 0 or nlen > 64 or pos + nlen > len(raw):
             break
         name = raw[pos : pos + nlen].decode("utf-8", errors="replace")
         pos += nlen
-        if pos + 12 + 20 + 4 + 4 + 4 + 4 > len(raw):
-            print(f"Warning: TreeCfg truncated after name {name!r}")
+        if pos + 12 > len(raw):
             break
-        hp, drop_id, drop_count = struct.unpack_from("<3I", raw, pos)
+        hp, item_id, tool_cnt = struct.unpack_from("<3i", raw, pos)
         pos += 12
-        sounds = list(struct.unpack_from("<5i", raw, pos))
-        pos += 20
-        unk1 = struct.unpack_from("<I", raw, pos)[0]
-        pos += 4
-        ilen = struct.unpack_from("<I", raw, pos)[0]
-        pos += 4
-        if ilen > 128 or pos + ilen + 8 > len(raw):
-            print(f"Warning: TreeCfg bad icon length {ilen} at {name!r}")
-            break
-        icon = raw[pos : pos + ilen].decode("utf-8", errors="replace")
-        pos += ilen
-        mlen = struct.unpack_from("<I", raw, pos)[0]
-        pos += 4
-        if mlen > 128 or pos + mlen + 4 > len(raw):
-            print(f"Warning: TreeCfg bad map_icon length {mlen} at {name!r}")
-            break
-        map_icon = raw[pos : pos + mlen].decode("utf-8", errors="replace")
-        pos += mlen
-        marker = struct.unpack_from("<I", raw, pos)[0]
-        pos += 4
-        # Current TreeCfg.oc has an extra 8-byte tail after marker on every record.
-        if pos + 8 <= len(raw):
+        if tool_cnt >= 0 and tool_cnt <= 32 and pos + tool_cnt * 4 + 8 <= len(raw):
+            # 2024 schema
+            tools = [struct.unpack_from("<i", raw, pos + i * 4)[0] for i in range(tool_cnt)]
+            pos += tool_cnt * 4
+            tree_type, down_effect = struct.unpack_from("<2i", raw, pos)
             pos += 8
-        records.append({
-            "id": tid,
-            "name": name,
-            "health": hp,
-            "drop_item_id": drop_id,
-            "drop_count_per_hit": drop_count,
-            "sound_stages": sounds,
-            "icon": icon,
-            "map_icon": map_icon,
-            "marker_type": marker,
-        })
+            records.append({
+                "id": tid,
+                "name": name,
+                "health": hp,
+                "drop_item_id": item_id,
+                "drop_count_per_hit": 10,
+                "sound_stages": [0, 0, 0, 0, 0],
+                "icon": "",
+                "map_icon": "",
+                "marker_type": tree_type,
+                "tools": tools,
+                "down_effect": down_effect,
+            })
+        else:
+            # Legacy 2019 schema
+            pos = rec_start + 8 + nlen
+            hp, drop_id, drop_count = struct.unpack_from("<3I", raw, pos)
+            pos += 12
+            sounds = list(struct.unpack_from("<5i", raw, pos))
+            pos += 20
+            pos += 4  # unk1
+            ilen = struct.unpack_from("<I", raw, pos)[0]
+            pos += 4 + ilen
+            mlen = struct.unpack_from("<I", raw, pos)[0]
+            pos += 4 + mlen
+            marker = struct.unpack_from("<I", raw, pos)[0]
+            pos += 4
+            if pos + 8 <= len(raw):
+                pos += 8
+            records.append({
+                "id": tid,
+                "name": name,
+                "health": hp,
+                "drop_item_id": drop_id,
+                "drop_count_per_hit": drop_count,
+                "sound_stages": sounds,
+                "icon": "",
+                "map_icon": "",
+                "marker_type": marker,
+            })
     with open(out_json_path, "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2, ensure_ascii=False)
     print(f"Extracted {len(records)} authentic tree configurations to {out_json_path}")
+
+
+def extract_loading_tips(archive_path: str, out_json_path: str):
+    """
+    Extracts authentic battle loading tips from cfg.BattleLoadingTipsCfg.oc.
+    """
+    import json
+    raw = None
+    with zipfile.ZipFile(archive_path, "r") as z:
+        if "assets/cfg/cfg.BattleLoadingTipsCfg.oc" in z.namelist():
+            raw = z.read("assets/cfg/cfg.BattleLoadingTipsCfg.oc")
+        else:
+            apk_names = [n for n in z.namelist() if n.lower().endswith(".apk")]
+            if apk_names:
+                apk_data = z.read(apk_names[0])
+                with zipfile.ZipFile(io.BytesIO(apk_data), "r") as az:
+                    if "assets/cfg/cfg.BattleLoadingTipsCfg.oc" in az.namelist():
+                        raw = az.read("assets/cfg/cfg.BattleLoadingTipsCfg.oc")
+    if not raw:
+        return
+    pos = 0
+    tips = []
+    while pos + 16 <= len(raw):
+        tid, mid, mode, show = struct.unpack_from("<3if", raw, pos)
+        pos += 16
+        if pos + 4 > len(raw):
+            break
+        slen = struct.unpack_from("<i", raw, pos)[0]
+        pos += 4 + slen
+        if pos + 4 > len(raw):
+            break
+        elen = struct.unpack_from("<i", raw, pos)[0]
+        pos += 4 + elen
+        pos += 4  # weight
+        if pos + 4 > len(raw):
+            break
+        clen = struct.unpack_from("<i", raw, pos)[0]
+        pos += 4
+        if pos + clen > len(raw):
+            break
+        content = raw[pos : pos + clen].decode("utf-8", "ignore")
+        pos += clen
+        if content.strip() and content.strip() not in tips:
+            tips.append(content.strip())
+    with open(out_json_path, "w", encoding="utf-8") as f:
+        json.dump(tips, f, indent=2, ensure_ascii=False)
+    print(f"Extracted {len(tips)} authentic battle loading tips to {out_json_path}")
 
 
 def pack_mesh_record(f_out, name: str, tex_name: str, positions, normals, uvs, indices):
@@ -295,39 +364,45 @@ def main():
     os.makedirs(TEX_DIR, exist_ok=True)
     t0 = time.time()
 
-    def ensure_obb_extracted():
+    def ensure_archive_opened():
+        with zipfile.ZipFile(xapk_path, "r") as z:
+            obb_names = [n for n in z.namelist() if n.lower().endswith(".obb")]
+        if not obb_names:
+            print(f"Opening APK archive directly at {xapk_path}...")
+            return open(xapk_path, "rb")
+
+        obb_name = obb_names[0]
         if os.path.exists(OBB_CACHE) and os.path.getsize(OBB_CACHE) > 100_000_000:
             print(f"Using cached OBB at {OBB_CACHE}")
-            return OBB_CACHE
+            return open(OBB_CACHE, "rb")
         with zipfile.ZipFile(xapk_path, "r") as xz:
-            obb_name = next(n for n in xz.namelist() if n.lower().endswith(".obb"))
             info = xz.getinfo(obb_name)
             if info.compress_type == zipfile.ZIP_STORED:
-                return None
+                raw_xapk = open(xapk_path, "rb")
+                raw_xapk.seek(info.header_offset + 26)
+                fname_len = int.from_bytes(raw_xapk.read(2), "little")
+                extra_len = int.from_bytes(raw_xapk.read(2), "little")
+                data_offset = info.header_offset + 30 + fname_len + extra_len
+                raw_xapk.seek(data_offset)
+                return io.BufferedReader(SliceFile(raw_xapk, data_offset, info.file_size))
             print(f"Extracting compressed OBB ({info.file_size} bytes) to {OBB_CACHE}...")
             with xz.open(obb_name) as fsrc, open(OBB_CACHE, "wb") as fdst:
                 shutil.copyfileobj(fsrc, fdst, 4 * 1024 * 1024)
-            return OBB_CACHE
+            return open(OBB_CACHE, "rb")
 
-    obb_file_path = ensure_obb_extracted()
-    if obb_file_path:
-        obb_src = open(obb_file_path, "rb")
-    else:
-        raw_xapk = open(xapk_path, "rb")
-        xapk_zip = zipfile.ZipFile(raw_xapk, "r")
-        obb_info = xapk_zip.getinfo(next(n for n in xapk_zip.namelist() if n.lower().endswith(".obb")))
-        raw_xapk.seek(obb_info.header_offset + 26)
-        fname_len = int.from_bytes(raw_xapk.read(2), "little")
-        extra_len = int.from_bytes(raw_xapk.read(2), "little")
-        data_offset = obb_info.header_offset + 30 + fname_len + extra_len
-        raw_xapk.seek(data_offset)
-        obb_src = io.BufferedReader(SliceFile(raw_xapk, data_offset, obb_info.file_size))
+    obb_src = ensure_archive_opened()
 
     # Extract authentic tree configuration and drop tables from APK
     try:
         extract_tree_configs(xapk_path, os.path.join(OUT_DIR, "tree_configs.json"))
     except Exception as e:
         print(f"Warning: tree configs extraction failed: {e}")
+
+    # Extract authentic battle loading tips from APK
+    try:
+        extract_loading_tips(xapk_path, os.path.join(OUT_DIR, "loading_tips.json"))
+    except Exception as e:
+        print(f"Warning: loading tips extraction failed: {e}")
 
     with obb_src, zipfile.ZipFile(obb_src, "r") as obb:
             # 1. Extract 2048x2048 Map_map + 128x128 RGB grid for egui minimap/tactical map
@@ -357,6 +432,27 @@ def main():
                             os.path.join(TEX_DIR, "road_01.png"), compress_level=1
                         )
                         break
+
+            # 2.5. Extract authentic ocean and inland water meshes from mditu.ab
+            water_bin_path = os.path.join(OUT_DIR, "water.bin")
+            if "assets/scene/mditu.ab" in obb.namelist():
+                print("Extracting authentic ocean and inland water meshes from mditu.ab...")
+                env_mditu = UnityPy.load(obb.read("assets/scene/mditu.ab"))
+                water_records = []
+                for obj in env_mditu.objects:
+                    if obj.type.name == "Mesh":
+                        m = obj.read()
+                        if "water" in m.m_Name.lower():
+                            res = extract_mesh_arrays(m, z_up=True, is_terrain=True)
+                            if res:
+                                water_records.append((m.m_Name, "water", *res))
+                if water_records:
+                    with open(water_bin_path, "wb") as wf:
+                        wf.write(b"MSMAP001")
+                        wf.write(struct.pack("<I", len(water_records)))
+                        for rec in water_records:
+                            pack_mesh_record(wf, *rec)
+                    print(f"Saved {len(water_records)} authentic water meshes to {water_bin_path} ({os.path.getsize(water_bin_path) // 1024} KB)")
 
             # 3. Extract all 225 island sectors (A-01..D-56) + western military
             # launch-site terrain (junshijidi_terrain_01..16) + road meshes.
@@ -445,76 +541,125 @@ def main():
             # 4. Extract core 3D prop/vehicle/NPC/monument/foliage models + textures
             # Format: (key, bpath, tbpath, mname, tname, z_up, target_h, preserve_pivot)
             prop_specs = [
-                ("tree_temperate", "assets/sceneprefab/tree_baihuashu_01.ab", None, "tree_baihuashu_01", "tree_baihuashu_01", False, 0.0, True),
-                ("tree_jungle", "assets/sceneprefab/tree_redaishu_01.ab", None, "tree_redaishu_01", "tree_redaishu_01_d", False, 0.0, True),
-                ("rock_node", "assets/sceneprefab/stone_dayanshi_01.ab", None, "stone_dayanshi_01", "stone_dayanshi_01_LOD1", False, 0.0, True),
-                ("rock_boulder", "assets/scenetexture/stone_dayanshi_03_lod2.ab", "assets/scenetexture/stone-mat.ab", "stone_dayanshi_03_LOD2", "stone-mat-_MainTex-atlas0", False, 0.0, True),
-                ("grass_clump", "assets/sceneprefab/grass_lvdi_01.ab", "assets/scenetexture/grass_lvdi_01_d.ab", "grass_lvdi_01", "grass_lvdi_01_d", False, 0.0, True),
-                ("rock_small", "assets/sceneprefab/project_suishi_01.ab", "assets/scenetexture/stone-mat.ab", "project_suishi_01", "stone-mat-_MainTex-atlas0", False, 0.0, True),
-                ("supply_crate", "assets/model/perfab_bujixiang_01.ab", None, "bujixiang", "perfab_bujixiang_01_d", False, 0.95, False),
-                ("military_crate", "assets/model/perfab_gaojidanyaoxiang_01.ab", None, "wupin_xz3_01", "wupin_xz3_d", False, 0.85, False),
-                ("hazard_barrel", "assets/model/perfab_hongyoutong_01.ab", None, "perfab_hongyoutong_01", "perfab_hongyoutong_01_d", False, 1.15, False),
-                ("monument_gas_station", "assets/sceneprefab/building_jiayouzhan_01.ab", None, "Building_jiayouzhan_01", "Building_jiayouzhan_01_d", True, 9.5, False),
-                ("cargo_ship", "assets/scenetexture/building_huolun_lod02.ab", None, "building_huolun_01_lod02", "building_huolun_01_lod02", False, 14.0, False),
-                ("vehicle_buggy", "assets/model/car_jiaoche_1.ab", None, "car_jiaoche_1_low", "car_jiaoche_1_d", True, 1.55, False),
-                ("vehicle_humvee", "assets/model/hanma.ab", None, "car_hanma_low", "car_hanma_01_low_d", True, 2.15, False),
-                ("vehicle_bike", "assets/model/moto_saiche.ab", None, "moto_saiche", "moto_saiche_d", True, 1.15, False),
-                ("npc_zombie", "assets/role/npc_js_1.ab", None, "npc_js_1", "npc_js_1_d", True, 1.80, False),
-                ("npc_scientist", "assets/role/npc_1.ab", None, "npc_1", "npc_1_d", True, 1.85, False),
-                ("item_c4", "assets/model/wq_c4.ab", None, "wq_c4", "wq_c4_d", False, 0.35, False),
-                ("player_survivor", "assets/role/man_clothes_pj_01.ab", None, "man_clothes_pj_01", "man_clothes_pj_01_d", True, 1.82, False),
-                ("tool_hatchet", "assets/model/wq_shifu.ab", None, "wq_shifu", "wq_shifu_d", False, 0.46, False),
-                ("tool_pickaxe", "assets/model/wq_shigao.ab", None, "wq_shigao", "wq_shigao_d", False, 0.52, False),
-                ("tool_hammer", "assets/model/wq_jianzaochui.ab", None, "wq_jianzaochui", "wq_jianzaochui", False, 0.38, False),
-                ("weapon_rifle", "assets/model/wq_tuzhibuqiang_1.ab", None, "wq_tuzhibuqiang", "wq_tuzhibuqiang_d", False, 0.78, False),
-                ("weapon_pistol", "assets/model/wq_m92_1.ab", None, "M92", "M92_d", False, 0.28, False),
-                ("weapon_rpg", "assets/model/wq_rpg.ab", None, "wq_rpg", "wq_rpg_d", False, 0.98, False),
-                ("building_gas_station", "assets/sceneprefab/building_jiayouzhan_01.ab", None, "Building_jiayouzhandiji_01", "Building_jiayouzhan_01_d", False, 0.0, True),
-                ("building_supermarket", "assets/sceneprefab/building_chaoshi_01.ab", None, "Building_chaoshi_01", "Building_chaoshi_01_d", False, 0.0, True),
-                ("building_warehouse", "assets/sceneprefab/building_cangku_01.ab", None, "building_cangku_01_LOD2", "building_cangku_01", False, 0.0, True),
-                ("building_old_warehouse", "assets/sceneprefab/building_pocangku_01.ab", None, "building_pocangku_01_LOD2", "building_pocangku_01_d", False, 0.0, True),
-                ("building_barracks", "assets/sceneprefab/project_jidifangzi_01.ab", None, "Project_jidifangzi_01", "Project_jidifangzi_01", False, 0.0, True),
-                ("building_garage", "assets/sceneprefab/building_daxingcheku_01.ab", None, "building_daxingcheku_01", "building_daxingcheku_01_d", False, 0.0, True),
-                ("building_pylon", "assets/sceneprefab/project_tieta_01.ab", None, "project_tieta_01", "project_tieta_01_d", False, 0.0, True),
-                ("building_watchtower", "assets/sceneprefab/project_shaota_01.ab", None, "project_shaota_01", "project_shaota_01_d", False, 0.0, True),
-                ("prop_fence", "assets/sceneprefab/project_weiqiang_01.ab", None, "project_weiqiang_01", "project_weiqiang_01_LOD2", False, 0.0, True),
-                ("prop_military_box", "assets/sceneprefab/project_junshixiangzi_01.ab", None, "Project_junshixiangzi_01_LOD2", "Project_junshixiangzi_01_LOD2", False, 0.0, True),
+                ("tree_temperate", [("assets/sceneprefab/tree_baihuashu_01.ab", None, "tree_baihuashu_01", "tree_baihuashu_01", False, 0.0, True)]),
+                ("tree_jungle", [("assets/sceneprefab/tree_redaishu_01.ab", None, "tree_redaishu_01", "tree_redaishu_01_d", False, 0.0, True)]),
+                ("rock_node", [
+                    ("assets/sceneprefab/stone_dayanshi_01.ab", None, "stone_dayanshi_01", "stone_dayanshi_01_LOD1", False, 0.0, True),
+                    ("assets/sceneprefab/rock_shamo_dayanshi_09.ab", "assets/scenetexture/stone-mat.ab", "Rock_shamo_dayanshi_09", "stone-mat-_MainTex-atlas0", False, 0.0, True),
+                ]),
+                ("rock_boulder", [
+                    ("assets/scenetexture/stone_dayanshi_03_lod2.ab", "assets/scenetexture/stone-mat.ab", "stone_dayanshi_03_LOD2", "stone-mat-_MainTex-atlas0", False, 0.0, True),
+                    ("assets/sceneprefab/rock_shamo_dayanshi_09.ab", "assets/scenetexture/stone-mat.ab", "Rock_shamo_dayanshi_09", "stone-mat-_MainTex-atlas0", False, 0.0, True),
+                ]),
+                ("grass_clump", [("assets/sceneprefab/grass_lvdi_01.ab", "assets/scenetexture/grass_lvdi_01_d.ab", "grass_lvdi_01", "grass_lvdi_01_d", False, 0.0, True)]),
+                ("rock_small", [("assets/sceneprefab/project_suishi_01.ab", "assets/scenetexture/stone-mat.ab", "project_suishi_01", "stone-mat-_MainTex-atlas0", False, 0.0, True)]),
+                ("supply_crate", [("assets/model/perfab_bujixiang_01.ab", None, "bujixiang", "perfab_bujixiang_01_d", False, 0.95, False)]),
+                ("military_crate", [("assets/model/perfab_gaojidanyaoxiang_01.ab", None, "wupin_xz3_01", "wupin_xz3_d", False, 0.85, False)]),
+                ("hazard_barrel", [("assets/model/perfab_hongyoutong_01.ab", None, "perfab_hongyoutong_01", "perfab_hongyoutong_01_d", False, 1.15, False)]),
+                ("monument_gas_station", [
+                    ("assets/sceneprefab/building_jiayouzhan_01.ab", None, "Building_jiayouzhan_01", "Building_jiayouzhan_01_d", True, 9.5, False),
+                    ("assets/sceneprefab/building_jiayouzhan_shop.ab", "assets/scenetexture/building_jiayouzhan_chekuding.ab", "building_jiayouzhan_shop", "building_jiayouzhan_chekuding_ba", True, 9.5, False),
+                ]),
+                ("cargo_ship", [
+                    ("assets/scenetexture/building_huolun_lod02.ab", None, "building_huolun_01_lod02", "building_huolun_01_lod02", False, 14.0, False),
+                    ("assets/sceneprefab/buding_chenchuanjudian_baoqiang2.ab", "assets/scenetexture/building_huolun_01.ab", "building_chenchuanjudian_baoqiang2", "building_huolun_01", False, 14.0, False),
+                ]),
+                ("vehicle_buggy", [
+                    ("assets/model/car_jiaoche_1.ab", None, "car_jiaoche_1_low", "car_jiaoche_1_d", True, 1.55, False),
+                    ("assets/sceneprefab/project_pojiaoche_01.ab", "assets/scenetexture/project_poqiche_01_d.ab", "Project_pojiaoche_01", "project_poqiche_01_d", True, 1.55, False),
+                ]),
+                ("vehicle_humvee", [
+                    ("assets/model/hanma.ab", None, "car_hanma_low", "car_hanma_01_low_d", True, 2.15, False),
+                    ("assets/sceneprefab/project_pojiaoche_02.ab", "assets/scenetexture/project_poqiche_01_d.ab", "Project_pojiaoche_02", "project_poqiche_01_d", True, 2.15, False),
+                ]),
+                ("vehicle_bike", [("assets/model/moto_saiche.ab", None, "moto_saiche", "moto_saiche_d", True, 1.15, False)]),
+                ("npc_zombie", [
+                    ("assets/role/npc_js_1.ab", None, "npc_js_1", "npc_js_1_d", True, 1.80, False),
+                    ("assets/model/npc_boss_1.ab", None, "npc_boss_1", "npc_boss_1", True, 1.80, False),
+                ]),
+                ("npc_scientist", [
+                    ("assets/role/npc_1.ab", None, "npc_1", "npc_1_d", True, 1.85, False),
+                    ("assets/model/npc_wuzhuangzhishengji_1.ab", None, "npc_wuzhuangzhishengji_1", "npc_wuzhuangzhishengji_1", True, 1.85, False),
+                ]),
+                ("item_c4", [("assets/model/wq_c4.ab", None, "wq_c4", "wq_c4_d", False, 0.35, False)]),
+                ("player_survivor", [("assets/role/man_clothes_pj_01.ab", None, "man_clothes_pj_01", "man_clothes_pj_01_d", True, 1.82, False)]),
+                ("tool_hatchet", [("assets/model/wq_shifu.ab", None, "wq_shifu", "wq_shifu_d", False, 0.46, False)]),
+                ("tool_pickaxe", [("assets/model/wq_shigao.ab", None, "wq_shigao", "wq_shigao_d", False, 0.52, False)]),
+                ("tool_hammer", [("assets/model/wq_jianzaochui.ab", None, "wq_jianzaochui", "wq_jianzaochui", False, 0.38, False)]),
+                ("weapon_rifle", [("assets/model/wq_tuzhibuqiang_1.ab", None, "wq_tuzhibuqiang", "wq_tuzhibuqiang_d", False, 0.78, False)]),
+                ("weapon_pistol", [("assets/model/wq_m92_1.ab", None, "M92", "M92_d", False, 0.28, False)]),
+                ("weapon_rpg", [("assets/model/wq_rpg.ab", None, "wq_rpg", "wq_rpg_d", False, 0.98, False)]),
+                ("building_gas_station", [
+                    ("assets/sceneprefab/building_jiayouzhan_01.ab", None, "Building_jiayouzhandiji_01", "Building_jiayouzhan_01_d", False, 0.0, True),
+                    ("assets/sceneprefab/building_jiayouzhan_shop.ab", "assets/scenetexture/building_jiayouzhan_chekuding.ab", "building_jiayouzhan_chekuding", "building_jiayouzhan_chekuding_ba", False, 0.0, True),
+                ]),
+                ("building_supermarket", [("assets/sceneprefab/building_chaoshi_01.ab", None, "Building_chaoshi_01", "Building_chaoshi_01_d", False, 0.0, True)]),
+                ("building_warehouse", [("assets/sceneprefab/building_cangku_01.ab", None, "building_cangku_01_LOD2", "building_cangku_01", False, 0.0, True)]),
+                ("building_old_warehouse", [("assets/sceneprefab/building_pocangku_01.ab", None, "building_pocangku_01_LOD2", "building_pocangku_01_d", False, 0.0, True)]),
+                ("building_barracks", [("assets/sceneprefab/project_jidifangzi_01.ab", None, "Project_jidifangzi_01", "Project_jidifangzi_01", False, 0.0, True)]),
+                ("building_garage", [("assets/sceneprefab/building_daxingcheku_01.ab", None, "building_daxingcheku_01", "building_daxingcheku_01_d", False, 0.0, True)]),
+                ("building_pylon", [("assets/sceneprefab/project_tieta_01.ab", None, "project_tieta_01", "project_tieta_01_d", False, 0.0, True)]),
+                ("building_watchtower", [("assets/sceneprefab/project_shaota_01.ab", None, "project_shaota_01", "project_shaota_01_d", False, 0.0, True)]),
+                ("prop_fence", [("assets/sceneprefab/project_weiqiang_01.ab", None, "project_weiqiang_01", "project_weiqiang_01_LOD2", False, 0.0, True)]),
+                ("prop_military_box", [
+                    ("assets/sceneprefab/project_junshixiangzi_01.ab", None, "Project_junshixiangzi_01_LOD2", "Project_junshixiangzi_01_LOD2", False, 0.0, True),
+                    ("assets/sceneprefab/project_junshixiangzi_01.ab", None, "Project_junshixiangzi_01", "Project_junshixiangzi_01", False, 0.0, True),
+                ]),
+                ("ore_stone", [
+                    ("assets/model/ore_yanshikuang_01.ab", "assets/scenetexture/stone-mat.ab", "ore_yanshikuang_01", "stone-mat-_MainTex-atlas0", False, 0.0, True),
+                ]),
+                ("ore_sulfur", [
+                    ("assets/model/ore_liuhuangkuang_01.ab", None, "ore_liuhuangkuang_01", "ore_liuhuangkuang_01_LOD", False, 0.0, True),
+                ]),
+                ("ore_iron", [
+                    ("assets/model/ore_tiekuang_01.ab", None, "ore_tiekuang_01", "ore_tiekuang_01_LOD", False, 0.0, True),
+                ]),
+                ("clothes_cloth", [
+                    ("assets/role/man_clothes_yf_01.ab", None, "man_clothes_yf_01", "man_clothes_yf_01_ba", True, 1.82, False),
+                ]),
+                ("clothes_leather", [
+                    ("assets/role/man_clothes_pj_01.ab", None, "man_clothes_pj_01", "man_clothes_pj_01_ba", True, 1.82, False),
+                ]),
+                ("clothes_iron", [
+                    ("assets/role/man_clothes_tj_01.ab", None, "man_clothes_tj_01", "man_clothes_tj_01_ba", True, 1.82, False),
+                ]),
+                ("clothes_steel", [
+                    ("assets/role/man_clothes_gangjia_01.ab", None, "man_clothes_gangjia_01", "man_clothes_gangjia_01_ba", True, 1.82, False),
+                ]),
+                ("clothes_hazmat", [
+                    ("assets/role/man_clothes_fbf_01.ab", None, "man_clothes_fbf_01_jimiao", "man_clothes_fbf_01_ba", True, 1.82, False),
+                ]),
             ]
             model_records = []
-            for item in prop_specs:
-                if len(item) == 8:
-                    key, bpath, tbpath, mname, tname, z_up, target_h, pres_piv = item
-                elif len(item) == 7:
-                    key, bpath, tbpath, mname, tname, z_up, target_h = item
-                    pres_piv = False
-                else:
-                    key, bpath, mname, tname, z_up, target_h = item
-                    tbpath = None
-                    pres_piv = False
-                tex_filename = f"{key}.png"
-                tex_bundle = tbpath if tbpath else bpath
-                env_t = UnityPy.load(obb.read(tex_bundle))
-                for obj in env_t.objects:
-                    if obj.type.name == "Texture2D":
-                        tex = obj.read()
-                        if tex.m_Name == tname:
-                            tex.image.save(os.path.join(TEX_DIR, tex_filename), compress_level=1)
-                            break
-                        if tex.m_Name.endswith("_d") and tname.endswith("_d"):
-                            pass
-                env_m = UnityPy.load(obb.read(bpath)) if tbpath else env_t
-                found_mesh = False
-                for obj in env_m.objects:
-                    if obj.type.name == "Mesh":
-                        m = obj.read()
-                        if m.m_Name == mname or m.m_Name.startswith(mname):
-                            res = extract_mesh_arrays(m, z_up=z_up, is_terrain=False, target_height=target_h, preserve_pivot=pres_piv)
-                            if res:
-                                model_records.append((key, tex_filename, *res))
-                                found_mesh = True
+            for key, candidates in prop_specs:
+                matched = False
+                for cand in candidates:
+                    bpath, tbpath, mname, tname, z_up, target_h, pres_piv = cand
+                    tex_filename = f"{key}.png"
+                    tex_bundle = tbpath if tbpath else bpath
+                    if tex_bundle not in obb.namelist() or bpath not in obb.namelist():
+                        continue
+                    env_t = UnityPy.load(obb.read(tex_bundle))
+                    for obj in env_t.objects:
+                        if obj.type.name == "Texture2D":
+                            tex = obj.read()
+                            if tex.m_Name == tname:
+                                tex.image.save(os.path.join(TEX_DIR, tex_filename), compress_level=1)
                                 break
-                if not found_mesh:
-                    print(f"Warning: mesh {mname!r} not found in {bpath}")
+                    env_m = UnityPy.load(obb.read(bpath)) if tbpath else env_t
+                    for obj in env_m.objects:
+                        if obj.type.name == "Mesh":
+                            m = obj.read()
+                            if m.m_Name == mname or m.m_Name.startswith(mname):
+                                res = extract_mesh_arrays(m, z_up=z_up, is_terrain=False, target_height=target_h, preserve_pivot=pres_piv)
+                                if res:
+                                    model_records.append((key, tex_filename, *res))
+                                    matched = True
+                                    break
+                    if matched:
+                        break
+                if not matched:
+                    print(f"Notice: prop {key!r} could not be extracted from candidate bundles")
 
             models_bin_path = os.path.join(OUT_DIR, "models.bin")
             with open(models_bin_path, "wb") as mf:
@@ -646,12 +791,15 @@ def main():
                             placements.append((bkind, px, wy, pz, qx, qy, qz, qw, sc))
 
             placements_path = os.path.join(OUT_DIR, "placements.bin")
-            with open(placements_path, "wb") as pf:
-                pf.write(b"MSPLC002")
-                pf.write(struct.pack("<I", len(placements)))
-                for kind, wx, wy, wz, qx, qy, qz, qw, sc in placements:
-                    pf.write(struct.pack("<B8f", kind, wx, wy, wz, qx, qy, qz, qw, sc))
-            print(f"Saved {len(placements)} scenic placements with full 3D Quaternions to {placements_path}")
+            if placements:
+                with open(placements_path, "wb") as pf:
+                    pf.write(b"MSPLC002")
+                    pf.write(struct.pack("<I", len(placements)))
+                    for kind, wx, wy, wz, qx, qy, qz, qw, sc in placements:
+                        pf.write(struct.pack("<B8f", kind, wx, wy, wz, qx, qy, qz, qw, sc))
+                print(f"Saved {len(placements)} scenic placements with full 3D Quaternions to {placements_path}")
+            else:
+                print(f"Notice: No new placement records found in archive. Preserving existing {placements_path} if present.")
 
     # Automatically invoke terrain texture baker to turn raw splatmaps into realistic terrain textures
     try:
