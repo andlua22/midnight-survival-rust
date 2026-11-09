@@ -12,4 +12,5 @@
 /.local/ui-import-backups/
 /.local/failed-imports/
 /.local/ui-import-history/
+/.local/apk-runtime-candidates/
 /.local/code-backups/canonical-map-2026-11-09/

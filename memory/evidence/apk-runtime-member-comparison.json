@@ -1,0 +1,191 @@
+{
+  "candidate": {
+    "apk": {
+      "byte_count": 1277117768,
+      "path": ".local/apk-runtime-candidates/waydroid-527ae0a1.apk",
+      "sha256": "527ae0a10681fd0dfdbe957b65fee79729cc665d0e7afcce43f25054366fc37b"
+    },
+    "directory_entries": 0,
+    "files": 9320,
+    "member_manifest_sha256": "1811685beaabba4a5c6428fb49ee05317930a33506f4ee4148a643e037a0c09c",
+    "uncompressed_bytes": 1397862624
+  },
+  "critical_members": [
+    {
+      "candidate": {
+        "byte_count": 86780,
+        "sha256": "8bb675c586885452054ab1b9bd1d518b55079339f681c92e859b244d015964e4"
+      },
+      "matched": true,
+      "member": "AndroidManifest.xml",
+      "source": {
+        "byte_count": 86780,
+        "sha256": "8bb675c586885452054ab1b9bd1d518b55079339f681c92e859b244d015964e4"
+      }
+    },
+    {
+      "candidate": {
+        "byte_count": 5217308,
+        "sha256": "ea0afa7a3d0a60234561c5b972ad74da35b6742b846618d9aa8778cfa3806d0b"
+      },
+      "matched": true,
+      "member": "classes.dex",
+      "source": {
+        "byte_count": 5217308,
+        "sha256": "ea0afa7a3d0a60234561c5b972ad74da35b6742b846618d9aa8778cfa3806d0b"
+      }
+    },
+    {
+      "candidate": {
+        "byte_count": 76609760,
+        "sha256": "ed3ec656863b106bca6bd62dc2a11283b47c2c3c3c1634e4070fd386447f8c68"
+      },
+      "matched": false,
+      "member": "lib/arm64-v8a/libil2cpp.so",
+      "source": {
+        "byte_count": 76608224,
+        "sha256": "2e2efde1a103549694b17b361cacc18faa5714d06c444945e44b30f1377e2b3c"
+      }
+    },
+    {
+      "candidate": {
+        "byte_count": 25842320,
+        "sha256": "87bea75c280c64cfd5a98abe3510cda55a22bf863aea41c8dd8a3c7952f35d3b"
+      },
+      "matched": true,
+      "member": "lib/arm64-v8a/libunity.so",
+      "source": {
+        "byte_count": 25842320,
+        "sha256": "87bea75c280c64cfd5a98abe3510cda55a22bf863aea41c8dd8a3c7952f35d3b"
+      }
+    },
+    {
+      "candidate": {
+        "byte_count": 16788272,
+        "sha256": "987af3ecbdd8466f5951cd1cf62f68a0a7d4ebe6a445872d5ede740ba6d5b566"
+      },
+      "matched": false,
+      "member": "assets/bin/Data/Managed/Metadata/global-metadata.dat",
+      "source": {
+        "byte_count": 16788272,
+        "sha256": "548b4e3e990641716e6e368de780fbf8c82f9806c0238d01e3bc02d0d644f2e6"
+      }
+    },
+    {
+      "candidate": {
+        "byte_count": 5732,
+        "sha256": "74f3f0f4a384ba393418bca24c461f19b610bff4aab36a05563f879fd303ae1b"
+      },
+      "matched": true,
+      "member": "assets/bin/Data/level0",
+      "source": {
+        "byte_count": 5732,
+        "sha256": "74f3f0f4a384ba393418bca24c461f19b610bff4aab36a05563f879fd303ae1b"
+      }
+    },
+    {
+      "candidate": {
+        "byte_count": 6124,
+        "sha256": "77ca83aa15a1cfe9de2a6b3741620c83c2270c6a6e80ff3b5c2e4bdf76c33de2"
+      },
+      "matched": true,
+      "member": "assets/bin/Data/level1",
+      "source": {
+        "byte_count": 6124,
+        "sha256": "77ca83aa15a1cfe9de2a6b3741620c83c2270c6a6e80ff3b5c2e4bdf76c33de2"
+      }
+    },
+    {
+      "candidate": {
+        "byte_count": 1465,
+        "sha256": "c77f8b15e3d46ec980333b7ef8f5ae1c2246824f56e4770f18888efa5de68896"
+      },
+      "matched": true,
+      "member": "assets/cfg/cfg.MapCfg.oc",
+      "source": {
+        "byte_count": 1465,
+        "sha256": "c77f8b15e3d46ec980333b7ef8f5ae1c2246824f56e4770f18888efa5de68896"
+      }
+    },
+    {
+      "candidate": {
+        "byte_count": 121164,
+        "sha256": "ee6e633d330cbb2e82fdba214880579edd3306b6ea2cc68b10a764f7c6558403"
+      },
+      "matched": true,
+      "member": "assets/ui/battleminimap.ab",
+      "source": {
+        "byte_count": 121164,
+        "sha256": "ee6e633d330cbb2e82fdba214880579edd3306b6ea2cc68b10a764f7c6558403"
+      }
+    },
+    {
+      "candidate": {
+        "byte_count": 330886,
+        "sha256": "ab91187b64b607913a347c375c829b13ccb4ec87762abbdb0f22dca0f01cc1f3"
+      },
+      "matched": true,
+      "member": "assets/ui/battlemappanel.ab",
+      "source": {
+        "byte_count": 330886,
+        "sha256": "ab91187b64b607913a347c375c829b13ccb4ec87762abbdb0f22dca0f01cc1f3"
+      }
+    },
+    {
+      "candidate": {
+        "byte_count": 773288,
+        "sha256": "2248a4953b8322c1be9d28c5d5edeea6b1dd3ef856e99da0a128927e634f3a71"
+      },
+      "matched": true,
+      "member": "assets/ui/battlepanel.ab",
+      "source": {
+        "byte_count": 773288,
+        "sha256": "2248a4953b8322c1be9d28c5d5edeea6b1dd3ef856e99da0a128927e634f3a71"
+      }
+    }
+  ],
+  "differences": [
+    {
+      "candidate": {
+        "byte_count": 16788272,
+        "sha256": "987af3ecbdd8466f5951cd1cf62f68a0a7d4ebe6a445872d5ede740ba6d5b566"
+      },
+      "member": "assets/bin/Data/Managed/Metadata/global-metadata.dat",
+      "source": {
+        "byte_count": 16788272,
+        "sha256": "548b4e3e990641716e6e368de780fbf8c82f9806c0238d01e3bc02d0d644f2e6"
+      }
+    },
+    {
+      "candidate": {
+        "byte_count": 76609760,
+        "sha256": "ed3ec656863b106bca6bd62dc2a11283b47c2c3c3c1634e4070fd386447f8c68"
+      },
+      "member": "lib/arm64-v8a/libil2cpp.so",
+      "source": {
+        "byte_count": 76608224,
+        "sha256": "2e2efde1a103549694b17b361cacc18faa5714d06c444945e44b30f1377e2b3c"
+      }
+    }
+  ],
+  "evidence_type": "rust_streaming_apk_payload_comparison",
+  "identical_file_payloads": false,
+  "limitations": [
+    "Every regular ZIP member is decoded, length-checked and hashed. Directory entries, ZIP order/compression metadata and APK signing blocks are outside payload equality.",
+    "Both whole-file SHA-256 identities were checked before and after member inventory.",
+    "Payload equality does not establish loaded ABI, IFix/downloaded asset state, successful initialization, font fallback, or live UI behavior.",
+    "This is an installed Rust-tool observation, not REA runtime Evidence or an APK screenshot."
+  ],
+  "matched_files": 9318,
+  "source": {
+    "apk": {
+      "byte_count": 1115839572,
+      "path": "export/lite4.0.apk",
+      "sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df"
+    },
+    "directory_entries": 110,
+    "files": 9320,
+    "member_manifest_sha256": "967f9a12c21b322e5a592f795299880c1cf1704ed590e4fc64f58151671e36da",
+    "uncompressed_bytes": 1397861088
+  }
+}

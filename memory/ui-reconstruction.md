@@ -1,6 +1,6 @@
 # APK UI reconstruction
 
-Updated: 2026-11-09. Target: `export/lite4.0.apk`, SHA-256
+Updated: 2026-11-10. Target: `export/lite4.0.apk`, SHA-256
 `2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df`.
 
 All three selected prefabs are now extracted directly from the APK in Rust.
@@ -121,6 +121,19 @@ These are Bevy prefab previews, not APK screenshots or a production HUD replacem
 Templates overlap because the serialized nodes are active and runtime visibility
 has not been applied. The minimap RawImage remains explicitly unbound.
 
+The optional `initialization-visibility.json` profile now adds two more
+captures at the same sizes. It applies only the 21 qualified GO false overrides
+in [the native review](evidence/minimap-runtime-review.md), hiding their
+descendants without altering source records. Each initialization preview has
+103 submitted graphics, 27 inactive, 15 unsupported, two disabled, two empty
+and one mask-only. See the
+[initialization detail](evidence/minimap-render/initialization-1920x1080-detail.png).
+These are partial lifecycle previews, not successful native Awake/init or
+gameplay frames. The profile includes APK/bundle/layout identity, GO/Transform
+pairs, retained indices and native provenance; malformed/foreign/duplicate IDs
+and non-false overrides are rejected. Its evidence hash covers the parsed byte
+buffer. Texture, UV, local scale and zoom bindings are not inferred from it.
+
 Remaining renderer gaps include custom stencil/fog/materials, line renderers,
 particles, additional sprite variants, source mip sampling and Unity text
 metrics/rasterization. egui shaping, line spacing, best-fit, color/tint and
@@ -186,6 +199,13 @@ offsetForBase=0 and battleMapRate=0.4096. The source image and icon-parent
 translation must use one calibration. Do not change the production 5360 extent
 to 5000 from these scalar values alone.
 
+The native review records constructor zoom=15. An internal reciprocal-zoom Rect
+at +0x130 is not a verified RawImage UV setter; the scale vector's metadata
+identity remains unresolved. OnShowCompassAndMinimap's `_mapRate` is the zero
+gate, not the coordinate multiplier `_battleMapRate`. Native Awake requests
+indices 0–93 while the retained GameObjectData has 86 entries (0–85): actual
+list construction, prefab revision and IFix execution still need runtime evidence.
+
 1. Trace runtime image selection, zoom/scales, UVs and initialization visibility
    from native bodies, then expose those changes as explicit source bindings.
 2. Bind headings, compass, coordinates, waypoints and event icons to simulation
@@ -195,16 +215,34 @@ to 5000 from these scalar values alone.
 4. Compare matched scene/camera/resolution captures against the exact APK,
    including off-center landmarks, map edges, clipping and panel transitions.
 
-ADB found Waydroid with this package name installed, but its base APK SHA-256
-is `527ae0a10681fd0dfdbe957b65fee79729cc665d0e7afcce43f25054366fc37b`,
-different from the supplied target. See `evidence/android-runtime-check.json`.
-That installation has not been changed or used as proof of this APK's UI.
-An exact-target runtime or comparison of the relevant packaged members is still needed.
+ADB found Waydroid with package/version `com.herogame.gplay.survival.lite`,
+40 / 4.0. Its base APK SHA-256 is
+`527ae0a10681fd0dfdbe957b65fee79729cc665d0e7afcce43f25054366fc37b`.
+The Rust full-member comparison hashes all 9,320 regular files: 9,318 match,
+including all assets, Java/manifest and libunity.so. Only libil2cpp.so and
+global-metadata.dat differ. The user clarified that **lite4.0.apk contains the
+recovered memory artifacts**, whereas the installed counterpart has the
+encrypted originals. See `evidence/android-runtime-check.json` and
+`evidence/apk-runtime-member-comparison.json`; the cached read-only APK copy is
+under `.local/apk-runtime-candidates/`, ignored by Git.
+
+[Dump pairing](evidence/minimap-dump-pairing.md) compares 20,488 mapped bytes
+across seven native methods. OnShowCompassAndMinimap, GetPosOnMap and
+AdjustResolution.Awake match exactly. The four initialization/constructor
+ranges differ on disk; the constructor's final 1,592 bytes match. This supports
+using the recovered source for analysis and the matching assets for previews,
+without claiming whole-method or live-state equivalence. No app launch,
+installation change or APK screenshot was performed. Continue with the paired
+runtime and recovered artifacts; do not discard it merely because the outer
+APK hashes differ.
 
 Validation: shared UI 15 tests, client 25, map data 19, shared 46 with one
 intentional stress-test ignore, extractor 24: 129 passed total. Offline
 workspace/example checks and scoped formatting pass. Clippy reports no warnings
 in the new UI code; existing map package, old HUD and terrain probe warnings remain.
+The new streaming APK comparison example adds three passing tests for packaging
+differences, changed/missing/extra payloads and CRC corruption: 132 passing tests
+across the recorded suites. Its scoped release Clippy check passes.
 
 Full UI behavior, interactions/animations, placements, water, original
 lighting, gameplay and complete-game fidelity remain unfinished.

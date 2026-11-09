@@ -22,5 +22,6 @@ skrifa = "0.44"
 midnight_network = { path = "../network" }
 
 [dev-dependencies]
+sha2 = "0.10"
 ttf-parser = { version = "0.25", default-features = false }
 

@@ -1,5 +1,6 @@
 {
   "checked_at_utc": "2026-11-09",
+  "updated_local_date": "2026-11-10",
   "evidence_type": "read_only_installed_tool_observations",
   "source_apk": {
     "path": "export/lite4.0.apk",
@@ -23,18 +24,41 @@
     "base_apk": "/data/app/~~KRIqbFOzUl6vM9Niniwl-g==/com.herogame.gplay.survival.lite-76irnFWmZzEqA02oMDg2CA==/base.apk",
     "sha256": "527ae0a10681fd0dfdbe957b65fee79729cc665d0e7afcce43f25054366fc37b",
     "matches_source_apk": false,
-    "version_verified": false,
-    "relevant_member_identity_verified": false
+    "version_verified": true,
+    "version_code": 40,
+    "version_name": "4.0",
+    "relevant_member_identity_verified": false,
+    "all_asset_payloads_match_source": true,
+    "native_and_metadata_payloads_match_source": false,
+    "preserved_copy": ".local/apk-runtime-candidates/waydroid-527ae0a1.apk",
+    "byte_count": 1277117768
+  },
+  "recovery_relation": {
+    "source": "user clarification, 2026-11-10 local date",
+    "user_statement": "libil2cpp.so and global-metadata at lite4.0.apk dumped from memory, because original game have a encrypted global-metadata.dat, and libil2cpp.so.",
+    "direction": "lite4.0.apk contains recovered memory artifacts; the installed Waydroid package is the encrypted runtime counterpart",
+    "recovery_transformation_independently_verified": false,
+    "payload_comparison": "apk-runtime-member-comparison.json",
+    "native_method_pairing": "minimap-dump-pairing.md",
+    "matched_regular_files": 9318,
+    "total_regular_files_per_apk": 9320,
+    "differing_members": [
+      "assets/bin/Data/Managed/Metadata/global-metadata.dat",
+      "lib/arm64-v8a/libil2cpp.so"
+    ]
   },
   "operations": [
     "adb devices -l",
     "adb -s 192.168.240.112:5555 shell pm path com.herogame.gplay.survival.lite",
-    "adb -s 192.168.240.112:5555 shell sha256sum /data/app/~~KRIqbFOzUl6vM9Niniwl-g==/com.herogame.gplay.survival.lite-76irnFWmZzEqA02oMDg2CA==/base.apk"
+    "adb -s 192.168.240.112:5555 shell sha256sum /data/app/~~KRIqbFOzUl6vM9Niniwl-g==/com.herogame.gplay.survival.lite-76irnFWmZzEqA02oMDg2CA==/base.apk",
+    "adb -s 192.168.240.112:5555 pull /data/app/~~KRIqbFOzUl6vM9Niniwl-g==/com.herogame.gplay.survival.lite-76irnFWmZzEqA02oMDg2CA==/base.apk .local/apk-runtime-candidates/waydroid-527ae0a1.apk",
+    "aapt dump badging .local/apk-runtime-candidates/waydroid-527ae0a1.apk",
+    "cargo run --release --offline --manifest-path tools/asset_unpacker/Cargo.toml --example apk_member_compare -- export/lite4.0.apk .local/apk-runtime-candidates/waydroid-527ae0a1.apk --report memory/evidence/apk-runtime-member-comparison.json"
   ],
   "limitations": [
-    "The whole-APK digest differs. This does not prove which packaged members or game behaviors differ.",
+    "Whole-APK digests differ. The full Rust payload comparison narrows regular-file differences to the native library and metadata; all assets match.",
     "No app launch, installation change, UI screenshot or live minimap state observation was performed.",
-    "Matching this installed package's relevant assets/native code or using an exact-target runtime is needed before attributing observations to the supplied APK.",
+    "The user identifies the recovered-source/encrypted-runtime relationship. Method pairing is bounded: three of seven methods match on disk, four differ. Live state, loaded assets, recovery mechanics and IFix execution remain unobserved.",
     "ADB needed host access after the sandbox rejected its local server socket. These are installed-tool observations, not REA Evidence IDs."
   ]
 }

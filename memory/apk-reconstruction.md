@@ -1,6 +1,6 @@
 # APK reconstruction
 
-Started and updated: 2026-11-09.
+Started: 2026-11-09. Updated: 2026-11-10.
 
 ## Objective and constraints
 
@@ -97,10 +97,23 @@ Per-graphic reports retain unsupported cases; they are not APK screenshots.
 definite large-map texture binding. `evidence/minimap-font-coverage.json` records
 seven missing nominal source-font character mappings, with two independent parsers.
 
-Waydroid is connected, but its installed `com.herogame.gplay.survival.lite` APK
-has a different digest. `evidence/android-runtime-check.json` retains that
-read-only check. The installation has been preserved; exact-target gameplay
-captures and effective runtime values remain pending.
+The optional initialization profile adds two captures applying only 21 verified
+source GO hides (27 inactive graphics). It checks qualified IDs and source
+APK/bundle/layout identities and retains native provenance. Its file hash covers
+the exact parsed bytes. No texture/UV/scale/zoom or successful runtime init is
+inferred. `evidence/minimap-runtime-review.md` records these source actions,
+constructor zoom=15 and the unresolved 94-vs-86 binding-list discrepancy.
+
+Waydroid's `com.herogame.gplay.survival.lite` 40 / 4.0 APK has a different
+container digest. The Rust full ZIP comparison confirms 9,318 matching regular
+file payloads, including every asset; only libil2cpp.so and global-metadata.dat
+differ. The user identifies the files inside lite4.0.apk as recovered memory
+dumps of the encrypted game. The installed package is the encrypted runtime
+counterpart, not an established unrelated version. The comparison and
+`evidence/minimap-dump-pairing.md` retain both identities and native method
+coverage. Three of seven mapped method ranges match exactly; four differ on
+disk. No launch, installation change or APK screenshot was performed.
+Effective live-memory/IFix/texture/parentage and matched gameplay captures remain pending.
 
 ## Checklist
 
@@ -130,6 +143,9 @@ cargo test --release --offline --manifest-path tools/asset_unpacker/Cargo.toml
 cargo clippy --offline -p midnight_ui_data -p client_core --all-targets
 cargo rustc --offline -p client_core --example minimap_probe -- -C strip=debuginfo
 target/debug/examples/minimap_probe memory/evidence/minimap-render
+target/debug/examples/minimap_probe memory/evidence/minimap-render memory/evidence/minimap-render/initialization-visibility.json
+cargo test --release --offline --manifest-path tools/asset_unpacker/Cargo.toml --example apk_member_compare
+cargo run --release --offline --manifest-path tools/asset_unpacker/Cargo.toml --example apk_member_compare -- export/lite4.0.apk .local/apk-runtime-candidates/waydroid-527ae0a1.apk --report memory/evidence/apk-runtime-member-comparison.json
 ```
 
 These checks pass: shared UI 15 tests, map data 19, client 25, shared 46 with one
@@ -138,6 +154,14 @@ were rechecked after the final text changes and the minimap was recaptured.
 Clippy completes with existing map package, HUD and terrain probe warnings;
 it is not a clean workspace-wide `-D warnings` run. GPU capture execution needs
 host GPU access; Cargo builds/checks are offline.
+
+The APK comparison example adds three passing tests (132 passed across the
+recorded suites) and a clean scoped release Clippy check. It hashes decoded
+members through streaming I/O, checks lengths/CRC, rejects duplicate/oversized
+members, and verifies both input file hashes before and after the inventory.
+Directory/order/compression/signing-block equality and live execution are outside
+that check. The preserved installed APK copy is Git-ignored under
+`.local/apk-runtime-candidates/`; it is evidence, not a replacement runtime asset package.
 
 Debug linking filled the disk during this stage. This turn's earlier generated
 probe binaries were preserved in `/tmp/codex-minimap-probe-before-sprite-fix`

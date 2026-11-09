@@ -1,9 +1,10 @@
 //! Capture the source BattleMinimap with the production egui backend, without a
-//! window. Run: cargo run --offline -p client_core --example minimap_probe -- DIR
+//! window. Run: cargo run --offline -p client_core --example minimap_probe -- DIR [PROFILE]
+//! A visibility profile adds explicit initialization previews after the prefab views.
 
 use std::{
     collections::{BTreeMap, BTreeSet},
-    path::PathBuf,
+    path::{Path, PathBuf},
     time::{Duration, Instant},
 };
 
@@ -32,11 +33,212 @@ use bevy_egui::{
     EguiPrimaryContextPass, PrimaryEguiContext, egui,
 };
 use client_core::source_ui::{PanelRenderReport, SourcePanelRenderer, SourceUiBindings};
-use midnight_ui_data::layout::CanvasViewport;
+use midnight_map_data::SourceObject;
+use midnight_ui_data::{UiError, layout::CanvasViewport, load_ui_package};
+use serde::{Deserialize, Serialize};
+use serde_json::{Value, json};
+use sha2::{Digest, Sha256};
+
+#[derive(Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+struct InitializationProfile {
+    schema_version: u32,
+    name: String,
+    source_apk: ProfileApk,
+    panel: ProfilePanel,
+    /// Static evidence only; this object never supplies renderer bindings.
+    evidence: Value,
+    visibility: Vec<VisibilityOverride>,
+    caveats: Vec<String>,
+}
+
+#[derive(Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+struct ProfileApk {
+    path: String,
+    sha256: String,
+    byte_count: u64,
+}
+
+#[derive(Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+struct ProfilePanel {
+    name: String,
+    bundle: String,
+    cab: String,
+    bundle_sha256: String,
+    bundle_byte_count: u64,
+    layout: ProfileFile,
+}
+
+#[derive(Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+struct ProfileFile {
+    path: String,
+    sha256: String,
+}
+
+#[derive(Deserialize, Serialize)]
+#[serde(remote = "SourceObject", deny_unknown_fields)]
+struct ProfileObject {
+    bundle: String,
+    cab: String,
+    path_id: String,
+}
+
+#[derive(Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+struct VisibilityOverride {
+    #[serde(with = "ProfileObject")]
+    node: SourceObject,
+    active_self: bool,
+    field: String,
+    retained_index: usize,
+    hierarchy_path: String,
+    #[serde(with = "ProfileObject")]
+    transform: SourceObject,
+    native_method: String,
+    false_transfer_va: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    dictionary_insertion_va: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    false_argument_va: Option<String>,
+}
+
+struct CaptureMode {
+    name: &'static str,
+    bindings: SourceUiBindings,
+    profile: Value,
+    caveats: Vec<String>,
+}
+
+fn invalid(message: impl Into<String>) -> UiError {
+    std::io::Error::new(std::io::ErrorKind::InvalidData, message.into()).into()
+}
+
+fn validate_profile_object(source: &SourceObject, panel: &ProfilePanel) -> Result<(), UiError> {
+    let canonical_nonzero_id = source
+        .path_id
+        .parse::<i64>()
+        .is_ok_and(|id| id != 0 && id.to_string() == source.path_id);
+    if source.bundle != panel.bundle || source.cab != panel.cab || !canonical_nonzero_id {
+        return Err(invalid(format!(
+            "initialization profile object has an invalid bundle/CAB/signed PathID: {source:?}"
+        )));
+    }
+    Ok(())
+}
+
+fn load_initialization_profile(path: &Path, source: &Path) -> Result<CaptureMode, UiError> {
+    let bytes = std::fs::read(path)?;
+    let profile: InitializationProfile = serde_json::from_slice(&bytes)?;
+    if profile.schema_version != 1
+        || profile.name != "battle-minimap-initialization-visibility"
+        || profile.visibility.len() != 21
+    {
+        return Err(invalid(
+            "expected version 1 battle-minimap-initialization-visibility profile with 21 overrides",
+        ));
+    }
+    let package = load_ui_package(source)?;
+    // load_panel verifies the layout payload's checksum and its manifest identity.
+    let panel = package.load_panel("BattleMinimap")?;
+    let source_apk = &package.manifest.source_apk;
+    let summary = package
+        .manifest
+        .panels
+        .iter()
+        .find(|summary| summary.name == panel.name)
+        .ok_or_else(|| invalid("BattleMinimap summary is absent"))?;
+    let layout = summary
+        .layout
+        .as_ref()
+        .ok_or_else(|| invalid("BattleMinimap layout identity is absent"))?;
+    let bundles: Vec<_> = package
+        .manifest
+        .bundles
+        .iter()
+        .filter(|bundle| bundle.member == panel.bundle)
+        .collect();
+    let [bundle] = bundles.as_slice() else {
+        return Err(invalid("expected one BattleMinimap bundle identity"));
+    };
+    if profile.source_apk.path != source_apk.path
+        || profile.source_apk.sha256 != source_apk.sha256
+        || profile.source_apk.byte_count != source_apk.byte_count
+        || profile.panel.name != panel.name
+        || profile.panel.bundle != panel.bundle
+        || profile.panel.cab != panel.root.source.cab
+        || profile.panel.bundle_sha256 != bundle.sha256
+        || profile.panel.bundle_byte_count != bundle.byte_count
+        || !bundle.cabs.iter().any(|cab| cab.cab == profile.panel.cab)
+        || profile.panel.layout.path != layout.path
+        || profile.panel.layout.sha256 != layout.sha256
+    {
+        return Err(invalid(
+            "initialization profile APK/panel/layout identity differs from verified UI package",
+        ));
+    }
+    let mut bindings = SourceUiBindings::default();
+    let mut transforms = BTreeSet::new();
+    let mut retained_indices = BTreeSet::new();
+    for entry in &profile.visibility {
+        validate_profile_object(&entry.node, &profile.panel)?;
+        validate_profile_object(&entry.transform, &profile.panel)?;
+        if entry.active_self
+            || entry.node == entry.transform
+            || entry.retained_index >= 86
+            || entry.field.is_empty()
+            || !entry.hierarchy_path.starts_with("BattleMinimap/")
+        {
+            return Err(invalid(format!(
+                "initialization profile requires false GO visibility and retained source provenance: {}",
+                entry.field
+            )));
+        }
+        if bindings
+            .visibility
+            .insert(entry.node.clone(), false)
+            .is_some()
+            || !transforms.insert(entry.transform.clone())
+            || !retained_indices.insert(entry.retained_index)
+        {
+            return Err(invalid(format!(
+                "duplicate initialization profile GO/Transform/index: {}",
+                entry.field
+            )));
+        }
+    }
+    let mut caveats = vec![
+        "Initialization visibility is an explicit preview from static ARM64 fallback evidence; successful native Awake/init and IFix execution are unobserved.".into(),
+        "The retained GameObjectData has 86 entries; native Awake requests 94. Additional binding entries remain unresolved.".into(),
+        "Only the listed GO activeSelf values are overridden. Inactive parents also hide descendants; source records remain retained.".into(),
+        "The constructor zoom default 15 is not applied as RawImage UVs or a transform scale. Runtime texture, UV assignment and inherited scale remain unresolved.".into(),
+        "Later show/update calls, pooled sound objects and gameplay events can produce different visibility.".into(),
+    ];
+    caveats.extend(profile.caveats.iter().cloned());
+    let evidence = json!({
+        "file": {"path": path.display().to_string(), "sha256": format!("{:x}", Sha256::digest(&bytes))},
+        "document": profile,
+        "validation": {
+            "apk_and_bundle_identities": "compared with imported UI manifest; APK/native members are not rehashed by this probe",
+            "layout": "payload SHA-256 and panel identity verified by load_ui_package/load_panel",
+            "source_node_targets": "validated by SourcePanelRenderer::paint against the selected layout",
+            "visibility": "21 unique qualified GO targets, canonical nonzero signed PathIDs, active_self=false"
+        }
+    });
+    Ok(CaptureMode {
+        name: "initialization",
+        bindings,
+        profile: evidence,
+        caveats,
+    })
+}
 
 #[derive(Resource)]
 struct Preview {
     renderer: SourcePanelRenderer,
+    bindings: SourceUiBindings,
     viewport: CanvasViewport,
     report: Option<PanelRenderReport>,
     error: Option<String>,
@@ -66,10 +268,13 @@ fn draw(mut contexts: EguiContexts, mut preview: ResMut<Preview>) {
                 viewport.pixels[1] as f32 / points,
             ),
         ));
-    match preview
-        .renderer
-        .paint(&painter, viewport, 100.0, &SourceUiBindings::default())
-    {
+    let result = {
+        let Preview {
+            renderer, bindings, ..
+        } = &mut *preview;
+        renderer.paint(&painter, viewport, 100.0, bindings)
+    };
+    match result {
         Ok(report) => preview.report = Some(report),
         Err(error) => preview.error = Some(error.to_string()),
     }
@@ -140,13 +345,31 @@ fn ready(app: &App) -> bool {
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
-    let directory = std::env::args_os().nth(1).map_or_else(
+    let mut arguments = std::env::args_os().skip(1);
+    let directory = arguments.next().map_or_else(
         || PathBuf::from("memory/evidence/minimap-render"),
         PathBuf::from,
     );
-    std::fs::create_dir_all(&directory)?;
+    let profile_path = arguments.next().map(PathBuf::from);
+    if arguments.next().is_some() {
+        return Err("usage: minimap_probe [DIR [PROFILE]]".into());
+    }
     let source = shared::level::asset_root()
         .join("imported_ui/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df-v1");
+    let mut modes = vec![CaptureMode {
+        name: "prefab",
+        bindings: SourceUiBindings::default(),
+        profile: Value::Null,
+        caveats: vec![
+            "This mode renders authored prefab visibility with empty bindings; templates and placeholders retain their serialized activeSelf values.".into(),
+            "It does not execute native initialization, show/update calls or gameplay state.".into(),
+        ],
+    }];
+    if let Some(path) = profile_path {
+        // Reject mismatched profiles before initializing the GPU or writing captures.
+        modes.push(load_initialization_profile(&path, &source)?);
+    }
+    std::fs::create_dir_all(&directory)?;
     let mut app = App::new();
     app.add_plugins(
         DefaultPlugins
@@ -193,6 +416,7 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     let renderer = SourcePanelRenderer::load(&source, "BattleMinimap", &context)?;
     app.insert_resource(Preview {
         renderer,
+        bindings: SourceUiBindings::default(),
         viewport: CanvasViewport {
             pixels: [1920, 1080],
             scale_factor: 1.0,
@@ -202,89 +426,138 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     });
     let deadline = Instant::now() + Duration::from_secs(90);
     let mut captures = Vec::new();
-    for pixels in [[1920, 1080], [1280, 720]] {
-        // Bootstrap evidence: [1920,1080], reference PPU=100, with the native
-        // AdjustResolution rule. These remain supplied preview canvas inputs.
-        let scale = (pixels[0] as f32 / 1920.0).min(pixels[1] as f32 / 1080.0);
-        app.world_mut().resource_mut::<Preview>().viewport = CanvasViewport {
-            pixels,
-            scale_factor: scale,
-        };
-        let mut image =
-            Image::new_target_texture(pixels[0], pixels[1], TextureFormat::Rgba8UnormSrgb, None);
-        image.texture_descriptor.usage |= TextureUsages::COPY_SRC;
-        let target = app.world_mut().resource_mut::<Assets<Image>>().add(image);
-        app.world_mut()
-            .entity_mut(camera)
-            .insert(RenderTarget::Image(target.clone().into()));
-        let mut ready_frames = 0;
-        while ready_frames < 3 {
-            update(&mut app, deadline)?;
-            ready_frames = if ready(&app) { ready_frames + 1 } else { 0 };
-        }
-        app.world_mut()
-            .spawn(Screenshot::image(target))
-            .observe(captured);
-        while app.world().resource::<Capture>().image.is_none() {
-            update(&mut app, deadline)?;
-        }
-        let image = app
-            .world_mut()
-            .resource_mut::<Capture>()
-            .image
-            .take()
-            .ok_or("screenshot observer returned no minimap image")?
-            .try_into_dynamic()?;
-        let filename = format!("prefab-{}x{}.png", pixels[0], pixels[1]);
-        image.save(directory.join(&filename))?;
-        let rgba = image.to_rgba8();
-        let colors = rgba
-            .pixels()
-            .map(|pixel| [pixel.0[0] >> 4, pixel.0[1] >> 4, pixel.0[2] >> 4])
-            .collect::<BTreeSet<_>>();
-        if colors.len() < 16 {
-            return Err(
-                "minimap capture lacks enough color variation to verify textured graphics".into(),
+    let mut mode_reports = Vec::new();
+    for mode in &modes {
+        for pixels in [[1920, 1080], [1280, 720]] {
+            // Bootstrap evidence: [1920,1080], reference PPU=100, with the native
+            // AdjustResolution rule. These remain supplied preview canvas inputs.
+            let scale = (pixels[0] as f32 / 1920.0).min(pixels[1] as f32 / 1080.0);
+            {
+                let mut preview = app.world_mut().resource_mut::<Preview>();
+                preview.viewport = CanvasViewport {
+                    pixels,
+                    scale_factor: scale,
+                };
+                preview.bindings = mode.bindings.clone();
+                preview.report = None;
+                preview.error = None;
+            }
+            app.world_mut().resource_mut::<Capture>().image = None;
+            let mut image = Image::new_target_texture(
+                pixels[0],
+                pixels[1],
+                TextureFormat::Rgba8UnormSrgb,
+                None,
             );
-        }
-        let crop_width = (440.0 * scale).ceil() as u32;
-        let crop_height = (460.0 * scale).ceil() as u32;
-        let crop_file = format!("prefab-{}x{}-detail.png", pixels[0], pixels[1]);
-        image
-            .crop_imm(pixels[0] - crop_width, 0, crop_width, crop_height)
-            .save(directory.join(&crop_file))?;
-        let preview = app.world().resource::<Preview>();
-        let report = preview
-            .report
-            .as_ref()
-            .ok_or("no source panel render report")?;
-        let statuses =
-            report
-                .graphics
-                .iter()
-                .fold(BTreeMap::<String, usize>::new(), |mut result, graphic| {
+            image.texture_descriptor.usage |= TextureUsages::COPY_SRC;
+            let target = app.world_mut().resource_mut::<Assets<Image>>().add(image);
+            app.world_mut()
+                .entity_mut(camera)
+                .insert(RenderTarget::Image(target.clone().into()));
+            let mut ready_frames = 0;
+            while ready_frames < 3 {
+                update(&mut app, deadline)?;
+                ready_frames = if ready(&app) { ready_frames + 1 } else { 0 };
+            }
+            app.world_mut()
+                .spawn(Screenshot::image(target))
+                .observe(captured);
+            while app.world().resource::<Capture>().image.is_none() {
+                update(&mut app, deadline)?;
+            }
+            let image = app
+                .world_mut()
+                .resource_mut::<Capture>()
+                .image
+                .take()
+                .ok_or("screenshot observer returned no minimap image")?
+                .try_into_dynamic()?;
+            let filename = format!("{}-{}x{}.png", mode.name, pixels[0], pixels[1]);
+            image.save(directory.join(&filename))?;
+            let rgba = image.to_rgba8();
+            let colors = rgba
+                .pixels()
+                .map(|pixel| [pixel.0[0] >> 4, pixel.0[1] >> 4, pixel.0[2] >> 4])
+                .collect::<BTreeSet<_>>();
+            if colors.len() < 16 {
+                return Err(
+                    "minimap capture lacks enough color variation to verify textured graphics"
+                        .into(),
+                );
+            }
+            let crop_width = (440.0 * scale).ceil() as u32;
+            let crop_height = (460.0 * scale).ceil() as u32;
+            let crop_file = format!("{}-{}x{}-detail.png", mode.name, pixels[0], pixels[1]);
+            image
+                .crop_imm(pixels[0] - crop_width, 0, crop_width, crop_height)
+                .save(directory.join(&crop_file))?;
+            let preview = app.world().resource::<Preview>();
+            let report = preview
+                .report
+                .as_ref()
+                .ok_or("no source panel render report")?;
+            let statuses = report.graphics.iter().fold(
+                BTreeMap::<String, usize>::new(),
+                |mut result, graphic| {
                     *result.entry(graphic.status.clone()).or_default() += 1;
                     result
-                });
-        let report_file = format!("prefab-{}x{}.json", pixels[0], pixels[1]);
-        serde_json::to_writer_pretty(std::fs::File::create(directory.join(&report_file))?, report)?;
-        captures.push(serde_json::json!({"file":filename,"report":report_file,"detail_file":crop_file,"detail_crop":[pixels[0]-crop_width,0,crop_width,crop_height],"pixels":pixels,"scale_factor":scale,"graphic_statuses":statuses,"distinct_rgb_buckets":colors.len()}));
+                },
+            );
+            let report_file = format!("{}-{}x{}.json", mode.name, pixels[0], pixels[1]);
+            // Keep the production report fields at the root for existing consumers.
+            let mut graphic_report = serde_json::to_value(report)?;
+            graphic_report["preview_mode"] = json!(mode.name);
+            graphic_report["initialization_profile"] = mode.profile.clone();
+            graphic_report["preview_caveats"] = json!(mode.caveats);
+            serde_json::to_writer_pretty(
+                std::fs::File::create(directory.join(&report_file))?,
+                &graphic_report,
+            )?;
+            captures.push(json!({
+                "file": filename,
+                "report": report_file,
+                "detail_file": crop_file,
+                "detail_crop": [pixels[0] - crop_width, 0, crop_width, crop_height],
+                "pixels": pixels,
+                "scale_factor": scale,
+                "preview_mode": mode.name,
+                "initialization_profile": mode.profile.get("file"),
+                "bindings": report.bindings,
+                "preview_caveats": mode.caveats,
+                "graphic_statuses": statuses,
+                "distinct_rgb_buckets": colors.len()
+            }));
+        }
+        let report = app
+            .world()
+            .resource::<Preview>()
+            .report
+            .as_ref()
+            .ok_or("no source panel render report for capture mode")?;
+        mode_reports.push(json!({
+            "name": mode.name,
+            "initialization_profile": mode.profile,
+            "bindings": report.bindings,
+            "caveats": mode.caveats
+        }));
     }
     let adapter = app.world().resource::<RenderAdapterInfo>();
     let report = serde_json::json!({"source_apk_sha256":app.world().resource::<Preview>().renderer.panel.source_apk_sha256,
         "bevy_version":"0.20.1","bevy_egui_version":"0.43.1","egui_version":"0.36.2",
         "gpu":adapter.name,"driver":adapter.driver_info,"backend":format!("{:?}",adapter.backend),
         "parent_canvas_input":{"reference_resolution":[1920,1080],"reference_pixels_per_unit":100,"scale_rule":"min(width/1920,height/1080)","bootstrap_evidence":"../minimap-canvas-review.md","battle_minimap_runtime_parentage_verified":false},
-        "runtime_bindings":{},"captures":captures,
-        "limitations":["These are source prefab previews rendered by Bevy/egui, not screenshots of the APK or proof of pixel equality.",
-            "Runtime map texture and state are unbound; all serialized template nodes remain active unless their source components are disabled.",
+        "preview_modes":mode_reports,"captures":captures,
+        "limitations":["These are source panel previews rendered by Bevy/egui, not screenshots of the APK or proof of pixel equality.",
+            "Runtime map texture is unbound. Visibility inputs and their static-evidence caveats are recorded separately for each preview mode.",
+            "Constructor zoom 15 does not establish a RawImage UV setter, runtime texture or final image scale; no such binding is applied.",
             "Full per-graphic reports identify unsupported materials, custom stencil/fog and line rendering, null sprite references and font/layout limits."]});
     serde_json::to_writer_pretty(
         std::fs::File::create(directory.join("render.json"))?,
         &report,
     )?;
     println!(
-        "Captured source BattleMinimap at two explicit canvas sizes: {}",
+        "Captured {} source BattleMinimap previews at two explicit canvas sizes: {}",
+        captures.len(),
         directory.display()
     );
     Ok(())

@@ -1,0 +1,5225 @@
+{
+  "bindings": {
+    "anchored_positions": [],
+    "raw_images": [],
+    "text": [],
+    "visibility": [
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "-1797627085918124301"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "-3543335029901358633"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "-5063654596796734279"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "-5262363387168547893"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "-7139541613775318912"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "-7996231445121348839"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "-8294374823165935752"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "-9204725439304705299"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "1651694541040224185"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "2391313024899094591"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "2736434523089675485"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "4458685810974747162"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "4820699717724347823"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "5159176092881812020"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "5985292754087571339"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "6360961865288636768"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "7485614794676456502"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "8363443611025557459"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "8771581050433998562"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "8869356163041564258"
+        }
+      },
+      {
+        "active_self": false,
+        "node": {
+          "bundle": "assets/ui/battleminimap.ab",
+          "cab": "CAB-88df926bf45d4de159fb33b326042714",
+          "path_id": "9090670034721949667"
+        }
+      }
+    ]
+  },
+  "bound_components": 21,
+  "decoded_atlases": 6,
+  "embedded_fonts": 1,
+  "graphics": [
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-206775062696373360"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/Image",
+      "screen_corners": [
+        [
+          1090.0001220703125,
+          218.2666473388672
+        ],
+        [
+          1263.3333740234375,
+          218.2666473388672
+        ],
+        [
+          1263.3333740234375,
+          44.93330383300781
+        ],
+        [
+          1090.0001220703125,
+          44.93330383300781
+        ]
+      ],
+      "status": "disabled",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "1730148555634484190"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu",
+      "screen_corners": [
+        [
+          1090.0001220703125,
+          218.2666473388672
+        ],
+        [
+          1263.3333740234375,
+          218.2666473388672
+        ],
+        [
+          1263.3333740234375,
+          44.93330383300781
+        ],
+        [
+          1090.0001220703125,
+          44.93330383300781
+        ]
+      ],
+      "status": "mask_only",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "910110631840687877"
+      },
+      "detail": "source RawImage texture is null/unbound or absent from prepared package",
+      "kind": "raw_image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_lefttop",
+      "screen_corners": [
+        [
+          494.00006103515625,
+          814.2666625976562
+        ],
+        [
+          1859.33349609375,
+          814.2666625976562
+        ],
+        [
+          1859.33349609375,
+          -551.0667114257812
+        ],
+        [
+          494.00006103515625,
+          -551.0667114257812
+        ]
+      ],
+      "status": "unsupported",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "2471331752706088799"
+      },
+      "detail": "source Image sprite is null/unresolved",
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_lefttop/m_dolphinIcon_root/m_dolphinIcon",
+      "screen_corners": [
+        [
+          -500.0,
+          1808.933349609375
+        ],
+        [
+          -480.0,
+          1808.933349609375
+        ],
+        [
+          -480.0,
+          1787.60009765625
+        ],
+        [
+          -500.0,
+          1787.60009765625
+        ]
+      ],
+      "status": "unsupported",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-9161397911373041140"
+      },
+      "detail": "source custom line renderer is not implemented",
+      "kind": "custom_graphic",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_lefttop/m_map_line_root",
+      "screen_corners": [
+        [
+          1143.3333740234375,
+          164.93331909179688
+        ],
+        [
+          1210.0001220703125,
+          164.93331909179688
+        ],
+        [
+          1210.0001220703125,
+          98.26663970947266
+        ],
+        [
+          1143.3333740234375,
+          98.26663970947266
+        ]
+      ],
+      "status": "unsupported",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "2284091076938667195"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_lefttop/m_map_line_root/m_map_line",
+      "screen_corners": [
+        [
+          1174.666748046875,
+          491.5999755859375
+        ],
+        [
+          1178.666748046875,
+          491.5999755859375
+        ],
+        [
+          1178.666748046875,
+          -228.4000244140625
+        ],
+        [
+          1174.666748046875,
+          -228.4000244140625
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-3665848432078153960"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_lefttop/m_lineDrawer/m_image_1",
+      "screen_corners": [
+        [
+          1160.0001220703125,
+          148.2666473388672
+        ],
+        [
+          1193.3333740234375,
+          148.2666473388672
+        ],
+        [
+          1193.3333740234375,
+          114.93330383300781
+        ],
+        [
+          1160.0001220703125,
+          114.93330383300781
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "5450308768978056082"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_lefttop/m_lineDrawer/m_image_2",
+      "screen_corners": [
+        [
+          1167.666748046875,
+          139.9333038330078
+        ],
+        [
+          1185.666748046875,
+          139.9333038330078
+        ],
+        [
+          1185.666748046875,
+          123.26663970947266
+        ],
+        [
+          1167.666748046875,
+          123.26663970947266
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-7220416675196085396"
+      },
+      "detail": "source custom line renderer is not implemented",
+      "kind": "custom_graphic",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_lefttop/m_lineDrawer/m_line",
+      "screen_corners": [
+        [
+          1160.0001220703125,
+          148.2666473388672
+        ],
+        [
+          1193.3333740234375,
+          148.2666473388672
+        ],
+        [
+          1193.3333740234375,
+          114.93330383300781
+        ],
+        [
+          1160.0001220703125,
+          114.93330383300781
+        ]
+      ],
+      "status": "unsupported",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "5040381416785572037"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_cardBuilding_parent/m_cardBuildingTag_img",
+      "screen_corners": [
+        [
+          1160.666748046875,
+          148.66664123535156
+        ],
+        [
+          1192.666748046875,
+          148.66664123535156
+        ],
+        [
+          1192.666748046875,
+          114.53330993652344
+        ],
+        [
+          1160.666748046875,
+          114.53330993652344
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "9159337500473254334"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_self_vehicle_parent/m_vehicle_icon",
+      "screen_corners": [
+        [
+          1156.666748046875,
+          138.9333038330078
+        ],
+        [
+          1196.666748046875,
+          138.9333038330078
+        ],
+        [
+          1196.666748046875,
+          124.26663970947266
+        ],
+        [
+          1156.666748046875,
+          124.26663970947266
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-4717299152129207583"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_die_dropitem_pos",
+      "screen_corners": [
+        [
+          1160.0001220703125,
+          148.2666473388672
+        ],
+        [
+          1193.3333740234375,
+          148.2666473388672
+        ],
+        [
+          1193.3333740234375,
+          114.93330383300781
+        ],
+        [
+          1160.0001220703125,
+          114.93330383300781
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-5158974169312156198"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_die_dropitem_pos/Image",
+      "screen_corners": [
+        [
+          1153.3333740234375,
+          154.9333038330078
+        ],
+        [
+          1200.0001220703125,
+          154.9333038330078
+        ],
+        [
+          1200.0001220703125,
+          108.26663970947266
+        ],
+        [
+          1153.3333740234375,
+          108.26663970947266
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-758652163548034888"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_shouHuoJi_parent/m_shouHuoJi_img/Image",
+      "screen_corners": [
+        [
+          1160.666748046875,
+          148.66664123535156
+        ],
+        [
+          1192.666748046875,
+          148.66664123535156
+        ],
+        [
+          1192.666748046875,
+          114.53330993652344
+        ],
+        [
+          1160.666748046875,
+          114.53330993652344
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "1598328124283463260"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_shouHuoJi_parent/m_shouHuoJi_img/Image (1)",
+      "screen_corners": [
+        [
+          1160.666748046875,
+          148.66664123535156
+        ],
+        [
+          1192.666748046875,
+          148.66664123535156
+        ],
+        [
+          1192.666748046875,
+          114.53330993652344
+        ],
+        [
+          1160.666748046875,
+          114.53330993652344
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "8615286583416714994"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_shouHuoJi_parent/m_shouHuoJi_img/Image (2)",
+      "screen_corners": [
+        [
+          1160.666748046875,
+          148.66664123535156
+        ],
+        [
+          1192.666748046875,
+          148.66664123535156
+        ],
+        [
+          1192.666748046875,
+          114.53330993652344
+        ],
+        [
+          1160.666748046875,
+          114.53330993652344
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-6764867579351640288"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_fanmaiji_parent/m_fanmaiji_img/Image",
+      "screen_corners": [
+        [
+          1160.666748046875,
+          148.66664123535156
+        ],
+        [
+          1192.666748046875,
+          148.66664123535156
+        ],
+        [
+          1192.666748046875,
+          114.53330993652344
+        ],
+        [
+          1160.666748046875,
+          114.53330993652344
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-6767480056867365863"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_fanmaiji_parent/m_fanmaiji_img/Image (1)",
+      "screen_corners": [
+        [
+          1160.666748046875,
+          148.66664123535156
+        ],
+        [
+          1192.666748046875,
+          148.66664123535156
+        ],
+        [
+          1192.666748046875,
+          114.53330993652344
+        ],
+        [
+          1160.666748046875,
+          114.53330993652344
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-8244934786950371704"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_fanmaiji_parent/m_fanmaiji_img/Image (2)",
+      "screen_corners": [
+        [
+          1160.666748046875,
+          148.66664123535156
+        ],
+        [
+          1192.666748046875,
+          148.66664123535156
+        ],
+        [
+          1192.666748046875,
+          114.53330993652344
+        ],
+        [
+          1160.666748046875,
+          114.53330993652344
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-5827975719429608941"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_tool_box_root/m_tool_box/d1",
+      "screen_corners": [
+        [
+          1165.0001220703125,
+          143.2666473388672
+        ],
+        [
+          1188.3333740234375,
+          143.2666473388672
+        ],
+        [
+          1188.3333740234375,
+          119.93331146240234
+        ],
+        [
+          1165.0001220703125,
+          119.93331146240234
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "4274860162494206768"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_tool_box_root/m_tool_box/d1/Image",
+      "screen_corners": [
+        [
+          1163.3333740234375,
+          144.9333038330078
+        ],
+        [
+          1190.0001220703125,
+          144.9333038330078
+        ],
+        [
+          1190.0001220703125,
+          118.26663970947266
+        ],
+        [
+          1163.3333740234375,
+          118.26663970947266
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "3393133915890641786"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_tool_box_root/m_tool_box_r",
+      "screen_corners": [
+        [
+          1165.0001220703125,
+          143.2666473388672
+        ],
+        [
+          1188.3333740234375,
+          143.2666473388672
+        ],
+        [
+          1188.3333740234375,
+          119.93331146240234
+        ],
+        [
+          1165.0001220703125,
+          119.93331146240234
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-1644896983065732212"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_tool_box_root/m_tool_box_r/Image",
+      "screen_corners": [
+        [
+          1165.3333740234375,
+          142.9333038330078
+        ],
+        [
+          1188.0001220703125,
+          142.9333038330078
+        ],
+        [
+          1188.0001220703125,
+          120.26663970947266
+        ],
+        [
+          1165.3333740234375,
+          120.26663970947266
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-6586638056626521006"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_tool_box_root/m_tool_box_b",
+      "screen_corners": [
+        [
+          1165.0001220703125,
+          143.2666473388672
+        ],
+        [
+          1188.3333740234375,
+          143.2666473388672
+        ],
+        [
+          1188.3333740234375,
+          119.93331146240234
+        ],
+        [
+          1165.0001220703125,
+          119.93331146240234
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "8889755785086328816"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_tool_box_root/m_tool_box_b/Image",
+      "screen_corners": [
+        [
+          1165.3333740234375,
+          142.9333038330078
+        ],
+        [
+          1188.0001220703125,
+          142.9333038330078
+        ],
+        [
+          1188.0001220703125,
+          120.26663970947266
+        ],
+        [
+          1165.3333740234375,
+          120.26663970947266
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-450296602642416088"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_second_battle_root/m_second_battle_tag",
+      "screen_corners": [
+        [
+          1163.3333740234375,
+          144.9333038330078
+        ],
+        [
+          1190.0001220703125,
+          144.9333038330078
+        ],
+        [
+          1190.0001220703125,
+          118.26663970947266
+        ],
+        [
+          1163.3333740234375,
+          118.26663970947266
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-3233128186880481827"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_second_battle_root/m_second_battle_tag/Image",
+      "screen_corners": [
+        [
+          1163.3333740234375,
+          144.9333038330078
+        ],
+        [
+          1190.0001220703125,
+          144.9333038330078
+        ],
+        [
+          1190.0001220703125,
+          118.26663970947266
+        ],
+        [
+          1163.3333740234375,
+          118.26663970947266
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "1708327891078187099"
+      },
+      "detail": "source Image sprite is null/unresolved",
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_main_tags_root/m_main_tag",
+      "screen_corners": [
+        [
+          1047.0657958984375,
+          36.8009033203125
+        ],
+        [
+          1070.4010009765625,
+          36.8009033203125
+        ],
+        [
+          1070.4010009765625,
+          13.465700149536133
+        ],
+        [
+          1047.0657958984375,
+          13.465700149536133
+        ]
+      ],
+      "status": "unsupported",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-8013713179495316361"
+      },
+      "detail": "source Image sprite is null/unresolved",
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_plant_tags_root/m_plant_tag",
+      "screen_corners": [
+        [
+          1070.9991455078125,
+          135.93423461914062
+        ],
+        [
+          1094.3343505859375,
+          135.93423461914062
+        ],
+        [
+          1094.3343505859375,
+          112.59903717041016
+        ],
+        [
+          1070.9991455078125,
+          112.59903717041016
+        ]
+      ],
+      "status": "unsupported",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "3757598974622268185"
+      },
+      "detail": "source Image sprite is null/unresolved",
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_tree_tags_root/m_tree_tag",
+      "screen_corners": [
+        [
+          1236.9334716796875,
+          38.53330612182617
+        ],
+        [
+          1260.2667236328125,
+          38.53330612182617
+        ],
+        [
+          1260.2667236328125,
+          15.199971199035645
+        ],
+        [
+          1236.9334716796875,
+          15.199971199035645
+        ]
+      ],
+      "status": "unsupported",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-3005095921244358539"
+      },
+      "detail": "source Image sprite is null/unresolved",
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_lajitong_tags_root/m_lajitong_tag",
+      "screen_corners": [
+        [
+          1236.9334716796875,
+          38.533321380615234
+        ],
+        [
+          1260.2667236328125,
+          38.533321380615234
+        ],
+        [
+          1260.2667236328125,
+          15.199986457824707
+        ],
+        [
+          1236.9334716796875,
+          15.199986457824707
+        ]
+      ],
+      "status": "unsupported",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-3424566548997510296"
+      },
+      "detail": "source Image sprite is null/unresolved",
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_xiangzi_tags_root/m_xiangzi_tag",
+      "screen_corners": [
+        [
+          1236.9482421875,
+          38.510414123535156
+        ],
+        [
+          1260.287353515625,
+          38.510414123535156
+        ],
+        [
+          1260.287353515625,
+          15.171335220336914
+        ],
+        [
+          1236.9482421875,
+          15.171335220336914
+        ]
+      ],
+      "status": "unsupported",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-2990008754351053070"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_airdrop_pos_root/m_airDrop_tag",
+      "screen_corners": [
+        [
+          1165.0001220703125,
+          143.2666473388672
+        ],
+        [
+          1188.3333740234375,
+          143.2666473388672
+        ],
+        [
+          1188.3333740234375,
+          119.93331146240234
+        ],
+        [
+          1165.0001220703125,
+          119.93331146240234
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "1103607428964535056"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_airdrop_pos_root/m_airDrop_tag/Image",
+      "screen_corners": [
+        [
+          1165.0001220703125,
+          143.2666473388672
+        ],
+        [
+          1188.3333740234375,
+          143.2666473388672
+        ],
+        [
+          1188.3333740234375,
+          119.93331146240234
+        ],
+        [
+          1165.0001220703125,
+          119.93331146240234
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "6626482401356606587"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_badge_pos_root/m_badge_img/Image",
+      "screen_corners": [
+        [
+          1160.0001220703125,
+          148.2666473388672
+        ],
+        [
+          1193.3333740234375,
+          148.2666473388672
+        ],
+        [
+          1193.3333740234375,
+          114.93330383300781
+        ],
+        [
+          1160.0001220703125,
+          114.93330383300781
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-6976763220545043545"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_freighter_pos_root/m_freighter_tag",
+      "screen_corners": [
+        [
+          1165.0001220703125,
+          143.2666473388672
+        ],
+        [
+          1188.3333740234375,
+          143.2666473388672
+        ],
+        [
+          1188.3333740234375,
+          119.93331146240234
+        ],
+        [
+          1165.0001220703125,
+          119.93331146240234
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-2270622695001279709"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_common_image_root/m_common_icon",
+      "screen_corners": [
+        [
+          1163.3333740234375,
+          144.9333038330078
+        ],
+        [
+          1190.0001220703125,
+          144.9333038330078
+        ],
+        [
+          1190.0001220703125,
+          118.26663970947266
+        ],
+        [
+          1163.3333740234375,
+          118.26663970947266
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-5762921913953288271"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_kongxizhuangzhi_root/m_kongxizhuangzhi/Image",
+      "screen_corners": [
+        [
+          1163.3333740234375,
+          144.9333038330078
+        ],
+        [
+          1190.0001220703125,
+          144.9333038330078
+        ],
+        [
+          1190.0001220703125,
+          118.26663970947266
+        ],
+        [
+          1163.3333740234375,
+          118.26663970947266
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-2828374503302294817"
+      },
+      "detail": "source font lacks required mappings: 时 (U+65F6), 秒 (U+79D2), 解 (U+89E3), 计 (U+8BA1)",
+      "kind": "text",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_kongxizhuangzhi_root/m_kongxizhuangzhi/txt_time_kongxi",
+      "screen_corners": [
+        [
+          1123.3133544921875,
+          217.47998046875
+        ],
+        [
+          1229.9801025390625,
+          217.47998046875
+        ],
+        [
+          1229.9801025390625,
+          150.81329345703125
+        ],
+        [
+          1123.3133544921875,
+          150.81329345703125
+        ]
+      ],
+      "status": "unsupported",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "3427181931438985651"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_kongxibiaozhi/Image",
+      "screen_corners": [
+        [
+          1110.0001220703125,
+          198.2666473388672
+        ],
+        [
+          1243.3333740234375,
+          198.2666473388672
+        ],
+        [
+          1243.3333740234375,
+          64.93330383300781
+        ],
+        [
+          1110.0001220703125,
+          64.93330383300781
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-5013600933141940178"
+      },
+      "detail": "source font lacks required mappings: 丧 (U+4E27), 尸 (U+5C38), 领 (U+9886)",
+      "kind": "text",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_sangshishouling/Text_name",
+      "screen_corners": [
+        [
+          1124.586669921875,
+          120.48664093017578
+        ],
+        [
+          1231.25341796875,
+          120.48664093017578
+        ],
+        [
+          1231.25341796875,
+          53.819969177246094
+        ],
+        [
+          1124.586669921875,
+          53.819969177246094
+        ]
+      ],
+      "status": "unsupported",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "2901052152206400476"
+      },
+      "detail": "source Image sprite is null/unresolved",
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_sangshishouling/Image",
+      "screen_corners": [
+        [
+          1163.3333740234375,
+          144.9333038330078
+        ],
+        [
+          1190.0001220703125,
+          144.9333038330078
+        ],
+        [
+          1190.0001220703125,
+          118.26663970947266
+        ],
+        [
+          1163.3333740234375,
+          118.26663970947266
+        ]
+      ],
+      "status": "unsupported",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "794010563913570457"
+      },
+      "detail": "source font lacks required mappings: 时 (U+65F6), 秒 (U+79D2), 计 (U+8BA1)",
+      "kind": "text",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_sangshishouling/txt_time_sangshiboss",
+      "screen_corners": [
+        [
+          1123.3133544921875,
+          200.8133087158203
+        ],
+        [
+          1229.9801025390625,
+          200.8133087158203
+        ],
+        [
+          1229.9801025390625,
+          167.47996520996094
+        ],
+        [
+          1123.3133544921875,
+          167.47996520996094
+        ]
+      ],
+      "status": "unsupported",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-8961509470392150372"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member1/m_mark",
+      "screen_corners": [
+        [
+          1165.86669921875,
+          147.79995727539062
+        ],
+        [
+          1187.466796875,
+          147.79995727539062
+        ],
+        [
+          1187.466796875,
+          115.39996337890625
+        ],
+        [
+          1165.86669921875,
+          115.39996337890625
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-3269159970480117610"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member1/m_pos_light",
+      "screen_corners": [
+        [
+          1136.666748046875,
+          166.26663208007812
+        ],
+        [
+          1216.666748046875,
+          166.26663208007812
+        ],
+        [
+          1216.666748046875,
+          96.93328857421875
+        ],
+        [
+          1136.666748046875,
+          96.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "7461833535609772024"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member1/m_pos",
+      "screen_corners": [
+        [
+          1150.0001220703125,
+          158.26663208007812
+        ],
+        [
+          1203.3333740234375,
+          158.26663208007812
+        ],
+        [
+          1203.3333740234375,
+          104.93328857421875
+        ],
+        [
+          1150.0001220703125,
+          104.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "4643146956208256644"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member1/m_drive",
+      "screen_corners": [
+        [
+          1165.0001220703125,
+          143.26663208007812
+        ],
+        [
+          1188.3333740234375,
+          143.26663208007812
+        ],
+        [
+          1188.3333740234375,
+          119.93329620361328
+        ],
+        [
+          1165.0001220703125,
+          119.93329620361328
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "1539423634864071557"
+      },
+      "detail": null,
+      "kind": "text",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member1/txt_role_index",
+      "screen_corners": [
+        [
+          1166.666748046875,
+          141.59996032714844
+        ],
+        [
+          1186.666748046875,
+          141.59996032714844
+        ],
+        [
+          1186.666748046875,
+          121.59996032714844
+        ],
+        [
+          1166.666748046875,
+          121.59996032714844
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "5651091543829829618"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member1/m_dead",
+      "screen_corners": [
+        [
+          1163.3333740234375,
+          144.93328857421875
+        ],
+        [
+          1190.0001220703125,
+          144.93328857421875
+        ],
+        [
+          1190.0001220703125,
+          118.2666244506836
+        ],
+        [
+          1163.3333740234375,
+          118.2666244506836
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "1024546070091204728"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member1/m_dead/Image (1)",
+      "screen_corners": [
+        [
+          1160.0001220703125,
+          148.26663208007812
+        ],
+        [
+          1193.3333740234375,
+          148.26663208007812
+        ],
+        [
+          1193.3333740234375,
+          114.93328857421875
+        ],
+        [
+          1160.0001220703125,
+          114.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-6759565086386157554"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member1/m_mark_dir/Image",
+      "screen_corners": [
+        [
+          1164.7667236328125,
+          78.89995574951172
+        ],
+        [
+          1188.5667724609375,
+          78.89995574951172
+        ],
+        [
+          1188.5667724609375,
+          48.299949645996094
+        ],
+        [
+          1164.7667236328125,
+          48.299949645996094
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "7529355062072949939"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member1/m_mark_dir/Image/m_mark",
+      "screen_corners": [
+        [
+          1169.5267333984375,
+          77.82325744628906
+        ],
+        [
+          1183.8067626953125,
+          77.82325744628906
+        ],
+        [
+          1183.8067626953125,
+          56.40325927734375
+        ],
+        [
+          1169.5267333984375,
+          56.40325927734375
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-680350532444162127"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member2/m_mark",
+      "screen_corners": [
+        [
+          1165.86669921875,
+          147.79995727539062
+        ],
+        [
+          1187.466796875,
+          147.79995727539062
+        ],
+        [
+          1187.466796875,
+          115.39996337890625
+        ],
+        [
+          1165.86669921875,
+          115.39996337890625
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "8639836345197173684"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member2/m_pos_light",
+      "screen_corners": [
+        [
+          1136.666748046875,
+          166.26663208007812
+        ],
+        [
+          1216.666748046875,
+          166.26663208007812
+        ],
+        [
+          1216.666748046875,
+          96.93328857421875
+        ],
+        [
+          1136.666748046875,
+          96.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-2080193330810904990"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member2/m_pos",
+      "screen_corners": [
+        [
+          1150.0001220703125,
+          158.26663208007812
+        ],
+        [
+          1203.3333740234375,
+          158.26663208007812
+        ],
+        [
+          1203.3333740234375,
+          104.93328857421875
+        ],
+        [
+          1150.0001220703125,
+          104.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "5446453134631236834"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member2/m_drive",
+      "screen_corners": [
+        [
+          1165.0001220703125,
+          143.26663208007812
+        ],
+        [
+          1188.3333740234375,
+          143.26663208007812
+        ],
+        [
+          1188.3333740234375,
+          119.93329620361328
+        ],
+        [
+          1165.0001220703125,
+          119.93329620361328
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-4683793599351829344"
+      },
+      "detail": null,
+      "kind": "text",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member2/txt_role_index",
+      "screen_corners": [
+        [
+          1166.666748046875,
+          141.59996032714844
+        ],
+        [
+          1186.666748046875,
+          141.59996032714844
+        ],
+        [
+          1186.666748046875,
+          121.59996032714844
+        ],
+        [
+          1166.666748046875,
+          121.59996032714844
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-7041905581231446822"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member2/m_dead",
+      "screen_corners": [
+        [
+          1163.3333740234375,
+          144.93328857421875
+        ],
+        [
+          1190.0001220703125,
+          144.93328857421875
+        ],
+        [
+          1190.0001220703125,
+          118.2666244506836
+        ],
+        [
+          1163.3333740234375,
+          118.2666244506836
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-7536232945316101989"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member2/m_dead/Image (2)",
+      "screen_corners": [
+        [
+          1160.0001220703125,
+          148.26663208007812
+        ],
+        [
+          1193.3333740234375,
+          148.26663208007812
+        ],
+        [
+          1193.3333740234375,
+          114.93328857421875
+        ],
+        [
+          1160.0001220703125,
+          114.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-8839597695424575304"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member2/m_mark_dir/Image",
+      "screen_corners": [
+        [
+          1164.767333984375,
+          78.90243530273438
+        ],
+        [
+          1188.566162109375,
+          78.90243530273438
+        ],
+        [
+          1188.566162109375,
+          48.30386734008789
+        ],
+        [
+          1164.767333984375,
+          48.30386734008789
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-6291387052878521029"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member2/m_mark_dir/Image/m_mark",
+      "screen_corners": [
+        [
+          1169.527099609375,
+          77.8257827758789
+        ],
+        [
+          1183.806396484375,
+          77.8257827758789
+        ],
+        [
+          1183.806396484375,
+          56.40679168701172
+        ],
+        [
+          1169.527099609375,
+          56.40679168701172
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-5939753046788685362"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member3/m_mark",
+      "screen_corners": [
+        [
+          1165.86669921875,
+          147.79995727539062
+        ],
+        [
+          1187.466796875,
+          147.79995727539062
+        ],
+        [
+          1187.466796875,
+          115.39996337890625
+        ],
+        [
+          1165.86669921875,
+          115.39996337890625
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "8508533173810945796"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member3/m_pos_light",
+      "screen_corners": [
+        [
+          1136.666748046875,
+          166.26663208007812
+        ],
+        [
+          1216.666748046875,
+          166.26663208007812
+        ],
+        [
+          1216.666748046875,
+          96.93328857421875
+        ],
+        [
+          1136.666748046875,
+          96.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-4042811897527119139"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member3/m_pos",
+      "screen_corners": [
+        [
+          1150.0001220703125,
+          158.26663208007812
+        ],
+        [
+          1203.3333740234375,
+          158.26663208007812
+        ],
+        [
+          1203.3333740234375,
+          104.93328857421875
+        ],
+        [
+          1150.0001220703125,
+          104.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "4294238319223499999"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member3/m_drive",
+      "screen_corners": [
+        [
+          1165.0001220703125,
+          143.26663208007812
+        ],
+        [
+          1188.3333740234375,
+          143.26663208007812
+        ],
+        [
+          1188.3333740234375,
+          119.93329620361328
+        ],
+        [
+          1165.0001220703125,
+          119.93329620361328
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-3209066543663368090"
+      },
+      "detail": null,
+      "kind": "text",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member3/txt_role_index",
+      "screen_corners": [
+        [
+          1166.666748046875,
+          141.59996032714844
+        ],
+        [
+          1186.666748046875,
+          141.59996032714844
+        ],
+        [
+          1186.666748046875,
+          121.59996032714844
+        ],
+        [
+          1166.666748046875,
+          121.59996032714844
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-9015831323673747639"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member3/m_dead",
+      "screen_corners": [
+        [
+          1163.3333740234375,
+          144.93328857421875
+        ],
+        [
+          1190.0001220703125,
+          144.93328857421875
+        ],
+        [
+          1190.0001220703125,
+          118.2666244506836
+        ],
+        [
+          1163.3333740234375,
+          118.2666244506836
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-6459636631941707669"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member3/m_dead/Image (3)",
+      "screen_corners": [
+        [
+          1160.0001220703125,
+          148.26663208007812
+        ],
+        [
+          1193.3333740234375,
+          148.26663208007812
+        ],
+        [
+          1193.3333740234375,
+          114.93328857421875
+        ],
+        [
+          1160.0001220703125,
+          114.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-6020720955717990528"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member3/m_mark_dir/Image",
+      "screen_corners": [
+        [
+          1164.767333984375,
+          78.90243530273438
+        ],
+        [
+          1188.566162109375,
+          78.90243530273438
+        ],
+        [
+          1188.566162109375,
+          48.30386734008789
+        ],
+        [
+          1164.767333984375,
+          48.30386734008789
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "1218524451957703277"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member3/m_mark_dir/Image/m_mark",
+      "screen_corners": [
+        [
+          1169.527099609375,
+          77.8257827758789
+        ],
+        [
+          1183.806396484375,
+          77.8257827758789
+        ],
+        [
+          1183.806396484375,
+          56.40679168701172
+        ],
+        [
+          1169.527099609375,
+          56.40679168701172
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-9156463963515784010"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member4/m_mark",
+      "screen_corners": [
+        [
+          1165.86669921875,
+          147.79995727539062
+        ],
+        [
+          1187.466796875,
+          147.79995727539062
+        ],
+        [
+          1187.466796875,
+          115.39996337890625
+        ],
+        [
+          1165.86669921875,
+          115.39996337890625
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "3337575069050577754"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member4/m_pos_light",
+      "screen_corners": [
+        [
+          1136.666748046875,
+          166.26663208007812
+        ],
+        [
+          1216.666748046875,
+          166.26663208007812
+        ],
+        [
+          1216.666748046875,
+          96.93328857421875
+        ],
+        [
+          1136.666748046875,
+          96.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "8753838094021944108"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member4/m_pos",
+      "screen_corners": [
+        [
+          1150.0001220703125,
+          158.26663208007812
+        ],
+        [
+          1203.3333740234375,
+          158.26663208007812
+        ],
+        [
+          1203.3333740234375,
+          104.93328857421875
+        ],
+        [
+          1150.0001220703125,
+          104.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-1259193736468805782"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member4/m_drive",
+      "screen_corners": [
+        [
+          1165.0001220703125,
+          143.26663208007812
+        ],
+        [
+          1188.3333740234375,
+          143.26663208007812
+        ],
+        [
+          1188.3333740234375,
+          119.93329620361328
+        ],
+        [
+          1165.0001220703125,
+          119.93329620361328
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-1947903387683606974"
+      },
+      "detail": null,
+      "kind": "text",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member4/txt_role_index",
+      "screen_corners": [
+        [
+          1166.666748046875,
+          141.59996032714844
+        ],
+        [
+          1186.666748046875,
+          141.59996032714844
+        ],
+        [
+          1186.666748046875,
+          121.59996032714844
+        ],
+        [
+          1166.666748046875,
+          121.59996032714844
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-4396958845608646103"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member4/m_dead",
+      "screen_corners": [
+        [
+          1163.3333740234375,
+          144.93328857421875
+        ],
+        [
+          1190.0001220703125,
+          144.93328857421875
+        ],
+        [
+          1190.0001220703125,
+          118.2666244506836
+        ],
+        [
+          1163.3333740234375,
+          118.2666244506836
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "387675904719364106"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member4/m_dead/Image (4)",
+      "screen_corners": [
+        [
+          1160.0001220703125,
+          148.26663208007812
+        ],
+        [
+          1193.3333740234375,
+          148.26663208007812
+        ],
+        [
+          1193.3333740234375,
+          114.93328857421875
+        ],
+        [
+          1160.0001220703125,
+          114.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-60908173465749259"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member4/m_mark_dir/Image",
+      "screen_corners": [
+        [
+          1164.767333984375,
+          78.90243530273438
+        ],
+        [
+          1188.566162109375,
+          78.90243530273438
+        ],
+        [
+          1188.566162109375,
+          48.30386734008789
+        ],
+        [
+          1164.767333984375,
+          48.30386734008789
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "9034494702956998557"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member4/m_mark_dir/Image/m_mark",
+      "screen_corners": [
+        [
+          1169.527099609375,
+          77.8257827758789
+        ],
+        [
+          1183.806396484375,
+          77.8257827758789
+        ],
+        [
+          1183.806396484375,
+          56.40679168701172
+        ],
+        [
+          1169.527099609375,
+          56.40679168701172
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "4078942525187209719"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member5/m_mark",
+      "screen_corners": [
+        [
+          1165.86669921875,
+          147.79995727539062
+        ],
+        [
+          1187.466796875,
+          147.79995727539062
+        ],
+        [
+          1187.466796875,
+          115.39996337890625
+        ],
+        [
+          1165.86669921875,
+          115.39996337890625
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-99016425321791135"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member5/m_pos_light",
+      "screen_corners": [
+        [
+          1136.666748046875,
+          166.26663208007812
+        ],
+        [
+          1216.666748046875,
+          166.26663208007812
+        ],
+        [
+          1216.666748046875,
+          96.93328857421875
+        ],
+        [
+          1136.666748046875,
+          96.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "3822504733827244987"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member5/m_pos",
+      "screen_corners": [
+        [
+          1148.3333740234375,
+          159.93328857421875
+        ],
+        [
+          1205.0001220703125,
+          159.93328857421875
+        ],
+        [
+          1205.0001220703125,
+          103.2666244506836
+        ],
+        [
+          1148.3333740234375,
+          103.2666244506836
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "6492367079800455575"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member5/m_drive",
+      "screen_corners": [
+        [
+          1165.0001220703125,
+          143.26663208007812
+        ],
+        [
+          1188.3333740234375,
+          143.26663208007812
+        ],
+        [
+          1188.3333740234375,
+          119.93329620361328
+        ],
+        [
+          1165.0001220703125,
+          119.93329620361328
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-6941706987139283992"
+      },
+      "detail": null,
+      "kind": "text",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member5/txt_role_index",
+      "screen_corners": [
+        [
+          1166.666748046875,
+          141.59996032714844
+        ],
+        [
+          1186.666748046875,
+          141.59996032714844
+        ],
+        [
+          1186.666748046875,
+          121.59996032714844
+        ],
+        [
+          1166.666748046875,
+          121.59996032714844
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-4721797814859410301"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member5/m_dead",
+      "screen_corners": [
+        [
+          1163.3333740234375,
+          144.93328857421875
+        ],
+        [
+          1190.0001220703125,
+          144.93328857421875
+        ],
+        [
+          1190.0001220703125,
+          118.2666244506836
+        ],
+        [
+          1163.3333740234375,
+          118.2666244506836
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-5560256355124609612"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member5/m_dead/Image (4)",
+      "screen_corners": [
+        [
+          1160.0001220703125,
+          148.26663208007812
+        ],
+        [
+          1193.3333740234375,
+          148.26663208007812
+        ],
+        [
+          1193.3333740234375,
+          114.93328857421875
+        ],
+        [
+          1160.0001220703125,
+          114.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-8666338274566621051"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member5/m_mark_dir/Image",
+      "screen_corners": [
+        [
+          1164.767333984375,
+          78.90243530273438
+        ],
+        [
+          1188.566162109375,
+          78.90243530273438
+        ],
+        [
+          1188.566162109375,
+          48.30386734008789
+        ],
+        [
+          1164.767333984375,
+          48.30386734008789
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-4453957406950346308"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member5/m_mark_dir/Image/m_mark",
+      "screen_corners": [
+        [
+          1169.527099609375,
+          77.8257827758789
+        ],
+        [
+          1183.806396484375,
+          77.8257827758789
+        ],
+        [
+          1183.806396484375,
+          56.40679168701172
+        ],
+        [
+          1169.527099609375,
+          56.40679168701172
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "5124258276269434496"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member6/m_mark",
+      "screen_corners": [
+        [
+          1165.86669921875,
+          147.79995727539062
+        ],
+        [
+          1187.466796875,
+          147.79995727539062
+        ],
+        [
+          1187.466796875,
+          115.39996337890625
+        ],
+        [
+          1165.86669921875,
+          115.39996337890625
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-7332317244251167411"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member6/m_pos_light",
+      "screen_corners": [
+        [
+          1136.666748046875,
+          166.26663208007812
+        ],
+        [
+          1216.666748046875,
+          166.26663208007812
+        ],
+        [
+          1216.666748046875,
+          96.93328857421875
+        ],
+        [
+          1136.666748046875,
+          96.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-5786272566896070875"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member6/m_pos",
+      "screen_corners": [
+        [
+          1148.3333740234375,
+          159.93328857421875
+        ],
+        [
+          1205.0001220703125,
+          159.93328857421875
+        ],
+        [
+          1205.0001220703125,
+          103.2666244506836
+        ],
+        [
+          1148.3333740234375,
+          103.2666244506836
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-6961938916407927451"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member6/m_drive",
+      "screen_corners": [
+        [
+          1165.0001220703125,
+          143.26663208007812
+        ],
+        [
+          1188.3333740234375,
+          143.26663208007812
+        ],
+        [
+          1188.3333740234375,
+          119.93329620361328
+        ],
+        [
+          1165.0001220703125,
+          119.93329620361328
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "7325119284717631709"
+      },
+      "detail": null,
+      "kind": "text",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member6/txt_role_index",
+      "screen_corners": [
+        [
+          1166.666748046875,
+          141.59996032714844
+        ],
+        [
+          1186.666748046875,
+          141.59996032714844
+        ],
+        [
+          1186.666748046875,
+          121.59996032714844
+        ],
+        [
+          1166.666748046875,
+          121.59996032714844
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-5842664565815929861"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member6/m_dead",
+      "screen_corners": [
+        [
+          1163.3333740234375,
+          144.93328857421875
+        ],
+        [
+          1190.0001220703125,
+          144.93328857421875
+        ],
+        [
+          1190.0001220703125,
+          118.2666244506836
+        ],
+        [
+          1163.3333740234375,
+          118.2666244506836
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-3034050515514950343"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member6/m_dead/Image (4)",
+      "screen_corners": [
+        [
+          1160.0001220703125,
+          148.26663208007812
+        ],
+        [
+          1193.3333740234375,
+          148.26663208007812
+        ],
+        [
+          1193.3333740234375,
+          114.93328857421875
+        ],
+        [
+          1160.0001220703125,
+          114.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-3257509480687965639"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member6/m_mark_dir/Image",
+      "screen_corners": [
+        [
+          1164.767333984375,
+          78.90243530273438
+        ],
+        [
+          1188.566162109375,
+          78.90243530273438
+        ],
+        [
+          1188.566162109375,
+          48.30386734008789
+        ],
+        [
+          1164.767333984375,
+          48.30386734008789
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-7273703857794531302"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member6/m_mark_dir/Image/m_mark",
+      "screen_corners": [
+        [
+          1169.527099609375,
+          77.8257827758789
+        ],
+        [
+          1183.806396484375,
+          77.8257827758789
+        ],
+        [
+          1183.806396484375,
+          56.40679168701172
+        ],
+        [
+          1169.527099609375,
+          56.40679168701172
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "9131200541447146222"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member7/m_mark",
+      "screen_corners": [
+        [
+          1165.86669921875,
+          147.79995727539062
+        ],
+        [
+          1187.466796875,
+          147.79995727539062
+        ],
+        [
+          1187.466796875,
+          115.39996337890625
+        ],
+        [
+          1165.86669921875,
+          115.39996337890625
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "4886783659222382049"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member7/m_pos_light",
+      "screen_corners": [
+        [
+          1136.666748046875,
+          166.26663208007812
+        ],
+        [
+          1216.666748046875,
+          166.26663208007812
+        ],
+        [
+          1216.666748046875,
+          96.93328857421875
+        ],
+        [
+          1136.666748046875,
+          96.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-5573847122699868729"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member7/m_pos",
+      "screen_corners": [
+        [
+          1148.3333740234375,
+          159.93328857421875
+        ],
+        [
+          1205.0001220703125,
+          159.93328857421875
+        ],
+        [
+          1205.0001220703125,
+          103.2666244506836
+        ],
+        [
+          1148.3333740234375,
+          103.2666244506836
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "4515548531053080709"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member7/m_drive",
+      "screen_corners": [
+        [
+          1165.0001220703125,
+          143.26663208007812
+        ],
+        [
+          1188.3333740234375,
+          143.26663208007812
+        ],
+        [
+          1188.3333740234375,
+          119.93329620361328
+        ],
+        [
+          1165.0001220703125,
+          119.93329620361328
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "805641949088751949"
+      },
+      "detail": null,
+      "kind": "text",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member7/txt_role_index",
+      "screen_corners": [
+        [
+          1166.666748046875,
+          141.59996032714844
+        ],
+        [
+          1186.666748046875,
+          141.59996032714844
+        ],
+        [
+          1186.666748046875,
+          121.59996032714844
+        ],
+        [
+          1166.666748046875,
+          121.59996032714844
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "4967976671093327309"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member7/m_dead",
+      "screen_corners": [
+        [
+          1163.3333740234375,
+          144.93328857421875
+        ],
+        [
+          1190.0001220703125,
+          144.93328857421875
+        ],
+        [
+          1190.0001220703125,
+          118.2666244506836
+        ],
+        [
+          1163.3333740234375,
+          118.2666244506836
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-284878468972970836"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member7/m_dead/Image (4)",
+      "screen_corners": [
+        [
+          1160.0001220703125,
+          148.26663208007812
+        ],
+        [
+          1193.3333740234375,
+          148.26663208007812
+        ],
+        [
+          1193.3333740234375,
+          114.93328857421875
+        ],
+        [
+          1160.0001220703125,
+          114.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "4142164185400485528"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member7/m_mark_dir/Image",
+      "screen_corners": [
+        [
+          1164.767333984375,
+          78.90243530273438
+        ],
+        [
+          1188.566162109375,
+          78.90243530273438
+        ],
+        [
+          1188.566162109375,
+          48.30386734008789
+        ],
+        [
+          1164.767333984375,
+          48.30386734008789
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "8899194207496071765"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member7/m_mark_dir/Image/m_mark",
+      "screen_corners": [
+        [
+          1169.527099609375,
+          77.8257827758789
+        ],
+        [
+          1183.806396484375,
+          77.8257827758789
+        ],
+        [
+          1183.806396484375,
+          56.40679168701172
+        ],
+        [
+          1169.527099609375,
+          56.40679168701172
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "7239474981451880182"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member8/m_mark",
+      "screen_corners": [
+        [
+          1165.86669921875,
+          147.79995727539062
+        ],
+        [
+          1187.466796875,
+          147.79995727539062
+        ],
+        [
+          1187.466796875,
+          115.39996337890625
+        ],
+        [
+          1165.86669921875,
+          115.39996337890625
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-5057785723650924235"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member8/m_pos_light",
+      "screen_corners": [
+        [
+          1136.666748046875,
+          166.26663208007812
+        ],
+        [
+          1216.666748046875,
+          166.26663208007812
+        ],
+        [
+          1216.666748046875,
+          96.93328857421875
+        ],
+        [
+          1136.666748046875,
+          96.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-4142114966138363661"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member8/m_pos",
+      "screen_corners": [
+        [
+          1148.3333740234375,
+          159.93328857421875
+        ],
+        [
+          1205.0001220703125,
+          159.93328857421875
+        ],
+        [
+          1205.0001220703125,
+          103.2666244506836
+        ],
+        [
+          1148.3333740234375,
+          103.2666244506836
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "4879353562688980034"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member8/m_drive",
+      "screen_corners": [
+        [
+          1165.0001220703125,
+          143.26663208007812
+        ],
+        [
+          1188.3333740234375,
+          143.26663208007812
+        ],
+        [
+          1188.3333740234375,
+          119.93329620361328
+        ],
+        [
+          1165.0001220703125,
+          119.93329620361328
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-565160836928246795"
+      },
+      "detail": null,
+      "kind": "text",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member8/txt_role_index",
+      "screen_corners": [
+        [
+          1166.666748046875,
+          141.59996032714844
+        ],
+        [
+          1186.666748046875,
+          141.59996032714844
+        ],
+        [
+          1186.666748046875,
+          121.59996032714844
+        ],
+        [
+          1166.666748046875,
+          121.59996032714844
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "7356430258204437873"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member8/m_dead",
+      "screen_corners": [
+        [
+          1163.3333740234375,
+          144.93328857421875
+        ],
+        [
+          1190.0001220703125,
+          144.93328857421875
+        ],
+        [
+          1190.0001220703125,
+          118.2666244506836
+        ],
+        [
+          1163.3333740234375,
+          118.2666244506836
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "5745607880821649839"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member8/m_dead/Image (4)",
+      "screen_corners": [
+        [
+          1160.0001220703125,
+          148.26663208007812
+        ],
+        [
+          1193.3333740234375,
+          148.26663208007812
+        ],
+        [
+          1193.3333740234375,
+          114.93328857421875
+        ],
+        [
+          1160.0001220703125,
+          114.93328857421875
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "7489334837118342331"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member8/m_mark_dir/Image",
+      "screen_corners": [
+        [
+          1164.767333984375,
+          78.90243530273438
+        ],
+        [
+          1188.566162109375,
+          78.90243530273438
+        ],
+        [
+          1188.566162109375,
+          48.30386734008789
+        ],
+        [
+          1164.767333984375,
+          48.30386734008789
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "1192105761633214243"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_team_members/member8/m_mark_dir/Image/m_mark",
+      "screen_corners": [
+        [
+          1169.527099609375,
+          77.8257827758789
+        ],
+        [
+          1183.806396484375,
+          77.8257827758789
+        ],
+        [
+          1183.806396484375,
+          56.40679168701172
+        ],
+        [
+          1169.527099609375,
+          56.40679168701172
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-2085676305877939946"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_above_image_root/m_above_icon",
+      "screen_corners": [
+        [
+          1163.3333740234375,
+          144.9333038330078
+        ],
+        [
+          1190.0001220703125,
+          144.9333038330078
+        ],
+        [
+          1190.0001220703125,
+          118.26663970947266
+        ],
+        [
+          1163.3333740234375,
+          118.26663970947266
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-8109482261319076639"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_footSoundInMap/Image",
+      "screen_corners": [
+        [
+          1244.3333740234375,
+          80.26663970947266
+        ],
+        [
+          1109.0001220703125,
+          80.26663970947266
+        ],
+        [
+          1109.0001220703125,
+          116.26663970947266
+        ],
+        [
+          1244.3333740234375,
+          116.26663970947266
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-9174176044386645019"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_vehicleSoundInMap/Image",
+      "screen_corners": [
+        [
+          1212.0001220703125,
+          81.26663208007812
+        ],
+        [
+          1212.0001220703125,
+          48.5999641418457
+        ],
+        [
+          1141.3333740234375,
+          48.599971771240234
+        ],
+        [
+          1141.3333740234375,
+          81.26664733886719
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-6122017657854695646"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_gunSoundInMap/image",
+      "screen_corners": [
+        [
+          1244.3333740234375,
+          45.5999755859375
+        ],
+        [
+          1109.0001220703125,
+          45.5999755859375
+        ],
+        [
+          1109.0001220703125,
+          81.5999755859375
+        ],
+        [
+          1244.3333740234375,
+          81.5999755859375
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-3509126284921457205"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_gun_sound_pos_map",
+      "screen_corners": [
+        [
+          1163.3333740234375,
+          144.9333038330078
+        ],
+        [
+          1190.0001220703125,
+          144.9333038330078
+        ],
+        [
+          1190.0001220703125,
+          118.26663970947266
+        ],
+        [
+          1163.3333740234375,
+          118.26663970947266
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-5341061820629140523"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_gun_silence_sound_pos/Image",
+      "screen_corners": [
+        [
+          1230.3333740234375,
+          83.59996032714844
+        ],
+        [
+          1230.3333740234375,
+          54.93328857421875
+        ],
+        [
+          1123.0001220703125,
+          54.93330383300781
+        ],
+        [
+          1123.0001220703125,
+          83.5999755859375
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-4685880860858428579"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_airdrop_dir_map/image",
+      "screen_corners": [
+        [
+          1212.0001220703125,
+          47.93330764770508
+        ],
+        [
+          1212.0001220703125,
+          15.26663589477539
+        ],
+        [
+          1141.3333740234375,
+          15.266643524169922
+        ],
+        [
+          1141.3333740234375,
+          47.93331527709961
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-9196056908711113127"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_airdrop_dir_map/image/Image",
+      "screen_corners": [
+        [
+          1186.2000732421875,
+          45.5999755859375
+        ],
+        [
+          1186.2000732421875,
+          25.599973678588867
+        ],
+        [
+          1166.2000732421875,
+          25.5999755859375
+        ],
+        [
+          1166.2000732421875,
+          45.5999755859375
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "1696509269039572757"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_airdrop_pos_map/image",
+      "screen_corners": [
+        [
+          1212.0001220703125,
+          47.93330764770508
+        ],
+        [
+          1212.0001220703125,
+          15.26663589477539
+        ],
+        [
+          1141.3333740234375,
+          15.266643524169922
+        ],
+        [
+          1141.3333740234375,
+          47.93331527709961
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "2357192923383210546"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_airdrop_pos_map/image/Image",
+      "screen_corners": [
+        [
+          1186.2000732421875,
+          45.5999755859375
+        ],
+        [
+          1186.2000732421875,
+          25.599973678588867
+        ],
+        [
+          1166.2000732421875,
+          25.5999755859375
+        ],
+        [
+          1166.2000732421875,
+          45.5999755859375
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-8007212549077797639"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_turretSoundInMap/image",
+      "screen_corners": [
+        [
+          3113.666748046875,
+          113.5999755859375
+        ],
+        [
+          2978.333251953125,
+          113.5999755859375
+        ],
+        [
+          2978.333251953125,
+          149.5999755859375
+        ],
+        [
+          3113.666748046875,
+          149.5999755859375
+        ]
+      ],
+      "status": "empty",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-8709793906411698995"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_turret_sound_pos_map",
+      "screen_corners": [
+        [
+          3032.666748046875,
+          144.9333038330078
+        ],
+        [
+          3059.333251953125,
+          144.9333038330078
+        ],
+        [
+          3059.333251953125,
+          118.26663970947266
+        ],
+        [
+          3032.666748046875,
+          118.26663970947266
+        ]
+      ],
+      "status": "empty",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-3898529443257425447"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_wurenji_sound_pos/Image",
+      "screen_corners": [
+        [
+          1212.0001220703125,
+          81.26663208007812
+        ],
+        [
+          1212.0001220703125,
+          48.5999641418457
+        ],
+        [
+          1141.3333740234375,
+          48.599971771240234
+        ],
+        [
+          1141.3333740234375,
+          81.26664733886719
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-3796118256463996016"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_tagging_player_root/m_tag_image_orange",
+      "screen_corners": [
+        [
+          1159.20068359375,
+          150.2666473388672
+        ],
+        [
+          1196.533935546875,
+          150.2666473388672
+        ],
+        [
+          1196.533935546875,
+          112.93330383300781
+        ],
+        [
+          1159.20068359375,
+          112.93330383300781
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "5702415657900956199"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_tagging_player_root/m_tag_image_red",
+      "screen_corners": [
+        [
+          1159.20068359375,
+          150.2666473388672
+        ],
+        [
+          1196.533935546875,
+          150.2666473388672
+        ],
+        [
+          1196.533935546875,
+          112.93330383300781
+        ],
+        [
+          1159.20068359375,
+          112.93330383300781
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-5291452008183575485"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_tagging_player_root/m_tag_image_box",
+      "screen_corners": [
+        [
+          1159.20068359375,
+          150.2666473388672
+        ],
+        [
+          1196.533935546875,
+          150.2666473388672
+        ],
+        [
+          1196.533935546875,
+          112.93330383300781
+        ],
+        [
+          1159.20068359375,
+          112.93330383300781
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-8049499382925053206"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/Image",
+      "screen_corners": [
+        [
+          1092.666748046875,
+          218.3999786376953
+        ],
+        [
+          1260.666748046875,
+          218.3999786376953
+        ],
+        [
+          1260.666748046875,
+          191.7333221435547
+        ],
+        [
+          1092.666748046875,
+          191.7333221435547
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 9
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "6160426282398158155"
+      },
+      "detail": null,
+      "kind": "text",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/Image/txt_coordinate",
+      "screen_corners": [
+        [
+          1089.86669921875,
+          216.37664794921875
+        ],
+        [
+          1263.466796875,
+          216.37664794921875
+        ],
+        [
+          1263.466796875,
+          203.35665893554688
+        ],
+        [
+          1089.86669921875,
+          203.35665893554688
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 18
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "6409308081353037390"
+      },
+      "detail": null,
+      "kind": "text",
+      "path": "BattleMinimap/GameObject/ditu/lefttop/Image/txt_posYInMap",
+      "screen_corners": [
+        [
+          1089.86669921875,
+          205.09332275390625
+        ],
+        [
+          1263.466796875,
+          205.09332275390625
+        ],
+        [
+          1263.466796875,
+          192.09332275390625
+        ],
+        [
+          1089.86669921875,
+          192.09332275390625
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 8
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "744255575597686734"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/ditu/Image",
+      "screen_corners": [
+        [
+          1066.666748046875,
+          241.5999755859375
+        ],
+        [
+          1286.666748046875,
+          241.5999755859375
+        ],
+        [
+          1286.666748046875,
+          21.5999755859375
+        ],
+        [
+          1066.666748046875,
+          21.5999755859375
+        ]
+      ],
+      "status": "disabled",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "8300413796746560859"
+      },
+      "detail": "custom StencilMask requires source shader/runtime interpretation",
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/m_StencilMask/Light/m_Light",
+      "screen_corners": [
+        [
+          1143.3333740234375,
+          164.93331909179688
+        ],
+        [
+          1210.0001220703125,
+          164.93331909179688
+        ],
+        [
+          1210.0001220703125,
+          98.26663970947266
+        ],
+        [
+          1143.3333740234375,
+          98.26663970947266
+        ]
+      ],
+      "status": "unsupported",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-1797678709419944375"
+      },
+      "detail": "custom StencilMask requires source shader/runtime interpretation",
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/m_StencilMask/m_Fog",
+      "screen_corners": [
+        [
+          1090.0001220703125,
+          218.2666473388672
+        ],
+        [
+          1263.3333740234375,
+          218.2666473388672
+        ],
+        [
+          1263.3333740234375,
+          44.93330383300781
+        ],
+        [
+          1090.0001220703125,
+          44.93330383300781
+        ]
+      ],
+      "status": "unsupported",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-945314886601857645"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/zhou_ye/m_nightDi",
+      "screen_corners": [
+        [
+          1047.8067626953125,
+          40.933311462402344
+        ],
+        [
+          1263.44677734375,
+          40.933311462402344
+        ],
+        [
+          1263.44677734375,
+          21.5999755859375
+        ],
+        [
+          1047.8067626953125,
+          21.5999755859375
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-997260313793227926"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/zhou_ye/m_huanghunDi",
+      "screen_corners": [
+        [
+          1047.8067626953125,
+          40.933311462402344
+        ],
+        [
+          1280.0001220703125,
+          40.933311462402344
+        ],
+        [
+          1280.0001220703125,
+          21.5999755859375
+        ],
+        [
+          1047.8067626953125,
+          21.5999755859375
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "6384251127403819982"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/zhou_ye/m_dayDi",
+      "screen_corners": [
+        [
+          1047.8067626953125,
+          40.933311462402344
+        ],
+        [
+          1280.0001220703125,
+          40.933311462402344
+        ],
+        [
+          1280.0001220703125,
+          21.5999755859375
+        ],
+        [
+          1047.8067626953125,
+          21.5999755859375
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "3600206095693578863"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/zhou_ye/m_qingchenDi",
+      "screen_corners": [
+        [
+          1047.8067626953125,
+          40.933311462402344
+        ],
+        [
+          1280.0001220703125,
+          40.933311462402344
+        ],
+        [
+          1280.0001220703125,
+          21.5999755859375
+        ],
+        [
+          1047.8067626953125,
+          21.5999755859375
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "8300290512904746263"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/zhou_ye/m_nightIcon",
+      "screen_corners": [
+        [
+          1243.0001220703125,
+          45.53330993652344
+        ],
+        [
+          1273.0001220703125,
+          45.53330993652344
+        ],
+        [
+          1273.0001220703125,
+          15.533309936523438
+        ],
+        [
+          1243.0001220703125,
+          15.533309936523438
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "1305576572182226917"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/zhou_ye/m_dayIcon",
+      "screen_corners": [
+        [
+          1243.0001220703125,
+          45.533287048339844
+        ],
+        [
+          1273.0001220703125,
+          45.533287048339844
+        ],
+        [
+          1273.0001220703125,
+          15.533285140991211
+        ],
+        [
+          1243.0001220703125,
+          15.533285140991211
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-6601116259395585505"
+      },
+      "detail": null,
+      "kind": "text",
+      "path": "BattleMinimap/zhou_ye/txt_gameTime",
+      "screen_corners": [
+        [
+          1181.966796875,
+          40.93329620361328
+        ],
+        [
+          1243.0068359375,
+          40.93329620361328
+        ],
+        [
+          1243.0068359375,
+          21.599960327148438
+        ],
+        [
+          1181.966796875,
+          21.599960327148438
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 10
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "8819130515308572190"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/GameObject/image1/m_airDrop_Bg",
+      "screen_corners": [
+        [
+          1087.4866943359375,
+          42.46664047241211
+        ],
+        [
+          1117.4866943359375,
+          42.46664047241211
+        ],
+        [
+          1117.4866943359375,
+          12.466639518737793
+        ],
+        [
+          1087.4866943359375,
+          12.466639518737793
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "5588264355909833536"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/GameObject/image1/m_airDrop_Mark",
+      "screen_corners": [
+        [
+          1087.4866943359375,
+          42.46664047241211
+        ],
+        [
+          1117.4866943359375,
+          42.46664047241211
+        ],
+        [
+          1117.4866943359375,
+          12.466639518737793
+        ],
+        [
+          1087.4866943359375,
+          12.466639518737793
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "-96953409397587092"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/GameObject/image2/m_freighter_Bg",
+      "screen_corners": [
+        [
+          1118.2066650390625,
+          42.46664047241211
+        ],
+        [
+          1148.2066650390625,
+          42.46664047241211
+        ],
+        [
+          1148.2066650390625,
+          12.466639518737793
+        ],
+        [
+          1118.2066650390625,
+          12.466639518737793
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "2971620353661848418"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/GameObject/image2/m_freighter_mark",
+      "screen_corners": [
+        [
+          1118.2066650390625,
+          42.46664047241211
+        ],
+        [
+          1148.2066650390625,
+          42.46664047241211
+        ],
+        [
+          1148.2066650390625,
+          12.466639518737793
+        ],
+        [
+          1118.2066650390625,
+          12.466639518737793
+        ]
+      ],
+      "status": "inactive",
+      "triangles": 0
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "8348431029475303"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/GameObject/image3/m_helicopter_no",
+      "screen_corners": [
+        [
+          1148.9267578125,
+          42.46664047241211
+        ],
+        [
+          1178.9267578125,
+          42.46664047241211
+        ],
+        [
+          1178.9267578125,
+          12.466639518737793
+        ],
+        [
+          1148.9267578125,
+          12.466639518737793
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    },
+    {
+      "component": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "path_id": "890903588369900362"
+      },
+      "detail": null,
+      "kind": "image",
+      "path": "BattleMinimap/GameObject/GameObject/image3/m_helicopter_has",
+      "screen_corners": [
+        [
+          1148.9267578125,
+          42.46664047241211
+        ],
+        [
+          1178.9267578125,
+          42.46664047241211
+        ],
+        [
+          1178.9267578125,
+          12.466639518737793
+        ],
+        [
+          1148.9267578125,
+          12.466639518737793
+        ]
+      ],
+      "status": "submitted",
+      "triangles": 2
+    }
+  ],
+  "initialization_profile": {
+    "document": {
+      "caveats": [
+        "Hierarchy paths and field names are provenance labels. Only full bundle/CAB/GameObject identities select visibility targets.",
+        "Direct false calls and dictionary-value false calls describe an initialization phase; they do not establish visibility in an arbitrary gameplay frame.",
+        "The internal reciprocal-zoom Rect is not a verified RawImage UV assignment. Authored UV [0,0,1,1] is retained.",
+        "Metadata slot 0x462E2F8 and final image/icon parent transforms remain unresolved; [2,2,2] is not an applied binding.",
+        "The minimap RawImage texture remains unbound. BattleMapPanel's Map_map binding does not prove the minimap texture.",
+        "Supplied canvas resolution, PPU and scale rule are preview inputs; successful source-runtime ancestry and pixel equality remain unverified."
+      ],
+      "evidence": {
+        "constructor_zoom_default": {
+          "applied_to_preview": false,
+          "field": "_mZoomLevel",
+          "field_offset": "0xF0",
+          "literal_bits": "0x41700000",
+          "literal_va": "0x3622110",
+          "value": 15
+        },
+        "declaration_export": {
+          "path": "export/SC.UI/BattleMinimap.cs",
+          "sha256": "00124db6b6b2041d06c9d188253b579f8ccc243ccd5408425f7192e54e2f6090",
+          "use": "Method/field names, tokens and native addresses; damaged pseudo-C# bodies are not executable specifications."
+        },
+        "game_object_data": {
+          "additional_entries": "Indices 86 through 93 remain unresolved; successful native binding is not established.",
+          "native_awake_requested_entries": 94,
+          "retained_binding_entries": 86,
+          "source": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-5063542670030210478"
+          },
+          "source_fields": {
+            "path": "source_objects/92d6e2bb872973a4e66cb2487cff21922983a42957d1a848101f55e8ffcb2cb4.json",
+            "sha256": "92d6e2bb872973a4e66cb2487cff21922983a42957d1a848101f55e8ffcb2cb4"
+          }
+        },
+        "methods": [
+          {
+            "ifix_check": 45844,
+            "name": "BattleMinimap.OnInitMap",
+            "token": "0x6012ACF",
+            "va_end_inclusive": "0x18B1663",
+            "va_start": "0x18B09E4"
+          },
+          {
+            "ifix_check": 45845,
+            "name": "BattleMinimap.InitCompassAndMinimap",
+            "token": "0x6012B08",
+            "va_end_inclusive": "0x18B2C6F",
+            "va_start": "0x18B1664"
+          },
+          {
+            "ifix_state": "unobserved",
+            "name": "BattleMinimap.Awake",
+            "token": "0x6012B6D",
+            "va_end_inclusive": "0x18D297F",
+            "va_start": "0x18D18F0"
+          }
+        ],
+        "native": {
+          "byte_count": 76608224,
+          "member": "lib/arm64-v8a/libil2cpp.so",
+          "sha256": "2e2efde1a103549694b17b361cacc18faa5714d06c444945e44b30f1377e2b3c"
+        },
+        "review": "memory/evidence/minimap-runtime-review.md",
+        "scope": "Static ARM64 fallback instructions associated with retained source objects; actual runtime initialization and IFix state are unobserved.",
+        "temporary_review_artifacts": [
+          {
+            "path": "/tmp/codex-minimap-runtime/init_compass_minimap.asm",
+            "sha256": "2a9aab4adb9b405880aac61619f47f1a7c76d1191a5df8aec3becb2fd1cc15ab"
+          },
+          {
+            "path": "/tmp/codex-minimap-runtime/battle_minimap_range.asm",
+            "sha256": "5ca6dd6f74e3b3b998d0b4c17738163f65953ada197d376bbc9f3c05cb1c61a5"
+          },
+          {
+            "path": "/tmp/codex-minimap-runtime/visibility_nodes.jsonl",
+            "sha256": "c39cb8a7d319938c9b1a82521b4962ea58555006fa64608519b9c3bc6f28c0ad"
+          }
+        ],
+        "visibility_call": {
+          "false_argument": "w1=0",
+          "name": "Extensions.SetActiveBetter",
+          "rva": "0x207D308",
+          "target": "Qualified source GameObject identity, not Transform identity.",
+          "token": "0x6003701"
+        }
+      },
+      "name": "battle-minimap-initialization-visibility",
+      "panel": {
+        "bundle": "assets/ui/battleminimap.ab",
+        "bundle_byte_count": 121164,
+        "bundle_sha256": "ee6e633d330cbb2e82fdba214880579edd3306b6ea2cc68b10a764f7c6558403",
+        "cab": "CAB-88df926bf45d4de159fb33b326042714",
+        "layout": {
+          "path": "panels/battle_minimap.json",
+          "sha256": "0239ce5e792711fd7b850bb97b58c72122456b75e8596310bf9aea46adab44de"
+        },
+        "name": "BattleMinimap"
+      },
+      "schema_version": 1,
+      "source_apk": {
+        "byte_count": 1115839572,
+        "path": "export/lite4.0.apk",
+        "sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df"
+      },
+      "visibility": [
+        {
+          "active_self": false,
+          "false_transfer_va": "0x18B1910",
+          "field": "m_map_line",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_lefttop/m_map_line_root/m_map_line",
+          "native_method": "BattleMinimap.InitCompassAndMinimap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "7485614794676456502"
+          },
+          "retained_index": 41,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "3514403655517287257"
+          }
+        },
+        {
+          "active_self": false,
+          "false_transfer_va": "0x18B194C",
+          "field": "m_tag_image_orange",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_tagging_player_root/m_tag_image_orange",
+          "native_method": "BattleMinimap.InitCompassAndMinimap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-1797627085918124301"
+          },
+          "retained_index": 80,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-3256156571010530090"
+          }
+        },
+        {
+          "active_self": false,
+          "false_transfer_va": "0x18B195C",
+          "field": "m_tag_image_red",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_tagging_player_root/m_tag_image_red",
+          "native_method": "BattleMinimap.InitCompassAndMinimap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-3543335029901358633"
+          },
+          "retained_index": 81,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-331953300422487428"
+          }
+        },
+        {
+          "active_self": false,
+          "false_transfer_va": "0x18B196C",
+          "field": "m_tag_image_box",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_tagging_player_root/m_tag_image_box",
+          "native_method": "BattleMinimap.InitCompassAndMinimap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-9204725439304705299"
+          },
+          "retained_index": 79,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "6891755472039237723"
+          }
+        },
+        {
+          "active_self": false,
+          "dictionary_insertion_va": "0x18B19A8",
+          "false_transfer_va": "0x18B1A5C",
+          "field": "m_gun_sound_pos_map",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_gun_sound_pos_map",
+          "native_method": "BattleMinimap.InitCompassAndMinimap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "8869356163041564258"
+          },
+          "retained_index": 27,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-9221279518444326841"
+          }
+        },
+        {
+          "active_self": false,
+          "dictionary_insertion_va": "0x18B19C8",
+          "false_transfer_va": "0x18B1A5C",
+          "field": "m_airdrop_pos_map",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_airdrop_pos_map",
+          "native_method": "BattleMinimap.InitCompassAndMinimap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "6360961865288636768"
+          },
+          "retained_index": 5,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-8193319318223761873"
+          }
+        },
+        {
+          "active_self": false,
+          "dictionary_insertion_va": "0x18B2084",
+          "false_transfer_va": "0x18B2198",
+          "field": "m_footSoundInMap",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_footSoundInMap",
+          "native_method": "BattleMinimap.InitCompassAndMinimap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "8771581050433998562"
+          },
+          "retained_index": 21,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "8494517497541698438"
+          }
+        },
+        {
+          "active_self": false,
+          "dictionary_insertion_va": "0x18B20A4",
+          "false_transfer_va": "0x18B2198",
+          "field": "m_gunSoundInMap",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_gunSoundInMap",
+          "native_method": "BattleMinimap.InitCompassAndMinimap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "5985292754087571339"
+          },
+          "retained_index": 28,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "7559449315723006120"
+          }
+        },
+        {
+          "active_self": false,
+          "dictionary_insertion_va": "0x18B20C4",
+          "false_transfer_va": "0x18B2198",
+          "field": "m_vehicleSoundInMap",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_vehicleSoundInMap",
+          "native_method": "BattleMinimap.InitCompassAndMinimap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "5159176092881812020"
+          },
+          "retained_index": 68,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-4399458412663406298"
+          }
+        },
+        {
+          "active_self": false,
+          "dictionary_insertion_va": "0x18B20E4",
+          "false_transfer_va": "0x18B2198",
+          "field": "m_airdrop_dir_map",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_airdrop_dir_map",
+          "native_method": "BattleMinimap.InitCompassAndMinimap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "8363443611025557459"
+          },
+          "retained_index": 3,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "9008430909113097640"
+          }
+        },
+        {
+          "active_self": false,
+          "dictionary_insertion_va": "0x18B2104",
+          "false_transfer_va": "0x18B2198",
+          "field": "m_gun_silence_sound_pos",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_gun_silence_sound_pos",
+          "native_method": "BattleMinimap.InitCompassAndMinimap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "1651694541040224185"
+          },
+          "retained_index": 26,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "6915414000386161051"
+          }
+        },
+        {
+          "active_self": false,
+          "dictionary_insertion_va": "0x18B2124",
+          "false_transfer_va": "0x18B2198",
+          "field": "m_wurenji_sound_pos",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_mapSound_parent/m_wurenji_sound_pos",
+          "native_method": "BattleMinimap.InitCompassAndMinimap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "2736434523089675485"
+          },
+          "retained_index": 70,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-3938415719302913455"
+          }
+        },
+        {
+          "active_self": false,
+          "false_transfer_va": "0x18B1050",
+          "field": "m_badge_img",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_badge_pos_root/m_badge_img",
+          "native_method": "BattleMinimap.OnInitMap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "4458685810974747162"
+          },
+          "retained_index": 8,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "7407897960620516250"
+          }
+        },
+        {
+          "active_self": false,
+          "false_transfer_va": "0x18B1094",
+          "field": "m_vehicle_icon",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_self_vehicle_parent/m_vehicle_icon",
+          "native_method": "BattleMinimap.OnInitMap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "9090670034721949667"
+          },
+          "retained_index": 67,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "3071919443331380935"
+          }
+        },
+        {
+          "active_self": false,
+          "false_transfer_va": "0x18B10D0",
+          "field": "m_shouHuoJi_imgObj",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_shouHuoJi_parent/m_shouHuoJi_img",
+          "native_method": "BattleMinimap.OnInitMap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "4820699717724347823"
+          },
+          "retained_index": 56,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-8387213359613818777"
+          }
+        },
+        {
+          "active_self": false,
+          "false_transfer_va": "0x18B10F8",
+          "field": "m_fanmaiji_imgObj",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_fanmaiji_parent/m_fanmaiji_img",
+          "native_method": "BattleMinimap.OnInitMap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-8294374823165935752"
+          },
+          "retained_index": 19,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "2837093518875009007"
+          }
+        },
+        {
+          "active_self": false,
+          "false_transfer_va": "0x18B11B8",
+          "field": "m_common_icon",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_resource_tags/m_common_image_root/m_common_icon",
+          "native_method": "BattleMinimap.OnInitMap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-7996231445121348839"
+          },
+          "retained_index": 10,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "6353688308257557609"
+          }
+        },
+        {
+          "active_self": false,
+          "false_transfer_va": "0x18B11C8",
+          "field": "m_above_icon",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_above_image_root/m_above_icon",
+          "native_method": "BattleMinimap.OnInitMap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-5262363387168547893"
+          },
+          "retained_index": 0,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-8623905796289216940"
+          }
+        },
+        {
+          "active_self": false,
+          "false_transfer_va": "0x18B1244",
+          "field": "m_airDrop_Mark",
+          "hierarchy_path": "BattleMinimap/GameObject/GameObject/image1/m_airDrop_Mark",
+          "native_method": "BattleMinimap.OnInitMap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "2391313024899094591"
+          },
+          "retained_index": 4,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "2291175960084559457"
+          }
+        },
+        {
+          "active_self": false,
+          "false_transfer_va": "0x18B1254",
+          "field": "m_freighter_mark",
+          "hierarchy_path": "BattleMinimap/GameObject/GameObject/image2/m_freighter_mark",
+          "native_method": "BattleMinimap.OnInitMap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-5063654596796734279"
+          },
+          "retained_index": 23,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-7325922068362126442"
+          }
+        },
+        {
+          "active_self": false,
+          "false_argument_va": "0x18B1650",
+          "false_transfer_va": "0x18B165C",
+          "field": "m_cardBuildingTag_img",
+          "hierarchy_path": "BattleMinimap/GameObject/ditu/lefttop/m_mapShowIcon/m_cardBuilding_parent/m_cardBuildingTag_img",
+          "native_method": "BattleMinimap.OnInitMap",
+          "node": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "-7139541613775318912"
+          },
+          "retained_index": 78,
+          "transform": {
+            "bundle": "assets/ui/battleminimap.ab",
+            "cab": "CAB-88df926bf45d4de159fb33b326042714",
+            "path_id": "3929743745713679514"
+          }
+        }
+      ]
+    },
+    "file": {
+      "path": "memory/evidence/minimap-render/initialization-visibility.json",
+      "sha256": "0d08da97de8c9f8d92611077fe0182c70d21451dd2053ad8d9001c19b459b65c"
+    },
+    "validation": {
+      "apk_and_bundle_identities": "compared with imported UI manifest; APK/native members are not rehashed by this probe",
+      "layout": "payload SHA-256 and panel identity verified by load_ui_package/load_panel",
+      "source_node_targets": "validated by SourcePanelRenderer::paint against the selected layout",
+      "visibility": "21 unique qualified GO targets, canonical nonzero signed PathIDs, active_self=false"
+    }
+  },
+  "layout_sha256": "0239ce5e792711fd7b850bb97b58c72122456b75e8596310bf9aea46adab44de",
+  "limitations": [
+    "The caller supplies the parent canvas. BattleMinimap runtime parentage/scaling is not established by this preview.",
+    "Empty bindings display serialized prefab state, including templates/placeholders; script-driven visibility, events, animation and gameplay state are not executed.",
+    "egui renders source full-atlas base pixels with its gamma-space tint and premultiplied blending; Unity shader/color and source mip-filter equivalence are unverified.",
+    "Standard texture masks use a binary alpha threshold of 0.001 at physical pixel centers. Custom stencil/fog materials and line renderers are explicitly omitted.",
+    "Source font outlines are used, with egui shaping, alignment, best-fit and line-spacing previews; Unity TextGenerator metrics, overflow and rasterization equivalence are unverified."
+  ],
+  "masks": 1,
+  "panel": "BattleMinimap",
+  "preview_caveats": [
+    "Initialization visibility is an explicit preview from static ARM64 fallback evidence; successful native Awake/init and IFix execution are unobserved.",
+    "The retained GameObjectData has 86 entries; native Awake requests 94. Additional binding entries remain unresolved.",
+    "Only the listed GO activeSelf values are overridden. Inactive parents also hide descendants; source records remain retained.",
+    "The constructor zoom default 15 is not applied as RawImage UVs or a transform scale. Runtime texture, UV assignment and inherited scale remain unresolved.",
+    "Later show/update calls, pooled sound objects and gameplay events can produce different visibility.",
+    "Hierarchy paths and field names are provenance labels. Only full bundle/CAB/GameObject identities select visibility targets.",
+    "Direct false calls and dictionary-value false calls describe an initialization phase; they do not establish visibility in an arbitrary gameplay frame.",
+    "The internal reciprocal-zoom Rect is not a verified RawImage UV assignment. Authored UV [0,0,1,1] is retained.",
+    "Metadata slot 0x462E2F8 and final image/icon parent transforms remain unresolved; [2,2,2] is not an applied binding.",
+    "The minimap RawImage texture remains unbound. BattleMapPanel's Map_map binding does not prove the minimap texture.",
+    "Supplied canvas resolution, PPU and scale rule are preview inputs; successful source-runtime ancestry and pixel equality remain unverified."
+  ],
+  "preview_mode": "initialization",
+  "reference_pixels_per_unit": 100.0,
+  "source_apk_sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df",
+  "source_nodes": 225,
+  "viewport": {
+    "pixels": [
+      1280,
+      720
+    ],
+    "scale_factor": 0.6666666865348816
+  }
+}

@@ -23,12 +23,19 @@ locates preserved candidates, earlier reports and code/package backups.
 
 The source `BattleMinimap` preview now uses `crates/ui_data` and the client's
 egui backend. [Minimap captures](evidence/minimap-render/render.json) record
-1920×1080 and 1280×720 previews with explicit canvas inputs. These still show
-serialized templates; production HUD integration and APK pixel equality are pending.
+1920×1080 and 1280×720 authored and initialization-visibility previews with
+explicit canvas inputs. The optional profile applies 21 source-backed template
+hides; production HUD integration and APK pixel equality are pending.
 [Canvas/calibration evidence](evidence/minimap-canvas-review.md) and
 [font coverage](evidence/minimap-font-coverage.json) separate recovered source
-values from missing runtime state. [Android runtime identity](evidence/android-runtime-check.json)
-records a connected Waydroid installation whose APK differs from this target.
+values from missing runtime state. [Native initialization](evidence/minimap-runtime-review.md)
+records the template hides, zoom default and unresolved binding entries.
+[Android runtime identity](evidence/android-runtime-check.json),
+[APK payload comparison](evidence/apk-runtime-member-comparison.json), and
+[native dump pairing](evidence/minimap-dump-pairing.md) relate the recovered
+analysis APK to its encrypted Waydroid runtime counterpart. All 9,318 file
+payloads outside native code/metadata match; the user identifies the two
+recovered files inside lite4.0.apk as memory dumps of the encrypted game.
 
 The user writes Ukrainian and wants English responses. Write new tools in
 Rust and reuse installed Unity/REA utilities and C# evidence. No Python was
