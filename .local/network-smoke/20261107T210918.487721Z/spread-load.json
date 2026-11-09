@@ -1,0 +1,3165 @@
+{
+  "build_profile": "release",
+  "scenario": "spread",
+  "server": "127.0.0.1:45411",
+  "clients": 150,
+  "requested_seconds": 30.0,
+  "elapsed_seconds": 30.007076192,
+  "traffic": {
+    "sent_bytes": 45536578,
+    "received_bytes": 74999269,
+    "lost_packets": 0
+  },
+  "bots": [
+    {
+      "player": 1,
+      "seconds": 30.005833592,
+      "input_packets": 1801,
+      "snapshots": 1207,
+      "owner_snapshots": 604,
+      "owner_snapshot_hz": 20.12941910605794,
+      "max_snapshot_gap_ms": 53.831412,
+      "peak_visible": 37,
+      "final_position": [
+        -169.9588,
+        0.9201,
+        -159.11386
+      ],
+      "rtt_ms": 0.6786500000000001,
+      "traffic": {
+        "sent_bytes": 303977,
+        "received_bytes": 505280,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 2,
+      "seconds": 30.005311829,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.096441704605223,
+      "max_snapshot_gap_ms": 53.743603,
+      "peak_visible": 37,
+      "final_position": [
+        155.52147,
+        0.9200959,
+        -151.51363
+      ],
+      "rtt_ms": 0.42352900000000004,
+      "traffic": {
+        "sent_bytes": 303984,
+        "received_bytes": 505870,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 3,
+      "seconds": 30.003974319,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.097337558982996,
+      "max_snapshot_gap_ms": 53.242438,
+      "peak_visible": 36,
+      "final_position": [
+        -148.50894,
+        0.9200999,
+        163.49586
+      ],
+      "rtt_ms": 0.74514,
+      "traffic": {
+        "sent_bytes": 303403,
+        "received_bytes": 494309,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 4,
+      "seconds": 30.00209577,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.09859593218677,
+      "max_snapshot_gap_ms": 53.842211,
+      "peak_visible": 36,
+      "final_position": [
+        153.25772,
+        0.9201,
+        152.61485
+      ],
+      "rtt_ms": 0.633637,
+      "traffic": {
+        "sent_bytes": 303082,
+        "received_bytes": 495932,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 5,
+      "seconds": 30.005345081,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.096419433677234,
+      "max_snapshot_gap_ms": 53.886389,
+      "peak_visible": 37,
+      "final_position": [
+        -166.72232,
+        0.9201,
+        -150.02997
+      ],
+      "rtt_ms": 0.35548799999999997,
+      "traffic": {
+        "sent_bytes": 303842,
+        "received_bytes": 505816,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 6,
+      "seconds": 30.005879399,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.096061574522494,
+      "max_snapshot_gap_ms": 53.336593,
+      "peak_visible": 37,
+      "final_position": [
+        148.02068,
+        0.9201,
+        -158.97987
+      ],
+      "rtt_ms": 0.371472,
+      "traffic": {
+        "sent_bytes": 304867,
+        "received_bytes": 507121,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 7,
+      "seconds": 30.004106583,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.09724896596832,
+      "max_snapshot_gap_ms": 53.704675,
+      "peak_visible": 36,
+      "final_position": [
+        -150.03937,
+        0.9201,
+        160.86244
+      ],
+      "rtt_ms": 0.401718,
+      "traffic": {
+        "sent_bytes": 304219,
+        "received_bytes": 493565,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 8,
+      "seconds": 30.00421353,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.097177331346636,
+      "max_snapshot_gap_ms": 53.267851,
+      "peak_visible": 36,
+      "final_position": [
+        163.47276,
+        1.3450832,
+        168.69806
+      ],
+      "rtt_ms": 0.836847,
+      "traffic": {
+        "sent_bytes": 302633,
+        "received_bytes": 494991,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 9,
+      "seconds": 30.004641112,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.096890935943815,
+      "max_snapshot_gap_ms": 53.378336,
+      "peak_visible": 37,
+      "final_position": [
+        -158.55037,
+        0.92009854,
+        -169.74437
+      ],
+      "rtt_ms": 0.380391,
+      "traffic": {
+        "sent_bytes": 304843,
+        "received_bytes": 506189,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 10,
+      "seconds": 30.002120333,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.098579477289373,
+      "max_snapshot_gap_ms": 53.798845,
+      "peak_visible": 37,
+      "final_position": [
+        169.9646,
+        1.7950997,
+        -166.67563
+      ],
+      "rtt_ms": 0.626979,
+      "traffic": {
+        "sent_bytes": 303340,
+        "received_bytes": 507532,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 11,
+      "seconds": 30.00586918,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.096068418571967,
+      "max_snapshot_gap_ms": 53.277468,
+      "peak_visible": 36,
+      "final_position": [
+        -153.34587,
+        0.9201,
+        152.54054
+      ],
+      "rtt_ms": 0.478742,
+      "traffic": {
+        "sent_bytes": 302709,
+        "received_bytes": 492115,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 12,
+      "seconds": 30.001858346,
+      "input_packets": 1800,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.09875498530227,
+      "max_snapshot_gap_ms": 53.408803999999996,
+      "peak_visible": 36,
+      "final_position": [
+        165.41878,
+        0.9201,
+        168.40515
+      ],
+      "rtt_ms": 0.526532,
+      "traffic": {
+        "sent_bytes": 303528,
+        "received_bytes": 496159,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 13,
+      "seconds": 30.004435747,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.097028488872386,
+      "max_snapshot_gap_ms": 53.766797,
+      "peak_visible": 37,
+      "final_position": [
+        -168.88159,
+        0.9201,
+        -164.59435
+      ],
+      "rtt_ms": 0.461279,
+      "traffic": {
+        "sent_bytes": 303963,
+        "received_bytes": 505318,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 14,
+      "seconds": 30.004113697,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.09724420089408,
+      "max_snapshot_gap_ms": 53.738901,
+      "peak_visible": 37,
+      "final_position": [
+        158.14067,
+        0.9201,
+        -169.82503
+      ],
+      "rtt_ms": 0.73422,
+      "traffic": {
+        "sent_bytes": 303029,
+        "received_bytes": 506043,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 15,
+      "seconds": 30.003300591,
+      "input_packets": 1800,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.097788847300357,
+      "max_snapshot_gap_ms": 53.874925999999995,
+      "peak_visible": 36,
+      "final_position": [
+        -167.97261,
+        0.9201,
+        151.02725
+      ],
+      "rtt_ms": 0.300867,
+      "traffic": {
+        "sent_bytes": 304909,
+        "received_bytes": 494100,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 16,
+      "seconds": 30.004336959,
+      "input_packets": 1800,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.097094657481712,
+      "max_snapshot_gap_ms": 53.848231000000006,
+      "peak_visible": 36,
+      "final_position": [
+        168.87683,
+        0.9201,
+        155.39288
+      ],
+      "rtt_ms": 0.7719680000000001,
+      "traffic": {
+        "sent_bytes": 303014,
+        "received_bytes": 494996,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 17,
+      "seconds": 30.003456758,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.097684238974182,
+      "max_snapshot_gap_ms": 54.422837,
+      "peak_visible": 37,
+      "final_position": [
+        -163.29912,
+        0.9201,
+        -150.55995
+      ],
+      "rtt_ms": 0.42970200000000003,
+      "traffic": {
+        "sent_bytes": 303830,
+        "received_bytes": 505807,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 18,
+      "seconds": 30.002198827,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.098526893880184,
+      "max_snapshot_gap_ms": 53.372872,
+      "peak_visible": 37,
+      "final_position": [
+        162.20949,
+        0.9200995,
+        -150.24637
+      ],
+      "rtt_ms": 0.804403,
+      "traffic": {
+        "sent_bytes": 303182,
+        "received_bytes": 507049,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 19,
+      "seconds": 30.004471528,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.097004522718684,
+      "max_snapshot_gap_ms": 53.985068999999996,
+      "peak_visible": 36,
+      "final_position": [
+        -149.2346,
+        0.9201,
+        154.70596
+      ],
+      "rtt_ms": 0.710467,
+      "traffic": {
+        "sent_bytes": 302706,
+        "received_bytes": 493814,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 20,
+      "seconds": 30.004317958,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063778848187074,
+      "max_snapshot_gap_ms": 53.445443000000004,
+      "peak_visible": 36,
+      "final_position": [
+        169.02293,
+        0.920098,
+        163.84703
+      ],
+      "rtt_ms": 0.6174200000000001,
+      "traffic": {
+        "sent_bytes": 302913,
+        "received_bytes": 495000,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 21,
+      "seconds": 30.002284272,
+      "input_packets": 1800,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.098469654284195,
+      "max_snapshot_gap_ms": 53.352923,
+      "peak_visible": 37,
+      "final_position": [
+        -169.52388,
+        0.9201,
+        -156.95404
+      ],
+      "rtt_ms": 2.365017,
+      "traffic": {
+        "sent_bytes": 303173,
+        "received_bytes": 506234,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 22,
+      "seconds": 30.004375618,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.097068763472375,
+      "max_snapshot_gap_ms": 53.984674000000005,
+      "peak_visible": 37,
+      "final_position": [
+        167.68787,
+        0.9201,
+        -166.39886
+      ],
+      "rtt_ms": 0.987571,
+      "traffic": {
+        "sent_bytes": 302737,
+        "received_bytes": 506468,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 23,
+      "seconds": 30.004910391,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.06338269820564,
+      "max_snapshot_gap_ms": 54.026365999999996,
+      "peak_visible": 36,
+      "final_position": [
+        -167.87357,
+        0.9201,
+        169.05208
+      ],
+      "rtt_ms": 0.391905,
+      "traffic": {
+        "sent_bytes": 303746,
+        "received_bytes": 492267,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 24,
+      "seconds": 30.00475215,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.096816563772215,
+      "max_snapshot_gap_ms": 53.453359999999996,
+      "peak_visible": 36,
+      "final_position": [
+        170.86256,
+        1.7950997,
+        165.13715
+      ],
+      "rtt_ms": 0.35322400000000004,
+      "traffic": {
+        "sent_bytes": 304631,
+        "received_bytes": 496159,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 25,
+      "seconds": 30.005386286,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.096391836200073,
+      "max_snapshot_gap_ms": 54.092667999999996,
+      "peak_visible": 37,
+      "final_position": [
+        -150.24646,
+        0.9201,
+        -157.80258
+      ],
+      "rtt_ms": 0.738493,
+      "traffic": {
+        "sent_bytes": 302722,
+        "received_bytes": 505345,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 26,
+      "seconds": 30.005281905,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.06313428102418,
+      "max_snapshot_gap_ms": 53.139935,
+      "peak_visible": 37,
+      "final_position": [
+        151.75343,
+        1.5400999,
+        -165.65721
+      ],
+      "rtt_ms": 0.574609,
+      "traffic": {
+        "sent_bytes": 302853,
+        "received_bytes": 505805,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 27,
+      "seconds": 30.005173702,
+      "input_packets": 1800,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.096534217357554,
+      "max_snapshot_gap_ms": 53.444549,
+      "peak_visible": 36,
+      "final_position": [
+        -157.86952,
+        0.9201,
+        148.17813
+      ],
+      "rtt_ms": 0.602911,
+      "traffic": {
+        "sent_bytes": 304598,
+        "received_bytes": 494124,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 28,
+      "seconds": 30.005151956,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.09654878216408,
+      "max_snapshot_gap_ms": 54.004763,
+      "peak_visible": 36,
+      "final_position": [
+        154.28511,
+        0.9201,
+        151.79695
+      ],
+      "rtt_ms": 0.459875,
+      "traffic": {
+        "sent_bytes": 303880,
+        "received_bytes": 494794,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 29,
+      "seconds": 30.005466282,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063010997470624,
+      "max_snapshot_gap_ms": 53.291247,
+      "peak_visible": 37,
+      "final_position": [
+        -160.53073,
+        1.6450999,
+        -169.98312
+      ],
+      "rtt_ms": 0.557091,
+      "traffic": {
+        "sent_bytes": 302994,
+        "received_bytes": 505487,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 30,
+      "seconds": 30.004502401,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.096983843994796,
+      "max_snapshot_gap_ms": 53.464467,
+      "peak_visible": 37,
+      "final_position": [
+        148.00316,
+        0.9201,
+        -160.7625
+      ],
+      "rtt_ms": 1.680766,
+      "traffic": {
+        "sent_bytes": 302945,
+        "received_bytes": 507341,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 31,
+      "seconds": 30.004592745,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.096923331861742,
+      "max_snapshot_gap_ms": 54.026088,
+      "peak_visible": 36,
+      "final_position": [
+        -166.1522,
+        1.8700978,
+        167.64053
+      ],
+      "rtt_ms": 0.712825,
+      "traffic": {
+        "sent_bytes": 302867,
+        "received_bytes": 493959,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 32,
+      "seconds": 30.004804513,
+      "input_packets": 1800,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063453495895136,
+      "max_snapshot_gap_ms": 53.320577,
+      "peak_visible": 36,
+      "final_position": [
+        150.00598,
+        0.9201,
+        159.64728
+      ],
+      "rtt_ms": 0.624531,
+      "traffic": {
+        "sent_bytes": 303302,
+        "received_bytes": 495281,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 33,
+      "seconds": 30.00233786,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.098433755855318,
+      "max_snapshot_gap_ms": 53.458088000000004,
+      "peak_visible": 37,
+      "final_position": [
+        -157.75963,
+        1.2701001,
+        -148.18939
+      ],
+      "rtt_ms": 0.5497879999999999,
+      "traffic": {
+        "sent_bytes": 303141,
+        "received_bytes": 506388,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 34,
+      "seconds": 30.005773627,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.09613241424325,
+      "max_snapshot_gap_ms": 54.061383,
+      "peak_visible": 37,
+      "final_position": [
+        171.28653,
+        0.9201,
+        -164.12029
+      ],
+      "rtt_ms": 0.685809,
+      "traffic": {
+        "sent_bytes": 303118,
+        "received_bytes": 506537,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 35,
+      "seconds": 30.004825846,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063439231068017,
+      "max_snapshot_gap_ms": 53.803596,
+      "peak_visible": 36,
+      "final_position": [
+        -167.33899,
+        0.9201,
+        166.79117
+      ],
+      "rtt_ms": 0.47334299999999996,
+      "traffic": {
+        "sent_bytes": 303304,
+        "received_bytes": 492256,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 36,
+      "seconds": 30.004861473,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063415408256834,
+      "max_snapshot_gap_ms": 53.576354,
+      "peak_visible": 36,
+      "final_position": [
+        155.40845,
+        0.9201,
+        168.8829
+      ],
+      "rtt_ms": 0.5739770000000001,
+      "traffic": {
+        "sent_bytes": 304380,
+        "received_bytes": 495914,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 37,
+      "seconds": 30.003152479,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.097888060998113,
+      "max_snapshot_gap_ms": 53.590554999999995,
+      "peak_visible": 37,
+      "final_position": [
+        -156.25703,
+        0.9201,
+        -171.39929
+      ],
+      "rtt_ms": 0.41591,
+      "traffic": {
+        "sent_bytes": 303712,
+        "received_bytes": 505465,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 38,
+      "seconds": 30.004559619,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063617251652357,
+      "max_snapshot_gap_ms": 53.451933,
+      "peak_visible": 37,
+      "final_position": [
+        150.15868,
+        0.9201,
+        -158.21307
+      ],
+      "rtt_ms": 0.5877249999999999,
+      "traffic": {
+        "sent_bytes": 303431,
+        "received_bytes": 506228,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 39,
+      "seconds": 30.005075113,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063272554154594,
+      "max_snapshot_gap_ms": 53.615372,
+      "peak_visible": 36,
+      "final_position": [
+        -151.5532,
+        0.9201,
+        165.35242
+      ],
+      "rtt_ms": 0.6238360000000001,
+      "traffic": {
+        "sent_bytes": 304244,
+        "received_bytes": 493746,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 40,
+      "seconds": 30.002354201,
+      "input_packets": 1800,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.09842280909748,
+      "max_snapshot_gap_ms": 53.86335,
+      "peak_visible": 36,
+      "final_position": [
+        163.0715,
+        0.9201,
+        150.48338
+      ],
+      "rtt_ms": 0.66668,
+      "traffic": {
+        "sent_bytes": 303450,
+        "received_bytes": 496480,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 41,
+      "seconds": 30.004150016,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063891151023366,
+      "max_snapshot_gap_ms": 53.841551,
+      "peak_visible": 37,
+      "final_position": [
+        -159.05449,
+        0.9201,
+        -150.04501
+      ],
+      "rtt_ms": 0.478308,
+      "traffic": {
+        "sent_bytes": 303600,
+        "received_bytes": 505340,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 42,
+      "seconds": 30.002057905,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.06529025129551,
+      "max_snapshot_gap_ms": 53.642426,
+      "peak_visible": 37,
+      "final_position": [
+        152.62616,
+        0.9201,
+        -166.7599
+      ],
+      "rtt_ms": 0.611502,
+      "traffic": {
+        "sent_bytes": 302996,
+        "received_bytes": 506891,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 43,
+      "seconds": 30.00582274,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.096099521249123,
+      "max_snapshot_gap_ms": 53.961019,
+      "peak_visible": 36,
+      "final_position": [
+        -166.76024,
+        0.9201,
+        150.08182
+      ],
+      "rtt_ms": 0.581186,
+      "traffic": {
+        "sent_bytes": 303582,
+        "received_bytes": 493744,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 44,
+      "seconds": 30.005845379,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.062757519283824,
+      "max_snapshot_gap_ms": 53.483129,
+      "peak_visible": 36,
+      "final_position": [
+        169.11746,
+        0.9200982,
+        156.36356
+      ],
+      "rtt_ms": 0.581377,
+      "traffic": {
+        "sent_bytes": 303136,
+        "received_bytes": 495094,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 45,
+      "seconds": 30.004929758,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063369748082582,
+      "max_snapshot_gap_ms": 53.587835,
+      "peak_visible": 37,
+      "final_position": [
+        -149.91028,
+        0.9201,
+        -153.48387
+      ],
+      "rtt_ms": 0.615771,
+      "traffic": {
+        "sent_bytes": 304243,
+        "received_bytes": 506054,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 46,
+      "seconds": 30.004699204,
+      "input_packets": 1801,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.096852026419,
+      "max_snapshot_gap_ms": 54.067454,
+      "peak_visible": 37,
+      "final_position": [
+        164.18396,
+        0.9201,
+        -150.91864
+      ],
+      "rtt_ms": 0.7109329999999999,
+      "traffic": {
+        "sent_bytes": 302721,
+        "received_bytes": 506222,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 47,
+      "seconds": 30.004534807,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.06363384309343,
+      "max_snapshot_gap_ms": 53.888326,
+      "peak_visible": 36,
+      "final_position": [
+        -159.16853,
+        0.9201,
+        150.03426
+      ],
+      "rtt_ms": 0.622364,
+      "traffic": {
+        "sent_bytes": 303195,
+        "received_bytes": 492387,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 48,
+      "seconds": 30.004626903,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063572259910664,
+      "max_snapshot_gap_ms": 53.667962,
+      "peak_visible": 36,
+      "final_position": [
+        161.0162,
+        1.1050996,
+        171.96687
+      ],
+      "rtt_ms": 2.3169470000000003,
+      "traffic": {
+        "sent_bytes": 303012,
+        "received_bytes": 496162,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 49,
+      "seconds": 30.003540508,
+      "input_packets": 1800,
+      "snapshots": 1206,
+      "owner_snapshots": 603,
+      "owner_snapshot_hz": 20.097628139559696,
+      "max_snapshot_gap_ms": 53.835846,
+      "peak_visible": 37,
+      "final_position": [
+        -169.83879,
+        1.5400999,
+        -161.79297
+      ],
+      "rtt_ms": 0.346792,
+      "traffic": {
+        "sent_bytes": 304127,
+        "received_bytes": 505319,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 50,
+      "seconds": 30.003539909,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.064299140229828,
+      "max_snapshot_gap_ms": 54.385016,
+      "peak_visible": 37,
+      "final_position": [
+        153.53905,
+        0.9201,
+        -167.63022
+      ],
+      "rtt_ms": 0.27724899999999997,
+      "traffic": {
+        "sent_bytes": 303448,
+        "received_bytes": 505707,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 51,
+      "seconds": 30.005886836,
+      "input_packets": 1800,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.062729799998504,
+      "max_snapshot_gap_ms": 53.806587,
+      "peak_visible": 36,
+      "final_position": [
+        -150.23662,
+        0.9201,
+        157.84058
+      ],
+      "rtt_ms": 0.548978,
+      "traffic": {
+        "sent_bytes": 304216,
+        "received_bytes": 493743,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 52,
+      "seconds": 30.002444188,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.06503190965956,
+      "max_snapshot_gap_ms": 53.940859,
+      "peak_visible": 36,
+      "final_position": [
+        154.55426,
+        0.9201,
+        149.29095
+      ],
+      "rtt_ms": 0.7572720000000001,
+      "traffic": {
+        "sent_bytes": 302962,
+        "received_bytes": 495387,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 53,
+      "seconds": 30.005121505,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063241533605648,
+      "max_snapshot_gap_ms": 53.865278,
+      "peak_visible": 37,
+      "final_position": [
+        -169.07516,
+        1.8200997,
+        -152.124
+      ],
+      "rtt_ms": 0.523715,
+      "traffic": {
+        "sent_bytes": 303393,
+        "received_bytes": 505788,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 54,
+      "seconds": 30.00515011,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063222406588388,
+      "max_snapshot_gap_ms": 53.887012999999996,
+      "peak_visible": 37,
+      "final_position": [
+        154.25655,
+        0.9201,
+        -151.81491
+      ],
+      "rtt_ms": 0.678056,
+      "traffic": {
+        "sent_bytes": 304304,
+        "received_bytes": 506749,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 55,
+      "seconds": 30.003434707,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.064369492321806,
+      "max_snapshot_gap_ms": 53.85789,
+      "peak_visible": 36,
+      "final_position": [
+        -154.78531,
+        0.9201,
+        149.18694
+      ],
+      "rtt_ms": 0.573797,
+      "traffic": {
+        "sent_bytes": 303601,
+        "received_bytes": 493315,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 56,
+      "seconds": 30.004180439,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.06387080706624,
+      "max_snapshot_gap_ms": 54.347735,
+      "peak_visible": 36,
+      "final_position": [
+        167.68529,
+        0.9201,
+        166.39423
+      ],
+      "rtt_ms": 0.424675,
+      "traffic": {
+        "sent_bytes": 303326,
+        "received_bytes": 494759,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 57,
+      "seconds": 30.002139352,
+      "input_packets": 1800,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.06523577992346,
+      "max_snapshot_gap_ms": 53.624659,
+      "peak_visible": 37,
+      "final_position": [
+        -164.604,
+        1.5950999,
+        -168.87767
+      ],
+      "rtt_ms": 0.727905,
+      "traffic": {
+        "sent_bytes": 302915,
+        "received_bytes": 506005,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 58,
+      "seconds": 30.004404878,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063720725265973,
+      "max_snapshot_gap_ms": 53.926992999999996,
+      "peak_visible": 37,
+      "final_position": [
+        150.00893,
+        0.9201,
+        -159.6469
+      ],
+      "rtt_ms": 0.395741,
+      "traffic": {
+        "sent_bytes": 303478,
+        "received_bytes": 505969,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 59,
+      "seconds": 30.005238092,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063163576779125,
+      "max_snapshot_gap_ms": 53.524467,
+      "peak_visible": 36,
+      "final_position": [
+        -151.5876,
+        1.8550997,
+        154.59407
+      ],
+      "rtt_ms": 0.7514460000000001,
+      "traffic": {
+        "sent_bytes": 303465,
+        "received_bytes": 492498,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 60,
+      "seconds": 30.005446445,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063024261394222,
+      "max_snapshot_gap_ms": 54.01516,
+      "peak_visible": 36,
+      "final_position": [
+        148.22208,
+        0.9201,
+        157.58142
+      ],
+      "rtt_ms": 0.773922,
+      "traffic": {
+        "sent_bytes": 304059,
+        "received_bytes": 496176,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 61,
+      "seconds": 30.004464633,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063680767624778,
+      "max_snapshot_gap_ms": 53.647037000000005,
+      "peak_visible": 37,
+      "final_position": [
+        -150.63087,
+        1.1901001,
+        -156.51872
+      ],
+      "rtt_ms": 0.513411,
+      "traffic": {
+        "sent_bytes": 303540,
+        "received_bytes": 505007,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 62,
+      "seconds": 30.004254319,
+      "input_packets": 1800,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063821403446358,
+      "max_snapshot_gap_ms": 54.194051,
+      "peak_visible": 37,
+      "final_position": [
+        171.78755,
+        0.9201,
+        -162.25148
+      ],
+      "rtt_ms": 0.5046029999999999,
+      "traffic": {
+        "sent_bytes": 303267,
+        "received_bytes": 505970,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 63,
+      "seconds": 30.004201079,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.0638570050559,
+      "max_snapshot_gap_ms": 54.053577,
+      "peak_visible": 36,
+      "final_position": [
+        -155.77684,
+        0.9201,
+        150.93675
+      ],
+      "rtt_ms": 0.442647,
+      "traffic": {
+        "sent_bytes": 304196,
+        "received_bytes": 493766,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 64,
+      "seconds": 30.004647298,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063558622138082,
+      "max_snapshot_gap_ms": 53.956363,
+      "peak_visible": 36,
+      "final_position": [
+        159.45526,
+        0.9201,
+        169.98495
+      ],
+      "rtt_ms": 0.764032,
+      "traffic": {
+        "sent_bytes": 302826,
+        "received_bytes": 495030,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 65,
+      "seconds": 30.002264549,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.06515204933306,
+      "max_snapshot_gap_ms": 53.710773,
+      "peak_visible": 37,
+      "final_position": [
+        -156.9792,
+        0.9201,
+        -150.46623
+      ],
+      "rtt_ms": 0.628151,
+      "traffic": {
+        "sent_bytes": 304449,
+        "received_bytes": 506278,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 66,
+      "seconds": 30.004521688,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.06364261559829,
+      "max_snapshot_gap_ms": 54.041605,
+      "peak_visible": 37,
+      "final_position": [
+        157.66132,
+        0.9200959,
+        -169.36627
+      ],
+      "rtt_ms": 0.405298,
+      "traffic": {
+        "sent_bytes": 304180,
+        "received_bytes": 506766,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 67,
+      "seconds": 30.004593668,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063594483601857,
+      "max_snapshot_gap_ms": 53.947544,
+      "peak_visible": 36,
+      "final_position": [
+        -148.01315,
+        0.9201,
+        159.28584
+      ],
+      "rtt_ms": 0.47498,
+      "traffic": {
+        "sent_bytes": 303346,
+        "received_bytes": 493360,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 68,
+      "seconds": 30.005330755,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.029774206033412,
+      "max_snapshot_gap_ms": 54.031611,
+      "peak_visible": 36,
+      "final_position": [
+        164.05426,
+        0.9201,
+        171.29019
+      ],
+      "rtt_ms": 0.594899,
+      "traffic": {
+        "sent_bytes": 303607,
+        "received_bytes": 495013,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 69,
+      "seconds": 30.003655013,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.064222166904838,
+      "max_snapshot_gap_ms": 53.568582,
+      "peak_visible": 37,
+      "final_position": [
+        -153.51897,
+        0.9201,
+        -167.61308
+      ],
+      "rtt_ms": 0.246722,
+      "traffic": {
+        "sent_bytes": 304787,
+        "received_bytes": 505864,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 70,
+      "seconds": 30.002468843,
+      "input_packets": 1800,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.06501542090444,
+      "max_snapshot_gap_ms": 53.945845,
+      "peak_visible": 37,
+      "final_position": [
+        158.11523,
+        0.9201,
+        -150.17885
+      ],
+      "rtt_ms": 0.902115,
+      "traffic": {
+        "sent_bytes": 302976,
+        "received_bytes": 506388,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 71,
+      "seconds": 30.002422355,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.031715869096864,
+      "max_snapshot_gap_ms": 53.862651,
+      "peak_visible": 36,
+      "final_position": [
+        -165.34465,
+        0.9201,
+        151.54675
+      ],
+      "rtt_ms": 0.5070549999999999,
+      "traffic": {
+        "sent_bytes": 304491,
+        "received_bytes": 492670,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 72,
+      "seconds": 30.004544815,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.06362715087901,
+      "max_snapshot_gap_ms": 53.519898000000005,
+      "peak_visible": 36,
+      "final_position": [
+        167.86066,
+        0.9201,
+        169.06262
+      ],
+      "rtt_ms": 0.645616,
+      "traffic": {
+        "sent_bytes": 304204,
+        "received_bytes": 496020,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 73,
+      "seconds": 30.004225985,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063840350387895,
+      "max_snapshot_gap_ms": 53.993989,
+      "peak_visible": 37,
+      "final_position": [
+        -168.9283,
+        0.9201,
+        -155.49992
+      ],
+      "rtt_ms": 0.49407300000000004,
+      "traffic": {
+        "sent_bytes": 303289,
+        "received_bytes": 504949,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 74,
+      "seconds": 30.002617291,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.031585717032904,
+      "max_snapshot_gap_ms": 53.834416000000004,
+      "peak_visible": 37,
+      "final_position": [
+        163.45929,
+        0.9201,
+        -169.38358
+      ],
+      "rtt_ms": 0.605959,
+      "traffic": {
+        "sent_bytes": 304572,
+        "received_bytes": 506177,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 75,
+      "seconds": 30.005366448,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063077751217605,
+      "max_snapshot_gap_ms": 53.484149,
+      "peak_visible": 36,
+      "final_position": [
+        -169.03555,
+        0.9201,
+        155.71193
+      ],
+      "rtt_ms": 0.779778,
+      "traffic": {
+        "sent_bytes": 304018,
+        "received_bytes": 493663,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 76,
+      "seconds": 30.002643572,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.06489856653222,
+      "max_snapshot_gap_ms": 54.000594,
+      "peak_visible": 36,
+      "final_position": [
+        169.5861,
+        0.9201,
+        157.14714
+      ],
+      "rtt_ms": 0.828175,
+      "traffic": {
+        "sent_bytes": 302987,
+        "received_bytes": 495086,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 77,
+      "seconds": 30.004618847,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.030249444748097,
+      "max_snapshot_gap_ms": 53.794209,
+      "peak_visible": 37,
+      "final_position": [
+        -170.76544,
+        0.9201,
+        -154.69447
+      ],
+      "rtt_ms": 0.42251099999999997,
+      "traffic": {
+        "sent_bytes": 303194,
+        "received_bytes": 505327,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 78,
+      "seconds": 30.004666853,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063545546075922,
+      "max_snapshot_gap_ms": 53.567627,
+      "peak_visible": 37,
+      "final_position": [
+        150.04175,
+        0.9201,
+        -160.92432
+      ],
+      "rtt_ms": 0.716857,
+      "traffic": {
+        "sent_bytes": 303868,
+        "received_bytes": 506702,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 79,
+      "seconds": 30.002591555,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.064933354054723,
+      "max_snapshot_gap_ms": 54.012012999999996,
+      "peak_visible": 36,
+      "final_position": [
+        -162.24261,
+        0.9201,
+        171.79343
+      ],
+      "rtt_ms": 0.664481,
+      "traffic": {
+        "sent_bytes": 302939,
+        "received_bytes": 493786,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 80,
+      "seconds": 30.003741753,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.03083498543669,
+      "max_snapshot_gap_ms": 53.499371,
+      "peak_visible": 36,
+      "final_position": [
+        168.18356,
+        0.9201,
+        165.74397
+      ],
+      "rtt_ms": 0.320968,
+      "traffic": {
+        "sent_bytes": 303341,
+        "received_bytes": 494688,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 81,
+      "seconds": 30.004666062,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063546075002474,
+      "max_snapshot_gap_ms": 53.451301,
+      "peak_visible": 37,
+      "final_position": [
+        -170.7236,
+        0.9201,
+        -165.38983
+      ],
+      "rtt_ms": 0.345778,
+      "traffic": {
+        "sent_bytes": 304042,
+        "received_bytes": 506032,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 82,
+      "seconds": 30.005573765,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.06293912973605,
+      "max_snapshot_gap_ms": 54.196816,
+      "peak_visible": 37,
+      "final_position": [
+        169.98146,
+        1.3450997,
+        -159.4072
+      ],
+      "rtt_ms": 0.617444,
+      "traffic": {
+        "sent_bytes": 303374,
+        "received_bytes": 505906,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 83,
+      "seconds": 30.004790749,
+      "input_packets": 1800,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.030134688409053,
+      "max_snapshot_gap_ms": 53.821584,
+      "peak_visible": 36,
+      "final_position": [
+        -154.28659,
+        1.6900998,
+        168.20638
+      ],
+      "rtt_ms": 0.420985,
+      "traffic": {
+        "sent_bytes": 303269,
+        "received_bytes": 491830,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 84,
+      "seconds": 30.00549279,
+      "input_packets": 1800,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.02966604168876,
+      "max_snapshot_gap_ms": 53.476507,
+      "peak_visible": 36,
+      "final_position": [
+        150.56685,
+        0.9201,
+        163.32736
+      ],
+      "rtt_ms": 0.630874,
+      "traffic": {
+        "sent_bytes": 303872,
+        "received_bytes": 495554,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 85,
+      "seconds": 30.004837344,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063431542660258,
+      "max_snapshot_gap_ms": 54.097985,
+      "peak_visible": 37,
+      "final_position": [
+        -167.75249,
+        1.7300998,
+        -153.69023
+      ],
+      "rtt_ms": 0.438045,
+      "traffic": {
+        "sent_bytes": 303246,
+        "received_bytes": 504955,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 86,
+      "seconds": 30.005518834,
+      "input_packets": 1800,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.02964865646622,
+      "max_snapshot_gap_ms": 53.310349,
+      "peak_visible": 37,
+      "final_position": [
+        160.39104,
+        0.9201,
+        -150.00768
+      ],
+      "rtt_ms": 0.532554,
+      "traffic": {
+        "sent_bytes": 303697,
+        "received_bytes": 505726,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 87,
+      "seconds": 30.004892358,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.030066858072214,
+      "max_snapshot_gap_ms": 53.501591,
+      "peak_visible": 36,
+      "final_position": [
+        -168.37988,
+        0.9201,
+        154.54514
+      ],
+      "rtt_ms": 0.40879099999999996,
+      "traffic": {
+        "sent_bytes": 304704,
+        "received_bytes": 493315,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 88,
+      "seconds": 30.004704705,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.06352023520106,
+      "max_snapshot_gap_ms": 54.04776699999999,
+      "peak_visible": 36,
+      "final_position": [
+        167.92657,
+        1.8700997,
+        150.97322
+      ],
+      "rtt_ms": 2.490253,
+      "traffic": {
+        "sent_bytes": 303027,
+        "received_bytes": 494741,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 89,
+      "seconds": 30.00386365,
+      "input_packets": 1800,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.03075360596101,
+      "max_snapshot_gap_ms": 53.75324,
+      "peak_visible": 37,
+      "final_position": [
+        -163.68547,
+        0.9201,
+        -148.5805
+      ],
+      "rtt_ms": 0.372234,
+      "traffic": {
+        "sent_bytes": 302984,
+        "received_bytes": 505222,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 90,
+      "seconds": 30.005479023,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.029675231624115,
+      "max_snapshot_gap_ms": 53.426351,
+      "peak_visible": 37,
+      "final_position": [
+        169.86688,
+        0.9201,
+        -161.63237
+      ],
+      "rtt_ms": 0.689293,
+      "traffic": {
+        "sent_bytes": 303828,
+        "received_bytes": 506255,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 91,
+      "seconds": 30.002744388,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.06483114393955,
+      "max_snapshot_gap_ms": 53.931497,
+      "peak_visible": 36,
+      "final_position": [
+        -163.1874,
+        0.9201,
+        169.47919
+      ],
+      "rtt_ms": 0.872522,
+      "traffic": {
+        "sent_bytes": 302980,
+        "received_bytes": 494161,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 92,
+      "seconds": 30.004300377,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.030462048723543,
+      "max_snapshot_gap_ms": 53.605187,
+      "peak_visible": 36,
+      "final_position": [
+        150.24602,
+        1.2701001,
+        157.79874
+      ],
+      "rtt_ms": 0.504399,
+      "traffic": {
+        "sent_bytes": 303121,
+        "received_bytes": 494628,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 93,
+      "seconds": 30.004340884,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.030435006838857,
+      "max_snapshot_gap_ms": 53.319035,
+      "peak_visible": 37,
+      "final_position": [
+        -148.03667,
+        0.9201,
+        -158.84528
+      ],
+      "rtt_ms": 0.370137,
+      "traffic": {
+        "sent_bytes": 304071,
+        "received_bytes": 505563,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 94,
+      "seconds": 30.003041493,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.06463245202832,
+      "max_snapshot_gap_ms": 53.932291,
+      "peak_visible": 37,
+      "final_position": [
+        155.94821,
+        0.9201,
+        -169.1396
+      ],
+      "rtt_ms": 0.896637,
+      "traffic": {
+        "sent_bytes": 303012,
+        "received_bytes": 506440,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 95,
+      "seconds": 30.005408825,
+      "input_packets": 1800,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.02972209128032,
+      "max_snapshot_gap_ms": 53.250413,
+      "peak_visible": 36,
+      "final_position": [
+        -153.43175,
+        0.9201,
+        170.04823
+      ],
+      "rtt_ms": 0.818023,
+      "traffic": {
+        "sent_bytes": 303743,
+        "received_bytes": 492642,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 96,
+      "seconds": 30.004772491,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.030146876810058,
+      "max_snapshot_gap_ms": 53.448664,
+      "peak_visible": 36,
+      "final_position": [
+        157.68465,
+        0.9201,
+        148.20374
+      ],
+      "rtt_ms": 0.43721899999999997,
+      "traffic": {
+        "sent_bytes": 304056,
+        "received_bytes": 495669,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 97,
+      "seconds": 30.004929504,
+      "input_packets": 1801,
+      "snapshots": 1204,
+      "owner_snapshots": 602,
+      "owner_snapshot_hz": 20.063369917924536,
+      "max_snapshot_gap_ms": 53.938672,
+      "peak_visible": 37,
+      "final_position": [
+        -155.23624,
+        0.9201,
+        -168.78975
+      ],
+      "rtt_ms": 0.593159,
+      "traffic": {
+        "sent_bytes": 303202,
+        "received_bytes": 504898,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 98,
+      "seconds": 30.004792401,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.030133585592477,
+      "max_snapshot_gap_ms": 53.620486,
+      "peak_visible": 37,
+      "final_position": [
+        167.32104,
+        0.9200999,
+        -153.1947
+      ],
+      "rtt_ms": 0.5494220000000001,
+      "traffic": {
+        "sent_bytes": 304060,
+        "received_bytes": 506116,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 99,
+      "seconds": 30.004948844,
+      "input_packets": 1800,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.030029150347314,
+      "max_snapshot_gap_ms": 54.025866,
+      "peak_visible": 36,
+      "final_position": [
+        -150.17336,
+        0.9201,
+        161.84879
+      ],
+      "rtt_ms": 0.340589,
+      "traffic": {
+        "sent_bytes": 304765,
+        "received_bytes": 493337,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 100,
+      "seconds": 30.004486877,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.030337544638957,
+      "max_snapshot_gap_ms": 54.001751,
+      "peak_visible": 36,
+      "final_position": [
+        167.4943,
+        0.9201,
+        153.38278
+      ],
+      "rtt_ms": 0.48391100000000004,
+      "traffic": {
+        "sent_bytes": 303178,
+        "received_bytes": 494118,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 101,
+      "seconds": 30.003225469,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.031179668364874,
+      "max_snapshot_gap_ms": 53.671991000000006,
+      "peak_visible": 37,
+      "final_position": [
+        -161.07806,
+        0.92009395,
+        -169.51518
+      ],
+      "rtt_ms": 0.594572,
+      "traffic": {
+        "sent_bytes": 304630,
+        "received_bytes": 505827,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 102,
+      "seconds": 30.005631445,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.029573485284807,
+      "max_snapshot_gap_ms": 53.856665,
+      "peak_visible": 37,
+      "final_position": [
+        159.01567,
+        0.9201,
+        -150.04758
+      ],
+      "rtt_ms": 0.522231,
+      "traffic": {
+        "sent_bytes": 303694,
+        "received_bytes": 506298,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 103,
+      "seconds": 30.005583375,
+      "input_packets": 1800,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.02960557336606,
+      "max_snapshot_gap_ms": 53.947112,
+      "peak_visible": 36,
+      "final_position": [
+        -169.92467,
+        0.9201,
+        153.2583
+      ],
+      "rtt_ms": 0.890303,
+      "traffic": {
+        "sent_bytes": 302875,
+        "received_bytes": 492921,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 104,
+      "seconds": 30.005059292,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.02995542022607,
+      "max_snapshot_gap_ms": 53.746231,
+      "peak_visible": 36,
+      "final_position": [
+        164.55655,
+        0.9201,
+        168.90251
+      ],
+      "rtt_ms": 0.421707,
+      "traffic": {
+        "sent_bytes": 302906,
+        "received_bytes": 494484,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 105,
+      "seconds": 30.003106112,
+      "input_packets": 1800,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.031259355498026,
+      "max_snapshot_gap_ms": 53.868294999999996,
+      "peak_visible": 37,
+      "final_position": [
+        -154.93745,
+        1.6450999,
+        -149.09802
+      ],
+      "rtt_ms": 1.0369089999999999,
+      "traffic": {
+        "sent_bytes": 303307,
+        "received_bytes": 505702,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 106,
+      "seconds": 30.006108788,
+      "input_packets": 1800,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.02925485094392,
+      "max_snapshot_gap_ms": 54.011211,
+      "peak_visible": 37,
+      "final_position": [
+        171.73326,
+        1.4800998,
+        -157.49959
+      ],
+      "rtt_ms": 0.396231,
+      "traffic": {
+        "sent_bytes": 303839,
+        "received_bytes": 505428,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 107,
+      "seconds": 30.003090313,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.031269903540352,
+      "max_snapshot_gap_ms": 53.873461,
+      "peak_visible": 36,
+      "final_position": [
+        -169.361,
+        1.1050996,
+        156.48079
+      ],
+      "rtt_ms": 0.673723,
+      "traffic": {
+        "sent_bytes": 304605,
+        "received_bytes": 492447,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 108,
+      "seconds": 30.002400187,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.03173067001528,
+      "max_snapshot_gap_ms": 53.988934,
+      "peak_visible": 36,
+      "final_position": [
+        159.56645,
+        0.9201,
+        147.98935
+      ],
+      "rtt_ms": 0.649519,
+      "traffic": {
+        "sent_bytes": 303162,
+        "received_bytes": 495455,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 109,
+      "seconds": 30.002767919,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.031485149055257,
+      "max_snapshot_gap_ms": 53.916596,
+      "peak_visible": 37,
+      "final_position": [
+        -168.5465,
+        0.9201,
+        -154.80925
+      ],
+      "rtt_ms": 0.7115309999999999,
+      "traffic": {
+        "sent_bytes": 303098,
+        "received_bytes": 505270,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 110,
+      "seconds": 30.006089903,
+      "input_packets": 1800,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.029267456800902,
+      "max_snapshot_gap_ms": 53.909043,
+      "peak_visible": 37,
+      "final_position": [
+        156.87881,
+        1.8400983,
+        -169.36594
+      ],
+      "rtt_ms": 0.330909,
+      "traffic": {
+        "sent_bytes": 303884,
+        "received_bytes": 505492,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 111,
+      "seconds": 30.003015287,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.03131999404097,
+      "max_snapshot_gap_ms": 54.069456,
+      "peak_visible": 36,
+      "final_position": [
+        -150.79225,
+        0.9201,
+        152.26802
+      ],
+      "rtt_ms": 0.579064,
+      "traffic": {
+        "sent_bytes": 303069,
+        "received_bytes": 493751,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 112,
+      "seconds": 30.005025677,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.029977860031945,
+      "max_snapshot_gap_ms": 53.935168,
+      "peak_visible": 36,
+      "final_position": [
+        148.62369,
+        0.9201,
+        163.81053
+      ],
+      "rtt_ms": 0.34359100000000004,
+      "traffic": {
+        "sent_bytes": 303161,
+        "received_bytes": 494300,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 113,
+      "seconds": 30.005613915,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.02958518704249,
+      "max_snapshot_gap_ms": 53.535665,
+      "peak_visible": 37,
+      "final_position": [
+        -164.30531,
+        1.8400997,
+        -150.97757
+      ],
+      "rtt_ms": 0.529616,
+      "traffic": {
+        "sent_bytes": 303830,
+        "received_bytes": 505610,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 114,
+      "seconds": 30.002708025,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.03152513763797,
+      "max_snapshot_gap_ms": 54.094846000000004,
+      "peak_visible": 37,
+      "final_position": [
+        154.29202,
+        0.9201,
+        -149.41676
+      ],
+      "rtt_ms": 0.7682760000000001,
+      "traffic": {
+        "sent_bytes": 303407,
+        "received_bytes": 506895,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 115,
+      "seconds": 30.003179191,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.031210565188402,
+      "max_snapshot_gap_ms": 53.995263,
+      "peak_visible": 36,
+      "final_position": [
+        -159.66414,
+        0.92009443,
+        150.39818
+      ],
+      "rtt_ms": 0.678691,
+      "traffic": {
+        "sent_bytes": 303331,
+        "received_bytes": 493466,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 116,
+      "seconds": 30.005643339,
+      "input_packets": 1801,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.99623848158412,
+      "max_snapshot_gap_ms": 53.104451,
+      "peak_visible": 36,
+      "final_position": [
+        166.34264,
+        0.9201,
+        167.73137
+      ],
+      "rtt_ms": 0.472549,
+      "traffic": {
+        "sent_bytes": 304017,
+        "received_bytes": 494383,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 117,
+      "seconds": 30.002781532,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.031476060277704,
+      "max_snapshot_gap_ms": 54.13194,
+      "peak_visible": 37,
+      "final_position": [
+        -167.56111,
+        0.9201,
+        -166.54924
+      ],
+      "rtt_ms": 0.7007209999999999,
+      "traffic": {
+        "sent_bytes": 303311,
+        "received_bytes": 505814,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 118,
+      "seconds": 30.00613508,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.029237300894,
+      "max_snapshot_gap_ms": 53.941016000000005,
+      "peak_visible": 37,
+      "final_position": [
+        169.46857,
+        0.9201,
+        -156.78554
+      ],
+      "rtt_ms": 0.286455,
+      "traffic": {
+        "sent_bytes": 303709,
+        "received_bytes": 505296,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 119,
+      "seconds": 30.003065564,
+      "input_packets": 1801,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.997956499482722,
+      "max_snapshot_gap_ms": 53.747021,
+      "peak_visible": 36,
+      "final_position": [
+        -162.29213,
+        0.9201,
+        169.73402
+      ],
+      "rtt_ms": 0.700682,
+      "traffic": {
+        "sent_bytes": 304681,
+        "received_bytes": 491978,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 120,
+      "seconds": 30.00327505,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.03114656644792,
+      "max_snapshot_gap_ms": 53.601879999999994,
+      "peak_visible": 36,
+      "final_position": [
+        163.25853,
+        0.9201,
+        169.45729
+      ],
+      "rtt_ms": 0.758353,
+      "traffic": {
+        "sent_bytes": 303301,
+        "received_bytes": 495930,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 121,
+      "seconds": 30.006126508,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.02924302274624,
+      "max_snapshot_gap_ms": 54.044663,
+      "peak_visible": 37,
+      "final_position": [
+        -151.68922,
+        0.9201,
+        -165.55962
+      ],
+      "rtt_ms": 0.319793,
+      "traffic": {
+        "sent_bytes": 303703,
+        "received_bytes": 504427,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 122,
+      "seconds": 30.005667477,
+      "input_packets": 1801,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.996222395649525,
+      "max_snapshot_gap_ms": 53.539973999999994,
+      "peak_visible": 37,
+      "final_position": [
+        151.19075,
+        0.9201,
+        -164.72891
+      ],
+      "rtt_ms": 0.462092,
+      "traffic": {
+        "sent_bytes": 303954,
+        "received_bytes": 505399,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 123,
+      "seconds": 30.00488587,
+      "input_packets": 1800,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.030071189202626,
+      "max_snapshot_gap_ms": 54.113361,
+      "peak_visible": 36,
+      "final_position": [
+        -149.7983,
+        0.9201,
+        153.65536
+      ],
+      "rtt_ms": 0.6433460000000001,
+      "traffic": {
+        "sent_bytes": 303840,
+        "received_bytes": 493644,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 124,
+      "seconds": 30.005094973,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.029931601309983,
+      "max_snapshot_gap_ms": 53.830089,
+      "peak_visible": 36,
+      "final_position": [
+        169.99522,
+        0.9201,
+        159.77245
+      ],
+      "rtt_ms": 0.421886,
+      "traffic": {
+        "sent_bytes": 303066,
+        "received_bytes": 494043,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 125,
+      "seconds": 30.003843822,
+      "input_packets": 1800,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.99743778029055,
+      "max_snapshot_gap_ms": 53.473856,
+      "peak_visible": 37,
+      "final_position": [
+        -169.78615,
+        1.1051,
+        -157.94276
+      ],
+      "rtt_ms": 0.638544,
+      "traffic": {
+        "sent_bytes": 303829,
+        "received_bytes": 505345,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 126,
+      "seconds": 30.005857449,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.029422622616284,
+      "max_snapshot_gap_ms": 54.111697,
+      "peak_visible": 37,
+      "final_position": [
+        148.18892,
+        0.9201,
+        -157.78151
+      ],
+      "rtt_ms": 0.46648399999999995,
+      "traffic": {
+        "sent_bytes": 303845,
+        "received_bytes": 506340,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 127,
+      "seconds": 30.00512182,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.02991367958392,
+      "max_snapshot_gap_ms": 53.82306,
+      "peak_visible": 36,
+      "final_position": [
+        -168.83086,
+        0.9201,
+        151.87308
+      ],
+      "rtt_ms": 0.36569,
+      "traffic": {
+        "sent_bytes": 303124,
+        "received_bytes": 492968,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 128,
+      "seconds": 30.005656812,
+      "input_packets": 1801,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.99622950296643,
+      "max_snapshot_gap_ms": 53.46799,
+      "peak_visible": 36,
+      "final_position": [
+        165.8143,
+        0.9201,
+        151.86746
+      ],
+      "rtt_ms": 0.561574,
+      "traffic": {
+        "sent_bytes": 303956,
+        "received_bytes": 493787,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 129,
+      "seconds": 30.003250958,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.03116265105101,
+      "max_snapshot_gap_ms": 53.977228000000004,
+      "peak_visible": 37,
+      "final_position": [
+        -159.18163,
+        0.9201,
+        -171.97224
+      ],
+      "rtt_ms": 0.907381,
+      "traffic": {
+        "sent_bytes": 303354,
+        "received_bytes": 505411,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 130,
+      "seconds": 30.005174576,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.02987846238752,
+      "max_snapshot_gap_ms": 54.014316,
+      "peak_visible": 37,
+      "final_position": [
+        154.86469,
+        0.92008513,
+        -152.13539
+      ],
+      "rtt_ms": 2.1496750000000002,
+      "traffic": {
+        "sent_bytes": 302963,
+        "received_bytes": 504738,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 131,
+      "seconds": 30.003893486,
+      "input_packets": 1801,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.997404679494803,
+      "max_snapshot_gap_ms": 53.823761,
+      "peak_visible": 36,
+      "final_position": [
+        -161.59499,
+        0.9201,
+        150.12868
+      ],
+      "rtt_ms": 0.6691320000000001,
+      "traffic": {
+        "sent_bytes": 303955,
+        "received_bytes": 491516,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 132,
+      "seconds": 30.005680147,
+      "input_packets": 1801,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.99621395217694,
+      "max_snapshot_gap_ms": 54.031424,
+      "peak_visible": 36,
+      "final_position": [
+        150.87315,
+        0.9201,
+        164.08585
+      ],
+      "rtt_ms": 0.511741,
+      "traffic": {
+        "sent_bytes": 303938,
+        "received_bytes": 494335,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 133,
+      "seconds": 30.005692209,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.02953292374752,
+      "max_snapshot_gap_ms": 53.834137,
+      "peak_visible": 37,
+      "final_position": [
+        -169.97147,
+        0.9201,
+        -153.28401
+      ],
+      "rtt_ms": 0.8752989999999999,
+      "traffic": {
+        "sent_bytes": 302660,
+        "received_bytes": 504132,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 134,
+      "seconds": 30.004993122,
+      "input_packets": 1801,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.996671805935968,
+      "max_snapshot_gap_ms": 53.698002,
+      "peak_visible": 37,
+      "final_position": [
+        151.81084,
+        0.9201,
+        -154.26305
+      ],
+      "rtt_ms": 0.533449,
+      "traffic": {
+        "sent_bytes": 304145,
+        "received_bytes": 505171,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 135,
+      "seconds": 30.005265866,
+      "input_packets": 1801,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.996490038766186,
+      "max_snapshot_gap_ms": 53.847212,
+      "peak_visible": 36,
+      "final_position": [
+        -148.71379,
+        0.9201,
+        164.18622
+      ],
+      "rtt_ms": 0.373841,
+      "traffic": {
+        "sent_bytes": 304401,
+        "received_bytes": 492239,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 136,
+      "seconds": 30.003919752,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.030716152010058,
+      "max_snapshot_gap_ms": 54.002454,
+      "peak_visible": 36,
+      "final_position": [
+        168.80731,
+        1.1900996,
+        164.73396
+      ],
+      "rtt_ms": 0.763367,
+      "traffic": {
+        "sent_bytes": 303168,
+        "received_bytes": 494257,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 137,
+      "seconds": 30.004037281,
+      "input_packets": 1800,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.99730884149877,
+      "max_snapshot_gap_ms": 53.550445,
+      "peak_visible": 37,
+      "final_position": [
+        -157.8305,
+        0.9201,
+        -169.76247
+      ],
+      "rtt_ms": 0.700133,
+      "traffic": {
+        "sent_bytes": 304086,
+        "received_bytes": 504766,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 138,
+      "seconds": 30.005214316,
+      "input_packets": 1801,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.996524393430366,
+      "max_snapshot_gap_ms": 54.033379,
+      "peak_visible": 37,
+      "final_position": [
+        159.23433,
+        0.9201,
+        -147.99843
+      ],
+      "rtt_ms": 0.35138600000000003,
+      "traffic": {
+        "sent_bytes": 304497,
+        "received_bytes": 505127,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 139,
+      "seconds": 30.001906008,
+      "input_packets": 1800,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.032060624406448,
+      "max_snapshot_gap_ms": 53.909593,
+      "peak_visible": 36,
+      "final_position": [
+        -169.42632,
+        0.92009866,
+        157.0675
+      ],
+      "rtt_ms": 0.779126,
+      "traffic": {
+        "sent_bytes": 303069,
+        "received_bytes": 493013,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 140,
+      "seconds": 30.004967695,
+      "input_packets": 1801,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.996688751642395,
+      "max_snapshot_gap_ms": 53.720405,
+      "peak_visible": 36,
+      "final_position": [
+        156.3303,
+        1.4151001,
+        148.55467
+      ],
+      "rtt_ms": 0.7070909999999999,
+      "traffic": {
+        "sent_bytes": 304163,
+        "received_bytes": 494151,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 141,
+      "seconds": 30.004265969,
+      "input_packets": 1800,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.99715642502009,
+      "max_snapshot_gap_ms": 53.97209,
+      "peak_visible": 37,
+      "final_position": [
+        -150.91643,
+        0.9201,
+        -164.18675
+      ],
+      "rtt_ms": 0.593677,
+      "traffic": {
+        "sent_bytes": 303333,
+        "received_bytes": 504561,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 142,
+      "seconds": 30.004010713,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.030655426329435,
+      "max_snapshot_gap_ms": 54.053701000000004,
+      "peak_visible": 37,
+      "final_position": [
+        169.04205,
+        0.9201,
+        -152.11719
+      ],
+      "rtt_ms": 0.575203,
+      "traffic": {
+        "sent_bytes": 302835,
+        "received_bytes": 505058,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 143,
+      "seconds": 30.003997363,
+      "input_packets": 1801,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.997335446372936,
+      "max_snapshot_gap_ms": 53.600493,
+      "peak_visible": 36,
+      "final_position": [
+        -163.40887,
+        0.9201,
+        150.59732
+      ],
+      "rtt_ms": 0.695537,
+      "traffic": {
+        "sent_bytes": 304129,
+        "received_bytes": 491649,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 144,
+      "seconds": 30.003202922,
+      "input_packets": 1801,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.99786494661365,
+      "max_snapshot_gap_ms": 53.996544,
+      "peak_visible": 36,
+      "final_position": [
+        165.2087,
+        1.8650985,
+        151.61769
+      ],
+      "rtt_ms": 0.625096,
+      "traffic": {
+        "sent_bytes": 303414,
+        "received_bytes": 494690,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 145,
+      "seconds": 30.005017536,
+      "input_packets": 1801,
+      "snapshots": 1202,
+      "owner_snapshots": 601,
+      "owner_snapshot_hz": 20.029983294591332,
+      "max_snapshot_gap_ms": 53.87622,
+      "peak_visible": 37,
+      "final_position": [
+        -171.35797,
+        1.6450999,
+        -163.86046
+      ],
+      "rtt_ms": 0.706269,
+      "traffic": {
+        "sent_bytes": 303143,
+        "received_bytes": 504706,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 146,
+      "seconds": 30.004087395,
+      "input_packets": 1801,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.9972754412116,
+      "max_snapshot_gap_ms": 53.6227,
+      "peak_visible": 37,
+      "final_position": [
+        166.69305,
+        0.9201,
+        -169.9765
+      ],
+      "rtt_ms": 0.6460440000000001,
+      "traffic": {
+        "sent_bytes": 304188,
+        "received_bytes": 505329,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 147,
+      "seconds": 30.004433459,
+      "input_packets": 1801,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.99704479739232,
+      "max_snapshot_gap_ms": 53.710925,
+      "peak_visible": 36,
+      "final_position": [
+        -166.80229,
+        0.9201,
+        167.33081
+      ],
+      "rtt_ms": 0.726882,
+      "traffic": {
+        "sent_bytes": 303273,
+        "received_bytes": 492334,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 148,
+      "seconds": 30.003944864,
+      "input_packets": 1801,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.997370436442353,
+      "max_snapshot_gap_ms": 53.95401,
+      "peak_visible": 36,
+      "final_position": [
+        161.59898,
+        1.8200997,
+        169.872
+      ],
+      "rtt_ms": 0.725498,
+      "traffic": {
+        "sent_bytes": 303083,
+        "received_bytes": 493662,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 149,
+      "seconds": 30.004352225,
+      "input_packets": 1800,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.997098937535885,
+      "max_snapshot_gap_ms": 53.586653999999996,
+      "peak_visible": 37,
+      "final_position": [
+        -150.03606,
+        0.9201,
+        -160.86833
+      ],
+      "rtt_ms": 0.488651,
+      "traffic": {
+        "sent_bytes": 303024,
+        "received_bytes": 504224,
+        "lost_packets": 0
+      }
+    },
+    {
+      "player": 150,
+      "seconds": 30.005804419,
+      "input_packets": 1801,
+      "snapshots": 1200,
+      "owner_snapshots": 600,
+      "owner_snapshot_hz": 19.996131135883612,
+      "max_snapshot_gap_ms": 53.736697,
+      "peak_visible": 37,
+      "final_position": [
+        166.7176,
+        0.9201,
+        -152.59149
+      ],
+      "rtt_ms": 0.5084150000000001,
+      "traffic": {
+        "sent_bytes": 303335,
+        "received_bytes": 505289,
+        "lost_packets": 0
+      }
+    }
+  ]
+}

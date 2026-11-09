@@ -1,0 +1,17 @@
+[package]
+name = "midnight-core-checks"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+# An independent test entry point, not a second implementation. This builds the
+# actual platform-independent modules without resolving the rendering stack.
+[workspace]
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[target.'cfg(target_os = "linux")'.dependencies]
+ash = "0.38"
+

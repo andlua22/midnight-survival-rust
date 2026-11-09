@@ -1,0 +1,22 @@
+[package]
+name = "server"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+default-run = "server"
+
+[dependencies]
+bevy = { workspace = true, features = ["std", "async_executor"] }
+shared = { path = "../shared" }
+midnight_network = { path = "../network" }
+serde.workspace = true
+serde_json.workspace = true
+
+[[bin]]
+name = "server"
+path = "src/main.rs"
+
+[[bin]]
+name = "net_load"
+path = "src/bin/net_load.rs"
+

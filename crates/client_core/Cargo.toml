@@ -1,0 +1,20 @@
+[package]
+name = "client_core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+bevy = { workspace = true, features = [
+    "std", "async_executor", "multi_threaded", "bevy_asset", "bevy_color",
+    "bevy_core_pipeline", "bevy_render", "bevy_pbr", "bevy_mesh", "bevy_image",
+    "bevy_camera", "bevy_light", "bevy_shader", "bevy_log", "bevy_window",
+    "bevy_winit", "x11", "wayland", "png", "bevy_audio", "wav", "bevy_remote",
+    "tonemapping_luts",
+] }
+bevy_egui.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+shared = { path = "../shared" }
+midnight_network = { path = "../network" }
+

@@ -1,0 +1,34 @@
+Midnight server: 127.0.0.1:49292 | LoadArena | capacity=150 | 60 Hz
+Код доступу: server invite --data-dir /tmp/midnight-network-9tu4cy11/identity
+tick=300 players=150 p99=13.90ms rss=14.6MB late=0
+tick=600 players=150 p99=16.00ms rss=14.6MB late=0
+tick=900 players=150 p99=15.10ms rss=14.6MB late=0
+tick=1200 players=150 p99=15.20ms rss=14.6MB late=0
+tick=1500 players=150 p99=16.00ms rss=14.6MB late=0
+tick=1800 players=150 p99=18.20ms rss=14.6MB late=7
+{
+  "protocol_version": 1,
+  "build_profile": "release",
+  "map": "LoadArena",
+  "layout": "spread",
+  "elapsed_seconds": 30.907309073,
+  "ticks": 1854,
+  "ticks_per_second": 59.985810981507186,
+  "players": 0,
+  "peak_players": 150,
+  "seconds_at_capacity": 30.015279860999968,
+  "tick_p50_ms": 7.8,
+  "tick_p95_ms": 14.4,
+  "tick_p99_ms": 18.3,
+  "tick_max_ms": 31.168184,
+  "late_ticks": 7,
+  "peak_incoming_queue": 323,
+  "current_rss_mb": 13.53125,
+  "peak_rss_mb": 14.58203125,
+  "process_cpu_seconds": 26.39,
+  "traffic": {
+    "sent_bytes": 75428109,
+    "received_bytes": 45310922,
+    "lost_packets": 50
+  }
+}

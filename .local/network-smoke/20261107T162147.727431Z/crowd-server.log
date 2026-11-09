@@ -1,0 +1,34 @@
+Midnight server: 127.0.0.1:45286 | Polygon | capacity=150 | 60 Hz
+Код доступу: server invite --data-dir /tmp/midnight-network-9tu4cy11/identity
+tick=300 players=150 p99=31.90ms rss=16.0MB late=193
+tick=600 players=150 p99=43.00ms rss=16.0MB late=493
+tick=900 players=150 p99=51.60ms rss=16.1MB late=793
+tick=1200 players=0 p99=53.40ms rss=16.1MB late=1093
+tick=1500 players=0 p99=51.60ms rss=16.1MB late=1393
+tick=1800 players=0 p99=51.00ms rss=16.1MB late=1693
+{
+  "protocol_version": 1,
+  "build_profile": "release",
+  "map": "Polygon",
+  "layout": "crowd",
+  "elapsed_seconds": 31.022458034,
+  "ticks": 1861,
+  "ticks_per_second": 59.98879901651832,
+  "players": 0,
+  "peak_players": 150,
+  "seconds_at_capacity": 30.023353325999995,
+  "tick_p50_ms": 19.6,
+  "tick_p95_ms": 41.4,
+  "tick_p99_ms": 51.0,
+  "tick_max_ms": 63.24972399999999,
+  "late_ticks": 1716,
+  "peak_incoming_queue": 600,
+  "current_rss_mb": 16.125,
+  "peak_rss_mb": 16.125,
+  "process_cpu_seconds": 37.62,
+  "traffic": {
+    "sent_bytes": 130125415,
+    "received_bytes": 46374301,
+    "lost_packets": 0
+  }
+}

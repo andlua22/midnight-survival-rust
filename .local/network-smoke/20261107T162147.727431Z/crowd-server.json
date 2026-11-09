@@ -1,0 +1,26 @@
+{
+  "protocol_version": 1,
+  "build_profile": "release",
+  "map": "Polygon",
+  "layout": "crowd",
+  "elapsed_seconds": 31.022458034,
+  "ticks": 1861,
+  "ticks_per_second": 59.98879901651832,
+  "players": 0,
+  "peak_players": 150,
+  "seconds_at_capacity": 30.023353325999995,
+  "tick_p50_ms": 19.6,
+  "tick_p95_ms": 41.4,
+  "tick_p99_ms": 51.0,
+  "tick_max_ms": 63.24972399999999,
+  "late_ticks": 1716,
+  "peak_incoming_queue": 600,
+  "current_rss_mb": 16.125,
+  "peak_rss_mb": 16.125,
+  "process_cpu_seconds": 37.62,
+  "traffic": {
+    "sent_bytes": 130125415,
+    "received_bytes": 46374301,
+    "lost_packets": 0
+  }
+}

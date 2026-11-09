@@ -1,0 +1,31 @@
+{
+  "protocol_version": 1,
+  "build_profile": "release",
+  "map": "LoadArena",
+  "layout": "spread",
+  "elapsed_seconds": 31.839317047,
+  "ticks": 1910,
+  "ticks_per_second": 59.98872391579662,
+  "players": 0,
+  "peak_players": 150,
+  "seconds_at_capacity": 30.016559401000016,
+  "ticks_per_second_at_capacity": 60.00021441298161,
+  "tick_p99_ms_at_capacity": 10.5,
+  "physics_p99_ms_at_capacity": 3.5,
+  "replication_p99_ms_at_capacity": 7.1,
+  "tick_p50_ms": 2.9,
+  "tick_p95_ms": 8.5,
+  "tick_p99_ms": 10.5,
+  "tick_max_ms": 15.277453999999999,
+  "late_ticks": 0,
+  "max_tick_lag_ms": 6.013428,
+  "peak_incoming_queue": 300,
+  "current_rss_mb": 13.64453125,
+  "peak_rss_mb": 14.51953125,
+  "process_cpu_seconds": 18.82,
+  "traffic": {
+    "sent_bytes": 77203050,
+    "received_bytes": 45423372,
+    "lost_packets": 28
+  }
+}

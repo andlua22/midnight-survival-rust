@@ -1,0 +1,8 @@
+/target/
+/server-data/
+/tools/core_checks/target/
+/assets/imported_map/
+/assets/imported_audio/
+/assets/imported_models/
+*.invite
+/export/

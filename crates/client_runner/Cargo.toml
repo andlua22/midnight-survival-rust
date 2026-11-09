@@ -1,0 +1,12 @@
+[package]
+name = "client_runner"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+client_core = { path = "../client_core" }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+ash = "0.38"
+
