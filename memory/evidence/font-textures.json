@@ -1,0 +1,159 @@
+{
+  "apk": "export/lite4.0.apk",
+  "assets": [
+    {
+      "cab": "CAB-096add6cdbb7663c007ed458ab0c7475",
+      "class_counts": {
+        "128": 2,
+        "142": 1,
+        "21": 4,
+        "28": 2,
+        "48": 1
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [
+        {
+          "byte_count": 144,
+          "class_id": 28,
+          "path_id": "1493665959590621418",
+          "properties": {
+            "image data": {
+              "byte_count": 0,
+              "preview": [],
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "m_ColorSpace": 0,
+            "m_CompleteImageSize": 0,
+            "m_DownscaleFallback": false,
+            "m_ForcedFallbackFormat": 4,
+            "m_Height": 0,
+            "m_IgnoreMasterTextureLimit": false,
+            "m_ImageCount": 0,
+            "m_IsAlphaChannelOptional": false,
+            "m_IsPreProcessed": false,
+            "m_IsReadable": false,
+            "m_LightmapFormat": 0,
+            "m_MipCount": 1,
+            "m_MipsStripped": 0,
+            "m_Name": "Font Texture",
+            "m_OriginalAssetGuid": {
+              "data[0]": 0,
+              "data[1]": 0,
+              "data[2]": 0,
+              "data[3]": 0
+            },
+            "m_OriginalHeight": 0,
+            "m_OriginalWidth": 0,
+            "m_PlatformBlob": {
+              "byte_count": 0,
+              "preview": [],
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "m_StreamData": {
+              "offset": 0,
+              "path": "",
+              "size": 0
+            },
+            "m_StreamingMipmaps": false,
+            "m_StreamingMipmapsPriority": 0,
+            "m_TextureDimension": 2,
+            "m_TextureFormat": 4,
+            "m_TextureSettings": {
+              "m_Aniso": 1,
+              "m_FilterMode": 1,
+              "m_MipBias": 0.0,
+              "m_WrapU": 0,
+              "m_WrapV": 0,
+              "m_WrapW": 0
+            },
+            "m_Width": 0
+          }
+        },
+        {
+          "byte_count": 144,
+          "class_id": 28,
+          "path_id": "6707847669886887298",
+          "properties": {
+            "image data": {
+              "byte_count": 0,
+              "preview": [],
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "m_ColorSpace": 0,
+            "m_CompleteImageSize": 0,
+            "m_DownscaleFallback": false,
+            "m_ForcedFallbackFormat": 4,
+            "m_Height": 0,
+            "m_IgnoreMasterTextureLimit": false,
+            "m_ImageCount": 0,
+            "m_IsAlphaChannelOptional": false,
+            "m_IsPreProcessed": false,
+            "m_IsReadable": false,
+            "m_LightmapFormat": 0,
+            "m_MipCount": 1,
+            "m_MipsStripped": 0,
+            "m_Name": "Font Texture",
+            "m_OriginalAssetGuid": {
+              "data[0]": 0,
+              "data[1]": 0,
+              "data[2]": 0,
+              "data[3]": 0
+            },
+            "m_OriginalHeight": 0,
+            "m_OriginalWidth": 0,
+            "m_PlatformBlob": {
+              "byte_count": 0,
+              "preview": [],
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "m_StreamData": {
+              "offset": 0,
+              "path": "",
+              "size": 0
+            },
+            "m_StreamingMipmaps": false,
+            "m_StreamingMipmapsPriority": 0,
+            "m_TextureDimension": 2,
+            "m_TextureFormat": 4,
+            "m_TextureSettings": {
+              "m_Aniso": 1,
+              "m_FilterMode": 1,
+              "m_MipBias": 0.0,
+              "m_WrapU": 0,
+              "m_WrapV": 0,
+              "m_WrapW": 0
+            },
+            "m_Width": 0
+          }
+        }
+      ],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    }
+  ],
+  "bundle": "assets/fonts/fonts.ab"
+}

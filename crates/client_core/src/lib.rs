@@ -8,6 +8,7 @@ pub mod hud;
 mod hud_painter;
 mod interface;
 pub mod launch;
+mod map_texture;
 pub mod metrics;
 mod online;
 mod online_metrics;
@@ -16,5 +17,6 @@ mod terrain;
 
 pub use application::build_app;
 pub use launch::{ClientOptions, LaunchCommand, parse_args};
+pub use map_texture::SourceMipImagePlugin;
 
 pub(crate) use bevy_egui::egui;

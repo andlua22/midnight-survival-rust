@@ -2,8 +2,14 @@
 /server-data/
 /tools/core_checks/target/
 /assets/imported_map/
+/assets/imported_ui/
 /assets/imported_audio/
 /assets/imported_models/
 *.invite
 /export/
 /tools/asset_unpacker/target/
+/.local/map-import-backups/
+/.local/ui-import-backups/
+/.local/failed-imports/
+/.local/ui-import-history/
+/.local/code-backups/canonical-map-2026-11-09/

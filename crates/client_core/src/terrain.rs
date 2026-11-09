@@ -102,6 +102,17 @@ fn load_texture(
     texture: &TextureAsset,
 ) -> Result<Handle<Image>, ArchiveError> {
     let source = &texture.sampler;
+    let gpu = texture.gpu.as_ref().ok_or_else(|| {
+        invalid(format!(
+            "{}: source mip archive is missing; rerun the Rust terrain import",
+            texture.name
+        ))
+    })?;
+    if source.aniso > 1 || source.mip_bias != 0.0 {
+        return Err(invalid(
+            "this source texture needs anisotropy or mip bias support",
+        ));
+    }
     let (filter, mipmap_filter) = match source.filter_mode {
         0 => (ImageFilterMode::Nearest, ImageFilterMode::Nearest),
         1 => (ImageFilterMode::Linear, ImageFilterMode::Nearest),
@@ -127,7 +138,7 @@ fn load_texture(
             settings.is_srgb = is_srgb;
             settings.sampler = ImageSampler::Descriptor(sampler.clone());
         })
-        .load(format!("imported_map/terrain/{}", texture.file.path)))
+        .load(format!("imported_map/terrain/{}", gpu.path)))
 }
 
 fn source_texture<'a>(material: &'a SourceMaterial, name: &str) -> Option<&'a TextureAsset> {

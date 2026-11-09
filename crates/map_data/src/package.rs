@@ -9,7 +9,7 @@ use sha2::{Digest, Sha256};
 
 use crate::{
     ArchiveError, MeshRecord, TERRAIN_MAGIC, TERRAIN_MANIFEST_VERSION, TerrainManifest,
-    TerrainParameters, invalid, package_path, read_mesh_archive,
+    TerrainParameters, invalid, package_path, read_mesh_archive, read_rgba_mip_archive,
 };
 
 #[derive(Debug)]
@@ -90,6 +90,7 @@ pub fn load_terrain_package(package: &Path) -> Result<TerrainPackage, ArchiveErr
     }
     let mut names = BTreeSet::new();
     let mut textures = BTreeMap::new();
+    let mut mip_metadata = BTreeMap::new();
     for record in &records {
         if !names.insert(&record.name) {
             return Err(invalid(format!("duplicate scene mesh {}", record.name)));
@@ -140,11 +141,23 @@ pub fn load_terrain_package(package: &Path) -> Result<TerrainPackage, ArchiveErr
         }
         for binding in source.material.textures.values() {
             if let Some(texture) = &binding.texture {
-                for identity in [&texture.file, &texture.encoded] {
+                let gpu = texture.gpu.as_ref().ok_or_else(|| {
+                    invalid(format!(
+                        "{}: decoded source mip chain is missing",
+                        texture.name
+                    ))
+                })?;
+                for identity in [&texture.file, &texture.encoded, gpu] {
                     if let Some(previous) = textures.insert(&identity.path, &identity.sha256) {
                         if previous != &identity.sha256 {
                             return Err(invalid("conflicting texture file identities"));
                         }
+                    }
+                }
+                let metadata = (texture.width, texture.height, texture.mip_count);
+                if let Some(previous) = mip_metadata.insert(&gpu.path, metadata) {
+                    if previous != metadata {
+                        return Err(invalid("conflicting decoded mip metadata"));
                     }
                 }
             }
@@ -153,6 +166,15 @@ pub fn load_terrain_package(package: &Path) -> Result<TerrainPackage, ArchiveErr
     for (path, expected_hash) in textures {
         if file_sha256(&package_path(package, path)?)? != *expected_hash {
             return Err(invalid(format!("texture checksum differs: {path}")));
+        }
+    }
+    for (path, metadata) in mip_metadata {
+        let bytes = std::fs::read(package_path(package, path)?)?;
+        let chain = read_rgba_mip_archive(&bytes)?;
+        if (chain.width, chain.height, chain.mip_count) != metadata {
+            return Err(invalid(format!(
+                "{path}: decoded source mip metadata differs from texture"
+            )));
         }
     }
     Ok(TerrainPackage {
@@ -291,6 +313,14 @@ mod tests {
                 b"encoded fixture bytes and mips",
             )
             .unwrap();
+            crate::write_rgba_mip_archive(
+                &mut File::create(self.root.join("textures/layer.msrgba")).unwrap(),
+                1,
+                1,
+                1,
+                &[0x12, 0x34, 0x56, 0x78],
+            )
+            .unwrap();
             let scene = self.manifest.meshes.values_mut().next().unwrap();
             scene.material.textures.insert(
                 "_MainTex".into(),
@@ -300,6 +330,10 @@ mod tests {
                             path: "textures/layer.png".into(),
                             sha256: file_sha256(&self.root.join("textures/layer.png")).unwrap(),
                         },
+                        gpu: Some(FileIdentity {
+                            path: "textures/layer.msrgba".into(),
+                            sha256: file_sha256(&self.root.join("textures/layer.msrgba")).unwrap(),
+                        }),
                         encoded: FileIdentity {
                             path: "textures/layer.texture.bin".into(),
                             sha256: file_sha256(&self.root.join("textures/layer.texture.bin"))
@@ -385,22 +419,73 @@ mod tests {
     }
 
     #[test]
-    fn checks_both_decoded_texture_and_complete_encoded_mip_payload() {
+    fn checks_decoded_preview_source_mips_and_complete_encoded_payload() {
         let mut fixture = Fixture::new();
         fixture.add_texture();
         load_terrain_package(&fixture.root).unwrap();
+        let gpu_bytes = std::fs::read(fixture.root.join("textures/layer.msrgba")).unwrap();
         for (path, bytes) in [
             ("textures/layer.png", b"decoded fixture bytes".as_slice()),
             (
                 "textures/layer.texture.bin",
                 b"encoded fixture bytes and mips".as_slice(),
             ),
+            ("textures/layer.msrgba", gpu_bytes.as_slice()),
         ] {
             std::fs::write(fixture.root.join(path), b"changed").unwrap();
             let error = load_terrain_package(&fixture.root).unwrap_err().to_string();
             assert!(error.contains(path), "{error}");
             std::fs::write(fixture.root.join(path), bytes).unwrap();
         }
+    }
+
+    #[test]
+    fn source_mip_archive_must_match_declared_texture_dimensions_and_count() {
+        let mut fixture = Fixture::new();
+        fixture.add_texture();
+        fixture
+            .manifest
+            .meshes
+            .values_mut()
+            .next()
+            .unwrap()
+            .material
+            .textures
+            .get_mut("_MainTex")
+            .unwrap()
+            .texture
+            .as_mut()
+            .unwrap()
+            .width = 2;
+        fixture.save_manifest();
+        assert!(
+            load_terrain_package(&fixture.root)
+                .unwrap_err()
+                .to_string()
+                .contains("mip metadata differs")
+        );
+        let texture = fixture
+            .manifest
+            .meshes
+            .values_mut()
+            .next()
+            .unwrap()
+            .material
+            .textures
+            .get_mut("_MainTex")
+            .unwrap()
+            .texture
+            .as_mut()
+            .unwrap();
+        texture.width = 1;
+        texture.gpu = None;
+        fixture.save_manifest();
+        assert!(
+            load_terrain_package(&fixture.root)
+                .unwrap_err()
+                .to_string()
+                .contains("source mip chain is missing")
+        );
     }
 
     #[test]

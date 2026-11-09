@@ -11,14 +11,18 @@ use serde::{Deserialize, Serialize};
 
 mod package;
 mod terrain;
+mod texture;
 
 pub use package::{TerrainPackage, file_sha256, load_terrain_package, mesh_bounds};
 pub use terrain::{TerrainParameters, terrain_albedo, terrain_tangent_normal};
+pub use texture::{
+    RGBA_MIP_MAGIC, RgbaMipChain, read_rgba_mip_archive, rgba_mip_byte_len, write_rgba_mip_archive,
+};
 
 /// Version three preserves source tangent frames as well as Bevy world
 /// positions/normals and top-left PNG UVs. Older archives are retained as evidence.
 pub const TERRAIN_MAGIC: &[u8; 8] = b"MSMAP003";
-pub const TERRAIN_MANIFEST_VERSION: u32 = 1;
+pub const TERRAIN_MANIFEST_VERSION: u32 = 2;
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct MeshRecord {
@@ -260,6 +264,9 @@ pub struct FileIdentity {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TextureAsset {
     pub file: FileIdentity,
+    /// Complete decoded source mip chain; PNG is a base-level preview.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub gpu: Option<FileIdentity>,
     pub source: SourceObject,
     pub name: String,
     pub width: u32,

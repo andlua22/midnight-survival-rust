@@ -1,11 +1,24 @@
 //! APK-backed UI extraction. Legacy `assets/ui` exports are deliberately not inputs.
 
+#[path = "ui_source_font.rs"]
+mod font;
 #[path = "ui_source_import.rs"]
 mod importer;
 #[path = "ui_source_sprite.rs"]
 mod sprite;
 #[path = "ui_source_types.rs"]
 mod types;
+#[path = "ui_source_verify.rs"]
+mod verifier;
+
+pub use verifier::UiVerification;
+
+pub fn verify(
+    package: &std::path::Path,
+    apk: &std::path::Path,
+) -> Result<UiVerification, Box<dyn std::error::Error>> {
+    verifier::verify(package, apk).map_err(|error| error as Box<dyn std::error::Error>)
+}
 
 pub fn run(
     apk_path: &std::path::Path,

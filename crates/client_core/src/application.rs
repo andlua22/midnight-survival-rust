@@ -47,9 +47,9 @@ use crate::{
 
 use bevy::audio::{AudioPlayer, PlaybackSettings};
 
+use crate::terrain::ImportedTerrainActive;
 pub use crate::terrain::TerrainSplatMaterial;
 pub use crate::terrain::spawn as spawn_imported_terrain;
-use crate::terrain::ImportedTerrainActive;
 
 #[derive(Resource)]
 struct RuntimeOptions(ClientOptions);
@@ -171,17 +171,6 @@ struct CirrusCanopyVisual;
 pub struct TerrainSectorChunk {
     pub center: Vec3,
     pub is_road: bool,
-}
-
-pub const CHUNK_CELL_SIZE: f32 = 180.0;
-pub const CHUNK_ACTIVE_RADIUS: i32 = 2; // (2*2+1)^2 = 25 cells ~ 900m x 900m coverage
-pub const CHUNK_DESPAWN_RADIUS: i32 = 3; // Despawn distance > 540m
-
-#[derive(Resource, Default)]
-pub struct SpatialPlacementGrid {
-    pub cells: std::collections::BTreeMap<(i32, i32), Vec<shared::level::ImportedPlacement>>,
-    pub active_entities: std::collections::BTreeMap<(i32, i32), Vec<Entity>>,
-    pub current_player_cell: Option<(i32, i32)>,
 }
 
 #[derive(Component)]
@@ -344,6 +333,7 @@ pub fn build_app(options: ClientOptions, storage: Box<dyn StorageService>) -> Ap
             SharedSimulationPlugin,
             EguiPlugin::default(),
             OnlinePlugin,
+            crate::SourceMipImagePlugin,
             MaterialPlugin::<TerrainSplatMaterial>::default(),
             bevy::remote::RemotePlugin::default(),
             bevy::remote::http::RemoteHttpPlugin::default(),
@@ -351,7 +341,6 @@ pub fn build_app(options: ClientOptions, storage: Box<dyn StorageService>) -> Ap
         .insert_resource(RuntimeOptions(options))
         .init_resource::<AudioRuntimeState>()
         .init_resource::<CameraPerspective>()
-        .init_resource::<SpatialPlacementGrid>()
         .add_systems(Startup, setup_scene)
         .add_systems(PostStartup, place_imported_player)
         .add_systems(
@@ -364,7 +353,6 @@ pub fn build_app(options: ClientOptions, storage: Box<dyn StorageService>) -> Ap
                 sync_third_person_tool,
                 sync_phase5_world_visuals,
                 sync_environment_atmosphere,
-                stream_world_chunks,
                 sync_audio_effects,
                 measure_frames,
             )
@@ -795,7 +783,6 @@ fn setup_scene(
     mut materials: ResMut<Assets<StandardMaterial>>,
     mut splat_materials: ResMut<Assets<TerrainSplatMaterial>>,
     mut images: ResMut<Assets<Image>>,
-    mut grid: ResMut<SpatialPlacementGrid>,
 ) {
     let rock_mesh = meshes.add(Sphere::new(0.11).mesh().uv(18, 12));
     let rock_mat = materials.add(StandardMaterial {
@@ -1107,169 +1094,20 @@ fn setup_scene(
         survival.0.vehicles.clear();
         survival.0.nodes.clear();
 
-        if let Err(error) = crate::terrain::spawn(&mut commands, &asset_server, &package,
-            &mut meshes, &mut materials, &mut splat_materials) {
+        if let Err(error) = crate::terrain::spawn(
+            &mut commands,
+            &asset_server,
+            &package,
+            &mut meshes,
+            &mut materials,
+            &mut splat_materials,
+        ) {
             error!("Cannot render source terrain materials: {error}");
             commands.write_message(AppExit::error());
             return;
         }
 
-        // Authentic Ocean and Inland Water meshes from mditu.ab
-        let water_records = shared::level::load_imported_water_records();
-        let ocean_mat = materials.add(StandardMaterial {
-            base_color: Color::srgba(0.04, 0.28, 0.42, 0.82),
-            alpha_mode: AlphaMode::Blend,
-            perceptual_roughness: 0.05,
-            metallic: 0.15,
-            reflectance: 0.60,
-            cull_mode: None,
-            double_sided: true,
-            ..default()
-        });
-        let inland_water_mat = materials.add(StandardMaterial {
-            base_color: Color::srgba(0.06, 0.32, 0.38, 0.80),
-            alpha_mode: AlphaMode::Blend,
-            perceptual_roughness: 0.08,
-            metallic: 0.10,
-            reflectance: 0.55,
-            cull_mode: None,
-            double_sided: true,
-            ..default()
-        });
-        let seabed_mat = materials.add(StandardMaterial {
-            base_color: Color::srgb(0.12, 0.14, 0.13),
-            perceptual_roughness: 0.95,
-            reflectance: 0.10,
-            cull_mode: Some(Face::Back),
-            ..default()
-        });
-        if !water_records.is_empty() {
-            for w in water_records {
-                let is_inland = w.name.contains("neilushui");
-                let is_seabed = w.name.contains("haidi");
-                let mat = if is_inland {
-                    inland_water_mat.clone()
-                } else if is_seabed {
-                    seabed_mat.clone()
-                } else {
-                    ocean_mat.clone()
-                };
-                let mesh_handle = meshes.add(build_bevy_mesh(&w));
-                commands.spawn((
-                    Mesh3d(mesh_handle),
-                    MeshMaterial3d(mat),
-                    Transform::from_xyz(0.0, if is_seabed { -0.5 } else { -0.05 }, 0.0),
-                ));
-            }
-        }
-        commands.spawn((
-            Mesh3d(unit_cube.clone()),
-            MeshMaterial3d(ocean_mat.clone()),
-            Transform::from_xyz(0.0, -0.4, 0.0).with_scale(Vec3::new(14000.0, 0.5, 14000.0)),
-        ));
-
-        // Partition scenic placements from sceneinfo/*.oc into spatial grid cells (180m x 180m)
-        for plc in shared::level::load_imported_placements() {
-            // Exclude placements directly on top of central spawn to avoid trapping player inside a prop
-            let dx = plc.position[0] - 0.0;
-            let dz = plc.position[2] - 12.0;
-            if dx * dx + dz * dz < 25.0 * 25.0 {
-                continue;
-            }
-            let cx = (plc.position[0] / CHUNK_CELL_SIZE).floor() as i32;
-            let cz = (plc.position[2] / CHUNK_CELL_SIZE).floor() as i32;
-            grid.cells.entry((cx, cz)).or_default().push(plc);
-        }
-
-        // Spawn initial active placement cells around player spawn
-        let init_cx = 0;
-        let init_cz = 0;
-        grid.current_player_cell = Some((init_cx, init_cz));
-        for cx in (init_cx - CHUNK_ACTIVE_RADIUS)..=(init_cx + CHUNK_ACTIVE_RADIUS) {
-            for cz in (init_cz - CHUNK_ACTIVE_RADIUS)..=(init_cz + CHUNK_ACTIVE_RADIUS) {
-                let key = (cx, cz);
-                if let Some(placements) = grid.cells.get(&key) {
-                    let mut cell_entities = Vec::with_capacity(placements.len());
-                    for plc in placements {
-                        let model_key = match plc.kind {
-                            0 => "tree_temperate",
-                            1 => "tree_jungle",
-                            2 => {
-                                let hash = ((plc.position[0] as i32 * 59) ^ (plc.position[2] as i32 * 37)).abs();
-                                match hash % 4 {
-                                    0 if tool_assets.imported_models.contains_key("rock_boulder") => "rock_boulder",
-                                    1 if tool_assets.imported_models.contains_key("rock_node") => "rock_node",
-                                    2 if tool_assets.imported_models.contains_key("rock_small") => "rock_small",
-                                    _ if tool_assets.imported_models.contains_key("ore_stone") => "ore_stone",
-                                    _ => "rock_boulder",
-                                }
-                            }
-                            3 => {
-                                let hash = ((plc.position[0] as i32 * 41) ^ (plc.position[2] as i32 * 23)).abs();
-                                if hash % 25 == 0 && tool_assets.imported_models.contains_key("clothes_cloth") {
-                                    "clothes_cloth"
-                                } else {
-                                    "grass_clump"
-                                }
-                            }
-                            4 => {
-                                let hash = ((plc.position[0] as i32 * 31) ^ (plc.position[2] as i32 * 17)).abs();
-                                match hash % 3 {
-                                    0 if tool_assets.imported_models.contains_key("ore_stone") => "ore_stone",
-                                    1 if tool_assets.imported_models.contains_key("ore_sulfur") => "ore_sulfur",
-                                    _ if tool_assets.imported_models.contains_key("ore_iron") => "ore_iron",
-                                    _ => "rock_node",
-                                }
-                            }
-                            5 => "building_gas_station",
-                            6 => "building_supermarket",
-                            7 => "building_warehouse",
-                            8 => "building_old_warehouse",
-                            9 => "building_barracks",
-                            10 => "building_garage",
-                            11 => "building_pylon",
-                            12 => "building_watchtower",
-                            13 => "prop_fence",
-                            14 => {
-                                if tool_assets.imported_models.contains_key("military_crate") {
-                                    "military_crate"
-                                } else {
-                                    "supply_crate"
-                                }
-                            }
-                            15 => "clothes_cloth",
-                            _ => "tree_temperate",
-                        };
-                        if let Some((m_h, mat_h)) = tool_assets.imported_models.get(model_key) {
-                            let pos_vec = Vec3::from_array(plc.position);
-                            let (final_rot, final_scale) = if plc.kind == 2 {
-                                let hash = ((plc.position[0] as i32 * 17) ^ (plc.position[2] as i32 * 43)).abs();
-                                let rot_jitter = Quat::from_rotation_y((hash % 360) as f32 * std::f32::consts::PI / 180.0);
-                                let scale_jitter = 0.8 + ((hash % 100) as f32 / 100.0) * 0.7;
-                                (rot_jitter * Quat::from_array(plc.rotation), plc.scale * scale_jitter)
-                            } else {
-                                (Quat::from_array(plc.rotation), plc.scale)
-                            };
-                            let e = commands
-                                .spawn((
-                                    ScenicPlacementMarker {
-                                        position: pos_vec,
-                                        scale: final_scale,
-                                    },
-                                    Mesh3d(m_h.clone()),
-                                    MeshMaterial3d(mat_h.clone()),
-                                    Transform::from_translation(pos_vec)
-                                        .with_rotation(final_rot)
-                                        .with_scale(Vec3::splat(final_scale)),
-                                ))
-                                .id();
-                            cell_entities.push(e);
-                        }
-                    }
-                    grid.active_entities.insert(key, cell_entities);
-                }
-            }
-        }
+        // Canonical scene geometry comes only from the verified APK package.
     }
 
     if let Some((body_mesh, body_mat)) = tool_assets.imported_models.get("player_survivor") {
@@ -1933,9 +1771,19 @@ fn spawn_jungle_and_radtown_scenery(
 fn place_imported_player(
     imported: Option<Res<ImportedTerrainActive>>,
     mut physics: ResMut<shared::SimulationWorld>,
-    mut players: Query<(&shared::simulation::PlayerIdentity, &mut Transform, &mut SimulationPose, &mut CharacterMotion), With<LocalPlayer>>,
+    mut players: Query<
+        (
+            &shared::simulation::PlayerIdentity,
+            &mut Transform,
+            &mut SimulationPose,
+            &mut CharacterMotion,
+        ),
+        With<LocalPlayer>,
+    >,
 ) {
-    if imported.is_none() { return; }
+    if imported.is_none() {
+        return;
+    }
     for (id, mut transform, mut pose, mut motion) in &mut players {
         let xz = [transform.translation.x, transform.translation.z];
         let Some(position) = physics.0.surface_spawn_at(xz, Some(id.0)) else {
@@ -3417,149 +3265,6 @@ fn sync_environment_atmosphere(
 }
 
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
-fn stream_world_chunks(
-    mut commands: Commands,
-    telemetry: Res<Telemetry>,
-    mut grid: ResMut<SpatialPlacementGrid>,
-    tool_assets: Res<ToolAssets>,
-    mut terrain_chunks: Query<(&TerrainSectorChunk, &mut Visibility)>,
-) {
-    let px = telemetry.player_position[0];
-    let pz = telemetry.player_position[2];
-
-    // Distance LOD and culling for terrain sectors & roads
-    let player_pos_2d = Vec2::new(px, pz);
-    for (chunk, mut vis) in &mut terrain_chunks {
-        let chunk_pos_2d = Vec2::new(chunk.center.x, chunk.center.z);
-        let dist = player_pos_2d.distance(chunk_pos_2d);
-        let max_dist = if chunk.is_road { 750.0 } else { 2400.0 };
-        let new_vis = if dist <= max_dist {
-            Visibility::Inherited
-        } else {
-            Visibility::Hidden
-        };
-        if *vis != new_vis {
-            *vis = new_vis;
-        }
-    }
-
-    let player_cell_x = (px / CHUNK_CELL_SIZE).floor() as i32;
-    let player_cell_z = (pz / CHUNK_CELL_SIZE).floor() as i32;
-    let current_cell = (player_cell_x, player_cell_z);
-
-    if grid.current_player_cell == Some(current_cell) {
-        return;
-    }
-    grid.current_player_cell = Some(current_cell);
-
-    // 1. Despawn distant cells beyond CHUNK_DESPAWN_RADIUS
-    let mut to_despawn = Vec::new();
-    for (&(cx, cz), entities) in &grid.active_entities {
-        let dx = (cx - player_cell_x).abs();
-        let dz = (cz - player_cell_z).abs();
-        if dx > CHUNK_DESPAWN_RADIUS || dz > CHUNK_DESPAWN_RADIUS {
-            for &e in entities {
-                commands.entity(e).despawn();
-            }
-            to_despawn.push((cx, cz));
-        }
-    }
-    for key in to_despawn {
-        grid.active_entities.remove(&key);
-    }
-
-    // 2. Spawn newly entered cells within CHUNK_ACTIVE_RADIUS
-    for cx in (player_cell_x - CHUNK_ACTIVE_RADIUS)..=(player_cell_x + CHUNK_ACTIVE_RADIUS) {
-        for cz in (player_cell_z - CHUNK_ACTIVE_RADIUS)..=(player_cell_z + CHUNK_ACTIVE_RADIUS) {
-            let key = (cx, cz);
-            if grid.active_entities.contains_key(&key) {
-                continue;
-            }
-            if let Some(placements) = grid.cells.get(&key) {
-                let mut cell_entities = Vec::with_capacity(placements.len());
-                for plc in placements {
-                    let model_key = match plc.kind {
-                        0 => "tree_temperate",
-                        1 => "tree_jungle",
-                        2 => {
-                            let hash = ((plc.position[0] as i32 * 59) ^ (plc.position[2] as i32 * 37)).abs();
-                            match hash % 4 {
-                                0 if tool_assets.imported_models.contains_key("rock_boulder") => "rock_boulder",
-                                1 if tool_assets.imported_models.contains_key("rock_node") => "rock_node",
-                                2 if tool_assets.imported_models.contains_key("rock_small") => "rock_small",
-                                _ if tool_assets.imported_models.contains_key("ore_stone") => "ore_stone",
-                                _ => "rock_boulder",
-                            }
-                        }
-                        3 => {
-                            let hash = ((plc.position[0] as i32 * 41) ^ (plc.position[2] as i32 * 23)).abs();
-                            if hash % 25 == 0 && tool_assets.imported_models.contains_key("clothes_cloth") {
-                                "clothes_cloth"
-                            } else {
-                                "grass_clump"
-                            }
-                        }
-                        4 => {
-                            let hash = ((plc.position[0] as i32 * 31) ^ (plc.position[2] as i32 * 17)).abs();
-                            match hash % 3 {
-                                0 if tool_assets.imported_models.contains_key("ore_stone") => "ore_stone",
-                                1 if tool_assets.imported_models.contains_key("ore_sulfur") => "ore_sulfur",
-                                _ if tool_assets.imported_models.contains_key("ore_iron") => "ore_iron",
-                                _ => "rock_node",
-                            }
-                        }
-                        5 => "building_gas_station",
-                        6 => "building_supermarket",
-                        7 => "building_warehouse",
-                        8 => "building_old_warehouse",
-                        9 => "building_barracks",
-                        10 => "building_garage",
-                        11 => "building_pylon",
-                        12 => "building_watchtower",
-                        13 => "prop_fence",
-                        14 => {
-                            if tool_assets.imported_models.contains_key("military_crate") {
-                                "military_crate"
-                            } else {
-                                "supply_crate"
-                            }
-                        }
-                        15 => "clothes_cloth",
-                        _ => "tree_temperate",
-                    };
-                    if let Some((m_h, mat_h)) = tool_assets.imported_models.get(model_key) {
-                        let pos_vec = Vec3::from_array(plc.position);
-                        let (final_rot, final_scale) = if plc.kind == 2 {
-                            let hash = ((plc.position[0] as i32 * 17) ^ (plc.position[2] as i32 * 43)).abs();
-                            let rot_jitter = Quat::from_rotation_y((hash % 360) as f32 * std::f32::consts::PI / 180.0);
-                            let scale_jitter = 0.8 + ((hash % 100) as f32 / 100.0) * 0.7;
-                            (rot_jitter * Quat::from_array(plc.rotation), plc.scale * scale_jitter)
-                        } else {
-                            (Quat::from_array(plc.rotation), plc.scale)
-                        };
-                        let e = commands
-                            .spawn((
-                                ScenicPlacementMarker {
-                                    position: pos_vec,
-                                    scale: final_scale,
-                                },
-                                Mesh3d(m_h.clone()),
-                                MeshMaterial3d(mat_h.clone()),
-                                Transform::from_translation(pos_vec)
-                                    .with_rotation(final_rot)
-                                    .with_scale(Vec3::splat(final_scale)),
-                            ))
-                            .id();
-                        cell_entities.push(e);
-                    }
-                }
-                grid.active_entities.insert(key, cell_entities);
-            }
-        }
-    }
-}
-
-#[allow(clippy::too_many_arguments, clippy::type_complexity)]
 fn sync_audio_effects(
     mut commands: Commands,
     time: Res<Time<Real>>,
@@ -3648,22 +3353,14 @@ fn sync_audio_effects(
     // Emit sound cues for active moving vehicles
     for v in &survival.0.vehicles {
         if v.driver.is_some() && v.health > 0 {
-            interface.add_sound_cue(
-                crate::hud_painter::SoundCueKind::Vehicle,
-                v.position,
-                0.85,
-            );
+            interface.add_sound_cue(crate::hud_painter::SoundCueKind::Vehicle, v.position, 0.85);
         }
     }
 
     // Periodic distant airdrop cue along the ocean perimeter
     if clock.tick.is_multiple_of(300) {
         let (ship_pos, _) = cargo_ship_transform(ServerTick(clock.tick));
-        interface.add_sound_cue(
-            crate::hud_painter::SoundCueKind::Airdrop,
-            ship_pos,
-            0.75,
-        );
+        interface.add_sound_cue(crate::hud_painter::SoundCueKind::Airdrop, ship_pos, 0.75);
     }
 
     // 4. Player damage / Hurt sound
@@ -3845,28 +3542,6 @@ mod tests {
         // Verify open sky / clear gaps also exist
         let zero_count = data.iter().filter(|&&v| v == 0).count();
         assert!(zero_count > 5000);
-    }
-
-    #[test]
-    fn spatial_placement_grid_partitioning_and_streaming() {
-        let mut grid = SpatialPlacementGrid::default();
-        let dummy_placement = shared::level::ImportedPlacement {
-            kind: 1,
-            position: [200.0, 5.0, 350.0],
-            rotation: [0.0, 0.0, 0.0, 1.0],
-            scale: 1.0,
-        };
-        let cx = (dummy_placement.position[0] / CHUNK_CELL_SIZE).floor() as i32;
-        let cz = (dummy_placement.position[2] / CHUNK_CELL_SIZE).floor() as i32;
-        grid.cells
-            .entry((cx, cz))
-            .or_default()
-            .push(dummy_placement);
-
-        assert!(grid.cells.contains_key(&(cx, cz)));
-        assert_eq!(grid.cells.get(&(cx, cz)).unwrap().len(), 1);
-        assert_eq!(cx, 1); // 200.0 / 180.0 = 1
-        assert_eq!(cz, 1); // 350.0 / 180.0 = 1
     }
 
     #[test]

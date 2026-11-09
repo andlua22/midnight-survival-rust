@@ -1,0 +1,59 @@
+{
+  "ambient_brightness": 500.0,
+  "backend": "Vulkan",
+  "bevy_version": "0.20.1",
+  "collision_records": 382,
+  "directional_illuminance": 30000.0,
+  "driver": "615.71.09",
+  "geometry_sha256": "89febd1decfaa5ed58089e9912fd61dedcb5285d51acb86f665e35c23413e8ee",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "limitations": [
+    "These are renderer validation images, not screenshots of the APK.",
+    "Lighting is a fixed Bevy probe setup. Original lighting, mip sampling and non-terrain shaders remain unverified.",
+    "This probe covers the canonical terrain scene package; legacy water, model placements and the game HUD are excluded."
+  ],
+  "player_spawn": [
+    0.0,
+    22.36351203918457,
+    12.0
+  ],
+  "shadows": false,
+  "source_apk_sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df",
+  "source_mesh_entities": 399,
+  "target_size": [
+    1280,
+    1024
+  ],
+  "texture_format": "Rgba8UnormSrgb",
+  "tonemapping": "None",
+  "views": [
+    {
+      "camera_position": [
+        -800.0,
+        8000.0,
+        -15.6998291015625
+      ],
+      "distinct_rgb_buckets": 376,
+      "file": "overview.png",
+      "look_at": [
+        -800.0,
+        0.0,
+        -15.6998291015625
+      ]
+    },
+    {
+      "camera_position": [
+        45.0,
+        57.36351013183594,
+        77.0
+      ],
+      "distinct_rgb_buckets": 264,
+      "file": "spawn.png",
+      "look_at": [
+        0.0,
+        22.36351203918457,
+        12.0
+      ]
+    }
+  ]
+}

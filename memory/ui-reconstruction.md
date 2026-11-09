@@ -1,90 +1,131 @@
-# APK UI reconstruction: evidence and first correction
+# APK UI reconstruction
 
-Updated: 2026-11-09. Target: `export/lite4.0.apk`.
+Updated: 2026-11-09. Target: `export/lite4.0.apk`, SHA-256
+`2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df`.
 
-The user wants the original game and UI reproduced faithfully, with one canonical map pipeline. Communicate in English. Write new extraction and validation tools in Rust and reuse existing tools; do not run Python unless Rust and the available tools are insufficient.
+All three selected prefabs are now extracted directly from the APK in Rust.
+This is verified static source data. The client still renders a hand-built
+egui HUD. Communicate in English; use Rust and installed tools. No Python ran.
 
-This is a static audit of the existing extraction and code, followed by a narrow map-projection correction. It does not establish a completed 1:1 UI recreation or a screenshot match to the running APK. No Python was executed for this audit or correction.
+## Current source package
 
-## Existing UI evidence
+Root:
+`assets/imported_ui/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df-v1/`.
+Schema-1 manifest: `source_ui.json`. Layouts: `panels/*.json`.
+Read `evidence/ui-verification.json` instead of dumping the enormous manifest.
 
-A read-only Rust traversal of the JSON files and PNG directories produced these baseline counts:
+| Prefab | Nodes | Components | Images | RawImages | Texts | Disabled components | Canvases | CanvasScalers | Masks |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| BattleMinimap | 225 | 593 | 133 | 1 | 14 | 2 | 4 | 0 | 2 |
+| BattlePanel | 1817 | 5213 | 905 | 4 | 259 | 36 | 16 | 0 | 16 |
+| BattleMapPanel | 416 | 1181 | 214 | 7 | 73 | 4 | 1 | 0 | 14 |
 
-| Layout | Nodes | Images | Texts | Unique sprite names | Missing PNG and metadata | Unreferenced PNGs in panel directory |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| `assets/ui/battle_panel_layout.json` | 1817 | 906 | 259 | 245 | 30 | 99 |
-| `assets/ui/battle_minimap_layout.json` | 225 | 134 | 14 | 56 | 5 | 0 |
-| `assets/ui/battle_map_panel_layout.json` | 416 | 215 | 75 | 81 | 4 | 36 |
+All 2,458 source nodes have `active_self=true`, read from actual GameObjects
+without defaults. This does not establish runtime visibility: scripts and
+parent canvases can change it. The 42 disabled components remain disabled.
+Custom/native components without a projection retain complete fields/bytes;
+Image/Text totals therefore differ from the old exporter.
 
-`assets/ui/sprites_meta.json` contains 987 entries, each with a corresponding PNG in `assets/ui/sprites`. The layouts reference 318 distinct sprite names in total, with 33 distinct missing names. The most relevant missing map asset is `FogLightMask`, referenced by all three panels. Missing references are an extraction gap, not proof that the APK lacks the asset or that every missing sprite should be visible in the default game state.
+The 36-bundle dependency closure retains 10,047 source objects, 322 sprites,
+88 decoded Texture2D resources, one deferred font atlas and two fonts.
+Texture mip counts: `1:83, 7:3, 8:1, 9:1`. `FogLightMask`, missed by the old
+export, was recovered from the actual APK.
 
-All 2458 exported hierarchy nodes have `active: true`. This is an observation about the exported JSON, not a verified claim about APK runtime visibility. The exporter defaults missing `m_IsActive` to true and does not retain component enablement or script-controlled visibility.
+The data preserves qualified `(bundle, CAB, signed PathID)` identities, PPtr
+FileIDs and explicit resolution states; hierarchy/component order; quaternions,
+anchors/pivots; zero fill values; graphic/material/raycast/mask settings;
+canvas metadata; font/text settings; atlas packing, trim, borders and sprite
+mesh data. Large integers and non-finite floats use explicit JSON encodings;
+original binary objects remain authoritative for float width/NaN payloads.
 
-The layouts retain only image and text components. Rectangles retain anchors, anchored position, size delta, pivot, local position, and local scale. Text retains only content, font size, color, and alignment. Canvas scaling, font identity, local rotation, buttons/listeners, mask components, animation bindings, and original component references are absent. There are 244 sliced images and 18 filled images across the layouts, making nine-slice and fill semantics necessary for faithful reproduction.
+Imports build fresh staging directories, serialize the dependency index with
+stable key order and verify before publishing. Prior packages are retained
+under `.local/ui-import-backups/`; failed reruns preserve their predecessor.
+Legacy `assets/ui/` and the current runtime HUD remain available.
 
-Relevant original hierarchy paths in the existing JSON:
+## Verified extraction and remaining gaps
 
-- `BattleMinimap/GameObject/Image` uses `BattlePanel2_dt_bg_1`, with a 260×260 size delta.
-- `BattleMinimap/GameObject/ditu/Image` uses `1BattlePanel_ann_f`, with a 330×330 size delta.
-- The minimap root has anchors and pivot `[1, 1]`, anchored position `[10, -32.39999]`, and size delta `[330, 330]`.
-- `BattleMapPanel/GameObject/you/btn_close` uses `com_ty_gb_1`.
+The current import completes with **zero errors and 61 warnings**:
 
-These are source-layout coordinates. They cannot be treated as final screen pixels until the original CanvasScaler and reference resolution are recovered.
+- 56 unresolved Unity built-in/default-resource references.
+- Three sprite previews requiring source mesh geometry or trim handling.
+- One Font without embedded outlines (`hitFont`); glyph/material data is retained.
+- One explicitly empty source `Font Texture`, retained as deferred.
 
-## Extraction problems
+Reference counts: 40,071 resolved, 11,385 null and 56 unresolved.
+Hierarchy completeness is true; graphics completeness, reference coverage
+and runtime equivalence are false. Success verifies the stated static scope.
 
-`tools/asset_unpacker/src/pass3_ui.rs` currently ignores the APK argument. It reads previously generated layouts, gathers sprite names, and copies existing PNGs into three panel directories. It does not extract Unity prefabs or sprites from the APK. It returns success when layouts are absent or sprite references cannot be copied, and merely checks that the metadata file exists. Existing destination PNGs are accepted without checking whether they match the current source. See the function beginning at `pass3_ui.rs:83` and the copy loop near line 134.
+`ADOBEHEITISTD-REGULAR` has 12,649,568 embedded outline bytes. A bounded Rust
+Font reader uses its shipped type tree and retains the exact original object
+bytes while restoring the complete font array. The parser's general
+one-million-element array limit was not raised.
 
-The older exporter, read for context but not executed, has additional problems in `tools/unpack_all_assets.py`:
+The touched empty font Texture2D is in `assets/fonts/fonts.ab`, CAB
+`CAB-096add6cdbb7663c007ed458ab0c7475`, PathID `6707847669886887298`.
+Its dimensions, image count and complete image size are zero; format is RGBA32
+(4), mip count is one, image bytes are empty and no stream exists. Another
+empty object, PathID `1493665959590621418`, is in that bundle's inventory
+outside the touched graphics closure. See `evidence/font-textures.json`.
+No blank PNG was invented. Runtime font-atlas generation/content is unverified.
 
-- Sprite lookup around lines 673–679 uses PathID alone and discards the PPtr FileID, so it cannot safely distinguish local objects from external CAB references.
-- `float(tree.get("m_FillAmount", 1.0) or 1.0)` around line 688 changes a genuine zero fill amount into one.
-- Unrecognized component parsing and hierarchy failures are silently ignored around lines 704 and 723.
-- The exported schema omits the fidelity-critical data listed above.
+`--verify-ui` checks 20,782 referenced files: hashes and nested blob lengths,
+raw object bytes against the APK, CAB metadata/dependency coverage, hierarchy
+parents/ordered children/components and decoded mip dimensions/counts/base
+PNG consistency. It does not independently rerun every decoder, rasterize
+Unity sprite meshes or compare Unity pixels. Commands are in
+`apk-reconstruction.md`; `evidence/ui-verification.json` is the compact report.
 
-Prefer one sprite store with qualified source identities and referenced manifests; the three copied PNG directories are redundant and can accumulate stale files. Any replacement must regenerate from source rather than present existing files as newly extracted evidence.
+## Historical export boundary
 
-## C# evidence boundary
+Old `assets/ui` layouts had 1817/225/416 nodes and 906/134/215 Images, but
+discarded FileID, defaulted missing active flags to true, could replace zero
+fill with one and ignored component failures. The former pass3 copied PNGs
+from those layouts and ignored its APK argument; that code is replaced.
 
-The files in `export/SC.UI/` are recovered pseudo-C#, not original compilable Unity source and not uniformly empty stubs. They retain useful type, field, method, native address, and recovered call clues. They also contain unresolved `__External_*` types, invalid object arithmetic, failed IL conversions, and placeholder diagnostics such as `call to unresolved address`.
+The historical audit found 33 distinct missing sprite names and redundant
+panel stores. Those findings describe the old export and are not proof that
+the APK lacks the assets. Large prior import evidence is retained under
+`.local/ui-import-history/`.
 
-Examples: `BattleMinimap.cs:15` has an unresolved base type; lines 4350–4383 contain recovered calls mixed with invalid object operations and unresolved-call diagnostics. `BattleMapPanel.cs:1188` contains placeholder RectTransform operations. Use names and RVA annotations to guide focused native analysis; do not translate these bodies literally or infer exact behavior from failed decompilation.
+## Map projection and C# boundaries
 
-## Projection correction implemented
+`crates/shared/src/map_projection.rs` owns overview projection/inversion,
+radar offsets and bearings. Canonical Bevy north is **-Z**, east **+X**.
+Camera yaw zero moves toward -Z and points upward. The importer reflects
+Unity +Z into Bevy -Z once.
 
-The current presentation convention is +X to the right and +Z at the top. `crates/shared/src/map_projection.rs` now owns pure Rust forward/inverse overview projection, radar point offsets, world bearings, and camera-yaw-to-map bearing. `crates/shared/src/lib.rs` exports it.
+The HUD uses the same helpers for tactical-map positions/clicks, radar
+background crops/markers, headings and compass bearings. Edge crops remain
+unclamped to avoid stretching the background independently of markers.
+Arrow/cone rotation keeps egui's native quad vertex order. Six projection
+tests cover off-center crops, cardinal axes and simulation heading agreement.
 
-`crates/client_core/src/hud_painter.rs` now uses these helpers for tactical map positions and clicks, the radar overview crop, every radar marker, both player headings, compass sound cues, and compass waypoint bearings. Before this correction, the tactical map used `v = (half - Z) / span`, while the radar background used `v = (Z + half) / span` and markers used positive Z for positive screen Y. A player away from the world origin consequently sampled the opposite vertical map location. Radar crops are now left unclamped so approaching an overview edge does not rescale the background independently of the markers.
+`1BattlePanel_ann_f` is a translucent black 62×62 backplate (center alpha
+102); its existing HUD use does not reproduce the source layout.
+`MAP_OVERVIEW_HALF_EXTENT = 5360.0` remains provisional. The source map image,
+origin/padding and world calibration have not been established.
 
-Camera yaw zero moves forward toward world -Z (`crates/shared/src/movement.rs`, displacement calculation), so it must point downward on this map. The old arrow headed upward. The correction projects camera motion and headings under the same convention.
+`export/SC.UI/*.cs` is recovered pseudo-C#, with useful names/native addresses
+and partial call clues, plus unresolved external types, invalid operations
+and decompilation placeholders. Do not translate its bodies literally or
+describe it as original compilable Unity source.
 
-The textured arrow/cone code previously assigned corners in TL, TR, BR, BL order to an egui rectangle whose native vertex order is TL, TR, BL, BR, creating twisted quads. A shared image-rotation helper now rotates the native vertices in place. Pixel inspection confirmed that the arrow sprite points upward and the cone sprite downward, so the cone receives its intrinsic 180° adjustment.
+## Next runtime slice: BattleMinimap
 
-The imported `1BattlePanel_ann_f` backplate is now drawn behind the radar. It is a translucent black 62×62 sprite, with center alpha 102, not a separate decorative border. This addition uses the existing widget rectangle and does not claim that the full original minimap layout has been recreated.
+Use the new source package as the single layout/asset input. Move its shared
+DTO into a reusable Rust crate when the renderer consumes it.
 
-The existing `MAP_OVERVIEW_HALF_EXTENT = 5360.0` is a calibration value. Its exact relationship to the APK's map image, terrain bounds, padding, and origin has not been established by this audit. Do not describe 5360 m as an APK-proven extent. The helpers receive extents explicitly so a verified calibration can replace it without new sign conversions.
+1. Recover the runtime parent canvas/reference resolution and map calibration.
+   No CanvasScaler is present in these selected prefabs.
+2. Resolve anchors, pivots, rotation, sorting/draw order, sprite mesh/trim,
+   nine-slice borders and fill behavior from retained source identities.
+3. Implement source mask/stencil semantics. Current radar clipping is
+   rectangular; a circle painted behind the image does not clip its corners.
+4. Interpret font/glyph resources and bind headings, compass, coordinates,
+   waypoints, map image and state-dependent icons to the simulation.
+5. Compare matched scene/camera/resolution captures with the running APK,
+   including off-center landmarks, map edges, clipping and panel transitions.
 
-Validation performed:
-
-```bash
-rustc --edition 2024 --test crates/shared/src/map_projection.rs -o /tmp/midnight-map-projection-tests
-/tmp/midnight-map-projection-tests
-```
-
-All six tests passed. They check independent north/east landmark placement, forward/inverse coordinates inside and outside the image, off-center radar positions, marker alignment with the overview crop, cardinal bearings, and heading agreement with simulation forward motion. This is numerical validation; it does not replace integrated rendering checks or APK screenshots.
-
-## Remaining UI work
-
-The client still draws a hand-built egui HUD. Its production crates do not load any of the extracted layout JSON files or sprite metadata. `HudLayout::preset` and `WidgetId::size` define hand-tuned positions and sizes; `UiSpriteAssets` loads a small fixed sprite subset; `hud_painter.rs` draws those into custom geometry. Exact hierarchy composition, nine-slice borders, original fonts, visibility rules, interactions, and animations are therefore not reproduced.
-
-The radar image still uses rectangular clipping; painting a circle behind an image does not mask its corners. Actual circular/Unity mask behavior remains to be implemented from recovered mask semantics. `FogLightMask` needs explicit investigation. Source-derived visibility, gameplay state, and dynamic binding targets also remain unresolved.
-
-The next concrete UI slice should be `BattleMinimap`, after canonical map calibration:
-
-1. Extract its source prefab, qualified sprite/component references, CanvasScaler, enabled/active flags, mask data, and text/font settings in Rust.
-2. Define one versioned UI DTO shared by extraction and rendering, retaining source identity and hierarchy order. Avoid another unrelated HUD implementation.
-3. Resolve stretch anchors and pivots under the recovered canvas scale; preserve source sprite, nine-slice, fill, color, and draw order.
-4. Bind the map image, player arrow, compass, coordinates, waypoint, and visible gameplay icons to the existing simulation through explicit source identities.
-5. Compare the same scene and camera against the running APK at a recorded resolution. Check off-center landmarks, heading, clipping, edge crops, and opening/closing the full map. Keep the UI labeled incomplete until this comparison exists.
-
-Complete-game fidelity, full UI coverage, exact source map calibration, and runtime screenshot evidence remain open work.
+Full UI behavior, interactions/animations, placements, water, original
+lighting, gameplay and complete-game fidelity remain unfinished.

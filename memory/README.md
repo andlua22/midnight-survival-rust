@@ -1,15 +1,26 @@
 # Reconstruction handoff
 
-This directory records evidence, decisions, commands, and unfinished work for
-agents continuing the reconstruction of `export/lite4.0.apk` in Rust/Bevy.
+This directory records evidence, decisions, commands and unfinished work for
+the Rust/Bevy reconstruction of `export/lite4.0.apk`.
 
-Read [apk-reconstruction.md](apk-reconstruction.md) first. Focused audits belong
-in `map-evidence.md` and `ui-reconstruction.md`; update their status after changes.
+Start with [the requested handoff](<щоб інші ші знали, про що це.md>).
+[apk-reconstruction.md](apk-reconstruction.md) records implementation status
+and commands. [map-evidence.md](map-evidence.md) retains map/shader evidence;
+[ui-reconstruction.md](ui-reconstruction.md) covers source UI and runtime gaps.
 
-The user writes Ukrainian and wants English responses. Implement new tools in
-Rust and reuse existing extraction utilities and C# material. Do not run or add
-Python unless a concrete missing capability makes it unavoidable.
+The canonical map is `assets/imported_map/terrain/` (MSMAP003, schema 2).
+The verified UI source package is under `assets/imported_ui/`, keyed by APK
+SHA-256 and schema version. The client still uses the hand-built egui HUD.
 
-Preserve evidence and user changes. A visual approximation is not proof that a
-map, UI, or gameplay subsystem matches the APK. Record verified facts separately
-from inferred behavior and unresolved questions.
+Compact reports: [terrain](evidence/terrain-verification.json),
+[UI](evidence/ui-verification.json), and
+[GPU captures](evidence/terrain-render/render.json). Do not print the enormous
+`source_ui.json`; use the compact report or bounded package queries.
+
+The user writes Ukrainian and wants English responses. Write new tools in
+Rust and reuse installed Unity/REA utilities and C# evidence. No Python was
+executed during this work; do not use it without a concrete missing capability.
+
+Preserve user changes and old assets. Record static observations, Bevy renderer
+validation and unverified APK runtime behavior separately. REA is already
+installed; do not repeat setup to reconnect absent live MCP tools.

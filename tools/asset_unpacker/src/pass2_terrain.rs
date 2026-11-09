@@ -169,38 +169,14 @@ fn collect_scene(
 
 fn promote_verified(candidate: &Path, output: &Path, stamp: u128) -> Result<(), Error> {
     let imported = output.join("imported_map");
-    create_dir_all(&imported)?;
     let canonical = imported.join("terrain");
-    if canonical.exists() && std::fs::canonicalize(candidate)? == std::fs::canonicalize(&canonical)?
-    {
-        return Err(invalid(
-            "the candidate is already the canonical terrain package",
-        ));
-    }
-    let backup = if canonical.exists() {
-        let backup = output
-            .parent()
-            .unwrap_or(Path::new("."))
-            .join(".local/map-import-backups")
-            .join(stamp.to_string());
-        create_dir_all(&backup)?;
-        let backup = backup.join("terrain");
-        std::fs::rename(&canonical, &backup)?;
-        Some(backup)
-    } else {
-        None
-    };
-    if let Err(error) = std::fs::rename(candidate, &canonical) {
-        if let Some(backup) = &backup {
-            std::fs::rename(backup, &canonical).map_err(|restore| invalid(format!(
-                "promotion failed: {error}; restoring the prior package failed: {restore}; prior package remains at {}", backup.display())))?;
-        }
-        return Err(error.into());
-    }
-    if let Some(backup) = backup {
-        eprintln!("Previous terrain package archived at {}", backup.display());
-    }
-    Ok(())
+    let backup = output
+        .parent()
+        .unwrap_or(Path::new("."))
+        .join(".local/map-import-backups")
+        .join(stamp.to_string())
+        .join("terrain");
+    crate::package_publish::publish_verified(candidate, &canonical, &backup)
 }
 
 /// Resume a completed staged import without decoding all source bundles again.

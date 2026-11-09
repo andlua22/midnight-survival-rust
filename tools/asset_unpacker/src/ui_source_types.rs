@@ -186,7 +186,7 @@ pub struct HierarchyNode {
     pub children: Vec<HierarchyNode>,
 }
 
-#[derive(Clone, Debug, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PanelStats {
     pub nodes: usize,
     pub rect_transforms: usize,
@@ -284,6 +284,16 @@ pub struct FontAsset {
     pub source_fields: FileIdentity,
 }
 
+/// A source texture with no stored pixels. Runtime atlas contents remain unknown.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct DeferredTexture {
+    pub source: SourceObject,
+    pub name: String,
+    pub reason: String,
+    pub source_fields: FileIdentity,
+    pub serialized: FileIdentity,
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ImportIssue {
     pub severity: String,
@@ -302,6 +312,8 @@ pub struct UiManifest {
     pub panels: Vec<PanelSummary>,
     pub sprites: Vec<UiSprite>,
     pub textures: Vec<TextureAsset>,
+    #[serde(default)]
+    pub deferred_textures: Vec<DeferredTexture>,
     pub fonts: Vec<FontAsset>,
     pub source_objects: Vec<ObjectRecord>,
     pub hierarchy_complete: bool,

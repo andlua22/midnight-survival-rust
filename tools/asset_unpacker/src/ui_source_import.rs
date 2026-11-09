@@ -6,7 +6,7 @@ use std::{
     io::{BufReader, Read},
     path::{Path, PathBuf},
     sync::Arc,
-    time::Instant,
+    time::{Instant, SystemTime, UNIX_EPOCH},
 };
 
 use image::RgbaImage;
@@ -24,9 +24,23 @@ use crate::{
     unity::{Error, cab_name, read_object, source_apk},
 };
 
-use super::{sprite, types::*};
+use super::{font, sprite, types::*, verifier};
 
-const PANELS: [(&str, &str, &str); 3] = [
+fn source_float(value: f64) -> Value {
+    if value.is_finite() {
+        return json!(value);
+    }
+    let label = if value.is_nan() {
+        "NaN"
+    } else if value.is_sign_negative() {
+        "-Infinity"
+    } else {
+        "+Infinity"
+    };
+    json!({"unity_non_finite_f64": {"value": label, "parsed_bits_hex": format!("{:016x}", value.to_bits())}})
+}
+
+pub(super) const PANELS: [(&str, &str, &str); 3] = [
     (
         "BattleMinimap",
         "assets/ui/battleminimap.ab",
@@ -166,6 +180,36 @@ fn image_fill_amount(object: &UnityObject) -> Result<f32, Error> {
     Ok(fill)
 }
 
+/// Recognize the explicitly empty RGBA32 font-atlas layout observed in this APK.
+/// A positive dimension, declared payload or stream must go through strict decoding.
+pub(super) fn empty_font_texture(object: &UnityObject) -> Result<bool, Error> {
+    if object.info.type_id != 28 || text(property(object, "m_Name")?)? != "Font Texture" {
+        return Ok(false);
+    }
+    for name in [
+        "m_Width",
+        "m_Height",
+        "m_ImageCount",
+        "m_CompleteImageSize",
+        "m_MipsStripped",
+    ] {
+        if integer(property(object, name)?)? != 0 {
+            return Ok(false);
+        }
+    }
+    if integer(property(object, "m_TextureDimension")?)? != 2
+        || integer(property(object, "m_TextureFormat")?)? != 4
+        || integer(property(object, "m_MipCount")?)? != 1
+        || !bytes(property(object, "image data")?)?.is_empty()
+    {
+        return Ok(false);
+    }
+    let stream = property(object, "m_StreamData")?;
+    Ok(integer(field(stream, "offset")?)? == 0
+        && integer(field(stream, "size")?)? == 0
+        && text(field(stream, "path")?)?.is_empty())
+}
+
 pub(super) fn rect(value: &UnityValue) -> Result<[f32; 4], Error> {
     vector(value, ["x", "y", "width", "height"])
 }
@@ -250,6 +294,7 @@ pub(super) struct Importer<'a> {
     resources: BTreeSet<ObjectId>,
     processed_resources: BTreeSet<ObjectId>,
     textures: BTreeMap<ObjectId, TextureAsset>,
+    deferred_textures: BTreeMap<ObjectId, DeferredTexture>,
     texture_images: BTreeMap<ObjectId, Arc<RgbaImage>>,
     sprites: BTreeMap<ObjectId, UiSprite>,
     fonts: BTreeMap<ObjectId, FontAsset>,
@@ -267,6 +312,7 @@ impl<'a> Importer<'a> {
             resources: BTreeSet::new(),
             processed_resources: BTreeSet::new(),
             textures: BTreeMap::new(),
+            deferred_textures: BTreeMap::new(),
             texture_images: BTreeMap::new(),
             sprites: BTreeMap::new(),
             fonts: BTreeMap::new(),
@@ -372,12 +418,7 @@ impl<'a> Importer<'a> {
                 Ok(json!({"unity_i64": value.to_string()}))
             }
             UnityValue::Integer(value) => Ok(json!(value)),
-            UnityValue::Float(value) => {
-                if !value.is_finite() {
-                    return Err(invalid(format!("non-finite source field {location}")));
-                }
-                Ok(json!(value))
-            }
+            UnityValue::Float(value) => Ok(source_float(*value)),
             UnityValue::String(value) => Ok(json!(value)),
             UnityValue::Bytes(value) => Ok(json!({
                 "unity_bytes": self.store_bytes("source_blobs", "bin", value)?,
@@ -889,6 +930,32 @@ impl<'a> Importer<'a> {
         })
     }
 
+    fn defer_empty_font_texture(
+        &mut self,
+        id: &ObjectId,
+        object: &UnityObject,
+    ) -> Result<bool, Error> {
+        if !empty_font_texture(object)? {
+            return Ok(false);
+        }
+        if !self.deferred_textures.contains_key(id) {
+            let record = self.record(id, object, false)?;
+            self.deferred_textures.insert(
+                id.clone(),
+                DeferredTexture {
+                    source: id.source(),
+                    name: text(property(object, "m_Name")?)?.to_owned(),
+                    reason: "empty_source_font_atlas".into(),
+                    source_fields: record.source_fields,
+                    serialized: record.serialized,
+                },
+            );
+            self.issue("warning", "empty_source_font_atlas", Some(id), Some("/image data"),
+                "Source Font Texture has zero dimensions, zero images and no embedded or streamed pixels. Original bytes and fields are retained; runtime font-atlas generation and contents remain unverified.".into());
+        }
+        Ok(true)
+    }
+
     pub(super) fn texture_image(&mut self, id: &ObjectId) -> Result<Arc<RgbaImage>, Error> {
         if let Some(image) = self.texture_images.get(id) {
             return Ok(image.clone());
@@ -898,6 +965,11 @@ impl<'a> Importer<'a> {
         }
         let object = self.resolver.object(id)?;
         self.record(id, &object, false)?;
+        if self.defer_empty_font_texture(id, &object)? {
+            return Err(invalid(
+                "empty source font atlas cannot supply a baked graphic image",
+            ));
+        }
         let texture = self.resolver.texture(id, &self.output)?;
         let image = Arc::new(image::open(self.output.join(&texture.file.path))?.into_rgba8());
         if image.dimensions() != (texture.width, texture.height) {
@@ -949,13 +1021,19 @@ impl<'a> Importer<'a> {
                     .classes
                     .get(&id)
                     .ok_or_else(|| invalid("resource is absent from source object inventory"))?;
-                let object = self.resolver.object(&id)?;
+                let object = if class == 128 {
+                    font::read(&mut self.resolver, &id)?
+                } else {
+                    self.resolver.object(&id)?
+                };
                 // Atlas packed-sprite tables and shader default dependency lists are
                 // retained but do not broaden the selected prefab's graphics closure.
                 self.record(&id, &object, !matches!(class, 28 | 48 | 213 | 687078895))?;
                 match class {
                     28 => {
-                        self.texture_image(&id)?;
+                        if !self.defer_empty_font_texture(&id, &object)? {
+                            self.texture_image(&id)?;
+                        }
                     }
                     128 => self.font(&id, &object)?,
                     213 => {
@@ -997,12 +1075,19 @@ pub(super) fn run(apk: &Path, out_dir: &Path) -> Result<(), Error> {
     let start = Instant::now();
     eprintln!("PASS 3: source UI extraction from {}", apk.display());
     let source = source_apk(apk)?;
-    let output = out_dir
-        .join("imported_ui")
-        .join(format!("{}-v{SCHEMA_VERSION}", source.sha256));
-    std::fs::create_dir_all(&output)?;
+    let imported = out_dir.join("imported_ui");
+    let canonical = imported.join(format!("{}-v{SCHEMA_VERSION}", source.sha256));
+    let stamp = SystemTime::now().duration_since(UNIX_EPOCH)?.as_nanos();
+    let output = imported.join(format!(".ui-import-{}-{stamp}", std::process::id()));
+    std::fs::create_dir_all(&imported)?;
+    std::fs::create_dir(&output)?;
     let discovery = discover(apk)?;
-    let dependency_index = write_json(&output, "dependency_index.json", &discovery.index)?;
+    // Convert hash maps to ordered JSON keys so repeated imports have stable identities.
+    let dependency_index = write_json(
+        &output,
+        "dependency_index.json",
+        &serde_json::to_value(&discovery.index)?,
+    )?;
     let mut importer = Importer::new(apk, &discovery, output.clone())?;
     let mut panels = Vec::new();
     for (name, member, filename) in PANELS {
@@ -1055,10 +1140,11 @@ pub(super) fn run(apk: &Path, out_dir: &Path) -> Result<(), Error> {
     }
     let hierarchy_complete =
         panels.len() == PANELS.len() && panels.iter().all(|panel| panel.hierarchy_complete);
-    let graphics_complete = !importer
-        .issues
-        .iter()
-        .any(|issue| issue.severity == "error");
+    let graphics_complete = importer.deferred_textures.is_empty()
+        && !importer
+            .issues
+            .iter()
+            .any(|issue| issue.severity == "error");
     let reference_coverage_complete = !importer
         .issues
         .iter()
@@ -1076,6 +1162,7 @@ pub(super) fn run(apk: &Path, out_dir: &Path) -> Result<(), Error> {
     let manifest = UiManifest {
         schema_version: SCHEMA_VERSION, source_apk: source, dependency_index, bundles: discovery.bundles.clone(), panels,
         sprites: importer.sprites.into_values().collect(), textures: importer.textures.into_values().collect(),
+        deferred_textures: importer.deferred_textures.into_values().collect(),
         fonts: importer.fonts.into_values().collect(), source_objects: importer.records.into_values().collect(),
         hierarchy_complete, graphics_complete, reference_coverage_complete, runtime_equivalence_verified: false,
         issues: importer.issues,
@@ -1085,20 +1172,23 @@ pub(super) fn run(apk: &Path, out_dir: &Path) -> Result<(), Error> {
             "Custom/native components without a projection retain complete source fields and original bytes; their behavior is not implemented.".into(),
             "Sprite PNGs are unpacked integer texture-crop previews. Original sprite canvas, fractional trim, and mesh geometry are retained separately and have not been rasterized into the previews.".into(),
             "Unity built-in resource PPtrs may remain explicit unresolved references because their serialized resource file is outside the declared APK bundle closure.".into(),
+            "Explicitly empty source font textures are retained as deferred resources without invented pixels. Runtime font-atlas generation and contents are unverified.".into(),
             "No runtime UI files were replaced or promoted by this extraction pass.".into(),
         ],
         source_field_encoding: vec![
             "PPtrs become SourceReference objects with owner, FileID, signed PathID string, and explicit resolution state.".into(),
             "Integers outside the exact JavaScript range use {unity_i64: decimal_string}; smaller non-PPtr integers retain JSON integer values.".into(),
             "Unity byte arrays use {unity_bytes: FileIdentity, byte_count}; each referenced file contains all original bytes.".into(),
+            "Non-finite parsed floats use {unity_non_finite_f64: {value, parsed_bits_hex}}. Original float width and NaN payload remain in the retained binary object bytes.".into(),
             "Other objects, arrays, strings, finite floats and boolean values are retained in full; source binary object bytes are also retained.".into(),
         ],
     };
     let manifest_file = write_json(&output, "source_ui.json", &manifest)?;
     eprintln!(
-        "  {} sprites, {} textures, {} fonts, {} source objects; {error_count} errors, {warning_count} warnings -> {} ({:.2?})",
+        "  {} sprites, {} decoded textures, {} deferred textures, {} fonts, {} source objects; {error_count} errors, {warning_count} warnings -> {} ({:.2?})",
         manifest.sprites.len(),
         manifest.textures.len(),
+        manifest.deferred_textures.len(),
         manifest.fonts.len(),
         manifest.source_objects.len(),
         output.join(&manifest_file.path).display(),
@@ -1110,6 +1200,27 @@ pub(super) fn run(apk: &Path, out_dir: &Path) -> Result<(), Error> {
             output.join(&manifest_file.path).display()
         )));
     }
+    verifier::verify(&output, apk).map_err(|error| {
+        invalid(format!(
+            "UI candidate verification failed: {error}; candidate preserved at {}",
+            output.display()
+        ))
+    })?;
+    let backup = out_dir
+        .parent()
+        .unwrap_or(Path::new("."))
+        .join(".local/ui-import-backups")
+        .join(stamp.to_string())
+        .join(
+            canonical
+                .file_name()
+                .ok_or_else(|| invalid("canonical UI package has no name"))?,
+        );
+    crate::package_publish::publish_verified(&output, &canonical, &backup)?;
+    eprintln!(
+        "Verified UI source package published at {}",
+        canonical.display()
+    );
     Ok(())
 }
 
@@ -1118,6 +1229,25 @@ mod tests {
     use super::*;
     use unity_asset_binary::asset::ObjectInfo;
     use unity_asset_core::UnityClass;
+
+    #[test]
+    fn non_finite_source_values_have_explicit_json_tags_and_parsed_bits() {
+        for value in [
+            f64::INFINITY,
+            f64::NEG_INFINITY,
+            f64::from_bits(0x7ff8_1234_5678_abcd),
+        ] {
+            let encoded = source_float(value);
+            let bytes = serde_json::to_vec(&encoded).unwrap();
+            let decoded: Value = serde_json::from_slice(&bytes).unwrap();
+            let bits = decoded["unity_non_finite_f64"]["parsed_bits_hex"]
+                .as_str()
+                .unwrap();
+            assert_eq!(u64::from_str_radix(bits, 16).unwrap(), value.to_bits());
+            assert!(decoded["unity_non_finite_f64"]["value"].is_string());
+        }
+        assert_eq!(source_float(0.0), json!(0.0));
+    }
 
     fn id(cab: &str, path_id: i64) -> ObjectId {
         ObjectId {
@@ -1146,6 +1276,37 @@ mod tests {
         assert_eq!(image_fill_amount(&image).unwrap(), 0.0);
         assert!(image_fill_amount(&object(114, json!({}))).is_err());
         assert!(image_fill_amount(&object(114, json!({"m_FillAmount": 1.1}))).is_err());
+    }
+
+    #[test]
+    fn only_explicitly_empty_font_atlases_are_deferred() {
+        let fields = json!({
+            "m_Name": "Font Texture", "m_Width": 0, "m_Height": 0,
+            "m_ImageCount": 0, "m_CompleteImageSize": 0, "m_MipsStripped": 0,
+            "m_TextureDimension": 2, "m_TextureFormat": 4, "m_MipCount": 1,
+            "image data": [], "m_StreamData": {"offset": 0, "size": 0, "path": ""}
+        });
+        assert!(empty_font_texture(&object(28, fields.clone())).unwrap());
+        for (name, value) in [
+            ("m_Name", json!("terrain")),
+            ("m_Width", json!(1)),
+            ("m_Height", json!(1)),
+            ("m_CompleteImageSize", json!(4)),
+            ("m_ImageCount", json!(1)),
+            ("m_MipsStripped", json!(1)),
+            ("image data", json!([0, 0, 0, 0])),
+            (
+                "m_StreamData",
+                json!({"offset": 0, "size": 4, "path": "font.resS"}),
+            ),
+        ] {
+            let mut actual = fields.clone();
+            actual[name] = value;
+            assert!(!empty_font_texture(&object(28, actual)).unwrap(), "{name}");
+        }
+        let mut truncated = fields;
+        truncated.as_object_mut().unwrap().remove("image data");
+        assert!(empty_font_texture(&object(28, truncated)).is_err());
     }
 
     #[test]
