@@ -1,0 +1,167 @@
+{
+  "fonts": [
+    {
+      "affected_text": [
+        {
+          "missing_characters": [
+            "解",
+            "计",
+            "时",
+            "秒"
+          ],
+          "node": "txt_time_kongxi",
+          "text": "解锁计时\nxxxxx秒"
+        },
+        {
+          "missing_characters": [
+            "丧",
+            "尸",
+            "领"
+          ],
+          "node": "Text_name",
+          "text": "丧尸首领"
+        },
+        {
+          "missing_characters": [
+            "计",
+            "时",
+            "秒"
+          ],
+          "node": "txt_time_sangshiboss",
+          "text": "刷新计时\nxxxxx秒"
+        }
+      ],
+      "byte_count": 12649568,
+      "coverage": {
+        "(": {
+          "codepoint": "U+0028",
+          "skrifa_glyph": 11,
+          "ttf_parser_glyph": 11
+        },
+        ")": {
+          "codepoint": "U+0029",
+          "skrifa_glyph": 12,
+          "ttf_parser_glyph": 12
+        },
+        ",": {
+          "codepoint": "U+002C",
+          "skrifa_glyph": 15,
+          "ttf_parser_glyph": 15
+        },
+        "0": {
+          "codepoint": "U+0030",
+          "skrifa_glyph": 19,
+          "ttf_parser_glyph": 19
+        },
+        "1": {
+          "codepoint": "U+0031",
+          "skrifa_glyph": 20,
+          "ttf_parser_glyph": 20
+        },
+        "2": {
+          "codepoint": "U+0032",
+          "skrifa_glyph": 21,
+          "ttf_parser_glyph": 21
+        },
+        "3": {
+          "codepoint": "U+0033",
+          "skrifa_glyph": 22,
+          "ttf_parser_glyph": 22
+        },
+        "4": {
+          "codepoint": "U+0034",
+          "skrifa_glyph": 23,
+          "ttf_parser_glyph": 23
+        },
+        "9": {
+          "codepoint": "U+0039",
+          "skrifa_glyph": 28,
+          "ttf_parser_glyph": 28
+        },
+        ":": {
+          "codepoint": "U+003A",
+          "skrifa_glyph": 29,
+          "ttf_parser_glyph": 29
+        },
+        "x": {
+          "codepoint": "U+0078",
+          "skrifa_glyph": 91,
+          "ttf_parser_glyph": 91
+        },
+        "丧": {
+          "codepoint": "U+4E27",
+          "skrifa_glyph": null,
+          "ttf_parser_glyph": null
+        },
+        "刷": {
+          "codepoint": "U+5237",
+          "skrifa_glyph": 3479,
+          "ttf_parser_glyph": 3479
+        },
+        "尸": {
+          "codepoint": "U+5C38",
+          "skrifa_glyph": null,
+          "ttf_parser_glyph": null
+        },
+        "新": {
+          "codepoint": "U+65B0",
+          "skrifa_glyph": 3981,
+          "ttf_parser_glyph": 3981
+        },
+        "时": {
+          "codepoint": "U+65F6",
+          "skrifa_glyph": null,
+          "ttf_parser_glyph": null
+        },
+        "秒": {
+          "codepoint": "U+79D2",
+          "skrifa_glyph": null,
+          "ttf_parser_glyph": null
+        },
+        "解": {
+          "codepoint": "U+89E3",
+          "skrifa_glyph": null,
+          "ttf_parser_glyph": null
+        },
+        "计": {
+          "codepoint": "U+8BA1",
+          "skrifa_glyph": null,
+          "ttf_parser_glyph": null
+        },
+        "锁": {
+          "codepoint": "U+9501",
+          "skrifa_glyph": 3565,
+          "ttf_parser_glyph": 3565
+        },
+        "领": {
+          "codepoint": "U+9886",
+          "skrifa_glyph": null,
+          "ttf_parser_glyph": null
+        },
+        "首": {
+          "codepoint": "U+9996",
+          "skrifa_glyph": 3438,
+          "ttf_parser_glyph": 3438
+        }
+      },
+      "embedded": {
+        "path": "fonts/f92520d61a1b1f574b4a3a88fc04b255b6cef012749de898c11aef957b8e8df7.otf",
+        "sha256": "f92520d61a1b1f574b4a3a88fc04b255b6cef012749de898c11aef957b8e8df7"
+      },
+      "glyph_count": 30284,
+      "name": "ADOBEHEITISTD-REGULAR",
+      "skrifa_symbol_map": false,
+      "skrifa_unicode_map": true,
+      "source": {
+        "bundle": "assets/fonts/fonts.ab",
+        "cab": "CAB-096add6cdbb7663c007ed458ab0c7475",
+        "path_id": "-4720046316774500430"
+      }
+    }
+  ],
+  "limitations": [
+    "This compares nominal mappings in the retained embedded font. Unity font fallback and runtime glyph atlas behavior are not established."
+  ],
+  "panel": "BattleMinimap",
+  "source_apk_sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df"
+}

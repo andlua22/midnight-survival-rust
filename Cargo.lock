@@ -2102,9 +2102,12 @@ dependencies = [
  "bevy_egui",
  "midnight_map_data",
  "midnight_network",
+ "midnight_ui_data",
  "serde",
  "serde_json",
  "shared",
+ "skrifa",
+ "ttf-parser",
 ]
 
 [[package]]
@@ -3803,6 +3806,17 @@ dependencies = [
  "shared",
  "subtle",
  "tokio",
+]
+
+[[package]]
+name = "midnight_ui_data"
+version = "0.1.0"
+dependencies = [
+ "glam 0.30.10",
+ "midnight_map_data",
+ "serde",
+ "serde_json",
+ "sha2",
 ]
 
 [[package]]

@@ -1,0 +1,40 @@
+{
+  "checked_at_utc": "2026-11-09",
+  "evidence_type": "read_only_installed_tool_observations",
+  "source_apk": {
+    "path": "export/lite4.0.apk",
+    "sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df",
+    "package": "com.herogame.gplay.survival.lite",
+    "version_code": 40,
+    "version_name": "4.0",
+    "label": "Last Island of Survival LITE",
+    "launchable_activity": "com.herogame.gplay.survival.lite.SplashActivity",
+    "manifest_tool": "aapt dump badging export/lite4.0.apk"
+  },
+  "device": {
+    "adb_serial": "192.168.240.112:5555",
+    "state": "device",
+    "product": "lineage_waydroid_x86_64",
+    "model": "WayDroid_x86_64_Device",
+    "device": "waydroid_x86_64"
+  },
+  "installed_package": {
+    "package": "com.herogame.gplay.survival.lite",
+    "base_apk": "/data/app/~~KRIqbFOzUl6vM9Niniwl-g==/com.herogame.gplay.survival.lite-76irnFWmZzEqA02oMDg2CA==/base.apk",
+    "sha256": "527ae0a10681fd0dfdbe957b65fee79729cc665d0e7afcce43f25054366fc37b",
+    "matches_source_apk": false,
+    "version_verified": false,
+    "relevant_member_identity_verified": false
+  },
+  "operations": [
+    "adb devices -l",
+    "adb -s 192.168.240.112:5555 shell pm path com.herogame.gplay.survival.lite",
+    "adb -s 192.168.240.112:5555 shell sha256sum /data/app/~~KRIqbFOzUl6vM9Niniwl-g==/com.herogame.gplay.survival.lite-76irnFWmZzEqA02oMDg2CA==/base.apk"
+  ],
+  "limitations": [
+    "The whole-APK digest differs. This does not prove which packaged members or game behaviors differ.",
+    "No app launch, installation change, UI screenshot or live minimap state observation was performed.",
+    "Matching this installed package's relevant assets/native code or using an exact-target runtime is needed before attributing observations to the supplied APK.",
+    "ADB needed host access after the sandbox rejected its local server socket. These are installed-tool observations, not REA Evidence IDs."
+  ]
+}

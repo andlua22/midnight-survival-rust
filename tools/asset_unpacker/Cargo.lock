@@ -157,6 +157,7 @@ dependencies = [
  "half",
  "image",
  "midnight_map_data",
+ "midnight_ui_data",
  "rayon",
  "serde",
  "serde_json",
@@ -821,6 +822,17 @@ checksum = "cf8baf1c55e62ffcace7a9f06f4bd9cd3f0c4beb022d3b367256b91b87513d98"
 name = "midnight_map_data"
 version = "0.1.0"
 dependencies = [
+ "serde",
+ "serde_json",
+ "sha2",
+]
+
+[[package]]
+name = "midnight_ui_data"
+version = "0.1.0"
+dependencies = [
+ "glam",
+ "midnight_map_data",
  "serde",
  "serde_json",
  "sha2",

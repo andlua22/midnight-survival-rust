@@ -13,6 +13,7 @@ pub mod metrics;
 mod online;
 mod online_metrics;
 pub mod storage;
+pub mod source_ui;
 mod terrain;
 
 pub use application::build_app;

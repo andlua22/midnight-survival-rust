@@ -1218,7 +1218,7 @@ pub fn paint_radar_minimap(painter: &Painter, map: Rect, scale: f32, ctx: &Minim
         Stroke::new(0.6 * scale, Color32::from_rgba_unmultiplied(50, 78, 84, 90)),
     );
 
-    // World coordinate to local radar offset: +X is right and +Z is up.
+    // Canonical world coordinates: +X is right and -Z is north/up.
     let to_radar = |wx: f32, wz: f32| -> (Vec2, f32) {
         let offset = Vec2::from(map_projection::world_to_radar_offset(
             [wx, wz],

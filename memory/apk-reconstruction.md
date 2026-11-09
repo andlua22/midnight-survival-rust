@@ -76,14 +76,42 @@ metadata/base PNG consistency. Imports use fresh staging, stable dependency
 index serialization, verification before publication and backups/rollback
 shared with terrain. The runtime still uses the hand-built egui HUD.
 
+Two fresh imports produced identical manifest SHA-256
+`677424f9e43225f3677f5713bed526dd9099339f2a8b44dbaecee7d41928cae5`.
+All 20,782 files in the canonical UI directory are referenced and verified;
+no stale files remain. See `evidence/ui-reproducibility.json`.
+
+The extractor and client now share `midnight_ui_data` (schema 1). Its verified
+payload loader, RectTransform resolver and sprite geometry feed
+`client_core::source_ui::SourcePanelRenderer`. The source BattleMinimap preview
+has standard alpha-mask clipping, source embedded-font text and explicit
+qualified texture/text/visibility/position bindings. The production HUD still
+uses its existing painter. Full verification after moving the schema preserved
+the manifest digest and verified 394,890,740 bytes across all 20,782 files.
+
+Updated minimap GPU previews at 1920×1080 and 1280×720 are in
+`evidence/minimap-render/`. They use source bootstrap canvas settings as explicit
+inputs and show serialized templates with no runtime map texture/visibility.
+Per-graphic reports retain unsupported cases; they are not APK screenshots.
+`evidence/minimap-canvas-review.md` recovers canvas/scalar calibration and a
+definite large-map texture binding. `evidence/minimap-font-coverage.json` records
+seven missing nominal source-font character mappings, with two independent parsers.
+
+Waydroid is connected, but its installed `com.herogame.gplay.survival.lite` APK
+has a different digest. `evidence/android-runtime-check.json` retains that
+read-only check. The installation has been preserved; exact-target gameplay
+captures and effective runtime values remain pending.
+
 ## Checklist
 
 - [done] Source geometry, coordinates, materials and source mip retention.
 - [done] One canonical map for rendering and source collider physics.
 - [done] Reproducible Rust import and integrity/coverage verification.
 - [done] Static extraction of the three selected UI panel hierarchies.
+- [done] Shared source UI schema/layout and BattleMinimap Bevy/egui preview.
+- [done] Bootstrap canvas/scalar calibration and independent font coverage.
 - [done] Focused tests, workspace checks and Bevy GPU map captures.
-- [pending] Source UI rendering, masks, fonts, dynamic bindings/transitions.
+- [pending] Production source UI integration, custom graphics and runtime bindings/transitions.
 - [pending] Full prefab placements, water and original lighting/shaders.
 - [pending] Map-image calibration and comparisons with the running APK.
 - [pending] Full gameplay/server behavior and complete-game fidelity.
@@ -97,12 +125,25 @@ cargo run --release --offline --manifest-path tools/asset_unpacker/Cargo.toml --
 cargo run --release --offline --manifest-path tools/asset_unpacker/Cargo.toml -- --pass3
 cargo run --release --offline --manifest-path tools/asset_unpacker/Cargo.toml -- --verify-ui assets/imported_ui/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df-v1 --report memory/evidence/ui-verification.json
 cargo check --offline --workspace --examples
-cargo test --offline -p midnight_map_data -p shared -p client_core
+cargo test --offline -p midnight_ui_data -p midnight_map_data -p shared -p client_core
 cargo test --release --offline --manifest-path tools/asset_unpacker/Cargo.toml
+cargo clippy --offline -p midnight_ui_data -p client_core --all-targets
+cargo rustc --offline -p client_core --example minimap_probe -- -C strip=debuginfo
+target/debug/examples/minimap_probe memory/evidence/minimap-render
 ```
 
-These checks pass: map data 19 tests, client 23, shared 46 with one intentional
-stress-test ignore, extractor 24. GPU captures remain in the evidence directory.
+These checks pass: shared UI 15 tests, map data 19, client 25, shared 46 with one
+intentional stress-test ignore, extractor 24: 129 passed total. Workspace/examples
+were rechecked after the final text changes and the minimap was recaptured.
+Clippy completes with existing map package, HUD and terrain probe warnings;
+it is not a clean workspace-wide `-D warnings` run. GPU capture execution needs
+host GPU access; Cargo builds/checks are offline.
+
+Debug linking filled the disk during this stage. This turn's earlier generated
+probe binaries were preserved in `/tmp/codex-minimap-probe-before-sprite-fix`
+and `/tmp/codex-minimap-link-failed-2b1c49b459b68ea3`. Use the stripped probe
+build above and check free space before large links. Do not purge user assets,
+history or unrelated caches to make space.
 
 `--pass2` regenerates/verifies/publishes terrain. `--verify-package PATH` checks
 a completed candidate; `--promote-terrain PATH` activates it after verification.

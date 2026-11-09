@@ -1,0 +1,75 @@
+{
+  "backend": "Vulkan",
+  "bevy_egui_version": "0.43.1",
+  "bevy_version": "0.20.1",
+  "captures": [
+    {
+      "detail_crop": [
+        1480,
+        0,
+        440,
+        460
+      ],
+      "detail_file": "prefab-1920x1080-detail.png",
+      "distinct_rgb_buckets": 704,
+      "file": "prefab-1920x1080.png",
+      "graphic_statuses": {
+        "disabled": 2,
+        "empty": 2,
+        "mask_only": 1,
+        "submitted": 125,
+        "unsupported": 20
+      },
+      "pixels": [
+        1920,
+        1080
+      ],
+      "report": "prefab-1920x1080.json",
+      "scale_factor": 1.0
+    },
+    {
+      "detail_crop": [
+        986,
+        0,
+        294,
+        307
+      ],
+      "detail_file": "prefab-1280x720-detail.png",
+      "distinct_rgb_buckets": 602,
+      "file": "prefab-1280x720.png",
+      "graphic_statuses": {
+        "disabled": 2,
+        "empty": 2,
+        "mask_only": 1,
+        "submitted": 125,
+        "unsupported": 20
+      },
+      "pixels": [
+        1280,
+        720
+      ],
+      "report": "prefab-1280x720.json",
+      "scale_factor": 0.6666666865348816
+    }
+  ],
+  "driver": "615.71.09",
+  "egui_version": "0.36.2",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "limitations": [
+    "These are source prefab previews rendered by Bevy/egui, not screenshots of the APK or proof of pixel equality.",
+    "Runtime map texture and state are unbound; all serialized template nodes remain active unless their source components are disabled.",
+    "Full per-graphic reports identify unsupported materials, custom stencil/fog and line rendering, null sprite references and font/layout limits."
+  ],
+  "parent_canvas_input": {
+    "battle_minimap_runtime_parentage_verified": false,
+    "bootstrap_evidence": "../minimap-canvas-review.md",
+    "reference_pixels_per_unit": 100,
+    "reference_resolution": [
+      1920,
+      1080
+    ],
+    "scale_rule": "min(width/1920,height/1080)"
+  },
+  "runtime_bindings": {},
+  "source_apk_sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df"
+}

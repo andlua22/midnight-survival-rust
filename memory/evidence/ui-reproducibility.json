@@ -1,0 +1,39 @@
+{
+  "evidence_kind": "rust_ui_import_reproducibility",
+  "date": "2026-11-09",
+  "source_apk": {
+    "path": "export/lite4.0.apk",
+    "sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df",
+    "byte_count": 1115839572
+  },
+  "schema_version": 1,
+  "identical_manifest_sha256": "677424f9e43225f3677f5713bed526dd9099339f2a8b44dbaecee7d41928cae5",
+  "runs": [
+    {
+      "output_root": "assets",
+      "command": "tools/asset_unpacker/target/release/asset_unpacker --pass3",
+      "import_errors": 0,
+      "import_warnings": 61,
+      "verified_before_publication": true
+    },
+    {
+      "output_root": "/tmp/midnight-ui-repro-1794256913710624691",
+      "command": "tools/asset_unpacker/target/release/asset_unpacker --pass3 --out-dir /tmp/midnight-ui-repro-1794256913710624691",
+      "import_errors": 0,
+      "import_warnings": 61,
+      "verified_before_publication": true
+    }
+  ],
+  "canonical_file_inventory": {
+    "actual_files": 20782,
+    "verified_referenced_files": 20782,
+    "unreferenced_files": 0,
+    "verified_file_bytes": 394890740
+  },
+  "runtime_equivalence_verified": false,
+  "limitations": [
+    "Two local runs against the same APK and installed Rust decoder versions. Cross-platform reproducibility was not measured.",
+    "Matching manifests and source/file verification establish static package repeatability, not Unity rendering or gameplay equivalence.",
+    "The temporary second output may be removed by normal temporary-directory cleanup; its identical manifest digest and completed verification are recorded here."
+  ]
+}

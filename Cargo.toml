@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/map_data", "crates/shared", "crates/network", "crates/server", "crates/client_core", "crates/client_runner"]
+members = ["crates/map_data", "crates/ui_data", "crates/shared", "crates/network", "crates/server", "crates/client_core", "crates/client_runner"]
 exclude = ["tools/core_checks", "tools/asset_unpacker"]
 resolver = "3"
 default-members = ["crates/client_runner"]

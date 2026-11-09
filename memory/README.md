@@ -17,6 +17,19 @@ Compact reports: [terrain](evidence/terrain-verification.json),
 [GPU captures](evidence/terrain-render/render.json). Do not print the enormous
 `source_ui.json`; use the compact report or bounded package queries.
 
+[UI repeatability](evidence/ui-reproducibility.json) records matching fresh
+imports and a file inventory without stale files. [Archive index](evidence/archive-index.md)
+locates preserved candidates, earlier reports and code/package backups.
+
+The source `BattleMinimap` preview now uses `crates/ui_data` and the client's
+egui backend. [Minimap captures](evidence/minimap-render/render.json) record
+1920×1080 and 1280×720 previews with explicit canvas inputs. These still show
+serialized templates; production HUD integration and APK pixel equality are pending.
+[Canvas/calibration evidence](evidence/minimap-canvas-review.md) and
+[font coverage](evidence/minimap-font-coverage.json) separate recovered source
+values from missing runtime state. [Android runtime identity](evidence/android-runtime-check.json)
+records a connected Waydroid installation whose APK differs from this target.
+
 The user writes Ukrainian and wants English responses. Write new tools in
 Rust and reuse installed Unity/REA utilities and C# evidence. No Python was
 executed during this work; do not use it without a concrete missing capability.

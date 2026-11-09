@@ -9,6 +9,7 @@ unity-asset-binary = "0.2.0"
 unity-asset-core = "0.2.0"
 unity-asset-decode = { version = "0.2.0", features = ["texture-advanced"] }
 midnight_map_data = { path = "../../crates/map_data" }
+midnight_ui_data = { path = "../../crates/ui_data" }
 glam = "0.30"
 half = "2"
 zip = { version = "2.2", default-features = false, features = ["deflate"] }

@@ -76,6 +76,64 @@ PNG consistency. It does not independently rerun every decoder, rasterize
 Unity sprite meshes or compare Unity pixels. Commands are in
 `apk-reconstruction.md`; `evidence/ui-verification.json` is the compact report.
 
+Two fresh local imports produce the same manifest digest, recorded in
+`evidence/ui-reproducibility.json`. The canonical folder contains exactly the
+20,782 verified files, with no unreferenced output files. This establishes
+local static repeatability rather than cross-platform or runtime equivalence.
+
+## Shared schema and source minimap renderer
+
+`crates/ui_data` (`midnight_ui_data`) now owns the schema-1 DTO, package loader,
+RectTransform layout and sprite geometry. The extractor re-exports this schema;
+it does not maintain a second copy. Full UI verification after that move checks
+20,782 files / 394,890,740 bytes and preserves manifest SHA-256
+`677424f9e43225f3677f5713bed526dd9099339f2a8b44dbaecee7d41928cae5`.
+Consumed payloads are hashed from the exact byte buffer returned to the caller.
+
+The layout resolver applies anchors, stretch, pivots, inherited transforms,
+activity and source child order in a supplied parent canvas. Sprite geometry
+supports Simple, Sliced and horizontal/vertical Filled images, fractional atlas
+UVs, packing rotations 0–4, trim, aspect and source PPU. All 120 minimap images
+with static sprite bindings pass geometry generation; 13 source Images have
+null sprite references. Unsupported radial/tiled/source-mesh/atlas variants
+return explicit errors. Collapsed Sliced borders share one inner split to avoid
+float32 rounding reversing the center; a regression test covers the source case.
+
+`crates/client_core/src/source_ui/` renders these layouts through the existing
+Bevy/egui backend. It prepares verified full-atlas base pixels and the embedded
+source font, clips triangles through standard Mask alpha coverage at physical
+pixel centers (threshold 0.001), and preserves interpolated UVs across clipping.
+`SourceUiBindings` accepts qualified RawImage textures, text, node visibility
+and RectTransform anchored positions, with target/type validation. Binding
+evidence uses entry arrays, preserving qualified IDs as JSON objects.
+Font atlas UVs normalize after all glyph allocations, including the first frame.
+Vertical text truncation limits rows without an ellipsis; it does not add an
+invented rectangle stencil around each Text.
+
+`examples/minimap_probe.rs` was rebuilt with stripped debug information and
+recaptured after the text/binding-report fixes. See
+[render.json](evidence/minimap-render/render.json) and the
+[1920×1080 detail](evidence/minimap-render/prefab-1920x1080-detail.png).
+Both captures use NVIDIA RTX 4060 Laptop / Vulkan, six prepared atlases, one
+embedded font and one standard mask. Each reports 125 submitted graphics,
+20 unsupported, two disabled, two empty and one mask-only graphic.
+These are Bevy prefab previews, not APK screenshots or a production HUD replacement.
+Templates overlap because the serialized nodes are active and runtime visibility
+has not been applied. The minimap RawImage remains explicitly unbound.
+
+Remaining renderer gaps include custom stencil/fog/materials, line renderers,
+particles, additional sprite variants, source mip sampling and Unity text
+metrics/rasterization. egui shaping, line spacing, best-fit, color/tint and
+premultiplied blending remain preview approximations. Per-graphic JSON reports
+retain the exact source identities and reasons for omissions.
+
+[Font coverage](evidence/minimap-font-coverage.json) independently compares
+skrifa (the parser used by egui 0.36) and ttf-parser. The shipped OTF has 30,284
+glyphs but lacks nominal mappings for `丧 尸 时 秒 解 计 领`, affecting three
+minimap templates. This does not prove there are no corresponding outlines;
+Unity fallback and runtime atlas behavior still require evidence. No substitute
+font was introduced to conceal the gap.
+
 ## Historical export boundary
 
 Old `assets/ui` layouts had 1817/225/416 nodes and 906/134/215 Images, but
@@ -103,29 +161,50 @@ tests cover off-center crops, cardinal axes and simulation heading agreement.
 
 `1BattlePanel_ann_f` is a translucent black 62×62 backplate (center alpha
 102); its existing HUD use does not reproduce the source layout.
-`MAP_OVERVIEW_HALF_EXTENT = 5360.0` remains provisional. The source map image,
-origin/padding and world calibration have not been established.
+`MAP_OVERVIEW_HALF_EXTENT = 5360.0` remains provisional. The large-map prefab's
+2048² `Map_map` texture binding is established, but the minimap runtime image,
+effective scales/UVs and matched world calibration remain unverified.
 
 `export/SC.UI/*.cs` is recovered pseudo-C#, with useful names/native addresses
 and partial call clues, plus unresolved external types, invalid operations
 and decompilation placeholders. Do not translate its bodies literally or
 describe it as original compilable Unity source.
 
-## Next runtime slice: BattleMinimap
+## Calibration recovered and next runtime work
 
-Use the new source package as the single layout/asset input. Move its shared
-DTO into a reusable Rust crate when the renderer consumes it.
+[The canvas review](evidence/minimap-canvas-review.md) recovers enabled
+CanvasScaler components in bootstrap `level0` and `level1`: reference
+1920×1080, reference PPU 100. Native `AdjustResolution.Awake` ordinarily selects
+`min(width/1920,height/1080)`. This supports the supplied preview inputs; the
+live minimap ancestor chain and IFix state remain unobserved.
 
-1. Recover the runtime parent canvas/reference resolution and map calibration.
-   No CanvasScaler is present in these selected prefabs.
-2. Resolve anchors, pivots, rotation, sorting/draw order, sprite mesh/trim,
-   nine-slice borders and fill behavior from retained source identities.
-3. Implement source mask/stencil semantics. Current radar clipping is
-   rectangular; a circle painted behind the image does not clip its corners.
-4. Interpret font/glyph resources and bind headings, compass, coordinates,
-   waypoints, map image and state-dependent icons to the simulation.
-5. Compare matched scene/camera/resolution captures with the running APK,
+The minimap root preserves top-right anchors/pivot, 330×330 size and position
+`[10,-32.399994]`; its standard mask is 260×260. MapCfg decoding consumes all
+1465 bytes and associates all 241 terrain bundles with map 1's scene list.
+For map 1 and initialized MapMgr.MapSize=10000, native fallback formulas yield
+offsetForBase=0 and battleMapRate=0.4096. The source image and icon-parent
+translation must use one calibration. Do not change the production 5360 extent
+to 5000 from these scalar values alone.
+
+1. Trace runtime image selection, zoom/scales, UVs and initialization visibility
+   from native bodies, then expose those changes as explicit source bindings.
+2. Bind headings, compass, coordinates, waypoints and event icons to simulation
+   state using qualified IDs. Keep static prefab state available for inspection.
+3. Interpret custom stencil/fog and font fallback, and implement required graphics
+   omitted from the current preview before integrating the source panel into the HUD.
+4. Compare matched scene/camera/resolution captures against the exact APK,
    including off-center landmarks, map edges, clipping and panel transitions.
+
+ADB found Waydroid with this package name installed, but its base APK SHA-256
+is `527ae0a10681fd0dfdbe957b65fee79729cc665d0e7afcce43f25054366fc37b`,
+different from the supplied target. See `evidence/android-runtime-check.json`.
+That installation has not been changed or used as proof of this APK's UI.
+An exact-target runtime or comparison of the relevant packaged members is still needed.
+
+Validation: shared UI 15 tests, client 25, map data 19, shared 46 with one
+intentional stress-test ignore, extractor 24: 129 passed total. Offline
+workspace/example checks and scoped formatting pass. Clippy reports no warnings
+in the new UI code; existing map package, old HUD and terrain probe warnings remain.
 
 Full UI behavior, interactions/animations, placements, water, original
 lighting, gameplay and complete-game fidelity remain unfinished.

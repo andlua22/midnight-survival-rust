@@ -17,5 +17,10 @@ serde.workspace = true
 serde_json.workspace = true
 shared = { path = "../shared" }
 midnight_map_data = { path = "../map_data" }
+midnight_ui_data = { path = "../ui_data" }
+skrifa = "0.44"
 midnight_network = { path = "../network" }
+
+[dev-dependencies]
+ttf-parser = { version = "0.25", default-features = false }
 
