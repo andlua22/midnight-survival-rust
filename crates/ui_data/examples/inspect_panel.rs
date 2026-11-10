@@ -11,9 +11,57 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     let mut args = std::env::args().skip(1);
     let root = args.next().ok_or("provide the UI package path")?;
     let name = args.next().unwrap_or_else(|| "BattleMinimap".into());
-    let summary_only = args.next().as_deref() == Some("--summary");
+    let mode = args.next();
+    let summary_only = mode.as_deref() == Some("--summary");
     let package = load_ui_package(Path::new(&root))?;
+    if mode.as_deref() == Some("--sprites") {
+        let filter = args.next().unwrap_or_default();
+        for sprite in &package.manifest.sprites {
+            if sprite.name.contains(&filter) {
+                serde_json::to_writer(
+                    std::io::stdout().lock(),
+                    &serde_json::json!({"name":sprite.name,"source":sprite.source}),
+                )?;
+                println!();
+            }
+        }
+        return Ok(());
+    }
     let panel = package.load_panel(&name)?;
+    if mode.as_deref() == Some("--bindings") {
+        fn bindings(
+            node: &midnight_ui_data::HierarchyNode,
+            package: &midnight_ui_data::UiPackage,
+            prefix: &str,
+        ) -> Result<(), serde_json::Error> {
+            let path = if prefix.is_empty() {
+                node.name.clone()
+            } else {
+                format!("{prefix}/{}", node.name)
+            };
+            let components: Vec<_> = node.components.iter().filter_map(|component| {
+                let fields = match &component.projection {
+                    ComponentProjection::Image(image) => serde_json::json!({"sprite": image.sprite.target().and_then(|source| package.sprite(source)).map(|sprite| (&sprite.name, &sprite.source)), "material":image.graphic.material.target(), "color":image.graphic.color}),
+                    ComponentProjection::RawImage(image) => serde_json::json!({"texture":image.texture.target(),"uv":image.uv_rect,"material":image.graphic.material.target()}),
+                    ComponentProjection::Text(text) => serde_json::json!({"text":text.text,"size":text.font_size,"material":text.graphic.material.target()}),
+                    ComponentProjection::Mask(fields) => fields.clone(),
+                    _ => return None,
+                };
+                Some(serde_json::json!({"id":component.source.path_id,"class":component.script.as_ref().map(|script| &script.class_name),"enabled":component.enabled,"fields":fields}))
+            }).collect();
+            serde_json::to_writer(
+                std::io::stdout().lock(),
+                &serde_json::json!({"path":path,"go":node.source.path_id,"transform":node.transform.source.path_id,"active":node.active_self,"rect":node.transform.rect,"scale":node.transform.local_scale,"rotation":node.transform.local_rotation,"components":components}),
+            )?;
+            println!();
+            for child in &node.children {
+                bindings(child, package, &path)?;
+            }
+            Ok(())
+        }
+        bindings(&panel.root, &package, "")?;
+        return Ok(());
+    }
     let layout = resolve_panel(
         &panel,
         CanvasViewport {

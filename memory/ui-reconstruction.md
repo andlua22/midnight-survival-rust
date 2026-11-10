@@ -4,8 +4,10 @@ Updated: 2026-11-10. Target: `export/lite4.0.apk`, SHA-256
 `2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df`.
 
 All three selected prefabs are now extracted directly from the APK in Rust.
-This is verified static source data. The client still renders a hand-built
-egui HUD. Communicate in English; use Rust and installed tools. No Python ran.
+This is verified static source data. The native Arch Linux client now renders
+BattleMinimap from the extracted panel through Bevy/egui; other HUD widgets,
+the compass and the large map use their existing painters. Communicate in
+English; use Rust and installed tools. No Python ran.
 
 ## Current source package
 
@@ -41,7 +43,7 @@ original binary objects remain authoritative for float width/NaN payloads.
 Imports build fresh staging directories, serialize the dependency index with
 stable key order and verify before publishing. Prior packages are retained
 under `.local/ui-import-backups/`; failed reruns preserve their predecessor.
-Legacy `assets/ui/` and the current runtime HUD remain available.
+Legacy `assets/ui/` remains available; it is not the native minimap's source.
 
 ## Verified extraction and remaining gaps
 
@@ -103,23 +105,27 @@ float32 rounding reversing the center; a regression test covers the source case.
 Bevy/egui backend. It prepares verified full-atlas base pixels and the embedded
 source font, clips triangles through standard Mask alpha coverage at physical
 pixel centers (threshold 0.001), and preserves interpolated UVs across clipping.
-`SourceUiBindings` accepts qualified RawImage textures, text, node visibility
-and RectTransform anchored positions, with target/type validation. Binding
-evidence uses entry arrays, preserving qualified IDs as JSON objects.
+`SourceUiBindings` accepts qualified RawImage textures/UV rectangles, text,
+node visibility, RectTransform anchored positions/local scales/local rotations,
+sprites, colors and source instances, with target/type validation. Instances
+retain original source identities and distinct runtime keys. `resolve_subtree`
+reuses the layout resolver so real parent transforms, activity and masks apply.
+Binding evidence uses entry arrays, preserving qualified IDs as JSON objects.
 Font atlas UVs normalize after all glyph allocations, including the first frame.
 Vertical text truncation limits rows without an ellipsis; it does not add an
 invented rectangle stencil around each Text.
 
-`examples/minimap_probe.rs` was rebuilt with stripped debug information and
-recaptured after the text/binding-report fixes. See
+The preserved prefab probes were captured after the text/binding-report fixes.
+See
 [render.json](evidence/minimap-render/render.json) and the
 [1920×1080 detail](evidence/minimap-render/prefab-1920x1080-detail.png).
 Both captures use NVIDIA RTX 4060 Laptop / Vulkan, six prepared atlases, one
 embedded font and one standard mask. Each reports 125 submitted graphics,
 20 unsupported, two disabled, two empty and one mask-only graphic.
-These are Bevy prefab previews, not APK screenshots or a production HUD replacement.
+These are Bevy prefab previews, not APK screenshots. Their empty-binding mode
+is retained independently of the production native HUD adapter.
 Templates overlap because the serialized nodes are active and runtime visibility
-has not been applied. The minimap RawImage remains explicitly unbound.
+has not been applied in these previews. Their minimap RawImage is explicitly unbound.
 
 The optional `initialization-visibility.json` profile now adds two more
 captures at the same sizes. It applies only the 21 qualified GO false overrides
@@ -147,6 +153,60 @@ minimap templates. This does not prove there are no corresponding outlines;
 Unity fallback and runtime atlas behavior still require evidence. No substitute
 font was introduced to conceal the gap.
 
+## Native Arch Linux HUD integration
+
+`client_core::source_minimap::NativeMinimap` now loads the pinned BattleMinimap
+package and supplies the live HUD bindings. `application.rs` initializes it in
+PreUpdate, after egui creates contexts and before its first pass;
+`interface.rs::draw_widgets` paints it with the saved HUD placement and opacity.
+The old minimap painter, rotation helper and duplicate minimap/sound PNG loads
+were removed. Native Linux use has no Waydroid dependency.
+
+| Binding | Implemented native behavior | Source evidence boundary |
+| --- | --- | --- |
+| Texture | Retained 2048×2048 `Map_map`, bilinear/clamp, bound to minimap RawImage `910110631840687877` | Original BattleMapPanel assignment is established; BattleMinimap assignment is a native choice |
+| Map image scale | `260/2048` on XY; anchored position `[0,0]` | Fits the source 260×260 standard mask; original runtime scale is unverified |
+| UV crop | Player-centered span `1/zoom`; Unity bottom-left rect `[u-0.5/zoom, 1-v-0.5/zoom, 1/zoom, 1/zoom]` | Uses top-left overview `(u,v)` and a single V conversion; original RawImage setter is unverified |
+| World projection | Shared provisional overview half extent 5360; marker XY follows `[delta_x,-delta_z]` with the same zoom | North is Bevy -Z and east +X; exact Unity world/image calibration is unverified |
+| Zoom | Default 15, finite values constrained to 3–60 | Constructor 15 is recovered; native wheel behavior and limits are implementation choices |
+| HUD layout | Source 330×330 root inside a 360×363 envelope, 32.5 header gutter; 1920×1080 reference scaling | Keeps source anchors/pivots and accommodates the header/time background; the editor controls root placement |
+| Live state | Player yaw, waypoint, resource/structure/NPC/vehicle/cargo/sound instances; Unity XZ coordinates, height and tick-derived time/day phase | Simulation categories, marker sizes and lifecycle are native policies |
+
+Texture identity is `assets/texture/map_map.ab`, CAB
+`CAB-6f665c88cf2187ff08df209ad5c96ca6`, PathID `-945003921129902140`.
+The minimap RawImage belongs to `assets/ui/battleminimap.ab`, CAB
+`CAB-88df926bf45d4de159fb33b326042714`. The adapter validates qualified IDs
+and full source paths, so repeated node names cannot redirect bindings.
+
+Authored placeholders and unsupported effects are hidden by the Rust lifecycle.
+Required source ancestors are activated, and retained templates produce separate
+live instances while preserving parent visibility, transforms and clipping.
+Non-finite inputs are rejected or omitted. Out-of-range resource markers are
+hidden; waypoints and directional sound markers clamp to the minimap edge.
+
+Scroll over the minimap to zoom. Click it to open the existing tactical map;
+M also toggles that map. F2 opens the HUD editor for dragging, scale and opacity.
+The source cone widens upward from its player-facing tip. Its broad end and
+the arrow follow the same yaw; adding PI reverses the field of view. The GPU
+review found and corrected that mistake, and the cardinal/DPI test now covers
+both graphics. Final native captures were refreshed after the correction.
+The source panel is integrated now; exact Unity rendering, custom fog/stencil,
+particles, line graphics, text/color equivalence and remaining panels still
+require work.
+
+The native probe mode writes four controlled states—north, east, moved and
+zoomed/night—at 1920×1080 and 1280×720 under `evidence/native-minimap/`.
+Each capture includes a detail image, source/instance report and exact bindings;
+it rejects unsupported active graphics or missing map/player submission.
+The run completed with eight captures on NVIDIA RTX 4060 Laptop/Vulkan, driver
+615.71.09. Every ordinary capture reports 17 submitted, 141 inactive and one
+mask-only graphic; zoomed/night captures submit 15. There are zero unsupported
+active graphics. See [the native report](evidence/native-minimap/render.json).
+This fixture exercises the production adapter with explicit simulation inputs.
+It does not establish APK pixel equality. Commands are in `apk-reconstruction.md`.
+The Rust `inspect_panel` example supports bounded `--bindings` and
+`--sprites [FILTER]` queries for further source work.
+
 ## Historical export boundary
 
 Old `assets/ui` layouts had 1817/225/416 nodes and 906/134/215 Images, but
@@ -169,14 +229,15 @@ Unity +Z into Bevy -Z once.
 The HUD uses the same helpers for tactical-map positions/clicks, radar
 background crops/markers, headings and compass bearings. Edge crops remain
 unclamped to avoid stretching the background independently of markers.
-Arrow/cone rotation keeps egui's native quad vertex order. Six projection
+Native arrow/cone orientation uses the source local rotations. Six projection
 tests cover off-center crops, cardinal axes and simulation heading agreement.
 
 `1BattlePanel_ann_f` is a translucent black 62×62 backplate (center alpha
 102); its existing HUD use does not reproduce the source layout.
 `MAP_OVERVIEW_HALF_EXTENT = 5360.0` remains provisional. The large-map prefab's
-2048² `Map_map` texture binding is established, but the minimap runtime image,
-effective scales/UVs and matched world calibration remain unverified.
+2048² `Map_map` texture binding is established. The Rust minimap now explicitly
+binds it as described above; original Unity minimap assignment, effective
+scales/UVs and matched world calibration remain unverified.
 
 `export/SC.UI/*.cs` is recovered pseudo-C#, with useful names/native addresses
 and partial call clues, plus unresolved external types, invalid operations
@@ -191,7 +252,7 @@ CanvasScaler components in bootstrap `level0` and `level1`: reference
 `min(width/1920,height/1080)`. This supports the supplied preview inputs; the
 live minimap ancestor chain and IFix state remain unobserved.
 
-The minimap root preserves top-right anchors/pivot, 330×330 size and position
+The serialized minimap root has top-right anchors/pivot, 330×330 size and position
 `[10,-32.399994]`; its standard mask is 260×260. MapCfg decoding consumes all
 1465 bytes and associates all 241 terrain bundles with map 1's scene list.
 For map 1 and initialized MapMgr.MapSize=10000, native fallback formulas yield
@@ -206,13 +267,14 @@ gate, not the coordinate multiplier `_battleMapRate`. Native Awake requests
 indices 0–93 while the retained GameObjectData has 86 entries (0–85): actual
 list construction, prefab revision and IFix execution still need runtime evidence.
 
-1. Trace runtime image selection, zoom/scales, UVs and initialization visibility
-   from native bodies, then expose those changes as explicit source bindings.
-2. Bind headings, compass, coordinates, waypoints and event icons to simulation
-   state using qualified IDs. Keep static prefab state available for inspection.
-3. Interpret custom stencil/fog and font fallback, and implement required graphics
-   omitted from the current preview before integrating the source panel into the HUD.
-4. Compare matched scene/camera/resolution captures against the exact APK,
+1. Extend source-driven integration to the remaining HUD panels and transitions,
+   keeping static prefab inspection separate from live simulation bindings.
+2. Refine original Unity image selection, zoom/scales, UVs, binding-list construction
+   and initialization visibility using recovered bodies and paired runtime evidence.
+   The working Linux adapter does not depend on Waydroid observation.
+3. Interpret custom stencil/fog and font fallback, and implement the required
+   graphics omitted from the current native lifecycle.
+4. Compare matched scene/camera/resolution captures against the paired APK runtime,
    including off-center landmarks, map edges, clipping and panel transitions.
 
 ADB found Waydroid with package/version `com.herogame.gplay.survival.lite`,
@@ -231,18 +293,20 @@ across seven native methods. OnShowCompassAndMinimap, GetPosOnMap and
 AdjustResolution.Awake match exactly. The four initialization/constructor
 ranges differ on disk; the constructor's final 1,592 bytes match. This supports
 using the recovered source for analysis and the matching assets for previews,
-without claiming whole-method or live-state equivalence. No app launch,
+without claiming whole-method or live-state equivalence. No Android app launch,
 installation change or APK screenshot was performed. Continue with the paired
 runtime and recovered artifacts; do not discard it merely because the outer
 APK hashes differ.
 
-Validation: shared UI 15 tests, client 25, map data 19, shared 46 with one
-intentional stress-test ignore, extractor 24: 129 passed total. Offline
-workspace/example checks and scoped formatting pass. Clippy reports no warnings
-in the new UI code; existing map package, old HUD and terrain probe warnings remain.
-The new streaming APK comparison example adds three passing tests for packaging
-differences, changed/missing/extra payloads and CRC corruption: 132 passing tests
-across the recorded suites. Its scoped release Clippy check passes.
+Current native validation: 30 ordinary client tests and three explicitly executed
+asset-backed tests pass. The latter cover source geometry, movement, four cardinal
+headings, DPI, parent visibility, invalid bindings, and the actual HUD system's
+initialization, wheel zoom, map opening and editor dragging. Shared UI data has
+15 passing tests. Offline workspace all-target Clippy, scoped formatting and
+`git diff --check` pass; only existing map package, compass, terrain probe and
+shared test warnings remain. Earlier foundation checks recorded map data 19,
+shared 46 with one intentional stress-test ignore, extractor 24 and APK comparison
+three tests. The comparison example's scoped release Clippy check passes.
 
 Full UI behavior, interactions/animations, placements, water, original
 lighting, gameplay and complete-game fidelity remain unfinished.

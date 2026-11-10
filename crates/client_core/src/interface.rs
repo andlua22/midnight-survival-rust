@@ -19,6 +19,7 @@ use crate::{
     hud::{HudLayout, HudPreset, WidgetAnchor, WidgetId},
     hud_painter::{self, MinimapContext, UiTexturesIds},
     online::Online,
+    source_minimap::{SourceMinimapHud, state_from_simulation},
     storage::StorageService,
 };
 
@@ -392,6 +393,7 @@ pub(crate) struct Telemetry {
 pub(crate) fn draw_interface(
     mut contexts: EguiContexts,
     mut interface: ResMut<Interface>,
+    mut source_minimap: ResMut<SourceMinimapHud>,
     storage: Res<PlatformStorage>,
     telemetry: Res<Telemetry>,
     mode: Res<SimulationMode>,
@@ -438,35 +440,55 @@ pub(crate) fn draw_interface(
 
     let ui_tex_ids = if let Some(ui_sprites) = &ui_sprite_assets {
         UiTexturesIds {
-            minimap_frame: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.minimap_frame.clone()))),
-            minimap_bg: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.minimap_bg.clone()))),
-            player_arrow: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.player_arrow.clone()))),
-            player_cone: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.player_cone.clone()))),
-            day_night_bg: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.day_night_bg.clone()))),
-            sun_icon: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.sun_icon.clone()))),
-            moon_icon: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.moon_icon.clone()))),
-            coord_bg: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.coord_bg.clone()))),
             bar_bg: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.bar_bg.clone()))),
-            bar_fill_hp: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.bar_fill_hp.clone()))),
-            bar_fill_energy: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.bar_fill_energy.clone()))),
-            hotbar_slot: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.hotbar_slot.clone()))),
-            hotbar_select: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.hotbar_select.clone()))),
-            btn_fire_bg: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_fire_bg.clone()))),
-            btn_fire_icon: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_fire_icon.clone()))),
-            btn_aim_bg: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_aim_bg.clone()))),
-            btn_aim_icon: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_aim_icon.clone()))),
-            btn_jump: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_jump.clone()))),
-            btn_crouch: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_crouch.clone()))),
-            btn_reload: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_reload.clone()))),
-            joystick_bg: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.joystick_bg.clone()))),
-            map_close: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.map_close.clone()))),
-            map_zoom_in: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.map_zoom_in.clone()))),
-            map_zoom_out: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.map_zoom_out.clone()))),
-            sound_foot: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.sound_foot.clone()))),
-            sound_car: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.sound_car.clone()))),
-            sound_gun: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.sound_gun.clone()))),
-            airdrop_icon: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.airdrop_icon.clone()))),
-            cargo_icon: Some(contexts.add_image(EguiTextureHandle::Strong(ui_sprites.cargo_icon.clone()))),
+            bar_fill_hp: Some(
+                contexts.add_image(EguiTextureHandle::Strong(ui_sprites.bar_fill_hp.clone())),
+            ),
+            bar_fill_energy: Some(contexts.add_image(EguiTextureHandle::Strong(
+                ui_sprites.bar_fill_energy.clone(),
+            ))),
+            hotbar_slot: Some(
+                contexts.add_image(EguiTextureHandle::Strong(ui_sprites.hotbar_slot.clone())),
+            ),
+            hotbar_select: Some(
+                contexts.add_image(EguiTextureHandle::Strong(ui_sprites.hotbar_select.clone())),
+            ),
+            btn_fire_bg: Some(
+                contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_fire_bg.clone())),
+            ),
+            btn_fire_icon: Some(
+                contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_fire_icon.clone())),
+            ),
+            btn_aim_bg: Some(
+                contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_aim_bg.clone())),
+            ),
+            btn_aim_icon: Some(
+                contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_aim_icon.clone())),
+            ),
+            btn_jump: Some(
+                contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_jump.clone())),
+            ),
+            btn_crouch: Some(
+                contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_crouch.clone())),
+            ),
+            btn_reload: Some(
+                contexts.add_image(EguiTextureHandle::Strong(ui_sprites.btn_reload.clone())),
+            ),
+            joystick_bg: Some(
+                contexts.add_image(EguiTextureHandle::Strong(ui_sprites.joystick_bg.clone())),
+            ),
+            map_close: Some(
+                contexts.add_image(EguiTextureHandle::Strong(ui_sprites.map_close.clone())),
+            ),
+            map_zoom_in: Some(
+                contexts.add_image(EguiTextureHandle::Strong(ui_sprites.map_zoom_in.clone())),
+            ),
+            map_zoom_out: Some(
+                contexts.add_image(EguiTextureHandle::Strong(ui_sprites.map_zoom_out.clone())),
+            ),
+            cargo_icon: Some(
+                contexts.add_image(EguiTextureHandle::Strong(ui_sprites.cargo_icon.clone())),
+            ),
         }
     } else {
         UiTexturesIds::default()
@@ -493,6 +515,7 @@ pub(crate) fn draw_interface(
         draw_widgets(
             ctx,
             &mut interface,
+            &mut source_minimap,
             &telemetry,
             &player_survival,
             &mode,
@@ -1410,6 +1433,7 @@ fn apply_theme(ctx: &egui::Context) {
 fn draw_widgets(
     ctx: &egui::Context,
     interface: &mut Interface,
+    source_minimap: &mut SourceMinimapHud,
     telemetry: &Telemetry,
     player_survival: &PlayerSurvival,
     mode: &SimulationMode,
@@ -1493,15 +1517,40 @@ fn draw_widgets(
                     sound_cues: &interface.sound_cues,
                     ui_tex: ui_tex_ids,
                 };
-                hud_painter::paint_widget(
-                    ui.painter(),
-                    rect,
-                    id,
-                    placement.render_scale,
-                    opacity,
-                    player_survival,
-                    &map_ctx,
-                );
+                if id == WidgetId::Minimap {
+                    let mut painter = ui.painter().with_clip_rect(rect);
+                    painter.set_opacity(opacity);
+                    if let Some(minimap) = &mut source_minimap.minimap {
+                        if interactive_hud && response.hovered() && !editing {
+                            let scroll = ctx.input(|input| input.smooth_scroll_delta.y);
+                            minimap.set_zoom(minimap.zoom() * (scroll * 0.002).exp());
+                        }
+                        let state = state_from_simulation(&map_ctx);
+                        match minimap.paint(&painter, rect, placement.render_scale, &state) {
+                            Ok(_) => source_minimap.error = None,
+                            Err(error) => source_minimap.error = Some(error.to_string()),
+                        }
+                    }
+                    if source_minimap.error.is_some() {
+                        painter.text(
+                            rect.center(),
+                            egui::Align2::CENTER_CENTER,
+                            "Minimap unavailable",
+                            egui::FontId::proportional(12.0),
+                            egui::Color32::WHITE,
+                        );
+                    }
+                } else {
+                    hud_painter::paint_widget(
+                        ui.painter(),
+                        rect,
+                        id,
+                        placement.render_scale,
+                        opacity,
+                        player_survival,
+                        &map_ctx,
+                    );
+                }
                 if editing {
                     hud_painter::selection(ui.painter(), rect, interface.editor.selected == id);
                     if response.clicked() || response.dragged() {
@@ -2707,7 +2756,9 @@ fn draw_loading(
     let tip_idx = interface.loading_tip_idx % LOADING_TIPS.len();
     let (tip_ua, tip_en) = LOADING_TIPS[tip_idx];
     let auth_tip = if !auth_tips.is_empty() {
-        auth_tips.get(interface.loading_tip_idx % auth_tips.len()).map(|s| s.as_str())
+        auth_tips
+            .get(interface.loading_tip_idx % auth_tips.len())
+            .map(|s| s.as_str())
     } else {
         None
     };
@@ -2739,8 +2790,8 @@ fn draw_loading(
                         ui.add_space(6.0);
                         ui.label(
                             egui::RichText::new(tip_ua)
-                            .size(14.0)
-                            .color(egui::Color32::from_rgb(240, 245, 250)),
+                                .size(14.0)
+                                .color(egui::Color32::from_rgb(240, 245, 250)),
                         );
                         ui.add_space(3.0);
                         ui.label(
@@ -2888,4 +2939,160 @@ fn draw_loading(
                 }
             });
         });
+}
+
+#[cfg(test)]
+mod native_hud_tests {
+    use super::*;
+    use crate::{
+        launch::ClientOptions,
+        source_minimap::{DEFAULT_ZOOM, prepare_native_minimap},
+        storage::{LoadOutcome, StorageError},
+    };
+    use bevy::ecs::system::RunSystemOnce;
+    use bevy_egui::{EguiContext, EguiUserTextures, PrimaryEguiContext};
+
+    struct MemoryStorage;
+    impl StorageService for MemoryStorage {
+        fn load_hud(&self) -> Result<LoadOutcome, StorageError> {
+            Ok(LoadOutcome {
+                layout: HudLayout::default(),
+                notice: None,
+            })
+        }
+        fn save_hud(&self, _: &HudLayout) -> Result<(), StorageError> {
+            Ok(())
+        }
+    }
+
+    fn frame(app: &mut App, context: &egui::Context, events: Vec<egui::Event>, time: f64) {
+        context
+            .run_ui(
+                egui::RawInput {
+                    screen_rect: Some(egui::Rect::from_min_size(
+                        egui::Pos2::ZERO,
+                        egui::vec2(1920.0, 1080.0),
+                    )),
+                    time: Some(time),
+                    events,
+                    ..Default::default()
+                },
+                |_| {
+                    app.world_mut()
+                        .run_system_once(draw_interface)
+                        .expect("native HUD system");
+                },
+            )
+            .drop_without_applying_deltas();
+        assert!(
+            app.world().resource::<SourceMinimapHud>().error.is_none(),
+            "{:?}",
+            app.world().resource::<SourceMinimapHud>().error
+        );
+    }
+
+    fn button(position: egui::Pos2, pressed: bool) -> egui::Event {
+        egui::Event::PointerButton {
+            pos: position,
+            button: egui::PointerButton::Primary,
+            pressed,
+            modifiers: egui::Modifiers::default(),
+        }
+    }
+
+    #[test]
+    #[ignore = "requires the extracted lite4.0 UI package"]
+    fn native_hud_initializes_zooms_opens_map_and_edits_without_a_window() {
+        let mut app = App::new();
+        let mut interface = Interface::new(&MemoryStorage, false);
+        interface.mode = UiMode::Playing;
+        let mut survival = shared::survival::SurvivalWorld::new(shared::level::MapId::Polygon);
+        survival.join(PlayerId(0));
+        app.init_resource::<EguiUserTextures>()
+            .init_resource::<SourceMinimapHud>()
+            .init_resource::<Telemetry>()
+            .init_resource::<SimulationMode>()
+            .init_resource::<SimulationClock>()
+            .insert_resource(interface)
+            .insert_resource(PlatformStorage(Box::new(MemoryStorage)))
+            .insert_resource(SimulationWorld(shared::physics::CollisionWorld::new(
+                shared::level::MapId::Polygon,
+            )))
+            .insert_resource(SimulationSurvival(survival))
+            .insert_resource(Online::new(&ClientOptions::default()))
+            .add_message::<AppExit>();
+        let entity = app
+            .world_mut()
+            .spawn((PrimaryEguiContext, EguiContext::default()))
+            .id();
+        let context = app
+            .world_mut()
+            .entity_mut(entity)
+            .get_mut::<EguiContext>()
+            .expect("context")
+            .get_mut()
+            .clone();
+        app.world_mut()
+            .run_system_once(prepare_native_minimap)
+            .expect("native initialization system");
+        assert!(app.world().resource::<SourceMinimapHud>().minimap.is_some());
+        for step in 0..3 {
+            frame(&mut app, &context, Vec::new(), step as f64 / 60.0);
+        }
+        let placement = HudLayout::default().widgets[&WidgetId::Minimap]
+            .placement(WidgetId::Minimap, [1920.0, 1080.0]);
+        let point = egui::Pos2::from(placement.position) + egui::Vec2::from(placement.size) * 0.5;
+        frame(
+            &mut app,
+            &context,
+            vec![egui::Event::PointerMoved(point)],
+            3.0 / 60.0,
+        );
+        frame(
+            &mut app,
+            &context,
+            vec![egui::Event::MouseWheel {
+                unit: egui::MouseWheelUnit::Line,
+                delta: egui::vec2(0.0, 2.0),
+                phase: egui::TouchPhase::Move,
+                modifiers: egui::Modifiers::default(),
+            }],
+            4.0 / 60.0,
+        );
+        assert!(
+            app.world()
+                .resource::<SourceMinimapHud>()
+                .minimap
+                .as_ref()
+                .expect("minimap")
+                .zoom()
+                > DEFAULT_ZOOM
+        );
+        frame(&mut app, &context, vec![button(point, true)], 5.0 / 60.0);
+        frame(&mut app, &context, vec![button(point, false)], 6.0 / 60.0);
+        assert!(app.world().resource::<Interface>().mode == UiMode::Map);
+        app.world_mut().resource_mut::<Interface>().begin_editing();
+        frame(&mut app, &context, Vec::new(), 7.0 / 60.0);
+        let before =
+            app.world().resource::<Interface>().editor.layout().widgets[&WidgetId::Minimap].clone();
+        frame(&mut app, &context, vec![button(point, true)], 8.0 / 60.0);
+        let moved = point + egui::vec2(-60.0, 30.0);
+        frame(
+            &mut app,
+            &context,
+            vec![egui::Event::PointerMoved(moved)],
+            9.0 / 60.0,
+        );
+        frame(&mut app, &context, vec![button(moved, false)], 10.0 / 60.0);
+        let edited =
+            &app.world().resource::<Interface>().editor.layout().widgets[&WidgetId::Minimap];
+        assert!(edited.offset[0] < before.offset[0]);
+        assert_eq!(edited.opacity, before.opacity);
+        assert_eq!(edited.scale, before.scale);
+        app.world_mut().resource_mut::<Interface>().editor.cancel();
+        assert_eq!(
+            app.world().resource::<Interface>().editor.layout().widgets[&WidgetId::Minimap],
+            before
+        );
+    }
 }

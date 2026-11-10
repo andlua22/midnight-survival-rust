@@ -53,6 +53,26 @@ impl ResolvedNode {
     }
 }
 
+/// Resolve a runtime copy of a source subtree under its actual parent. Copies
+/// retain their source identities; the caller tracks a separate instance key.
+pub fn resolve_subtree(
+    node: &HierarchyNode,
+    parent: &ResolvedNode,
+) -> Result<Vec<ResolvedNode>, UiError> {
+    let mut result = Vec::new();
+    resolve_node(
+        node,
+        None,
+        parent.active,
+        parent.local_rect,
+        Mat4::from_cols_array(&parent.screen_from_local),
+        &parent.path,
+        &mut BTreeSet::new(),
+        &mut result,
+    )?;
+    Ok(result)
+}
+
 pub fn resolve_panel(
     panel: &UiPanel,
     viewport: CanvasViewport,

@@ -15,7 +15,7 @@ use bevy::{
     },
     window::{PresentMode, PrimaryWindow, WindowResizeConstraints, WindowResolution},
 };
-use bevy_egui::{EguiPlugin, EguiPrimaryContextPass};
+use bevy_egui::{EguiPlugin, EguiPreUpdateSet, EguiPrimaryContextPass};
 use shared::{
     CharacterMotion, LevelGeometry, LocalPlayer, ResourceNodeMarker, SharedSimulationPlugin,
     SimulationClock, SimulationInput, SimulationPose, SimulationSurvival, SimulationWorld,
@@ -42,6 +42,7 @@ use crate::{
     },
     online::{Online, OnlinePlugin},
     online_metrics::{OnlineCapture, capture},
+    source_minimap::{SourceMinimapHud, prepare_native_minimap},
     storage::{StorageService, write_report},
 };
 
@@ -80,14 +81,6 @@ pub struct MapTextures {
 
 #[derive(Resource, Clone)]
 pub struct UiSpriteAssets {
-    pub minimap_frame: Handle<Image>,
-    pub minimap_bg: Handle<Image>,
-    pub player_arrow: Handle<Image>,
-    pub player_cone: Handle<Image>,
-    pub day_night_bg: Handle<Image>,
-    pub sun_icon: Handle<Image>,
-    pub moon_icon: Handle<Image>,
-    pub coord_bg: Handle<Image>,
     pub bar_bg: Handle<Image>,
     pub bar_fill_hp: Handle<Image>,
     pub bar_fill_energy: Handle<Image>,
@@ -104,10 +97,6 @@ pub struct UiSpriteAssets {
     pub map_close: Handle<Image>,
     pub map_zoom_in: Handle<Image>,
     pub map_zoom_out: Handle<Image>,
-    pub sound_foot: Handle<Image>,
-    pub sound_car: Handle<Image>,
-    pub sound_gun: Handle<Image>,
-    pub airdrop_icon: Handle<Image>,
     pub cargo_icon: Handle<Image>,
 }
 
@@ -287,6 +276,7 @@ pub fn build_app(options: ClientOptions, storage: Box<dyn StorageService>) -> Ap
         .insert_resource(interface)
         .insert_resource(PlatformStorage(storage))
         .init_resource::<Telemetry>()
+        .init_resource::<SourceMinimapHud>()
         .init_resource::<FrameMonitor>()
         .insert_resource(ClearColor(Color::srgb(0.28, 0.56, 0.88)))
         .insert_resource(GlobalAmbientLight {
@@ -343,6 +333,12 @@ pub fn build_app(options: ClientOptions, storage: Box<dyn StorageService>) -> Ap
         .init_resource::<CameraPerspective>()
         .add_systems(Startup, setup_scene)
         .add_systems(PostStartup, place_imported_player)
+        .add_systems(
+            PreUpdate,
+            prepare_native_minimap
+                .after(EguiPreUpdateSet::InitContexts)
+                .before(EguiPreUpdateSet::BeginPass),
+        )
         .add_systems(
             Update,
             (
@@ -1165,14 +1161,6 @@ fn setup_scene(
     commands.insert_resource(map_textures);
 
     let ui_sprite_assets = UiSpriteAssets {
-        minimap_frame: asset_server.load("ui/sprites/1BattlePanel_ann_f.png"),
-        minimap_bg: asset_server.load("ui/sprites/BattlePanel2_dt_bg_1.png"),
-        player_arrow: asset_server.load("ui/sprites/1BattlePanel_zhixiang_1.png"),
-        player_cone: asset_server.load("ui/sprites/1BattlePanel_zhixiang_fangxiang.png"),
-        day_night_bg: asset_server.load("ui/sprites/1BattlePanel_tq_bg.png"),
-        sun_icon: asset_server.load("ui/sprites/1BattlePanel_zhouye_ty.png"),
-        moon_icon: asset_server.load("ui/sprites/1BattlePanel_zhouye_yl.png"),
-        coord_bg: asset_server.load("ui/sprites/BattlePanel2_map_djs.png"),
         bar_bg: asset_server.load("ui/sprites/1BattlePanel_xue_bg_1.png"),
         bar_fill_hp: asset_server.load("ui/sprites/1BattlePanel_buttle_fang_3.png"),
         bar_fill_energy: asset_server.load("ui/sprites/1BattlePanel_buttle_fang_energy.png"),
@@ -1189,10 +1177,6 @@ fn setup_scene(
         map_close: asset_server.load("ui/sprites/com_ty_gb_1.png"),
         map_zoom_in: asset_server.load("ui/sprites/BattleMapPanel_bg_4.png"),
         map_zoom_out: asset_server.load("ui/sprites/BattleMapPanel_bg_2.png"),
-        sound_foot: asset_server.load("ui/sprites/1BattlePanel_sy_jiaobu.png"),
-        sound_car: asset_server.load("ui/sprites/1BattlePanel_sy_che.png"),
-        sound_gun: asset_server.load("ui/sprites/1BattlePanell_sy_qiang.png"),
-        airdrop_icon: asset_server.load("ui/sprites/1BattlePanel_map_tb_kt.png"),
         cargo_icon: asset_server.load("ui/sprites/1BattlePanel_map_huolun.png"),
     };
     commands.insert_resource(ui_sprite_assets);

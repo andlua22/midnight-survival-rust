@@ -55,7 +55,7 @@ impl WidgetId {
         match self {
             Self::HealthBars => [232.0, 108.0],
             Self::Hotbar => [384.0, 62.0],
-            Self::Minimap => [172.0, 190.0],
+            Self::Minimap => crate::source_minimap::PANEL_SIZE,
             Self::VirtualJoystickLeft => [126.0, 126.0],
             _ => [68.0, 68.0],
         }
@@ -164,7 +164,12 @@ impl HudWidgetConfig {
         let viewport = viewport.map(|value| finite_or(value, 1.0).max(1.0));
         let margin = viewport.map(|value| 8.0_f32.min(value * 0.05));
         let base = id.size();
-        let scale = finite_or(self.scale, 1.0).clamp(0.5, 2.5);
+        let canvas_scale = if id == WidgetId::Minimap {
+            (viewport[0] / 1920.0).min(viewport[1] / 1080.0)
+        } else {
+            1.0
+        };
+        let scale = finite_or(self.scale, 1.0).clamp(0.5, 2.5) * canvas_scale;
         let fit_x = (viewport[0] - 2.0 * margin[0]) / (base[0] * scale);
         let fit_y = (viewport[1] - 2.0 * margin[1]) / (base[1] * scale);
         let render_scale = scale * fit_x.min(fit_y).min(1.0);
@@ -416,5 +421,23 @@ mod tests {
         assert_eq!(layout.widgets[&WidgetId::HealthBars].opacity, 0.1);
         layout.version = 99;
         assert!(layout.normalize().is_err());
+    }
+
+    #[test]
+    fn source_minimap_uses_reference_canvas_scale_and_preserves_editor_settings() {
+        let config = HudLayout::default().widgets[&WidgetId::Minimap].clone();
+        let large = config.placement(WidgetId::Minimap, [1920.0, 1080.0]);
+        let small = config.placement(WidgetId::Minimap, [1280.0, 720.0]);
+        assert_eq!(large.size, crate::source_minimap::PANEL_SIZE);
+        for axis in 0..2 {
+            assert!((small.size[axis] - large.size[axis] * 2.0 / 3.0).abs() < 0.001);
+        }
+        let mut moved = config.clone();
+        moved.reanchor(WidgetId::Minimap, [1280.0, 720.0], WidgetAnchor::BottomLeft);
+        let before = moved.clone();
+        moved.placement(WidgetId::Minimap, [640.0, 360.0]);
+        assert_eq!(moved, before);
+        assert_eq!(moved.scale, config.scale);
+        assert_eq!(moved.opacity, config.opacity);
     }
 }

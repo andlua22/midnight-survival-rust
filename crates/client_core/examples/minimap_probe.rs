@@ -1,6 +1,7 @@
 //! Capture the source BattleMinimap with the production egui backend, without a
 //! window. Run: cargo run --offline -p client_core --example minimap_probe -- DIR [PROFILE]
-//! A visibility profile adds explicit initialization previews after the prefab views.
+//! A visibility profile adds initialization previews. DIR --native captures the
+//! production native HUD adapter with movement, heading, zoom and live markers.
 
 use std::{
     collections::{BTreeMap, BTreeSet},
@@ -33,6 +34,10 @@ use bevy_egui::{
     EguiPrimaryContextPass, PrimaryEguiContext, egui,
 };
 use client_core::source_ui::{PanelRenderReport, SourcePanelRenderer, SourceUiBindings};
+use client_core::{
+    hud::{HudLayout, WidgetId},
+    source_minimap::{DEFAULT_ZOOM, MinimapMarker, MinimapMarkerKind, MinimapState, NativeMinimap},
+};
 use midnight_map_data::SourceObject;
 use midnight_ui_data::{UiError, layout::CanvasViewport, load_ui_package};
 use serde::{Deserialize, Serialize};
@@ -110,6 +115,8 @@ struct CaptureMode {
     bindings: SourceUiBindings,
     profile: Value,
     caveats: Vec<String>,
+    native_state: Option<MinimapState>,
+    zoom: f32,
 }
 
 fn invalid(message: impl Into<String>) -> UiError {
@@ -232,16 +239,75 @@ fn load_initialization_profile(path: &Path, source: &Path) -> Result<CaptureMode
         bindings,
         profile: evidence,
         caveats,
+        native_state: None,
+        zoom: DEFAULT_ZOOM,
     })
 }
 
 #[derive(Resource)]
 struct Preview {
-    renderer: SourcePanelRenderer,
+    renderer: PreviewRenderer,
     bindings: SourceUiBindings,
+    native_state: Option<MinimapState>,
+    zoom: f32,
     viewport: CanvasViewport,
     report: Option<PanelRenderReport>,
     error: Option<String>,
+}
+
+enum PreviewRenderer {
+    Source(Box<SourcePanelRenderer>),
+    Native(Box<NativeMinimap>),
+}
+
+fn native_modes() -> Vec<CaptureMode> {
+    let state = MinimapState {
+        player_position: [2250.0, 84.0, -700.0],
+        yaw: 0.0,
+        time_hours: 10.0,
+        waypoint: Some([2490.0, -700.0]),
+        markers: vec![
+            ("north-tree", MinimapMarkerKind::Tree, [2250.0, -900.0]),
+            ("east-vehicle", MinimapMarkerKind::Vehicle, [2370.0, -700.0]),
+            ("south-enemy", MinimapMarkerKind::Enemy, [2250.0, -500.0]),
+            (
+                "west-cupboard",
+                MinimapMarkerKind::ToolCupboard,
+                [2050.0, -700.0],
+            ),
+            ("gunfire", MinimapMarkerKind::Gunfire, [2230.0, -670.0]),
+            (
+                "far-footstep",
+                MinimapMarkerKind::Footstep,
+                [1000.0, -2000.0],
+            ),
+        ]
+        .into_iter()
+        .map(|(key, kind, world_xz)| MinimapMarker {
+            key: key.into(),
+            kind,
+            world_xz,
+            yaw: 0.0,
+            intensity: 0.85,
+        })
+        .collect(),
+    };
+    let mut east = state.clone();
+    east.yaw = -std::f32::consts::FRAC_PI_2;
+    let mut moved = east.clone();
+    moved.player_position = [2300.0, 84.0, -750.0];
+    let mut night = moved.clone();
+    night.time_hours = 23.0;
+    [("native-north", state, DEFAULT_ZOOM), ("native-east", east, DEFAULT_ZOOM),
+        ("native-moved", moved, DEFAULT_ZOOM), ("native-zoomed-night", night, 30.0)]
+        .into_iter().map(|(name, state, zoom)| CaptureMode {
+            name, bindings: SourceUiBindings::default(), profile: Value::Null,
+            caveats: vec![
+                "This exercises the production native HUD adapter with explicit simulation inputs; it does not launch Waydroid or execute Unity scripts.".into(),
+                "The retained Map_map texture, source hierarchy/sprite UVs/masks/fonts are used. Minimap texture assignment, crop zoom, marker sizes/categories and lifecycle are explicit native policies.".into(),
+                "The shared overview extent remains provisional. These captures verify native rendering, not pixel equality with the APK.".into(),
+            ], native_state: Some(state), zoom,
+        }).collect()
 }
 
 #[derive(Resource, Default)]
@@ -270,9 +336,33 @@ fn draw(mut contexts: EguiContexts, mut preview: ResMut<Preview>) {
         ));
     let result = {
         let Preview {
-            renderer, bindings, ..
+            renderer,
+            bindings,
+            native_state,
+            zoom,
+            ..
         } = &mut *preview;
-        renderer.paint(&painter, viewport, 100.0, bindings)
+        match renderer {
+            PreviewRenderer::Source(renderer) => {
+                renderer.paint(&painter, viewport, 100.0, bindings)
+            }
+            PreviewRenderer::Native(renderer) => {
+                let logical = viewport.pixels.map(|value| value as f32 / points);
+                let config = HudLayout::default().widgets[&WidgetId::Minimap].clone();
+                let placement = config.placement(WidgetId::Minimap, logical);
+                let rect = egui::Rect::from_min_size(
+                    egui::Pos2::from(placement.position),
+                    egui::Vec2::from(placement.size),
+                );
+                let mut painter = painter.with_clip_rect(rect);
+                painter.set_opacity(config.opacity);
+                renderer.set_zoom(*zoom);
+                native_state
+                    .as_ref()
+                    .ok_or_else(|| invalid("native capture state is absent"))
+                    .and_then(|state| renderer.paint(&painter, rect, placement.render_scale, state))
+            }
+        }
     };
     match result {
         Ok(report) => preview.report = Some(report),
@@ -350,21 +440,33 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
         || PathBuf::from("memory/evidence/minimap-render"),
         PathBuf::from,
     );
-    let profile_path = arguments.next().map(PathBuf::from);
+    let second = arguments.next();
+    let native_only = second.as_deref() == Some(std::ffi::OsStr::new("--native"));
+    let profile_path = if native_only {
+        None
+    } else {
+        second.map(PathBuf::from)
+    };
     if arguments.next().is_some() {
-        return Err("usage: minimap_probe [DIR [PROFILE]]".into());
+        return Err("usage: minimap_probe [DIR [PROFILE | --native]]".into());
     }
     let source = shared::level::asset_root()
         .join("imported_ui/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df-v1");
-    let mut modes = vec![CaptureMode {
+    let mut modes = if native_only {
+        native_modes()
+    } else {
+        vec![CaptureMode {
         name: "prefab",
         bindings: SourceUiBindings::default(),
         profile: Value::Null,
+        native_state: None,
+        zoom: DEFAULT_ZOOM,
         caveats: vec![
             "This mode renders authored prefab visibility with empty bindings; templates and placeholders retain their serialized activeSelf values.".into(),
             "It does not execute native initialization, show/update calls or gameplay state.".into(),
         ],
-    }];
+    }]
+    };
     if let Some(path) = profile_path {
         // Reject mismatched profiles before initializing the GPU or writing captures.
         modes.push(load_initialization_profile(&path, &source)?);
@@ -413,10 +515,20 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
         .ok_or("camera has no required egui context")?
         .get_mut()
         .clone();
-    let renderer = SourcePanelRenderer::load(&source, "BattleMinimap", &context)?;
+    let renderer = if native_only {
+        PreviewRenderer::Native(Box::new(NativeMinimap::load(&source, &context)?))
+    } else {
+        PreviewRenderer::Source(Box::new(SourcePanelRenderer::load(
+            &source,
+            "BattleMinimap",
+            &context,
+        )?))
+    };
     app.insert_resource(Preview {
         renderer,
         bindings: SourceUiBindings::default(),
+        native_state: None,
+        zoom: DEFAULT_ZOOM,
         viewport: CanvasViewport {
             pixels: [1920, 1080],
             scale_factor: 1.0,
@@ -439,6 +551,8 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
                     scale_factor: scale,
                 };
                 preview.bindings = mode.bindings.clone();
+                preview.native_state = mode.native_state.clone();
+                preview.zoom = mode.zoom;
                 preview.report = None;
                 preview.error = None;
             }
@@ -496,6 +610,21 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
                 .report
                 .as_ref()
                 .ok_or("no source panel render report")?;
+            if native_only
+                && (report
+                    .graphics
+                    .iter()
+                    .any(|graphic| graphic.status == "unsupported")
+                    || !report.graphics.iter().any(|graphic| {
+                        graphic.kind == "raw_image" && graphic.status == "submitted"
+                    })
+                    || !report.graphics.iter().any(|graphic| {
+                        graphic.instance.as_deref() == Some("player-arrow")
+                            && graphic.status == "submitted"
+                    }))
+            {
+                return Err("native minimap did not submit its map/player or has unsupported active graphics".into());
+            }
             let statuses = report.graphics.iter().fold(
                 BTreeMap::<String, usize>::new(),
                 |mut result, graphic| {
@@ -522,6 +651,8 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
                 "scale_factor": scale,
                 "preview_mode": mode.name,
                 "initialization_profile": mode.profile.get("file"),
+                "native_state": mode.native_state,
+                "native_zoom": if native_only { Some(mode.zoom) } else { None },
                 "bindings": report.bindings,
                 "preview_caveats": mode.caveats,
                 "graphic_statuses": statuses,
@@ -537,20 +668,43 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
         mode_reports.push(json!({
             "name": mode.name,
             "initialization_profile": mode.profile,
+            "native_state": mode.native_state,
+            "native_zoom": if native_only { Some(mode.zoom) } else { None },
             "bindings": report.bindings,
             "caveats": mode.caveats
         }));
     }
     let adapter = app.world().resource::<RenderAdapterInfo>();
-    let report = serde_json::json!({"source_apk_sha256":app.world().resource::<Preview>().renderer.panel.source_apk_sha256,
+    let source_apk_sha256 = &app
+        .world()
+        .resource::<Preview>()
+        .report
+        .as_ref()
+        .ok_or("no final render report")?
+        .source_apk_sha256;
+    let limitations = if native_only {
+        vec![
+            "Native Bevy/egui HUD captures with explicit simulation inputs; no APK runtime or pixel-equality claim.",
+            "Map_map assignment, source image scale 260/2048, player-centered UV zoom and live marker categories/sizes are native policies. Original Unity runtime bindings remain unverified.",
+            "The shared overview extent is provisional; map and marker calibration remain consistent with each other.",
+            "Source font metrics/color/mip equivalence and custom Unity stencil/fog/particles/line rendering remain unverified.",
+        ]
+    } else {
+        vec![
+            "These are source panel previews rendered by Bevy/egui, not screenshots of the APK or proof of pixel equality.",
+            "Runtime map texture is unbound. Visibility inputs and their static-evidence caveats are recorded separately for each preview mode.",
+            "Constructor zoom 15 does not establish a RawImage UV setter, runtime texture or final image scale; no such binding is applied in these prefab modes.",
+            "Full per-graphic reports identify unsupported materials, custom stencil/fog and line rendering, null sprite references and font/layout limits.",
+        ]
+    };
+    let report = serde_json::json!({"source_apk_sha256":source_apk_sha256,
         "bevy_version":"0.20.1","bevy_egui_version":"0.43.1","egui_version":"0.36.2",
         "gpu":adapter.name,"driver":adapter.driver_info,"backend":format!("{:?}",adapter.backend),
         "parent_canvas_input":{"reference_resolution":[1920,1080],"reference_pixels_per_unit":100,"scale_rule":"min(width/1920,height/1080)","bootstrap_evidence":"../minimap-canvas-review.md","battle_minimap_runtime_parentage_verified":false},
-        "preview_modes":mode_reports,"captures":captures,
-        "limitations":["These are source panel previews rendered by Bevy/egui, not screenshots of the APK or proof of pixel equality.",
-            "Runtime map texture is unbound. Visibility inputs and their static-evidence caveats are recorded separately for each preview mode.",
-            "Constructor zoom 15 does not establish a RawImage UV setter, runtime texture or final image scale; no such binding is applied.",
-            "Full per-graphic reports identify unsupported materials, custom stencil/fog and line rendering, null sprite references and font/layout limits."]});
+        "native_hud_adapter":native_only,"waydroid_required":false,
+        "native_map_texture":if native_only {Some(client_core::source_minimap::map_texture())} else {None},
+        "native_overview_half_extent":if native_only {Some(shared::level::MAP_OVERVIEW_HALF_EXTENT)} else {None},
+        "preview_modes":mode_reports,"captures":captures,"limitations":limitations});
     serde_json::to_writer_pretty(
         std::fs::File::create(directory.join("render.json"))?,
         &report,
