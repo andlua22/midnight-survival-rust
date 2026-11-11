@@ -1,0 +1,73 @@
+{
+  "date": "2026-11-11",
+  "method": "Read-only JSON manifest analysis and existing Rust scene-list matcher; no builds or original-game execution.",
+  "source_list": {
+    "apk_member": "assets/gameconfig/allscenelist.obj",
+    "retained_path": "/tmp/codex-minimap-review/allscenelist.json",
+    "retained_json_sha256": "6fce42f16e784666024943bd91bc9717ce38ef5928a1caca19d73dbe7f2be2b1",
+    "attribution_evidence": "memory/evidence/minimap-canvas-review.md:204-239"
+  },
+  "canonical_manifest": {
+    "path": "assets/imported_map/terrain/manifest.json",
+    "sha256": "89cd215635b0de1ab721a4ab021b315fd6feb9532328e535d5c21fe8293a5c82",
+    "source_apk_sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df",
+    "coordinate_frame": "bevy_right_handed_y_up",
+    "render_instances": 399,
+    "bounds": [
+      -4600,
+      -45.363487,
+      -3031.4,
+      3000,
+      255.04572,
+      3000.0002
+    ]
+  },
+  "scene_match": {
+    "imported_bundle_count": 241,
+    "imported_not_listed": [],
+    "intersection_count": 241,
+    "listed_count": 243,
+    "listed_not_imported": [
+      "z-01",
+      "zhujiemian"
+    ]
+  },
+  "junshijidi_terrain": {
+    "selection": "source.bundle matches assets/scene/junshijidi_terrain_[01..16].ab",
+    "bundle_count": 16,
+    "bundle_names": [
+      "assets/scene/junshijidi_terrain_01.ab",
+      "assets/scene/junshijidi_terrain_02.ab",
+      "assets/scene/junshijidi_terrain_03.ab",
+      "assets/scene/junshijidi_terrain_04.ab",
+      "assets/scene/junshijidi_terrain_05.ab",
+      "assets/scene/junshijidi_terrain_06.ab",
+      "assets/scene/junshijidi_terrain_07.ab",
+      "assets/scene/junshijidi_terrain_08.ab",
+      "assets/scene/junshijidi_terrain_09.ab",
+      "assets/scene/junshijidi_terrain_10.ab",
+      "assets/scene/junshijidi_terrain_11.ab",
+      "assets/scene/junshijidi_terrain_12.ab",
+      "assets/scene/junshijidi_terrain_13.ab",
+      "assets/scene/junshijidi_terrain_14.ab",
+      "assets/scene/junshijidi_terrain_15.ab",
+      "assets/scene/junshijidi_terrain_16.ab"
+    ],
+    "render_instances": 20,
+    "bounds": [
+      -4600,
+      -1.314341,
+      -600.0003,
+      -2999.9998,
+      60.737804,
+      1000.0001
+    ]
+  },
+  "unknowns": [
+    "z-01/zhujiemian content and spatial identity were not established.",
+    "The scene-list inventory does not identify the neighboring Military Base island.",
+    "The junshijidi bundle selection includes geometry already imported, not a proof of current runtime visibility or a landmark's unique identity.",
+    "Bounds are AABBs, not land/water topology.",
+    "MapCfg5 Mditu_Island is separate from the currently associated MapCfg1 terrain."
+  ]
+}

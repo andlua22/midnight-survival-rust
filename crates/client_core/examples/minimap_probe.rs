@@ -1,4 +1,4 @@
-//! Capture the source BattleMinimap with the production egui backend, without a
+//! Capture the source BattleMinimap with the production Bevy UI renderer, without a
 //! window. Run: cargo run --offline -p client_core --example minimap_probe -- DIR [PROFILE]
 //! A visibility profile adds initialization previews. DIR --native captures the
 //! production native HUD adapter with movement, heading, zoom and live markers.
@@ -11,8 +11,7 @@ use std::{
 
 use bevy::{
     audio::AudioPlugin,
-    camera::{RenderTarget, visibility::RenderLayers},
-    core_pipeline::tonemapping::{DebandDither, Tonemapping},
+    camera::RenderTarget,
     prelude::*,
     render::{
         RenderApp, RenderPlugin,
@@ -29,13 +28,12 @@ use bevy::{
     window::ExitCondition,
     winit::WinitPlugin,
 };
-use bevy_egui::{
-    EguiContext, EguiContexts, EguiGlobalSettings, EguiManagedTextures, EguiPlugin,
-    EguiPrimaryContextPass, PrimaryEguiContext, egui,
+use client_core::source_ui::{
+    PanelRenderReport, SourcePanelRenderer, SourceUiBindings, SourceUiMaterial,
 };
-use client_core::source_ui::{PanelRenderReport, SourcePanelRenderer, SourceUiBindings};
 use client_core::{
     hud::{HudLayout, WidgetId},
+    native_ui::{SourcePanelView, update_source_frame},
     source_minimap::{DEFAULT_ZOOM, MinimapMarker, MinimapMarkerKind, MinimapState, NativeMinimap},
 };
 use midnight_map_data::SourceObject;
@@ -230,7 +228,7 @@ fn load_initialization_profile(path: &Path, source: &Path) -> Result<CaptureMode
         "validation": {
             "apk_and_bundle_identities": "compared with imported UI manifest; APK/native members are not rehashed by this probe",
             "layout": "payload SHA-256 and panel identity verified by load_ui_package/load_panel",
-            "source_node_targets": "validated by SourcePanelRenderer::paint against the selected layout",
+            "source_node_targets": "validated by SourcePanelRenderer::frame against the selected layout",
             "visibility": "21 unique qualified GO targets, canonical nonzero signed PathIDs, active_self=false"
         }
     });
@@ -253,6 +251,9 @@ struct Preview {
     viewport: CanvasViewport,
     report: Option<PanelRenderReport>,
     error: Option<String>,
+    view: SourcePanelView,
+    pixels_per_point: f32,
+    dirty: bool,
 }
 
 enum PreviewRenderer {
@@ -315,25 +316,23 @@ struct Capture {
     image: Option<Image>,
 }
 
-fn draw(mut contexts: EguiContexts, mut preview: ResMut<Preview>) {
-    let Ok(context) = contexts.ctx_mut() else {
-        preview.error = Some("preview egui context is absent".into());
+#[allow(clippy::too_many_arguments)]
+fn draw(
+    mut commands: Commands,
+    mut preview: ResMut<Preview>,
+    mut images: ResMut<Assets<Image>>,
+    mut materials: ResMut<Assets<SourceUiMaterial>>,
+    mut nodes: Query<&mut Node>,
+    mut texts: Query<&mut Text>,
+    mut fonts: Query<&mut TextFont>,
+    mut visibility: Query<&mut Visibility>,
+) {
+    if !preview.dirty {
         return;
-    };
+    }
+    preview.dirty = false;
     let viewport = preview.viewport;
-    let points = context.pixels_per_point();
-    let painter = context
-        .layer_painter(egui::LayerId::new(
-            egui::Order::Background,
-            egui::Id::new("source-battle-minimap"),
-        ))
-        .with_clip_rect(egui::Rect::from_min_size(
-            egui::Pos2::ZERO,
-            egui::vec2(
-                viewport.pixels[0] as f32 / points,
-                viewport.pixels[1] as f32 / points,
-            ),
-        ));
+    let points = preview.pixels_per_point;
     let result = {
         let Preview {
             renderer,
@@ -344,28 +343,51 @@ fn draw(mut contexts: EguiContexts, mut preview: ResMut<Preview>) {
         } = &mut *preview;
         match renderer {
             PreviewRenderer::Source(renderer) => {
-                renderer.paint(&painter, viewport, 100.0, bindings)
+                renderer.frame(viewport, 100.0, bindings, &mut images)
             }
             PreviewRenderer::Native(renderer) => {
                 let logical = viewport.pixels.map(|value| value as f32 / points);
                 let config = HudLayout::default().widgets[&WidgetId::Minimap].clone();
                 let placement = config.placement(WidgetId::Minimap, logical);
-                let rect = egui::Rect::from_min_size(
-                    egui::Pos2::from(placement.position),
-                    egui::Vec2::from(placement.size),
+                let rect = Rect::from_corners(
+                    Vec2::from_array(placement.position),
+                    Vec2::from_array(placement.position) + Vec2::from_array(placement.size),
                 );
-                let mut painter = painter.with_clip_rect(rect);
-                painter.set_opacity(config.opacity);
                 renderer.set_zoom(*zoom);
                 native_state
                     .as_ref()
                     .ok_or_else(|| invalid("native capture state is absent"))
-                    .and_then(|state| renderer.paint(&painter, rect, placement.render_scale, state))
+                    .and_then(|state| {
+                        renderer.frame(
+                            rect,
+                            CanvasViewport {
+                                scale_factor: placement.render_scale * points,
+                                ..viewport
+                            },
+                            state,
+                            points,
+                            &mut images,
+                        )
+                    })
             }
         }
     };
     match result {
-        Ok(report) => preview.report = Some(report),
+        Ok(frame) => {
+            preview.report = Some(frame.report.clone());
+            update_source_frame(
+                &mut commands,
+                &mut preview.view,
+                frame,
+                points,
+                &mut images,
+                &mut materials,
+                &mut nodes,
+                &mut texts,
+                &mut fonts,
+                &mut visibility,
+            );
+        }
         Err(error) => preview.error = Some(error.to_string()),
     }
 }
@@ -412,14 +434,12 @@ fn update(
 }
 
 fn ready(app: &App) -> bool {
-    let managed = app.world().resource::<EguiManagedTextures>();
+    let images = app.world().resource::<Assets<Image>>();
     let render = app.sub_app(RenderApp).world();
     let gpu = render.resource::<RenderAssets<GpuImage>>();
     let cache = render.resource::<PipelineCache>();
-    !managed.is_empty()
-        && managed
-            .values()
-            .all(|texture| gpu.get(texture.handle.id()).is_some())
+    !images.is_empty()
+        && images.iter().all(|(id, _)| gpu.get(id).is_some())
         && cache.waiting_pipelines().next().is_none()
         && app
             .world()
@@ -437,7 +457,7 @@ fn ready(app: &App) -> bool {
 fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     let mut arguments = std::env::args_os().skip(1);
     let directory = arguments.next().map_or_else(
-        || PathBuf::from("memory/evidence/minimap-render"),
+        || PathBuf::from("memory/evidence/minimap-bevy-ui"),
         PathBuf::from,
     );
     let second = arguments.next();
@@ -450,8 +470,7 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     if arguments.next().is_some() {
         return Err("usage: minimap_probe [DIR [PROFILE | --native]]".into());
     }
-    let source = shared::level::asset_root()
-        .join("imported_ui/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df-v1");
+    let source = shared::level::asset_root().join(client_core::source_minimap::SOURCE_UI_PACKAGE);
     let mut modes = if native_only {
         native_modes()
     } else {
@@ -475,6 +494,10 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     let mut app = App::new();
     app.add_plugins(
         DefaultPlugins
+            .set(AssetPlugin {
+                file_path: shared::level::asset_root().to_string_lossy().into_owned(),
+                ..default()
+            })
             .set(WindowPlugin {
                 primary_window: None,
                 exit_condition: ExitCondition::DontExit,
@@ -488,42 +511,28 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
             .disable::<PipelinedRenderingPlugin>()
             .disable::<AudioPlugin>(),
     )
-    .add_plugins(EguiPlugin::default())
+    .add_plugins(UiMaterialPlugin::<SourceUiMaterial>::default())
     .insert_resource(ClearColor(Color::srgb(0.025, 0.035, 0.05)))
     .init_resource::<Capture>()
-    .add_systems(EguiPrimaryContextPass, draw);
-    app.world_mut()
-        .resource_mut::<EguiGlobalSettings>()
-        .auto_create_primary_context = false;
+    .add_systems(Update, draw);
     app.finish();
     app.cleanup();
     let camera = app
         .world_mut()
-        .spawn((
-            PrimaryEguiContext,
-            Camera3d::default(),
-            RenderLayers::none(),
-            Msaa::Off,
-            Tonemapping::None,
-            DebandDither::Disabled,
-        ))
+        .spawn((Camera2d, IsDefaultUiCamera, Msaa::Off))
         .id();
-    let context = app
+    let renderer = app
         .world_mut()
-        .entity_mut(camera)
-        .get_mut::<EguiContext>()
-        .ok_or("camera has no required egui context")?
-        .get_mut()
-        .clone();
-    let renderer = if native_only {
-        PreviewRenderer::Native(Box::new(NativeMinimap::load(&source, &context)?))
-    } else {
-        PreviewRenderer::Source(Box::new(SourcePanelRenderer::load(
-            &source,
-            "BattleMinimap",
-            &context,
-        )?))
-    };
+        .resource_scope(|world, mut images: Mut<Assets<Image>>| {
+            let mut fonts = world.resource_mut::<Assets<Font>>();
+            if native_only {
+                NativeMinimap::load(&source, &mut images, &mut fonts)
+                    .map(|renderer| PreviewRenderer::Native(Box::new(renderer)))
+            } else {
+                SourcePanelRenderer::load(&source, "BattleMinimap", &mut images, &mut fonts)
+                    .map(|renderer| PreviewRenderer::Source(Box::new(renderer)))
+            }
+        })?;
     app.insert_resource(Preview {
         renderer,
         bindings: SourceUiBindings::default(),
@@ -535,12 +544,20 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
         },
         report: None,
         error: None,
+        view: SourcePanelView::default(),
+        pixels_per_point: 1.0,
+        dirty: true,
     });
     let deadline = Instant::now() + Duration::from_secs(90);
     let mut captures = Vec::new();
+    let mut north_pixels = BTreeMap::new();
     let mut mode_reports = Vec::new();
     for mode in &modes {
-        for pixels in [[1920, 1080], [1280, 720]] {
+        for (pixels, points) in [
+            ([1920, 1080], 1.0_f32),
+            ([1280, 720], 1.0),
+            ([1920, 1080], 1.5),
+        ] {
             // Bootstrap evidence: [1920,1080], reference PPU=100, with the native
             // AdjustResolution rule. These remain supplied preview canvas inputs.
             let scale = (pixels[0] as f32 / 1920.0).min(pixels[1] as f32 / 1080.0);
@@ -555,7 +572,10 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
                 preview.zoom = mode.zoom;
                 preview.report = None;
                 preview.error = None;
+                preview.pixels_per_point = points;
+                preview.dirty = true;
             }
+            app.world_mut().resource_mut::<UiScale>().0 = points;
             app.world_mut().resource_mut::<Capture>().image = None;
             let mut image = Image::new_target_texture(
                 pixels[0],
@@ -586,7 +606,10 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
                 .take()
                 .ok_or("screenshot observer returned no minimap image")?
                 .try_into_dynamic()?;
-            let filename = format!("{}-{}x{}.png", mode.name, pixels[0], pixels[1]);
+            let filename = format!(
+                "{}-{}x{}-dpi{}.png",
+                mode.name, pixels[0], pixels[1], points
+            );
             image.save(directory.join(&filename))?;
             let rgba = image.to_rgba8();
             let colors = rgba
@@ -601,7 +624,10 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
             }
             let crop_width = (440.0 * scale).ceil() as u32;
             let crop_height = (460.0 * scale).ceil() as u32;
-            let crop_file = format!("{}-{}x{}-detail.png", mode.name, pixels[0], pixels[1]);
+            let crop_file = format!(
+                "{}-{}x{}-dpi{}-detail.png",
+                mode.name, pixels[0], pixels[1], points
+            );
             image
                 .crop_imm(pixels[0] - crop_width, 0, crop_width, crop_height)
                 .save(directory.join(&crop_file))?;
@@ -610,6 +636,54 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
                 .report
                 .as_ref()
                 .ok_or("no source panel render report")?;
+            let heading_changed_pixels = if native_only && mode.name == "native-north" {
+                north_pixels.insert((pixels, points.to_bits()), rgba.as_raw().clone());
+                None
+            } else if native_only && mode.name == "native-east" {
+                let north = north_pixels
+                    .get(&(pixels, points.to_bits()))
+                    .ok_or("north heading reference capture absent")?;
+                let corners = report
+                    .graphics
+                    .iter()
+                    .find(|g| {
+                        g.instance.as_deref() == Some("player-arrow") && g.status == "submitted"
+                    })
+                    .and_then(|g| g.screen_corners)
+                    .ok_or("east heading has no submitted player bounds")?;
+                let min = corners
+                    .iter()
+                    .copied()
+                    .map(Vec2::from_array)
+                    .reduce(Vec2::min)
+                    .ok_or("player bounds absent")?;
+                let max = corners
+                    .iter()
+                    .copied()
+                    .map(Vec2::from_array)
+                    .reduce(Vec2::max)
+                    .ok_or("player bounds absent")?;
+                let mut changed = 0;
+                for y in min.y.floor().max(0.0) as u32..max.y.ceil().min(pixels[1] as f32) as u32 {
+                    for x in
+                        min.x.floor().max(0.0) as u32..max.x.ceil().min(pixels[0] as f32) as u32
+                    {
+                        let offset = ((y * pixels[0] + x) * 4) as usize;
+                        if rgba.as_raw()[offset..offset + 4] != north[offset..offset + 4] {
+                            changed += 1;
+                        }
+                    }
+                }
+                if changed < 8 {
+                    return Err(
+                        "north/east player heading did not visibly update in its source bounds"
+                            .into(),
+                    );
+                }
+                Some(changed)
+            } else {
+                None
+            };
             if native_only
                 && (report
                     .graphics
@@ -623,7 +697,20 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
                             && graphic.status == "submitted"
                     }))
             {
-                return Err("native minimap did not submit its map/player or has unsupported active graphics".into());
+                let unsupported: Vec<_> = report
+                    .graphics
+                    .iter()
+                    .filter(|g| g.status == "unsupported")
+                    .map(|g| format!("{}: {}", g.path, g.detail.as_deref().unwrap_or("no detail")))
+                    .collect();
+                serde_json::to_writer_pretty(
+                    std::fs::File::create(directory.join("failed-frame.json"))?,
+                    report,
+                )?;
+                return Err(format!(
+                    "native minimap map/player/active-graphic check failed: {unsupported:?}"
+                )
+                .into());
             }
             let statuses = report.graphics.iter().fold(
                 BTreeMap::<String, usize>::new(),
@@ -632,7 +719,10 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
                     result
                 },
             );
-            let report_file = format!("{}-{}x{}.json", mode.name, pixels[0], pixels[1]);
+            let report_file = format!(
+                "{}-{}x{}-dpi{}.json",
+                mode.name, pixels[0], pixels[1], points
+            );
             // Keep the production report fields at the root for existing consumers.
             let mut graphic_report = serde_json::to_value(report)?;
             graphic_report["preview_mode"] = json!(mode.name);
@@ -649,6 +739,7 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
                 "detail_crop": [pixels[0] - crop_width, 0, crop_width, crop_height],
                 "pixels": pixels,
                 "scale_factor": scale,
+                "pixels_per_point": points,
                 "preview_mode": mode.name,
                 "initialization_profile": mode.profile.get("file"),
                 "native_state": mode.native_state,
@@ -656,7 +747,8 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
                 "bindings": report.bindings,
                 "preview_caveats": mode.caveats,
                 "graphic_statuses": statuses,
-                "distinct_rgb_buckets": colors.len()
+                "distinct_rgb_buckets": colors.len(),
+                "heading_changed_pixels": heading_changed_pixels
             }));
         }
         let report = app
@@ -684,21 +776,21 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
         .source_apk_sha256;
     let limitations = if native_only {
         vec![
-            "Native Bevy/egui HUD captures with explicit simulation inputs; no APK runtime or pixel-equality claim.",
+            "Native Bevy UI HUD captures with explicit simulation inputs; no APK runtime or pixel-equality claim.",
             "Map_map assignment, source image scale 260/2048, player-centered UV zoom and live marker categories/sizes are native policies. Original Unity runtime bindings remain unverified.",
             "The shared overview extent is provisional; map and marker calibration remain consistent with each other.",
             "Source font metrics/color/mip equivalence and custom Unity stencil/fog/particles/line rendering remain unverified.",
         ]
     } else {
         vec![
-            "These are source panel previews rendered by Bevy/egui, not screenshots of the APK or proof of pixel equality.",
+            "These are source panel previews rendered by Bevy UI, not screenshots of the APK or proof of pixel equality.",
             "Runtime map texture is unbound. Visibility inputs and their static-evidence caveats are recorded separately for each preview mode.",
             "Constructor zoom 15 does not establish a RawImage UV setter, runtime texture or final image scale; no such binding is applied in these prefab modes.",
             "Full per-graphic reports identify unsupported materials, custom stencil/fog and line rendering, null sprite references and font/layout limits.",
         ]
     };
     let report = serde_json::json!({"source_apk_sha256":source_apk_sha256,
-        "bevy_version":"0.20.1","bevy_egui_version":"0.43.1","egui_version":"0.36.2",
+        "bevy_version":"0.20.1","ui_renderer":"Bevy UI source material and Bevy Text",
         "gpu":adapter.name,"driver":adapter.driver_info,"backend":format!("{:?}",adapter.backend),
         "parent_canvas_input":{"reference_resolution":[1920,1080],"reference_pixels_per_unit":100,"scale_rule":"min(width/1920,height/1080)","bootstrap_evidence":"../minimap-canvas-review.md","battle_minimap_runtime_parentage_verified":false},
         "native_hud_adapter":native_only,"waydroid_required":false,
@@ -710,7 +802,7 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
         &report,
     )?;
     println!(
-        "Captured {} source BattleMinimap previews at two explicit canvas sizes: {}",
+        "Captured {} source BattleMinimap previews at explicit canvas sizes and DPI scales: {}",
         captures.len(),
         directory.display()
     );

@@ -1,0 +1,938 @@
+{
+  "package": "assets/imported_map/terrain",
+  "backup": ".local/map-import-backups/1794424008828/terrain",
+  "scene": "assets/scene/z-01.ab",
+  "source_bundle_sha256": "eb4802a4dfb1aa2996400cca9666da3160fcacc4ffa1d08d1cd5ff46fb07d8c4",
+  "map_scene_list_sha256": "6fce42f16e784666024943bd91bc9717ce38ef5928a1caca19d73dbe7f2be2b1",
+  "previous_manifest_sha256": "89cd215635b0de1ab721a4ab021b315fd6feb9532328e535d5c21fe8293a5c82",
+  "previous_geometry_sha256": "89febd1decfaa5ed58089e9912fd61dedcb5285d51acb86f665e35c23413e8ee",
+  "added_records": [
+    "Z_01_ID_639504_"
+  ],
+  "added_scene_meshes": {
+    "Z_01_ID_639504_": {
+      "source": {
+        "bundle": "assets/scene/z-01.ab",
+        "cab": "BuildPlayer-Z-01.sharedAssets",
+        "path_id": "7"
+      },
+      "game_object": {
+        "bundle": "assets/scene/z-01.ab",
+        "cab": "BuildPlayer-Z-01",
+        "path_id": "13"
+      },
+      "world_transform": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        -3639.0,
+        -5.6,
+        -757.0,
+        1.0
+      ],
+      "bounds": [
+        -3639.0,
+        -7.101078,
+        -1269.0,
+        -3127.0,
+        26.990854,
+        -757.0
+      ],
+      "material": {
+        "source": {
+          "bundle": "assets/scene/z-01.ab",
+          "cab": "BuildPlayer-Z-01.sharedAssets",
+          "path_id": "4"
+        },
+        "name": "Z-01_Material",
+        "shader": {
+          "bundle": "assets/shader/shaders.ab",
+          "cab": "CAB-b99e201845a48115c6b6a24e89d01efe",
+          "path_id": "-1302531423149963743"
+        },
+        "shader_name": "_URP/TerrainMeshBase/4 Textures",
+        "textures": {
+          "_Control": {
+            "texture": {
+              "file": {
+                "path": "textures/cfa1231957cb26bdb8dcec67889fd00b5352803266457c62aaf3e2a1b7eff76f.png",
+                "sha256": "e897ffd8684d70c23e204a28865cbb11c8e68b2d33d4fd53f96385dd0cc35529"
+              },
+              "gpu": {
+                "path": "textures/cfa1231957cb26bdb8dcec67889fd00b5352803266457c62aaf3e2a1b7eff76f.msrgba",
+                "sha256": "e69bd295a9c3dacf281412645b752663f541071a21bb677a92492dc2be804f96"
+              },
+              "source": {
+                "bundle": "assets/scene/z-01.ab",
+                "cab": "BuildPlayer-Z-01.sharedAssets",
+                "path_id": "6"
+              },
+              "name": "Z-01_SplatAlpha",
+              "width": 512,
+              "height": 512,
+              "unity_format": 50,
+              "unity_color_space": 0,
+              "unity_version": "2021.3.23f1c1",
+              "mip_count": 1,
+              "sampler": {
+                "filter_mode": 1,
+                "wrap": [
+                  1,
+                  1,
+                  1
+                ],
+                "aniso": 1,
+                "mip_bias": 0.0
+              },
+              "encoded": {
+                "path": "textures/cfa1231957cb26bdb8dcec67889fd00b5352803266457c62aaf3e2a1b7eff76f.texture.bin",
+                "sha256": "390853928e330a442376d9086fbfc55edc195bccbf0e7a2ce930f32ad78569df"
+              }
+            },
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "offset": [
+              0.0,
+              0.0
+            ]
+          },
+          "_Splat0": {
+            "texture": {
+              "file": {
+                "path": "textures/4ef9d9650d8ba6feebede39656eaaa22d3573c277bcec8985548b47af22bab22.png",
+                "sha256": "ca7ca4437d706b1c9fcac64ece08e271cf6f26c22abf00ecb54a13059e1ac197"
+              },
+              "gpu": {
+                "path": "textures/4ef9d9650d8ba6feebede39656eaaa22d3573c277bcec8985548b47af22bab22.msrgba",
+                "sha256": "51ed43931a315c6fa3fa66ef51c7ea099892184d06a495e52bbb54a2ca7f2f3d"
+              },
+              "source": {
+                "bundle": "assets/scenetexture/sand1216_albedo.ab",
+                "cab": "CAB-82e880e6afc59f2810e28eae4307a4c0",
+                "path_id": "-7656940926760416937"
+              },
+              "name": "sand1216_Albedo",
+              "width": 512,
+              "height": 512,
+              "unity_format": 50,
+              "unity_color_space": 1,
+              "unity_version": "2021.3.23f1c1",
+              "mip_count": 10,
+              "sampler": {
+                "filter_mode": 1,
+                "wrap": [
+                  0,
+                  0,
+                  0
+                ],
+                "aniso": 1,
+                "mip_bias": 0.0
+              },
+              "encoded": {
+                "path": "textures/4ef9d9650d8ba6feebede39656eaaa22d3573c277bcec8985548b47af22bab22.texture.bin",
+                "sha256": "cb741f10c451c6d271e042e67c4fde3305ac86611e3133cfc2739e9643b464f8"
+              }
+            },
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "offset": [
+              0.0,
+              0.0
+            ]
+          },
+          "_Splat0_Normal": {
+            "texture": {
+              "file": {
+                "path": "textures/1bfa964cb68d75e973792fca1f32f96e867850e5ad6d41027698726c9658fb81.png",
+                "sha256": "95b0ae67ccb3d16b23f98899808b9d4544eb1837f38dac82d2a25d7acf7f966c"
+              },
+              "gpu": {
+                "path": "textures/1bfa964cb68d75e973792fca1f32f96e867850e5ad6d41027698726c9658fb81.msrgba",
+                "sha256": "24712ff38d60abd8b3df4f3caab956f8c796306159fa45d87ae7a7019737e017"
+              },
+              "source": {
+                "bundle": "assets/scenetexture/sand1216_normal.ab",
+                "cab": "CAB-675a2f5b3a986fb21d67ed74b61410cf",
+                "path_id": "-7746225509279667745"
+              },
+              "name": "sand1216_Normal",
+              "width": 512,
+              "height": 512,
+              "unity_format": 50,
+              "unity_color_space": 0,
+              "unity_version": "2021.3.23f1c1",
+              "mip_count": 10,
+              "sampler": {
+                "filter_mode": 1,
+                "wrap": [
+                  0,
+                  0,
+                  0
+                ],
+                "aniso": 1,
+                "mip_bias": 0.0
+              },
+              "encoded": {
+                "path": "textures/1bfa964cb68d75e973792fca1f32f96e867850e5ad6d41027698726c9658fb81.texture.bin",
+                "sha256": "419bd3f48d02f50c494caa47ed2c2498834448b8c0bf701d6fc19364fbaeb1e0"
+              }
+            },
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "offset": [
+              0.0,
+              0.0
+            ]
+          },
+          "_Splat1": {
+            "texture": {
+              "file": {
+                "path": "textures/7ece9767c39e9d0811272d44915c134c3bba010857730308c5f2d5cdf20d21d0.png",
+                "sha256": "b6321e34f30f6e2e179b8cc10bf7898dc65577b7cba1561e58783aa131075eb4"
+              },
+              "gpu": {
+                "path": "textures/7ece9767c39e9d0811272d44915c134c3bba010857730308c5f2d5cdf20d21d0.msrgba",
+                "sha256": "181cbadc8515f69cb1d38cae354f75d017f7421048f25d00dc89c889a82f4a59"
+              },
+              "source": {
+                "bundle": "assets/scenetexture/terrain_caodi_01.ab",
+                "cab": "CAB-bceb76fdf0c889958b21278174e0af14",
+                "path_id": "-7699158887479526437"
+              },
+              "name": "terrain_caodi_01",
+              "width": 512,
+              "height": 512,
+              "unity_format": 50,
+              "unity_color_space": 1,
+              "unity_version": "2021.3.23f1c1",
+              "mip_count": 10,
+              "sampler": {
+                "filter_mode": 1,
+                "wrap": [
+                  0,
+                  0,
+                  0
+                ],
+                "aniso": 1,
+                "mip_bias": 0.0
+              },
+              "encoded": {
+                "path": "textures/7ece9767c39e9d0811272d44915c134c3bba010857730308c5f2d5cdf20d21d0.texture.bin",
+                "sha256": "960180fc695621ae529899c3638a5009d629ee4a936418525386de124e0b2118"
+              }
+            },
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "offset": [
+              0.0,
+              0.0
+            ]
+          },
+          "_Splat1_Normal": {
+            "texture": null,
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "offset": [
+              0.0,
+              0.0
+            ]
+          },
+          "_Splat2": {
+            "texture": {
+              "file": {
+                "path": "textures/efc53c115cadc6bf13875680dbc2ad015954c6ab086073f4c35d598eeeb22d36.png",
+                "sha256": "a4bcc62824feff47a27152dfa94a55936e7fb5c4912b8eec4ca6da135a3c071e"
+              },
+              "gpu": {
+                "path": "textures/efc53c115cadc6bf13875680dbc2ad015954c6ab086073f4c35d598eeeb22d36.msrgba",
+                "sha256": "d24ebb4b7e0619ca31e45f3f2430a3883fb8ccdfc30995c7600c0d89597515d8"
+              },
+              "source": {
+                "bundle": "assets/scenetexture/terrain_nitu_02.ab",
+                "cab": "CAB-0bc9ce17ff019440e43b8eb24d2b47b0",
+                "path_id": "-4153666475499856375"
+              },
+              "name": "terrain_nitu_02",
+              "width": 512,
+              "height": 512,
+              "unity_format": 50,
+              "unity_color_space": 1,
+              "unity_version": "2021.3.23f1c1",
+              "mip_count": 10,
+              "sampler": {
+                "filter_mode": 1,
+                "wrap": [
+                  0,
+                  0,
+                  0
+                ],
+                "aniso": 1,
+                "mip_bias": 0.0
+              },
+              "encoded": {
+                "path": "textures/efc53c115cadc6bf13875680dbc2ad015954c6ab086073f4c35d598eeeb22d36.texture.bin",
+                "sha256": "bb31b4a1c87ee9547c99061520259d90a9ac3ef00782e71d3579b4eec2fc9fea"
+              }
+            },
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "offset": [
+              0.0,
+              0.0
+            ]
+          },
+          "_Splat2_Normal": {
+            "texture": {
+              "file": {
+                "path": "textures/27fe89bf4f12297346b2f2ea5d7c320a8077124e6a76b9f76160d97bff893360.png",
+                "sha256": "d82e4952d7d324f43035eb50b3224c21b81a0a03ef2ff5b3b0c835cd8b8aa460"
+              },
+              "gpu": {
+                "path": "textures/27fe89bf4f12297346b2f2ea5d7c320a8077124e6a76b9f76160d97bff893360.msrgba",
+                "sha256": "f9b9f6ef9102d61d1a5d69c7e8c1827b5e293148d68fa7c87e0a36b3bdaf7ffb"
+              },
+              "source": {
+                "bundle": "assets/scenetexture/tudi1215_n.ab",
+                "cab": "CAB-afbe62dd8dee58cc4bad4141b8a395ea",
+                "path_id": "-289674488289241592"
+              },
+              "name": "tudi1215_N",
+              "width": 512,
+              "height": 512,
+              "unity_format": 50,
+              "unity_color_space": 0,
+              "unity_version": "2021.3.23f1c1",
+              "mip_count": 10,
+              "sampler": {
+                "filter_mode": 1,
+                "wrap": [
+                  0,
+                  0,
+                  0
+                ],
+                "aniso": 1,
+                "mip_bias": 0.0
+              },
+              "encoded": {
+                "path": "textures/27fe89bf4f12297346b2f2ea5d7c320a8077124e6a76b9f76160d97bff893360.texture.bin",
+                "sha256": "22b6f91b1acb849df2a9111aa3ecb9123fc5e3417d670eb0f8a64ee6c226659b"
+              }
+            },
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "offset": [
+              0.0,
+              0.0
+            ]
+          },
+          "_Splat3": {
+            "texture": {
+              "file": {
+                "path": "textures/077977bbfb91fb5abceb969fe6f1dc2b55f98aa26233010364e2e47aa5c00599.png",
+                "sha256": "db761a8a9fa47770ee87c7b8bc43f9535cd78318746f11e6d1a93813c8c2d508"
+              },
+              "gpu": {
+                "path": "textures/077977bbfb91fb5abceb969fe6f1dc2b55f98aa26233010364e2e47aa5c00599.msrgba",
+                "sha256": "b39687ab78125a91f0de0c49898fce815077790b97a049bcf4605737ea3fee77"
+              },
+              "source": {
+                "bundle": "assets/scenetexture/tekldjlg_8k_albedo.ab",
+                "cab": "CAB-da5f25f3d29e9c2335c33ac6b27bc6e7",
+                "path_id": "5061937723228861188"
+              },
+              "name": "tekldjlg_8K_Albedo",
+              "width": 512,
+              "height": 512,
+              "unity_format": 50,
+              "unity_color_space": 1,
+              "unity_version": "2021.3.23f1c1",
+              "mip_count": 10,
+              "sampler": {
+                "filter_mode": 1,
+                "wrap": [
+                  0,
+                  0,
+                  0
+                ],
+                "aniso": 1,
+                "mip_bias": 0.0
+              },
+              "encoded": {
+                "path": "textures/077977bbfb91fb5abceb969fe6f1dc2b55f98aa26233010364e2e47aa5c00599.texture.bin",
+                "sha256": "220f4a0dbd52776feeed6d693760aee3c84194d400eaa3dd5f73c870a21c16ec"
+              }
+            },
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "offset": [
+              0.0,
+              0.0
+            ]
+          },
+          "_Splat3_Normal": {
+            "texture": {
+              "file": {
+                "path": "textures/d427bbb34a8ff6a195e5e33078dd2e9f8c5027623b6cf2c950811d8fc6588fc0.png",
+                "sha256": "7911d74939e3de48bc0cdee83ee52db73d8c0f2e29a3dd11a0df349589907143"
+              },
+              "gpu": {
+                "path": "textures/d427bbb34a8ff6a195e5e33078dd2e9f8c5027623b6cf2c950811d8fc6588fc0.msrgba",
+                "sha256": "d7da0f64955648e887bace4aaddd642bc0bc0a356d413a5ee98200f9810d3f2c"
+              },
+              "source": {
+                "bundle": "assets/scenetexture/tekldjlg_8k_normal.ab",
+                "cab": "CAB-f2d192c7d57f7f94fb5bde78a01c3aee",
+                "path_id": "-3768726161895027506"
+              },
+              "name": "tekldjlg_8K_Normal",
+              "width": 512,
+              "height": 512,
+              "unity_format": 50,
+              "unity_color_space": 0,
+              "unity_version": "2021.3.23f1c1",
+              "mip_count": 10,
+              "sampler": {
+                "filter_mode": 1,
+                "wrap": [
+                  0,
+                  0,
+                  0
+                ],
+                "aniso": 1,
+                "mip_bias": 0.0
+              },
+              "encoded": {
+                "path": "textures/d427bbb34a8ff6a195e5e33078dd2e9f8c5027623b6cf2c950811d8fc6588fc0.texture.bin",
+                "sha256": "f0e22ff4109662eb14ea73ffca32bb79fcd964c3a58faf59abb112004462ab20"
+              }
+            },
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "offset": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "floats": {
+          "_EnableNormal": 1.0,
+          "_Note": 1.0,
+          "_Splat0_S": 64.0,
+          "_Splat0_Smoothness": 0.0,
+          "_Splat1_S": 100.0,
+          "_Splat1_Smoothness": 0.4,
+          "_Splat2_S": 102.4,
+          "_Splat2_Smoothness": 0.0,
+          "_Splat3_S": 12.8,
+          "_Splat3_Smoothness": 0.4
+        },
+        "colors": {},
+        "shader_defaults": {
+          "_Control": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "_EnableNormal": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "_Note": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "_Splat0": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "_Splat0_Normal": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "_Splat0_S": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "_Splat0_Smoothness": [
+            0.5,
+            0.0,
+            1.0,
+            0.0
+          ],
+          "_Splat1": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "_Splat1_Normal": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "_Splat1_S": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "_Splat1_Smoothness": [
+            0.5,
+            0.0,
+            1.0,
+            0.0
+          ],
+          "_Splat2": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "_Splat2_Normal": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "_Splat2_S": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "_Splat2_Smoothness": [
+            0.5,
+            0.0,
+            1.0,
+            0.0
+          ],
+          "_Splat3": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "_Splat3_Normal": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "_Splat3_S": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "_Splat3_Smoothness": [
+            0.5,
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "texture_defaults": {
+          "_Control": "red",
+          "_Splat0": "grey",
+          "_Splat0_Normal": "bump",
+          "_Splat1": "grey",
+          "_Splat1_Normal": "bump",
+          "_Splat2": "grey",
+          "_Splat2_Normal": "bump",
+          "_Splat3": "grey",
+          "_Splat3_Normal": "bump"
+        },
+        "valid_keywords": [
+          "_NORMALMAP"
+        ],
+        "render_queue": -1
+      },
+      "collider": {
+        "source": {
+          "bundle": "assets/scene/z-01.ab",
+          "cab": "BuildPlayer-Z-01",
+          "path_id": "33"
+        },
+        "mesh": {
+          "bundle": "assets/scene/z-01.ab",
+          "cab": "BuildPlayer-Z-01.sharedAssets",
+          "path_id": "7"
+        },
+        "enabled": true,
+        "is_trigger": false,
+        "convex": false,
+        "cooking_options": 30
+      }
+    }
+  },
+  "already_present": false,
+  "verification": {
+    "source_apk": {
+      "path": "export/lite4.0.apk",
+      "sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df",
+      "byte_count": 1115839572
+    },
+    "geometry": {
+      "path": "meshes.bin",
+      "sha256": "ab54dffcd939dd6bde74e05b115436f94d514c76825aaf5b57b3c5118dda4836"
+    },
+    "coordinate_frame": "bevy_right_handed_y_up",
+    "uv_origin": "top_left",
+    "bounds": [
+      -4600.0,
+      -45.363487,
+      -3031.4,
+      3000.0,
+      255.04572,
+      3000.0002
+    ],
+    "terrain_scene_bundles": 242,
+    "terrain_instances_by_scene": {
+      "assets/scene/a-01.ab": 1,
+      "assets/scene/a-02.ab": 1,
+      "assets/scene/a-03.ab": 1,
+      "assets/scene/a-04.ab": 1,
+      "assets/scene/a-05.ab": 1,
+      "assets/scene/a-06.ab": 1,
+      "assets/scene/a-07.ab": 1,
+      "assets/scene/a-08.ab": 1,
+      "assets/scene/a-09.ab": 1,
+      "assets/scene/a-10.ab": 1,
+      "assets/scene/a-11.ab": 1,
+      "assets/scene/a-12.ab": 1,
+      "assets/scene/a-13.ab": 1,
+      "assets/scene/a-14.ab": 1,
+      "assets/scene/a-15.ab": 1,
+      "assets/scene/a-16.ab": 1,
+      "assets/scene/a-17.ab": 1,
+      "assets/scene/a-18.ab": 1,
+      "assets/scene/a-19.ab": 1,
+      "assets/scene/a-20.ab": 1,
+      "assets/scene/a-21.ab": 2,
+      "assets/scene/a-22.ab": 1,
+      "assets/scene/a-23.ab": 1,
+      "assets/scene/a-24.ab": 1,
+      "assets/scene/a-25.ab": 1,
+      "assets/scene/a-26.ab": 2,
+      "assets/scene/a-27.ab": 1,
+      "assets/scene/a-28.ab": 1,
+      "assets/scene/a-29.ab": 1,
+      "assets/scene/a-30.ab": 1,
+      "assets/scene/a-31.ab": 1,
+      "assets/scene/a-32.ab": 1,
+      "assets/scene/a-33.ab": 1,
+      "assets/scene/a-34.ab": 2,
+      "assets/scene/a-35.ab": 2,
+      "assets/scene/a-36.ab": 1,
+      "assets/scene/a-37.ab": 1,
+      "assets/scene/a-38.ab": 1,
+      "assets/scene/a-39.ab": 1,
+      "assets/scene/a-40.ab": 1,
+      "assets/scene/a-41.ab": 1,
+      "assets/scene/a-42.ab": 2,
+      "assets/scene/a-43.ab": 2,
+      "assets/scene/a-44.ab": 1,
+      "assets/scene/a-45.ab": 1,
+      "assets/scene/a-46.ab": 2,
+      "assets/scene/a-47.ab": 1,
+      "assets/scene/a-48.ab": 1,
+      "assets/scene/a-49.ab": 1,
+      "assets/scene/a-50.ab": 2,
+      "assets/scene/a-51.ab": 2,
+      "assets/scene/a-52.ab": 1,
+      "assets/scene/a-53.ab": 1,
+      "assets/scene/a-54.ab": 1,
+      "assets/scene/a-55.ab": 1,
+      "assets/scene/a-56.ab": 1,
+      "assets/scene/a-57.ab": 1,
+      "assets/scene/b-01.ab": 1,
+      "assets/scene/b-02.ab": 1,
+      "assets/scene/b-03.ab": 1,
+      "assets/scene/b-04.ab": 1,
+      "assets/scene/b-05.ab": 1,
+      "assets/scene/b-06.ab": 1,
+      "assets/scene/b-07.ab": 1,
+      "assets/scene/b-08.ab": 1,
+      "assets/scene/b-09.ab": 1,
+      "assets/scene/b-10.ab": 1,
+      "assets/scene/b-11.ab": 1,
+      "assets/scene/b-12.ab": 1,
+      "assets/scene/b-13.ab": 1,
+      "assets/scene/b-14.ab": 1,
+      "assets/scene/b-15.ab": 1,
+      "assets/scene/b-16.ab": 1,
+      "assets/scene/b-17.ab": 1,
+      "assets/scene/b-18.ab": 1,
+      "assets/scene/b-19.ab": 1,
+      "assets/scene/b-20.ab": 1,
+      "assets/scene/b-21.ab": 1,
+      "assets/scene/b-22.ab": 1,
+      "assets/scene/b-23.ab": 1,
+      "assets/scene/b-24.ab": 1,
+      "assets/scene/b-25.ab": 1,
+      "assets/scene/b-26.ab": 1,
+      "assets/scene/b-27.ab": 1,
+      "assets/scene/b-28.ab": 1,
+      "assets/scene/b-29.ab": 1,
+      "assets/scene/b-30.ab": 1,
+      "assets/scene/b-31.ab": 1,
+      "assets/scene/b-32.ab": 1,
+      "assets/scene/b-33.ab": 2,
+      "assets/scene/b-34.ab": 1,
+      "assets/scene/b-35.ab": 1,
+      "assets/scene/b-36.ab": 1,
+      "assets/scene/b-37.ab": 1,
+      "assets/scene/b-38.ab": 1,
+      "assets/scene/b-39.ab": 2,
+      "assets/scene/b-40.ab": 2,
+      "assets/scene/b-41.ab": 1,
+      "assets/scene/b-42.ab": 1,
+      "assets/scene/b-43.ab": 2,
+      "assets/scene/b-44.ab": 2,
+      "assets/scene/b-45.ab": 2,
+      "assets/scene/b-46.ab": 1,
+      "assets/scene/b-47.ab": 3,
+      "assets/scene/b-48.ab": 1,
+      "assets/scene/b-49.ab": 1,
+      "assets/scene/b-50.ab": 4,
+      "assets/scene/b-51.ab": 2,
+      "assets/scene/b-52.ab": 1,
+      "assets/scene/b-53.ab": 2,
+      "assets/scene/b-54.ab": 2,
+      "assets/scene/b-55.ab": 1,
+      "assets/scene/b-56.ab": 1,
+      "assets/scene/c-01.ab": 1,
+      "assets/scene/c-02.ab": 1,
+      "assets/scene/c-03.ab": 1,
+      "assets/scene/c-04.ab": 1,
+      "assets/scene/c-05.ab": 1,
+      "assets/scene/c-06.ab": 1,
+      "assets/scene/c-07.ab": 1,
+      "assets/scene/c-08.ab": 1,
+      "assets/scene/c-09.ab": 2,
+      "assets/scene/c-10.ab": 1,
+      "assets/scene/c-11.ab": 2,
+      "assets/scene/c-12.ab": 2,
+      "assets/scene/c-13.ab": 1,
+      "assets/scene/c-14.ab": 1,
+      "assets/scene/c-15.ab": 1,
+      "assets/scene/c-16.ab": 2,
+      "assets/scene/c-17.ab": 2,
+      "assets/scene/c-18.ab": 4,
+      "assets/scene/c-19.ab": 2,
+      "assets/scene/c-20.ab": 2,
+      "assets/scene/c-21.ab": 1,
+      "assets/scene/c-22.ab": 1,
+      "assets/scene/c-23.ab": 1,
+      "assets/scene/c-24.ab": 1,
+      "assets/scene/c-25.ab": 2,
+      "assets/scene/c-26.ab": 2,
+      "assets/scene/c-27.ab": 2,
+      "assets/scene/c-28.ab": 1,
+      "assets/scene/c-29.ab": 1,
+      "assets/scene/c-30.ab": 2,
+      "assets/scene/c-31.ab": 1,
+      "assets/scene/c-32.ab": 2,
+      "assets/scene/c-33.ab": 1,
+      "assets/scene/c-34.ab": 1,
+      "assets/scene/c-35.ab": 1,
+      "assets/scene/c-36.ab": 1,
+      "assets/scene/c-37.ab": 1,
+      "assets/scene/c-38.ab": 2,
+      "assets/scene/c-39.ab": 1,
+      "assets/scene/c-40.ab": 1,
+      "assets/scene/c-41.ab": 1,
+      "assets/scene/c-42.ab": 1,
+      "assets/scene/c-43.ab": 1,
+      "assets/scene/c-44.ab": 1,
+      "assets/scene/c-45.ab": 1,
+      "assets/scene/c-46.ab": 1,
+      "assets/scene/c-47.ab": 1,
+      "assets/scene/c-48.ab": 1,
+      "assets/scene/c-49.ab": 1,
+      "assets/scene/c-50.ab": 1,
+      "assets/scene/c-51.ab": 1,
+      "assets/scene/c-52.ab": 1,
+      "assets/scene/c-53.ab": 1,
+      "assets/scene/c-54.ab": 1,
+      "assets/scene/c-55.ab": 1,
+      "assets/scene/c-56.ab": 1,
+      "assets/scene/d-01.ab": 2,
+      "assets/scene/d-02.ab": 1,
+      "assets/scene/d-03.ab": 1,
+      "assets/scene/d-04.ab": 1,
+      "assets/scene/d-05.ab": 1,
+      "assets/scene/d-06.ab": 1,
+      "assets/scene/d-07.ab": 1,
+      "assets/scene/d-08.ab": 1,
+      "assets/scene/d-09.ab": 1,
+      "assets/scene/d-10.ab": 1,
+      "assets/scene/d-11.ab": 1,
+      "assets/scene/d-12.ab": 1,
+      "assets/scene/d-13.ab": 1,
+      "assets/scene/d-14.ab": 1,
+      "assets/scene/d-15.ab": 1,
+      "assets/scene/d-16.ab": 1,
+      "assets/scene/d-17.ab": 1,
+      "assets/scene/d-18.ab": 1,
+      "assets/scene/d-19.ab": 1,
+      "assets/scene/d-20.ab": 1,
+      "assets/scene/d-21.ab": 2,
+      "assets/scene/d-22.ab": 1,
+      "assets/scene/d-23.ab": 1,
+      "assets/scene/d-24.ab": 1,
+      "assets/scene/d-25.ab": 1,
+      "assets/scene/d-26.ab": 1,
+      "assets/scene/d-27.ab": 1,
+      "assets/scene/d-28.ab": 1,
+      "assets/scene/d-29.ab": 1,
+      "assets/scene/d-30.ab": 1,
+      "assets/scene/d-31.ab": 1,
+      "assets/scene/d-32.ab": 1,
+      "assets/scene/d-33.ab": 1,
+      "assets/scene/d-34.ab": 2,
+      "assets/scene/d-35.ab": 1,
+      "assets/scene/d-36.ab": 1,
+      "assets/scene/d-37.ab": 1,
+      "assets/scene/d-38.ab": 1,
+      "assets/scene/d-39.ab": 1,
+      "assets/scene/d-40.ab": 1,
+      "assets/scene/d-41.ab": 1,
+      "assets/scene/d-42.ab": 1,
+      "assets/scene/d-43.ab": 1,
+      "assets/scene/d-44.ab": 1,
+      "assets/scene/d-45.ab": 1,
+      "assets/scene/d-46.ab": 1,
+      "assets/scene/d-47.ab": 1,
+      "assets/scene/d-48.ab": 1,
+      "assets/scene/d-49.ab": 1,
+      "assets/scene/d-50.ab": 1,
+      "assets/scene/d-51.ab": 1,
+      "assets/scene/d-52.ab": 1,
+      "assets/scene/d-53.ab": 1,
+      "assets/scene/d-54.ab": 1,
+      "assets/scene/d-55.ab": 1,
+      "assets/scene/d-56.ab": 1,
+      "assets/scene/junshijidi_terrain_01.ab": 1,
+      "assets/scene/junshijidi_terrain_02.ab": 1,
+      "assets/scene/junshijidi_terrain_03.ab": 1,
+      "assets/scene/junshijidi_terrain_04.ab": 1,
+      "assets/scene/junshijidi_terrain_05.ab": 1,
+      "assets/scene/junshijidi_terrain_06.ab": 2,
+      "assets/scene/junshijidi_terrain_07.ab": 2,
+      "assets/scene/junshijidi_terrain_08.ab": 1,
+      "assets/scene/junshijidi_terrain_09.ab": 1,
+      "assets/scene/junshijidi_terrain_10.ab": 2,
+      "assets/scene/junshijidi_terrain_11.ab": 2,
+      "assets/scene/junshijidi_terrain_12.ab": 1,
+      "assets/scene/junshijidi_terrain_13.ab": 1,
+      "assets/scene/junshijidi_terrain_14.ab": 1,
+      "assets/scene/junshijidi_terrain_15.ab": 1,
+      "assets/scene/junshijidi_terrain_16.ab": 1,
+      "assets/scene/z-01.ab": 1
+    },
+    "source_instances": 400,
+    "terrain_source_instances": 288,
+    "other_source_instances": 112,
+    "render_records": 400,
+    "terrain_render_records": 288,
+    "normal_map_records": 4,
+    "records_with_source_tangents": 20,
+    "normal_map_records_without_source_tangents": [
+      "Terrain_jichang"
+    ],
+    "other_render_records": 112,
+    "vertices": 567906,
+    "triangles": 1005341,
+    "enabled_collision_records": 383,
+    "enabled_source_colliders": 383,
+    "materials": 290,
+    "textures": 323,
+    "texture_formats": {
+      "4": 1,
+      "50": 322
+    },
+    "texture_color_spaces": {
+      "0": 238,
+      "1": 85
+    },
+    "texture_mip_counts": {
+      "1": 101,
+      "9": 1,
+      "10": 217,
+      "11": 4
+    },
+    "null_required_samplers": {
+      "_Splat0": 6,
+      "_Splat0_Normal": 2,
+      "_Splat1": 3,
+      "_Splat1_Normal": 2,
+      "_Splat2": 4,
+      "_Splat2_Normal": 2,
+      "_Splat3_Normal": 1
+    },
+    "shader_variants": {
+      "Yo/Add": {
+        "render_records": 17,
+        "source_instances": 17
+      },
+      "_URP/LambertLit": {
+        "render_records": 95,
+        "source_instances": 95
+      },
+      "_URP/TerrainMeshBase/3 Textures": {
+        "render_records": 160,
+        "source_instances": 160
+      },
+      "_URP/TerrainMeshBase/4 Textures": {
+        "render_records": 128,
+        "source_instances": 128
+      }
+    },
+    "limitations": [
+      "Package contains shipped terrain scene instances and source material/texture evidence; full gameplay is not reconstructed.",
+      "Scene-info placement files are absent from this APK. Legacy model/placement archives have separate, unverified provenance.",
+      "Some source meshes have _NORMALMAP materials but no tangents. Source absence is retained; Bevy uses geometric normals for those records. Original runtime shader LOD and generated attributes remain unknown.",
+      "Exact original lighting and rendering still require visual comparison."
+    ]
+  }
+}

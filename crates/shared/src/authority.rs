@@ -69,6 +69,8 @@ impl InputQueue {
 }
 
 pub struct Authority {
+    pub descriptor: crate::world::WorldDescriptor,
+    pub gameplay: Option<std::sync::Arc<midnight_game_data::GameplayCatalog>>,
     pub world: CollisionWorld,
     pub survival: SurvivalWorld,
     pub tick: ServerTick,
@@ -80,6 +82,8 @@ pub struct Authority {
 impl Authority {
     pub fn new(map: MapId, capacity: usize) -> Self {
         Self {
+            descriptor: crate::world::WorldDescriptor::fixture(map),
+            gameplay: None,
             world: CollisionWorld::new(map),
             survival: SurvivalWorld::new(map),
             tick: ServerTick(0),
@@ -87,6 +91,18 @@ impl Authority {
             capacity: capacity.min(MAX_PLAYERS),
             next_id: 1,
         }
+    }
+
+    pub fn from_loaded_world(
+        loaded: &crate::world::LoadedWorld,
+        world: CollisionWorld,
+        capacity: usize,
+    ) -> Self {
+        let mut authority = Self::new(loaded.descriptor.map, capacity);
+        authority.descriptor = loaded.descriptor.clone();
+        authority.gameplay = loaded.gameplay.clone();
+        authority.world = world;
+        authority
     }
 
     pub fn join(&mut self) -> Result<(PlayerId, PlayerState), &'static str> {

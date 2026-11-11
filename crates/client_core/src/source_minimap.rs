@@ -5,21 +5,17 @@
 use std::{collections::BTreeMap, path::Path};
 
 use bevy::prelude::*;
-use bevy_egui::{EguiContexts, egui};
 use midnight_map_data::SourceObject;
 use midnight_ui_data::{ComponentProjection, HierarchyNode, UiError, layout::CanvasViewport};
 use serde::Serialize;
 use shared::map_projection;
 
-use crate::source_ui::{
-    PanelRenderReport, SourcePanelRenderer, SourceUiBindings, SourceUiInstance,
-};
+use crate::source_ui::{PanelFrame, SourcePanelRenderer, SourceUiBindings, SourceUiInstance};
 
-pub const SOURCE_UI_PACKAGE: &str =
-    "imported_ui/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df-v1";
+pub const SOURCE_UI_PACKAGE: &str = "imported_ui/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df-v1-panels-e1739e152490099d";
 pub const SOURCE_APK_SHA256: &str =
     "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df";
-pub const PANEL_SIZE: [f32; 2] = [360.0, 363.0];
+pub const PANEL_SIZE: [f32; 2] = crate::hud::MINIMAP_PANEL_SIZE;
 pub const MAP_DIAMETER: f32 = 260.0;
 pub const DEFAULT_ZOOM: f32 = 15.0;
 const HEADER_GUTTER: f32 = 32.5;
@@ -179,15 +175,19 @@ struct NodeInfo {
 }
 
 pub struct NativeMinimap {
-    renderer: SourcePanelRenderer,
+    pub(crate) renderer: SourcePanelRenderer,
     nodes: BTreeMap<SourceObject, NodeInfo>,
     base: SourceUiBindings,
     zoom: f32,
 }
 
 impl NativeMinimap {
-    pub fn load(root: &Path, context: &egui::Context) -> Result<Self, UiError> {
-        let mut renderer = SourcePanelRenderer::load(root, "BattleMinimap", context)?;
+    pub fn load(
+        root: &Path,
+        images: &mut Assets<Image>,
+        fonts: &mut Assets<Font>,
+    ) -> Result<Self, UiError> {
+        let mut renderer = SourcePanelRenderer::load(root, "BattleMinimap", images, fonts)?;
         if renderer.panel.source_apk_sha256 != SOURCE_APK_SHA256
             || renderer.panel.root.source != source(ROOT)
         {
@@ -371,7 +371,7 @@ impl NativeMinimap {
                 .ok_or_else(|| invalid("generic template Image is absent"))?,
             atlas_sprite("7901072812560143050"),
         );
-        renderer.prepare_bindings(&base, context)?;
+        renderer.prepare_bindings(&base, images)?;
         Ok(Self {
             renderer,
             nodes,
@@ -400,7 +400,7 @@ impl NativeMinimap {
 
     pub fn bindings(
         &self,
-        rect: egui::Rect,
+        rect: Rect,
         viewport: CanvasViewport,
         state: &MinimapState,
         pixels_per_point: f32,
@@ -429,9 +429,8 @@ impl NativeMinimap {
         bindings.anchored_positions.insert(
             self.nodes[&source(ROOT)].transform.clone(),
             [
-                (rect.right() * pixels_per_point - viewport.pixels[0] as f32)
-                    / viewport.scale_factor,
-                -rect.top() * pixels_per_point / viewport.scale_factor - HEADER_GUTTER,
+                (rect.max.x * pixels_per_point - viewport.pixels[0] as f32) / viewport.scale_factor,
+                -rect.min.y * pixels_per_point / viewport.scale_factor - HEADER_GUTTER,
             ],
         );
         bindings.text.insert(
@@ -594,29 +593,18 @@ impl NativeMinimap {
         Ok(())
     }
 
-    pub fn paint(
+    pub fn frame(
         &mut self,
-        painter: &egui::Painter,
-        rect: egui::Rect,
-        source_scale: f32,
+        rect: Rect,
+        viewport: CanvasViewport,
         state: &MinimapState,
-    ) -> Result<PanelRenderReport, UiError> {
-        let pixels_per_point = painter.ctx().pixels_per_point();
-        let screen = painter.ctx().input(|input| input.viewport_rect());
-        let viewport = CanvasViewport {
-            pixels: [
-                (screen.right() * pixels_per_point).round().max(1.0) as u32,
-                (screen.bottom() * pixels_per_point).round().max(1.0) as u32,
-            ],
-            scale_factor: source_scale * pixels_per_point,
-        };
-        let bindings = self.bindings(rect, viewport, state, pixels_per_point)?;
-        let mut report = self.renderer.paint(painter, viewport, 100.0, &bindings)?;
-        report.limitations.retain(|detail| {
-            !detail.starts_with("The caller supplies") && !detail.starts_with("Empty bindings")
-        });
-        report.limitations.push("Native HUD policy binds the retained BattleMapPanel Map_map texture to BattleMinimap, uses the shared provisional overview extent, player-centered UV zoom (default 15), and native marker/lifecycle bindings. Original minimap texture assignment and live Unity UV/zoom/scale behavior remain unverified.".into());
-        Ok(report)
+        dpi: f32,
+        images: &mut Assets<Image>,
+    ) -> Result<PanelFrame, UiError> {
+        let bindings = self.bindings(rect, viewport, state, dpi)?;
+        let mut frame = self.renderer.frame(viewport, 100.0, &bindings, images)?;
+        frame.report.limitations.push("The native minimap uses source layout/assets and explicit Bevy bindings; the original live crop/zoom policy remains unobserved.".into());
+        Ok(frame)
     }
 }
 
@@ -643,31 +631,9 @@ pub(crate) struct SourceMinimapHud {
     pub error: Option<String>,
 }
 
-pub(crate) fn prepare_native_minimap(
-    mut contexts: EguiContexts,
-    mut hud: ResMut<SourceMinimapHud>,
-) {
-    if hud.minimap.is_some() || hud.error.is_some() {
-        return;
-    }
-    let Ok(context) = contexts.ctx_mut() else {
-        return;
-    };
-    match NativeMinimap::load(
-        &shared::level::asset_root().join(SOURCE_UI_PACKAGE),
-        context,
-    ) {
-        Ok(minimap) => hud.minimap = Some(minimap),
-        Err(error) => {
-            warn!("Native source minimap could not load: {error}");
-            hud.error = Some(error.to_string());
-        }
-    }
-}
-
 pub(crate) fn state_from_simulation(ctx: &crate::hud_painter::MinimapContext<'_>) -> MinimapState {
     use crate::hud_painter::SoundCueKind;
-    use shared::survival::{ResourceKind, StructureKind, cargo_ship_transform};
+    use shared::survival::{ResourceKind, StructureKind};
     let mut state = MinimapState {
         player_position: ctx.player_position,
         yaw: ctx.yaw,
@@ -729,14 +695,6 @@ pub(crate) fn state_from_simulation(ctx: &crate::hud_painter::MinimapContext<'_>
             intensity: 1.0,
         });
     }
-    let (cargo, yaw) = cargo_ship_transform(ctx.tick);
-    state.markers.push(MinimapMarker {
-        key: "cargo".into(),
-        kind: MinimapMarkerKind::Cargo,
-        world_xz: [cargo[0], cargo[2]],
-        yaw,
-        intensity: 1.0,
-    });
     for (index, cue) in ctx.sound_cues.iter().enumerate() {
         state.markers.push(MinimapMarker {
             key: format!("sound:{index}"),
@@ -760,7 +718,6 @@ pub(crate) fn state_from_simulation(ctx: &crate::hud_painter::MinimapContext<'_>
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::hud::{HudLayout, WidgetId};
 
     fn assert_pair(actual: [f32; 2], expected: [f32; 2], tolerance: f32) {
         for axis in 0..2 {
@@ -921,207 +878,101 @@ mod tests {
             .expect("gunfire binding");
         assert_eq!(sound.intensity, 0.4);
         assert_eq!(sound.world_xz, [0.0, -100.0]);
-    }
-
-    fn native() -> (NativeMinimap, egui::Context) {
-        let context = egui::Context::default();
-        let native = NativeMinimap::load(
-            &shared::level::asset_root().join(SOURCE_UI_PACKAGE),
-            &context,
-        )
-        .expect("verified lite4.0 UI package");
-        (native, context)
-    }
-
-    fn render(
-        native: &mut NativeMinimap,
-        context: &egui::Context,
-        pixels: [u32; 2],
-        dpi: f32,
-        state: &MinimapState,
-    ) -> PanelRenderReport {
-        context.set_zoom_factor(1.0);
-        let logical = pixels.map(|value| value as f32 / dpi);
-        let placement =
-            HudLayout::default().widgets[&WidgetId::Minimap].placement(WidgetId::Minimap, logical);
-        let rect = egui::Rect::from_min_size(
-            egui::Pos2::from(placement.position),
-            egui::Vec2::from(placement.size),
-        );
-        let mut report = None;
-        let mut input = egui::RawInput {
-            screen_rect: Some(egui::Rect::from_min_size(
-                egui::Pos2::ZERO,
-                egui::Vec2::from(logical),
-            )),
-            ..Default::default()
-        };
-        input
-            .viewports
-            .entry(egui::ViewportId::ROOT)
-            .or_default()
-            .native_pixels_per_point = Some(dpi);
-        context
-            .run_ui(input, |ui| {
-                report = Some(
-                    native
-                        .paint(ui.painter(), rect, placement.render_scale, state)
-                        .expect("native HUD paint"),
-                );
-            })
-            .drop_without_applying_deltas();
-        let report = report.expect("render report");
-        assert_eq!(report.viewport.pixels, pixels);
-        report
-    }
-
-    fn graphic_center(report: &PanelRenderReport, instance: &str) -> Vec2 {
-        let corners = report
-            .graphics
-            .iter()
-            .find(|graphic| graphic.instance.as_deref() == Some(instance))
-            .expect("runtime instance")
-            .screen_corners
-            .expect("source rect");
-        (Vec2::from_array(corners[0]) + Vec2::from_array(corners[2])) * 0.5
-    }
-
-    #[test]
-    #[ignore = "requires the extracted lite4.0 UI package"]
-    fn source_hud_geometry_tracks_cardinal_headings_movement_and_dpi() {
-        let (mut native, context) = native();
-        let mut state = MinimapState {
-            player_position: [2250.0, 80.0, -700.0],
-            waypoint: Some([2500.0, -700.0]),
-            markers: vec![MinimapMarker {
-                key: "landmark".into(),
-                kind: MinimapMarkerKind::Tree,
-                world_xz: [2310.0, -780.0],
-                yaw: 0.0,
-                intensity: 1.0,
-            }],
-            ..Default::default()
-        };
-        for (pixels, dpi) in [([1920, 1080], 1.0), ([1280, 720], 1.0), ([3840, 2160], 2.0)] {
-            for yaw in [
-                0.0,
-                std::f32::consts::FRAC_PI_2,
-                std::f32::consts::PI,
-                -std::f32::consts::FRAC_PI_2,
-            ] {
-                state.yaw = yaw;
-                let report = render(&mut native, &context, pixels, dpi, &state);
-                assert!(
-                    !report
-                        .graphics
-                        .iter()
-                        .any(|graphic| graphic.status == "unsupported")
-                );
-                let player = graphic_center(&report, "player-arrow");
-                let map = report
-                    .graphics
-                    .iter()
-                    .find(|graphic| graphic.component == source(MAP_RAW_IMAGE))
-                    .expect("bound RawImage");
-                assert_eq!(map.status, "submitted");
-                let map_corners = map.screen_corners.expect("map rect");
-                let map_center =
-                    (Vec2::from_array(map_corners[0]) + Vec2::from_array(map_corners[2])) * 0.5;
-                assert_pair(player.to_array(), map_center.to_array(), 0.01);
-                // The source arrow tip and the broad end of the view-cone art
-                // face +Y. Both must face the player's movement direction.
-                for instance in ["player-arrow", "player-cone"] {
-                    let corners = report
-                        .graphics
-                        .iter()
-                        .find(|graphic| graphic.instance.as_deref() == Some(instance))
-                        .expect("player marker")
-                        .screen_corners
-                        .expect("player marker rect");
-                    let center = graphic_center(&report, instance);
-                    assert_pair(center.to_array(), player.to_array(), 0.01);
-                    let heading = ((Vec2::from_array(corners[2]) + Vec2::from_array(corners[3]))
-                        * 0.5
-                        - center)
-                        .normalize();
-                    assert_pair(heading.to_array(), [-yaw.sin(), -yaw.cos()], 0.0001);
-                }
-                let marker = graphic_center(&report, "marker:landmark");
-                let offset = native.projection(&state).world_to_local([2310.0, -780.0]);
-                assert_pair(
-                    (marker - player).to_array(),
-                    [
-                        offset[0] * report.viewport.scale_factor,
-                        -offset[1] * report.viewport.scale_factor,
-                    ],
-                    0.01,
-                );
-            }
-        }
-        let before = render(&mut native, &context, [1920, 1080], 1.0, &state);
-        state.player_position[0] += 40.0;
-        let after = render(&mut native, &context, [1920, 1080], 1.0, &state);
         assert!(
-            graphic_center(&after, "marker:landmark").x
-                < graphic_center(&before, "marker:landmark").x
+            !state
+                .markers
+                .iter()
+                .any(|marker| marker.kind == MinimapMarkerKind::Cargo)
         );
-        assert_ne!(before.bindings["uv_rects"], after.bindings["uv_rects"]);
     }
 
     #[test]
-    #[ignore = "requires the extracted lite4.0 UI package"]
-    fn source_instances_respect_parent_visibility_and_invalid_bindings_fail() {
-        let (mut native, context) = native();
+    #[ignore = "requires the retained APK-derived UI asset package"]
+    fn native_bevy_ui_asset_bindings_keep_map_player_and_qualified_targets() {
+        let root = shared::level::asset_root().join(SOURCE_UI_PACKAGE);
+        let mut images = Assets::<Image>::default();
+        let mut fonts = Assets::<Font>::default();
+        let mut native =
+            NativeMinimap::load(&root, &mut images, &mut fonts).expect("verified source minimap");
         let viewport = CanvasViewport {
-            pixels: [1920, 1080],
-            scale_factor: 1.0,
+            pixels: [960, 540],
+            scale_factor: 0.5,
         };
-        let rect =
-            egui::Rect::from_min_size(egui::pos2(1540.0, 20.0), egui::Vec2::from(PANEL_SIZE));
-        let state = MinimapState::default();
-        let bindings = native
+        let rect = Rect::from_corners(Vec2::new(780.0, 10.0), Vec2::new(960.0, 191.5));
+        let state = MinimapState {
+            player_position: [2250.0, 84.0, -700.0],
+            yaw: -std::f32::consts::FRAC_PI_2,
+            waypoint: Some([2370.0, -700.0]),
+            ..Default::default()
+        };
+        let frame = native
+            .frame(rect, viewport, &state, 1.0, &mut images)
+            .expect("source frame");
+        assert!(
+            frame
+                .report
+                .graphics
+                .iter()
+                .any(|g| g.kind == "raw_image" && g.status == "submitted")
+        );
+        assert!(
+            frame
+                .report
+                .graphics
+                .iter()
+                .any(|g| g.instance.as_deref() == Some("player-arrow") && g.status == "submitted")
+        );
+        assert!(
+            !frame
+                .report
+                .graphics
+                .iter()
+                .any(|g| g.status == "unsupported"),
+            "unsupported active graphics: {:#?}",
+            frame
+                .report
+                .graphics
+                .iter()
+                .filter(|g| g.status == "unsupported")
+                .collect::<Vec<_>>()
+        );
+        assert!(frame.graphics.iter().any(|g| matches!(g, crate::source_ui::PreparedGraphic::Image {atlas, ..} if images.get(atlas).is_some())));
+        let coordinate = native
+            .nodes
+            .values()
+            .find(|node| node.path.ends_with("/txt_coordinate"))
+            .expect("source coordinate Text");
+        let mut invisible = native
             .bindings(rect, viewport, &state, 1.0)
-            .expect("bindings");
-        let mut wrong = bindings.clone();
-        let mut wrong_cab = source(MAP_RAW_IMAGE);
-        wrong_cab.cab = "CAB-wrong".into();
-        wrong.uv_rects.insert(wrong_cab, [0.0, 0.0, 1.0, 1.0]);
-        assert!(native.renderer.prepare_bindings(&wrong, &context).is_err());
-        wrong = bindings.clone();
-        wrong
-            .local_rotations
-            .insert(source("-3798366094520507772"), [0.0; 4]);
-        assert!(native.renderer.prepare_bindings(&wrong, &context).is_err());
-        wrong = bindings.clone();
-        wrong.instances.push(wrong.instances[0].clone());
-        assert!(native.renderer.prepare_bindings(&wrong, &context).is_err());
-        let mut hidden = bindings;
-        hidden
-            .visibility
-            .insert(source("-4394325854588574010"), false);
-        context
-            .run_ui(
-                egui::RawInput {
-                    screen_rect: Some(egui::Rect::from_min_size(
-                        egui::Pos2::ZERO,
-                        egui::vec2(1920.0, 1080.0),
-                    )),
-                    ..Default::default()
-                },
-                |ui| {
-                    let report = native
-                        .renderer
-                        .paint(ui.painter(), viewport, 100.0, &hidden)
-                        .expect("hidden parent render");
-                    let instances: Vec<_> = report
-                        .graphics
-                        .iter()
-                        .filter(|graphic| graphic.instance.is_some())
-                        .collect();
-                    assert_eq!(instances.len(), 2);
-                    assert!(instances.iter().all(|graphic| graphic.status == "inactive"));
-                },
-            )
-            .drop_without_applying_deltas();
+            .expect("native bindings");
+        invisible
+            .local_scales
+            .insert(coordinate.transform.clone(), [0.0; 3]);
+        let invisible = native
+            .renderer
+            .frame(viewport, 100.0, &invisible, &mut images)
+            .expect("zero-area source text");
+        assert!(invisible.report.graphics.iter().any(|g| {
+            g.path.ends_with("/txt_coordinate") && g.kind == "text" && g.status == "empty"
+        }));
+        let mut invalid = SourceUiBindings::default();
+        invalid.raw_images.insert(source(ROOT), map_texture());
+        assert!(
+            native
+                .renderer
+                .frame(viewport, 100.0, &invalid, &mut images)
+                .is_err()
+        );
+        assert!(
+            native
+                .renderer
+                .frame(
+                    viewport,
+                    f32::NAN,
+                    &SourceUiBindings::default(),
+                    &mut images
+                )
+                .is_err()
+        );
     }
 }

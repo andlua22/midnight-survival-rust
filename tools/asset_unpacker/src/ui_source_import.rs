@@ -1,9 +1,9 @@
 //! Extract selected prefab hierarchies and their graphics directly from a pinned APK.
 
 use std::{
-    collections::{BTreeMap, BTreeSet, HashSet, VecDeque},
+    collections::{BTreeMap, BTreeSet, VecDeque},
     fs::File,
-    io::{BufReader, Read},
+    io::BufReader,
     path::{Path, PathBuf},
     sync::Arc,
     time::{Instant, SystemTime, UNIX_EPOCH},
@@ -14,14 +14,14 @@ use midnight_map_data::{FileIdentity, TextureAsset};
 use serde::Serialize;
 use serde_json::{Value, json};
 use sha2::{Digest, Sha256};
-use unity_asset_binary::{bundle::load_bundle_from_memory, object::UnityObject};
+use unity_asset_binary::object::UnityObject;
 use unity_asset_core::UnityValue;
 
 use crate::{
     fields::{array, bytes, field, integer, invalid, number, property, text, vector},
     pass1_index::GlobalIndex,
     resolver::{ObjectId, Resolver},
-    unity::{Error, cab_name, read_object, source_apk},
+    unity::{Apk, BundleLimits, Error, cab_name, parse_bundle, read_object, source_apk},
 };
 
 use super::{font, sprite, types::*, verifier};
@@ -54,6 +54,98 @@ pub(super) const PANELS: [(&str, &str, &str); 3] = [
     ),
 ];
 
+pub(super) type PanelSelection = Vec<(String, String, String)>;
+
+pub(super) fn selected_panels(extra: &[String]) -> Result<PanelSelection, Error> {
+    if extra.is_empty() {
+        return Ok(PANELS
+            .iter()
+            .map(|(name, member, filename)| ((*name).into(), (*member).into(), (*filename).into()))
+            .collect());
+    }
+    let mut panels = PANELS
+        .iter()
+        .map(|(name, member, filename)| ((*name).into(), ((*member).into(), (*filename).into())))
+        .collect::<BTreeMap<String, (String, String)>>();
+    for argument in extra {
+        let (name, member) = argument
+            .split_once('=')
+            .ok_or_else(|| invalid("--ui-panel expects Name=assets/ui/member.ab"))?;
+        if name.is_empty()
+            || !name
+                .bytes()
+                .all(|byte| byte.is_ascii_alphanumeric() || byte == b'_')
+            || !member.starts_with("assets/ui/")
+            || !member.ends_with(".ab")
+            || member.contains("..")
+        {
+            return Err(invalid("invalid source UI panel name or bundle path"));
+        }
+        if let Some((previous, _)) = panels.get(name)
+            && previous != member
+        {
+            return Err(invalid(format!("conflicting bundle for UI panel {name}")));
+        }
+        panels.insert(name.into(), (member.into(), name.to_ascii_lowercase()));
+    }
+    let selected = panels
+        .into_iter()
+        .map(|(name, (member, filename))| (name, member, filename))
+        .collect::<Vec<_>>();
+    validate_selection(&selected)?;
+    Ok(selected)
+}
+
+pub(super) fn validate_selection(selected: &PanelSelection) -> Result<(), Error> {
+    if selected.len() < PANELS.len() || selected.len() > 64 {
+        return Err(invalid("invalid selected UI panel count"));
+    }
+    let names = selected
+        .iter()
+        .map(|(name, _, _)| name)
+        .collect::<BTreeSet<_>>();
+    let bundles = selected
+        .iter()
+        .map(|(_, member, _)| member)
+        .collect::<BTreeSet<_>>();
+    let filenames = selected
+        .iter()
+        .map(|(_, _, filename)| filename)
+        .collect::<BTreeSet<_>>();
+    if names.len() != selected.len()
+        || bundles.len() != selected.len()
+        || filenames.len() != selected.len()
+    {
+        return Err(invalid("duplicate UI panel selection identity"));
+    }
+    for (name, member, _) in PANELS {
+        if !selected.iter().any(|(selected_name, selected_member, _)| {
+            selected_name == name && selected_member == member
+        }) {
+            return Err(invalid(
+                "expanded UI selection must retain all three verified battle panels",
+            ));
+        }
+    }
+    for (name, member, filename) in selected {
+        if name.is_empty()
+            || !name
+                .bytes()
+                .all(|byte| byte.is_ascii_alphanumeric() || byte == b'_')
+            || !member.starts_with("assets/ui/")
+            || !member.ends_with(".ab")
+            || member.contains("..")
+            || filename.is_empty()
+            || !filename
+                .bytes()
+                .all(|byte| byte.is_ascii_alphanumeric() || byte == b'_')
+        {
+            return Err(invalid("unsafe selected UI identity"));
+        }
+    }
+    Ok(())
+}
+
 struct Discovery {
     index: GlobalIndex,
     classes: BTreeMap<ObjectId, i32>,
@@ -62,14 +154,12 @@ struct Discovery {
 
 /// Only the selected prefabs and their declared dependency closure are indexed.
 /// The legacy global index has no APK identity and is never an input to this pass.
-fn discover(apk: &Path) -> Result<Discovery, Error> {
-    let mut archive = zip::ZipArchive::new(File::open(apk)?)?;
-    let members: HashSet<String> = (0..archive.len())
-        .map(|index| Ok(archive.by_index_raw(index)?.name().to_owned()))
-        .collect::<Result<_, zip::result::ZipError>>()?;
-    let mut queue: VecDeque<String> = PANELS
+fn discover(apk: &Path, selected: &PanelSelection) -> Result<Discovery, Error> {
+    let mut archive = Apk::open(apk)?;
+    let members = archive.members()?.into_iter().collect::<BTreeSet<_>>();
+    let mut queue: VecDeque<String> = selected
         .iter()
-        .map(|(_, member, _)| (*member).into())
+        .map(|(_, member, _)| member.clone())
         .collect();
     let mut seen = BTreeSet::new();
     let mut index = GlobalIndex::default();
@@ -84,11 +174,10 @@ fn discover(apk: &Path) -> Result<Discovery, Error> {
                 "APK is missing declared UI bundle {member}"
             )));
         }
-        let mut data = Vec::new();
-        archive.by_name(&member)?.read_to_end(&mut data)?;
+        let data = archive.member_data(&member)?;
         let hash = format!("{:x}", Sha256::digest(&data));
         let byte_count = data.len() as u64;
-        let bundle = load_bundle_from_memory(data)?;
+        let bundle = parse_bundle(data, BundleLimits::default())?;
         if bundle.assets.len() != bundle.asset_names.len() || bundle.assets.is_empty() {
             return Err(invalid(format!(
                 "{member}: malformed serialized file inventory"
@@ -98,12 +187,12 @@ fn discover(apk: &Path) -> Result<Discovery, Error> {
         let mut cabs = Vec::new();
         for (asset_name, asset) in bundle.asset_names.iter().zip(&bundle.assets) {
             let cab = cab_name(asset_name).to_owned();
-            if let Some(previous) = index.cabs.insert(cab.clone(), member.clone()) {
-                if previous != member {
-                    return Err(invalid(format!(
-                        "CAB {cab} appears in both {previous} and {member}"
-                    )));
-                }
+            if let Some(previous) = index.cabs.insert(cab.clone(), member.clone())
+                && previous != member
+            {
+                return Err(invalid(format!(
+                    "CAB {cab} appears in both {previous} and {member}"
+                )));
             }
             for info in &asset.objects {
                 let id = ObjectId {
@@ -1072,16 +1161,33 @@ fn write_json<T: Serialize>(root: &Path, relative: &str, value: &T) -> Result<Fi
 }
 
 pub(super) fn run(apk: &Path, out_dir: &Path) -> Result<(), Error> {
+    run_selected(apk, out_dir, &[])
+}
+
+pub(super) fn run_selected(apk: &Path, out_dir: &Path, extra: &[String]) -> Result<(), Error> {
     let start = Instant::now();
     eprintln!("PASS 3: source UI extraction from {}", apk.display());
     let source = source_apk(apk)?;
     let imported = out_dir.join("imported_ui");
-    let canonical = imported.join(format!("{}-v{SCHEMA_VERSION}", source.sha256));
+    let selected = selected_panels(extra)?;
+    let selection_bytes = serde_json::to_vec(&selected)?;
+    let selection_digest = format!("{:x}", Sha256::digest(&selection_bytes));
+    let revision = if extra.is_empty() {
+        String::new()
+    } else {
+        format!("-panels-{}", &selection_digest[..16])
+    };
+    let canonical = imported.join(format!("{}-v{SCHEMA_VERSION}{revision}", source.sha256));
     let stamp = SystemTime::now().duration_since(UNIX_EPOCH)?.as_nanos();
     let output = imported.join(format!(".ui-import-{}-{stamp}", std::process::id()));
     std::fs::create_dir_all(&imported)?;
     std::fs::create_dir(&output)?;
-    let discovery = discover(apk)?;
+    let discovery = discover(apk, &selected)?;
+    let panel_selection = if extra.is_empty() {
+        None
+    } else {
+        Some(write_json(&output, "panel_selection.json", &selected)?)
+    };
     // Convert hash maps to ordered JSON keys so repeated imports have stable identities.
     let dependency_index = write_json(
         &output,
@@ -1090,7 +1196,7 @@ pub(super) fn run(apk: &Path, out_dir: &Path) -> Result<(), Error> {
     )?;
     let mut importer = Importer::new(apk, &discovery, output.clone())?;
     let mut panels = Vec::new();
-    for (name, member, filename) in PANELS {
+    for (name, member, filename) in &selected {
         match importer.panel(name, member, &source.sha256) {
             Ok(panel) => {
                 eprintln!(
@@ -1102,8 +1208,8 @@ pub(super) fn run(apk: &Path, out_dir: &Path) -> Result<(), Error> {
                 );
                 let layout = write_json(&output, &format!("panels/{filename}.json"), &panel)?;
                 panels.push(PanelSummary {
-                    name: name.into(),
-                    bundle: member.into(),
+                    name: name.clone(),
+                    bundle: member.clone(),
                     layout: Some(layout),
                     hierarchy_complete: true,
                     stats: Some(panel.stats),
@@ -1118,8 +1224,8 @@ pub(super) fn run(apk: &Path, out_dir: &Path) -> Result<(), Error> {
                     format!("{name}: {error}"),
                 );
                 panels.push(PanelSummary {
-                    name: name.into(),
-                    bundle: member.into(),
+                    name: name.clone(),
+                    bundle: member.clone(),
                     layout: None,
                     hierarchy_complete: false,
                     stats: None,
@@ -1139,7 +1245,7 @@ pub(super) fn run(apk: &Path, out_dir: &Path) -> Result<(), Error> {
         );
     }
     let hierarchy_complete =
-        panels.len() == PANELS.len() && panels.iter().all(|panel| panel.hierarchy_complete);
+        panels.len() == selected.len() && panels.iter().all(|panel| panel.hierarchy_complete);
     let graphics_complete = importer.deferred_textures.is_empty()
         && !importer
             .issues
@@ -1160,7 +1266,7 @@ pub(super) fn run(apk: &Path, out_dir: &Path) -> Result<(), Error> {
         .filter(|issue| issue.severity == "warning")
         .count();
     let manifest = UiManifest {
-        schema_version: SCHEMA_VERSION, source_apk: source, dependency_index, bundles: discovery.bundles.clone(), panels,
+        schema_version: SCHEMA_VERSION, source_apk: source, dependency_index, panel_selection, bundles: discovery.bundles.clone(), panels,
         sprites: importer.sprites.into_values().collect(), textures: importer.textures.into_values().collect(),
         deferred_textures: importer.deferred_textures.into_values().collect(),
         fonts: importer.fonts.into_values().collect(), source_objects: importer.records.into_values().collect(),
@@ -1229,6 +1335,26 @@ mod tests {
     use super::*;
     use unity_asset_binary::asset::ObjectInfo;
     use unity_asset_core::UnityClass;
+
+    #[test]
+    fn explicit_panel_selection_preserves_baseline_and_checks_conflicts() {
+        let baseline = selected_panels(&[]).unwrap();
+        assert_eq!(baseline[0].0, "BattleMinimap");
+        assert_eq!(baseline[1].0, "BattlePanel");
+        let expanded = selected_panels(&[
+            "BagAndBuildPanel=assets/ui/bagandbuildpanel.ab".into(),
+            "DeathPanel=assets/ui/deathpanel.ab".into(),
+        ])
+        .unwrap();
+        assert_eq!(expanded.len(), 5);
+        assert!(selected_panels(&["BattlePanel=assets/ui/other.ab".into()]).is_err());
+        assert!(selected_panels(&["Escape=assets/ui/../elsewhere.ab".into()]).is_err());
+        let missing_base = expanded
+            .into_iter()
+            .filter(|(name, _, _)| name != "BattlePanel")
+            .collect();
+        assert!(validate_selection(&missing_base).is_err());
+    }
 
     #[test]
     fn non_finite_source_values_have_explicit_json_tags_and_parsed_bits() {

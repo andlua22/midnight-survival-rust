@@ -10,6 +10,7 @@ use unity_asset_core::UnityValue;
 use unity_asset_decode::texture::Texture2DConverter;
 
 use crate::{
+    bundle_cache::{BundleCache, CacheStats},
     fields::{array, field, integer, invalid, number, pairs, property, text, vector},
     pass1_index::GlobalIndex,
     unity::{Apk, Error, cab_name, read_object, texture_version},
@@ -43,7 +44,7 @@ impl ObjectId {
 pub struct Resolver<'a> {
     pub apk: Apk,
     index: &'a GlobalIndex,
-    bundles: BTreeMap<String, Arc<AssetBundle>>,
+    bundles: BundleCache<AssetBundle>,
     textures: BTreeMap<ObjectId, TextureAsset>,
     shaders: BTreeMap<ObjectId, ShaderInfo>,
 }
@@ -53,7 +54,7 @@ impl<'a> Resolver<'a> {
         Ok(Self {
             apk: Apk::open(apk)?,
             index,
-            bundles: BTreeMap::new(),
+            bundles: BundleCache::new(16, 256 * 1024 * 1024),
             textures: BTreeMap::new(),
             shaders: BTreeMap::new(),
         })
@@ -61,11 +62,16 @@ impl<'a> Resolver<'a> {
 
     pub fn bundle(&mut self, member: &str) -> Result<Arc<AssetBundle>, Error> {
         if let Some(bundle) = self.bundles.get(member) {
-            return Ok(bundle.clone());
+            return Ok(bundle);
         }
         let bundle = Arc::new(self.apk.bundle(member)?);
-        self.bundles.insert(member.to_owned(), bundle.clone());
+        self.bundles
+            .insert(member.to_owned(), bundle.clone(), bundle.size());
         Ok(bundle)
+    }
+
+    pub fn cache_stats(&self) -> CacheStats {
+        self.bundles.stats()
     }
 
     pub fn object(&mut self, id: &ObjectId) -> Result<UnityObject, Error> {
@@ -82,6 +88,46 @@ impl<'a> Resolver<'a> {
             .find(|object| object.path_id == id.path_id)
             .ok_or_else(|| invalid(format!("{}:{}: missing object", id.cab, id.path_id)))?;
         read_object(asset, info)
+    }
+
+    /// Supply an external vertex stream to the decoder without modifying retained source bytes.
+    pub fn mesh_object(&mut self, id: &ObjectId) -> Result<UnityObject, Error> {
+        let mut object = self.object(id)?;
+        let vertex_data = property(&object, "m_VertexData")?;
+        let embedded = field(vertex_data, "m_DataSize")?;
+        let empty = embedded.as_bytes().is_some_and(|bytes| bytes.is_empty())
+            || embedded.as_array().is_some_and(|values| values.is_empty());
+        if !empty {
+            return Ok(object);
+        }
+        let Some(stream) = object.class.properties().get("m_StreamData") else {
+            return Ok(object);
+        };
+        let size = usize::try_from(integer(field(stream, "size")?)?)?;
+        let offset = usize::try_from(integer(field(stream, "offset")?)?)?;
+        let path = text(field(stream, "path")?)?;
+        if size == 0 {
+            return Ok(object);
+        }
+        let bundle = self.bundle(&id.bundle)?;
+        let file = bundle
+            .files
+            .iter()
+            .find(|file| file.name == path || cab_name(&file.name) == cab_name(path))
+            .ok_or_else(|| invalid(format!("missing mesh stream {path}")))?;
+        let data = bundle.extract_file_slice(file)?;
+        let end = offset
+            .checked_add(size)
+            .ok_or_else(|| invalid("mesh stream offset overflow"))?;
+        let payload = data
+            .get(offset..end)
+            .ok_or_else(|| invalid("truncated external mesh stream"))?;
+        let mut vertex_data = vertex_data.clone();
+        if let UnityValue::Object(fields) = &mut vertex_data {
+            fields.insert("m_DataSize".into(), UnityValue::Bytes(payload.to_vec()));
+        }
+        object.class.set("m_VertexData".into(), vertex_data);
+        Ok(object)
     }
 
     pub fn resolve(
@@ -315,6 +361,25 @@ impl<'a> Resolver<'a> {
     }
 
     pub fn material(&mut self, id: &ObjectId, output: &Path) -> Result<SourceMaterial, Error> {
+        let (material, _) = self.material_decoded(id, output, false)?;
+        Ok(material)
+    }
+
+    /// Non-2D sampler identities are retained explicitly by the prefab manifest.
+    pub fn prefab_material(
+        &mut self,
+        id: &ObjectId,
+        output: &Path,
+    ) -> Result<(SourceMaterial, BTreeMap<String, SourceObject>), Error> {
+        self.material_decoded(id, output, true)
+    }
+
+    fn material_decoded(
+        &mut self,
+        id: &ObjectId,
+        output: &Path,
+        retain_unsupported: bool,
+    ) -> Result<(SourceMaterial, BTreeMap<String, SourceObject>), Error> {
         let object = self.object(id)?;
         let name = text(property(&object, "m_Name")?)?.to_owned();
         let shader = self.required_ref(id, property(&object, "m_Shader")?)?;
@@ -329,11 +394,19 @@ impl<'a> Resolver<'a> {
             .map(|(name, value)| Ok((name.to_owned(), vector(value, ["r", "g", "b", "a"])?)))
             .collect::<Result<_, Error>>()?;
         let mut textures = BTreeMap::new();
+        let mut unsupported = BTreeMap::new();
         for (name, environment) in pairs(field(saved, "m_TexEnvs")?)? {
-            let texture = self
-                .resolve(id, field(environment, "m_Texture")?)?
-                .map(|texture| self.texture(&texture, output))
-                .transpose()?;
+            let texture =
+                if let Some(texture) = self.resolve(id, field(environment, "m_Texture")?)? {
+                    if retain_unsupported && self.object(&texture)?.info.type_id != 28 {
+                        unsupported.insert(name.to_owned(), texture.source());
+                        None
+                    } else {
+                        Some(self.texture(&texture, output)?)
+                    }
+                } else {
+                    None
+                };
             textures.insert(
                 name.to_owned(),
                 TextureBinding {
@@ -377,6 +450,6 @@ impl<'a> Resolver<'a> {
                 }
             }
         }
-        Ok(material)
+        Ok((material, unsupported))
     }
 }

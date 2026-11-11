@@ -1,0 +1,24 @@
+{
+  "package": "assets/imported_prefabs/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df/building_chaoshi_01-3be4bce3aeca",
+  "bundle": "assets/sceneprefab/building_chaoshi_01.ab",
+  "nodes": 303,
+  "renderers": 298,
+  "mesh_parts": 46,
+  "collision_meshes": 3,
+  "unsupported_samplers": 1,
+  "verified_files": 1314,
+  "bundle_cache": {
+    "entries": 16,
+    "payload_bytes": 1987862,
+    "hits": 7214,
+    "misses": 154,
+    "evictions": 138
+  },
+  "limitations": [
+    "Root positions are serialized prefab values, not authenticated runtime placements.",
+    "All component fields/bytes are retained, including renderer shadow/lightmap metadata and collider flags; MonoBehaviour execution and skinned animation conversion remain separate work.",
+    "Material and source 2D texture mip assets are decoded; non-2D samplers retain full fields/bytes and explicit unsupported status. Shader execution and original runtime appearance remain unverified.",
+    "Unresolved built-in references remain explicit; decoded mesh/material dependencies are required.",
+    "Bundle-cache statistics bound cache-owned payloads, excluding caller-held handles and parsed object metadata."
+  ]
+}

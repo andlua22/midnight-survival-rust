@@ -26,3 +26,11 @@ pub fn run(
 ) -> Result<(), Box<dyn std::error::Error>> {
     importer::run(apk_path, out_dir).map_err(|error| error as Box<dyn std::error::Error>)
 }
+
+pub fn run_selected(
+    apk: &std::path::Path,
+    output: &std::path::Path,
+    panels: &[String],
+) -> Result<(), Box<dyn std::error::Error>> {
+    importer::run_selected(apk, output, panels).map_err(|error| error as Box<dyn std::error::Error>)
+}

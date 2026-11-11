@@ -3,6 +3,7 @@
 
 pub mod authority;
 mod capsule_query;
+pub mod content;
 pub mod input;
 pub mod level;
 pub mod map_projection;
@@ -13,6 +14,7 @@ pub mod protocol;
 pub mod replication;
 pub mod simulation;
 pub mod survival;
+pub mod world;
 
 pub use simulation::{
     CharacterMotion, LevelGeometry, LocalPlayer, Player, PlayerIdentity, ResourceNodeMarker,

@@ -4,7 +4,10 @@ use bevy::{
     asset::RenderAssetUsages,
     core_pipeline::tonemapping::Tonemapping,
     image::{ImageAddressMode, ImageFilterMode, ImageSampler, ImageSamplerDescriptor},
-    light::{CascadeShadowConfig, CascadeShadowConfigBuilder, DirectionalLightShadowMap},
+    light::{
+        CascadeShadowConfig, CascadeShadowConfigBuilder, DirectionalLightShadowMap,
+        NotShadowCaster, NotShadowReceiver,
+    },
     pbr::{DistanceFog, FogFalloff},
     prelude::*,
     render::{
@@ -15,7 +18,6 @@ use bevy::{
     },
     window::{PresentMode, PrimaryWindow, WindowResizeConstraints, WindowResolution},
 };
-use bevy_egui::{EguiPlugin, EguiPreUpdateSet, EguiPrimaryContextPass};
 use shared::{
     CharacterMotion, LevelGeometry, LocalPlayer, ResourceNodeMarker, SharedSimulationPlugin,
     SimulationClock, SimulationInput, SimulationPose, SimulationSurvival, SimulationWorld,
@@ -32,9 +34,12 @@ use shared::{
 };
 
 use crate::{
+    environment::{
+        CloudDensity, CloudSettings, DESKTOP_CONTACT_SHADOWS, cloud_step_count, daylight_strength,
+        sun_direction,
+    },
     interface::{
         Interface, LookedObjectInfo, LookedTargetKind, PlatformStorage, Telemetry, UiMode,
-        draw_interface,
     },
     launch::ClientOptions,
     metrics::{
@@ -42,7 +47,6 @@ use crate::{
     },
     online::{Online, OnlinePlugin},
     online_metrics::{OnlineCapture, capture},
-    source_minimap::{SourceMinimapHud, prepare_native_minimap},
     storage::{StorageService, write_report},
 };
 
@@ -145,18 +149,6 @@ struct BuildingGhostVisual;
 struct SunLight;
 
 #[derive(Component)]
-struct SunDiscVisual;
-
-#[derive(Component)]
-struct SkyDomeVisual;
-
-#[derive(Component)]
-struct CloudCanopyVisual;
-
-#[derive(Component)]
-struct CirrusCanopyVisual;
-
-#[derive(Component)]
 pub struct TerrainSectorChunk {
     pub center: Vec3,
     pub is_road: bool,
@@ -212,12 +204,6 @@ struct ToolAssets {
     doorway_pillar: Handle<Mesh>,
     doorway_lintel: Handle<Mesh>,
     campfire_flame: Handle<StandardMaterial>,
-    sky_zenith_material: Handle<StandardMaterial>,
-    sky_horizon_material: Handle<StandardMaterial>,
-    cloud_canopy_material: Handle<StandardMaterial>,
-    cirrus_canopy_material: Handle<StandardMaterial>,
-    sun_disc_material: Handle<StandardMaterial>,
-    sun_corona_material: Handle<StandardMaterial>,
     power_on_material: Handle<StandardMaterial>,
     power_off_material: Handle<StandardMaterial>,
     tracer_mesh: Handle<Mesh>,
@@ -271,12 +257,14 @@ pub fn build_app(options: ClientOptions, storage: Box<dyn StorageService>) -> Ap
         WindowResolution::new(1280, 720)
     };
     let mut app = App::new();
+    app.insert_resource(shared::world::WorldSelection::for_map(
+        options.map.unwrap_or(shared::level::MapId::ImportedIsland),
+    ));
     app.insert_resource(OnlineCapture::new(&options))
         .insert_resource(Online::new(&options))
         .insert_resource(interface)
         .insert_resource(PlatformStorage(storage))
         .init_resource::<Telemetry>()
-        .init_resource::<SourceMinimapHud>()
         .init_resource::<FrameMonitor>()
         .insert_resource(ClearColor(Color::srgb(0.28, 0.56, 0.88)))
         .insert_resource(GlobalAmbientLight {
@@ -321,7 +309,8 @@ pub fn build_app(options: ClientOptions, storage: Box<dyn StorageService>) -> Ap
         )
         .add_plugins((
             SharedSimulationPlugin,
-            EguiPlugin::default(),
+            crate::native_ui::NativeUiPlugin,
+            crate::environment::EnvironmentPlugin,
             OnlinePlugin,
             crate::SourceMipImagePlugin,
             MaterialPlugin::<TerrainSplatMaterial>::default(),
@@ -332,13 +321,6 @@ pub fn build_app(options: ClientOptions, storage: Box<dyn StorageService>) -> Ap
         .init_resource::<AudioRuntimeState>()
         .init_resource::<CameraPerspective>()
         .add_systems(Startup, setup_scene)
-        .add_systems(PostStartup, place_imported_player)
-        .add_systems(
-            PreUpdate,
-            prepare_native_minimap
-                .after(EguiPreUpdateSet::InitContexts)
-                .before(EguiPreUpdateSet::BeginPass),
-        )
         .add_systems(
             Update,
             (
@@ -354,7 +336,6 @@ pub fn build_app(options: ClientOptions, storage: Box<dyn StorageService>) -> Ap
             )
                 .chain(),
         )
-        .add_systems(EguiPrimaryContextPass, draw_interface)
         .add_systems(Last, capture);
     app
 }
@@ -634,7 +615,7 @@ pub fn generate_cloud_dome_texture() -> Image {
     generate_cloud_canopy_texture()
 }
 
-fn build_sky_dome_mesh(radius: f32) -> Mesh {
+pub fn build_sky_dome_mesh(radius: f32) -> Mesh {
     let rings = 32;
     let sectors = 64;
     let mut positions = Vec::new();
@@ -773,13 +754,13 @@ pub fn build_cloud_dome_mesh(radius: f32) -> Mesh {
 fn setup_scene(
     mut commands: Commands,
     asset_server: Res<AssetServer>,
-    mut physics: ResMut<shared::SimulationWorld>,
-    mut survival: ResMut<SimulationSurvival>,
+    loaded: Option<Res<shared::world::LoadedWorld>>,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
     mut splat_materials: ResMut<Assets<TerrainSplatMaterial>>,
     mut images: ResMut<Assets<Image>>,
 ) {
+    let Some(loaded) = loaded else { return };
     let rock_mesh = meshes.add(Sphere::new(0.11).mesh().uv(18, 12));
     let rock_mat = materials.add(StandardMaterial {
         base_color: Color::srgb(0.52, 0.56, 0.58),
@@ -814,51 +795,7 @@ fn setup_scene(
         })
     });
 
-    let sky_zenith_material = materials.add(StandardMaterial {
-        base_color: Color::WHITE,
-        unlit: true,
-        cull_mode: None,
-        ..default()
-    });
-    let sky_horizon_material = materials.add(StandardMaterial {
-        base_color: Color::srgba(0.72, 0.84, 0.98, 0.88),
-        alpha_mode: AlphaMode::Blend,
-        unlit: true,
-        cull_mode: None,
-        ..default()
-    });
-    let cloud_canopy_texture = images.add(generate_cloud_canopy_texture());
-    let cloud_canopy_material = materials.add(StandardMaterial {
-        base_color: Color::srgba(1.0, 1.0, 1.0, 0.95),
-        base_color_texture: Some(cloud_canopy_texture),
-        alpha_mode: AlphaMode::Blend,
-        unlit: true,
-        cull_mode: None,
-        double_sided: true,
-        ..default()
-    });
-    let cirrus_canopy_texture = images.add(generate_cirrus_texture());
-    let cirrus_canopy_material = materials.add(StandardMaterial {
-        base_color: Color::srgba(1.0, 1.0, 1.0, 0.70),
-        base_color_texture: Some(cirrus_canopy_texture),
-        alpha_mode: AlphaMode::Blend,
-        unlit: true,
-        cull_mode: None,
-        double_sided: true,
-        ..default()
-    });
-    let sun_disc_material = materials.add(StandardMaterial {
-        base_color: Color::srgb(1.0, 0.97, 0.86),
-        emissive: LinearRgba::rgb(4.0, 3.4, 2.2),
-        unlit: true,
-        ..default()
-    });
-    let sun_corona_material = materials.add(StandardMaterial {
-        base_color: Color::srgba(1.0, 0.88, 0.58, 0.34),
-        alpha_mode: AlphaMode::Blend,
-        unlit: true,
-        ..default()
-    });
+    commands.insert_resource(CloudDensity(images.add(generate_cloud_3d_image())));
     let power_on_material = materials.add(StandardMaterial {
         base_color: Color::srgb(0.22, 0.96, 0.38),
         emissive: LinearRgba::rgb(0.6, 3.2, 0.8),
@@ -966,12 +903,6 @@ fn setup_scene(
             unlit: true,
             ..default()
         }),
-        sky_zenith_material: sky_zenith_material.clone(),
-        sky_horizon_material: sky_horizon_material.clone(),
-        cloud_canopy_material: cloud_canopy_material.clone(),
-        cirrus_canopy_material: cirrus_canopy_material.clone(),
-        sun_disc_material: sun_disc_material.clone(),
-        sun_corona_material: sun_corona_material.clone(),
         power_on_material: power_on_material.clone(),
         power_off_material: power_off_material.clone(),
         tracer_mesh,
@@ -1064,14 +995,7 @@ fn setup_scene(
             .insert(rec.name.clone(), (mesh_handle, mat_handle));
     }
 
-    let terrain_package = match shared::level::load_imported_terrain() {
-        Ok(package) => package,
-        Err(error) => {
-            error!("Canonical terrain package is invalid: {error}");
-            commands.write_message(AppExit::error());
-            return;
-        }
-    };
+    let terrain_package = loaded.terrain.as_ref();
     let terrain_loaded = terrain_package.is_some();
     if let Some(package) = terrain_package {
         info!(
@@ -1079,21 +1003,10 @@ fn setup_scene(
             package.records.len(),
             tool_assets.imported_models.len()
         );
-        if let Err(error) = physics.0.insert_canonical_terrain(&package) {
-            error!("Cannot construct source terrain colliders: {error}");
-            commands.write_message(AppExit::error());
-            return;
-        }
-
-        // Remove test NPCs, enemies, bosses, vehicles, and demo resource nodes from the island world
-        survival.0.npcs.clear();
-        survival.0.vehicles.clear();
-        survival.0.nodes.clear();
-
         if let Err(error) = crate::terrain::spawn(
             &mut commands,
             &asset_server,
-            &package,
+            package,
             &mut meshes,
             &mut materials,
             &mut splat_materials,
@@ -1185,55 +1098,16 @@ fn setup_scene(
 
     commands.spawn((
         BuildingGhostVisual,
+        NotShadowCaster,
+        NotShadowReceiver,
         Mesh3d(unit_cube.clone()),
         MeshMaterial3d(ghost_valid),
         Transform::default(),
         Visibility::Hidden,
     ));
 
-    // Far Atmospheric Sky Dome (radius 4800m, far beyond island boundary)
-    let sky_dome_mesh = meshes.add(build_sky_dome_mesh(4800.0));
-    commands.spawn((
-        SkyDomeVisual,
-        Mesh3d(sky_dome_mesh),
-        MeshMaterial3d(sky_zenith_material),
-        Transform::from_xyz(0.0, 0.0, 0.0),
-    ));
-
-    // Layer 1: Flat Horizontal Cumulus Cloud Canopy at Y = 1350m (Planar Deck - NOT a sphere!)
-    let cloud_canopy_mesh = meshes.add(build_cloud_canopy_mesh(4600.0, 1350.0));
-    commands.spawn((
-        CloudCanopyVisual,
-        Mesh3d(cloud_canopy_mesh),
-        MeshMaterial3d(cloud_canopy_material),
-        Transform::from_xyz(0.0, 1350.0, 0.0),
-    ));
-
-    // Layer 2: High-Altitude Wispy Cirrus Streaks at Y = 1750m (Parallax Depth)
-    let cirrus_canopy_mesh = meshes.add(build_cloud_canopy_mesh(4900.0, 1750.0));
-    commands.spawn((
-        CirrusCanopyVisual,
-        Mesh3d(cirrus_canopy_mesh),
-        MeshMaterial3d(cirrus_canopy_material),
-        Transform::from_xyz(0.0, 1750.0, 0.0),
-    ));
-
-    let sun_sphere = meshes.add(Sphere::new(36.0).mesh().uv(32, 18));
-    let corona_sphere = meshes.add(Sphere::new(88.0).mesh().uv(32, 18));
-    commands
-        .spawn((
-            SunDiscVisual,
-            Mesh3d(sun_sphere),
-            MeshMaterial3d(sun_disc_material),
-            Transform::from_xyz(320.0, 560.0, -360.0),
-        ))
-        .with_children(|parent| {
-            parent.spawn((
-                Mesh3d(corona_sphere),
-                MeshMaterial3d(sun_corona_material),
-                Transform::default(),
-            ));
-        });
+    // Sky and sun are evaluated at infinity in the cloud composite. They cannot
+    // enter terrain shadow maps, write foreground depth or hit the far plane.
 
     if !terrain_loaded {
         // Fallback 4 Biomes visual surface pads (used only when imported XAPK terrain is absent)
@@ -1284,32 +1158,37 @@ fn setup_scene(
         terrain_loaded,
     );
 
-    commands
-        .spawn((
-            MainCamera,
-            Camera3d::default(),
-            Projection::Perspective(PerspectiveProjection {
-                fov: 80.0_f32.to_radians(),
-                far: 3500.0,
-                ..default()
-            }),
-            DistanceFog {
-                color: Color::srgba(0.72, 0.84, 0.98, 1.0),
-                falloff: FogFalloff::ExponentialSquared { density: 0.00018 },
-                ..default()
-            },
-            Tonemapping::TonyMcMapface,
-            Msaa::Sample4,
-            Transform::from_xyz(0.0, 2.7, 12.0),
-        ))
-        .with_children(|parent| {
-            parent.spawn((
-                HeldToolVisual,
-                Mesh3d(rock_mesh),
-                MeshMaterial3d(rock_mat),
-                Transform::from_xyz(0.32, -0.26, -0.48),
-            ));
-        });
+    let mut camera = commands.spawn((
+        MainCamera,
+        Camera3d::default(),
+        CloudSettings::default(),
+        Projection::Perspective(PerspectiveProjection {
+            fov: 80.0_f32.to_radians(),
+            far: 3500.0,
+            ..default()
+        }),
+        DistanceFog {
+            color: Color::srgba(0.72, 0.84, 0.98, 1.0),
+            falloff: FogFalloff::ExponentialSquared { density: 0.00018 },
+            ..default()
+        },
+        Tonemapping::TonyMcMapface,
+        Msaa::Sample4,
+        Transform::from_xyz(0.0, 2.7, 12.0),
+    ));
+    if let Some(contact) = DESKTOP_CONTACT_SHADOWS {
+        camera.insert(contact);
+    }
+    camera.with_children(|parent| {
+        parent.spawn((
+            HeldToolVisual,
+            NotShadowCaster,
+            NotShadowReceiver,
+            Mesh3d(rock_mesh),
+            MeshMaterial3d(rock_mat),
+            Transform::from_xyz(0.32, -0.26, -0.48),
+        ));
+    });
     commands.insert_resource(DirectionalLightShadowMap { size: 4096 });
     let cascade_shadow_config: CascadeShadowConfig = CascadeShadowConfigBuilder {
         num_cascades: 4,
@@ -1325,12 +1204,14 @@ fn setup_scene(
         DirectionalLight {
             illuminance: 38_000.0,
             shadow_maps_enabled: true,
+            contact_shadows_enabled: DESKTOP_CONTACT_SHADOWS.is_some(),
             shadow_depth_bias: 0.02,
-            shadow_normal_bias: 0.60,
+            // A smaller offset produces self-shadow speckling on imported slopes.
+            shadow_normal_bias: DirectionalLight::DEFAULT_SHADOW_NORMAL_BIAS,
             ..default()
         },
         cascade_shadow_config,
-        Transform::from_xyz(8.0, 16.0, 8.0).looking_at(Vec3::ZERO, Vec3::Y),
+        Transform::default().looking_to(-sun_direction(10.0), Vec3::Y),
     ));
 }
 
@@ -1749,37 +1630,6 @@ fn spawn_jungle_and_radtown_scenery(
             MeshMaterial3d(rad_slime_mat.clone()),
             Transform::from_xyz(bx + 0.35, 0.04, bz + 0.25).with_scale(Vec3::new(0.95, 0.02, 0.85)),
         ));
-    }
-}
-
-fn place_imported_player(
-    imported: Option<Res<ImportedTerrainActive>>,
-    mut physics: ResMut<shared::SimulationWorld>,
-    mut players: Query<
-        (
-            &shared::simulation::PlayerIdentity,
-            &mut Transform,
-            &mut SimulationPose,
-            &mut CharacterMotion,
-        ),
-        With<LocalPlayer>,
-    >,
-) {
-    if imported.is_none() {
-        return;
-    }
-    for (id, mut transform, mut pose, mut motion) in &mut players {
-        let xz = [transform.translation.x, transform.translation.z];
-        let Some(position) = physics.0.surface_spawn_at(xz, Some(id.0)) else {
-            error!("No free canonical terrain surface at the player's initial coordinates");
-            continue;
-        };
-        let state = shared::protocol::PlayerState::at(position);
-        transform.translation = Vec3::from_array(position);
-        pose.previous = transform.translation;
-        pose.current = transform.translation;
-        motion.0 = state.motion;
-        physics.0.set_player(id.0, state);
     }
 }
 
@@ -3000,52 +2850,11 @@ fn sync_environment_atmosphere(
     survival: Res<SimulationSurvival>,
     telemetry: Res<Telemetry>,
     interface: Res<Interface>,
-    tool_assets: Res<ToolAssets>,
     mut clear_color: ResMut<ClearColor>,
     mut ambient: ResMut<GlobalAmbientLight>,
-    mut materials: ResMut<Assets<StandardMaterial>>,
     mut camera_fog: Query<&mut DistanceFog, With<MainCamera>>,
     mut sun: Query<(&mut DirectionalLight, &mut Transform), With<SunLight>>,
-    mut sun_disc: Query<
-        &mut Transform,
-        (
-            With<SunDiscVisual>,
-            Without<SunLight>,
-            Without<SkyDomeVisual>,
-            Without<CloudCanopyVisual>,
-            Without<CirrusCanopyVisual>,
-        ),
-    >,
-    mut sky_dome: Query<
-        &mut Transform,
-        (
-            With<SkyDomeVisual>,
-            Without<SunLight>,
-            Without<SunDiscVisual>,
-            Without<CloudCanopyVisual>,
-            Without<CirrusCanopyVisual>,
-        ),
-    >,
-    mut cloud_canopy: Query<
-        &mut Transform,
-        (
-            With<CloudCanopyVisual>,
-            Without<SunLight>,
-            Without<SunDiscVisual>,
-            Without<SkyDomeVisual>,
-            Without<CirrusCanopyVisual>,
-        ),
-    >,
-    mut cirrus_canopy: Query<
-        &mut Transform,
-        (
-            With<CirrusCanopyVisual>,
-            Without<SunLight>,
-            Without<SunDiscVisual>,
-            Without<SkyDomeVisual>,
-            Without<CloudCanopyVisual>,
-        ),
-    >,
+    mut cloud_settings: Query<&mut CloudSettings, With<MainCamera>>,
 ) {
     if options.0.benchmark {
         return;
@@ -3066,40 +2875,21 @@ fn sync_environment_atmosphere(
     };
 
     let player_pos = Vec3::from_array(telemetry.player_position);
-    let sun_ray_dir = Vec3::new(
-        sun_angle.cos() * 1150.0,
-        (elevation.max(0.12) * 1050.0).max(120.0),
-        -620.0,
-    )
-    .normalize();
+    let sun_ray_dir = sun_direction(env.time_hours);
     let sun_forward = -sun_ray_dir;
+    let direct_daylight = daylight_strength(sun_ray_dir) * weather_dim;
 
     if let Ok((mut light, mut transform)) = sun.single_mut() {
-        light.illuminance = (1500.0 + daylight * 45_000.0) * weather_dim;
+        light.illuminance = direct_daylight * 45_000.0;
+        light.color = Color::srgb(1.0, 0.96 - twilight * 0.20, 0.86 - twilight * 0.35);
         let light_anchor = player_pos - sun_forward * 140.0;
         *transform = Transform::from_translation(light_anchor).looking_to(sun_forward, Vec3::Y);
     }
-
-    if let Ok(mut sky_tf) = sky_dome.single_mut() {
-        sky_tf.translation = Vec3::new(
-            telemetry.player_position[0],
-            0.0,
-            telemetry.player_position[2],
-        );
-    }
-
-    if let Ok(mut disc_tf) = sun_disc.single_mut() {
-        disc_tf.translation = Vec3::new(
-            telemetry.player_position[0] + sun_angle.cos() * 1150.0,
-            (elevation * 1050.0).max(-180.0),
-            telemetry.player_position[2] - 620.0,
-        );
-    }
-
-    ambient.brightness = (120.0 + daylight * 260.0) * weather_dim;
+    ambient.brightness = (8.0 + daylight * 260.0) * weather_dim;
     ambient.color = Color::srgb(0.72, 0.84, 0.98);
 
-    // Realistic Rayleigh/Mie sky zenith & horizon colors
+    // Weather-driven defaults; source DayNightSystem animation curves still
+    // need reconstruction before these colors can claim source fidelity.
     let (mut zenith_rgb, mut horizon_rgb, mut fog_density): ([f32; 3], [f32; 3], f32) =
         match env.weather {
             WeatherKind::Sandstorm => (
@@ -3180,31 +2970,27 @@ fn sync_environment_atmosphere(
     }
 
     clear_color.0 = Color::srgb(horizon_rgb[0], horizon_rgb[1], horizon_rgb[2]);
-    if let Some(mut zenith_mat) = materials.get_mut(&tool_assets.sky_zenith_material) {
-        let sky_mult = (0.15 + 0.85 * daylight * weather_dim).clamp(0.06, 1.0);
-        zenith_mat.base_color = Color::srgb(
+    if let Ok(mut settings) = cloud_settings.single_mut() {
+        let sky_mult = (0.08 + 0.92 * daylight * weather_dim).clamp(0.03, 1.0);
+        let zenith = Color::srgb(
             (zenith_rgb[0] * sky_mult + twilight * 0.28).min(1.0),
             (zenith_rgb[1] * sky_mult + twilight * 0.08).min(1.0),
-            (zenith_rgb[2] * sky_mult - twilight * 0.15).clamp(0.06, 1.0),
+            (zenith_rgb[2] * sky_mult - twilight * 0.15).clamp(0.01, 1.0),
         );
-    }
-    if let Some(mut horizon_mat) = materials.get_mut(&tool_assets.sky_horizon_material) {
-        horizon_mat.base_color = Color::srgba(horizon_rgb[0], horizon_rgb[1], horizon_rgb[2], 0.88);
-    }
-    if let Some(mut disc_mat) = materials.get_mut(&tool_assets.sun_disc_material) {
-        disc_mat.base_color = Color::srgb(
-            1.0,
-            (0.96 - twilight * 0.28).clamp(0.4, 1.0),
-            (0.84 - twilight * 0.45).clamp(0.2, 1.0),
+        settings.sky_zenith = Vec4::from_array(zenith.to_linear().to_f32_array());
+        settings.sky_horizon = Vec4::from_array(
+            Color::srgb(horizon_rgb[0], horizon_rgb[1], horizon_rgb[2])
+                .to_linear()
+                .to_f32_array(),
         );
-    }
-    if let Some(mut corona_mat) = materials.get_mut(&tool_assets.sun_corona_material) {
-        corona_mat.base_color = Color::srgba(
-            1.0,
-            (0.86 - twilight * 0.30).clamp(0.3, 1.0),
-            (0.56 - twilight * 0.35).clamp(0.15, 1.0),
-            0.34 * daylight * weather_dim,
+        settings.light_color = Vec4::from_array(
+            Color::srgb(1.0, 0.96 - twilight * 0.20, 0.86 - twilight * 0.35)
+                .to_linear()
+                .to_f32_array(),
         );
+        settings.sun = sun_ray_dir.extend(direct_daylight);
+        settings.wind = Vec4::new(env.wind_offset[0], 0.0, env.wind_offset[1], 0.0);
+        settings.quality.x = cloud_step_count(interface.volumetric_fog_steps);
     }
     if let Ok(mut fog) = camera_fog.single_mut() {
         fog.color = Color::srgba(horizon_rgb[0], horizon_rgb[1], horizon_rgb[2], 1.0);
@@ -3215,36 +3001,6 @@ fn sync_environment_atmosphere(
                 0.000001
             },
         };
-    }
-
-    let px = telemetry.player_position[0];
-    let pz = telemetry.player_position[2];
-
-    if let Ok(mut canopy_tf) = cloud_canopy.single_mut() {
-        canopy_tf.translation = Vec3::new(px, 1350.0, pz);
-        canopy_tf.rotation = Quat::from_rotation_y(env.wind_offset[0] * 0.00008);
-    }
-
-    if let Ok(mut cirrus_tf) = cirrus_canopy.single_mut() {
-        cirrus_tf.translation = Vec3::new(px, 1750.0, pz);
-        cirrus_tf.rotation = Quat::from_rotation_y(env.wind_offset[0] * 0.00012 + 0.35);
-    }
-
-    let day_bright = (0.20 + 0.80 * daylight * weather_dim).clamp(0.08, 1.0);
-    let cloud_r = (day_bright + twilight * 0.40).clamp(0.08, 1.0);
-    let cloud_g = (day_bright + twilight * 0.12).clamp(0.08, 1.0);
-    let cloud_b = (day_bright - twilight * 0.15 + (1.0 - daylight) * 0.08).clamp(0.10, 1.0);
-
-    if let Some(mut cloud_mat) = materials.get_mut(&tool_assets.cloud_canopy_material) {
-        cloud_mat.base_color = Color::srgba(cloud_r, cloud_g, cloud_b, 0.95);
-    }
-    if let Some(mut cirrus_mat) = materials.get_mut(&tool_assets.cirrus_canopy_material) {
-        cirrus_mat.base_color = Color::srgba(
-            cloud_r * 0.95 + 0.05,
-            cloud_g * 0.95 + 0.05,
-            cloud_b * 0.98 + 0.02,
-            0.65 * daylight.max(0.15) * weather_dim,
-        );
     }
 }
 

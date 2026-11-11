@@ -1,0 +1,11 @@
+2026-11-11T19:59:36.148842Z  INFO bevy_diagnostic::system_information_diagnostics_plugin::internal: SystemInfo { os: "Linux (EndeavourOS rolling)", kernel: "6.18.52-1-lts", cpu: "13th Gen Intel(R) Core(TM) i9-13900H", core_count: "14", memory: "15.3 GiB" }
+2026-11-11T19:59:36.177135Z  INFO bevy_render::renderer: AdapterInfo { name: "NVIDIA GeForce RTX 4060 Laptop GPU", vendor: 4318, device: 10400, device_type: DiscreteGpu, device_pci_bus_id: "0000:01:00.0", driver: "NVIDIA", driver_info: "615.71.09", backend: Vulkan, subgroup_min_size: 32, subgroup_max_size: 32, transient_saves_memory: Some(false), limit_bucket: None }
+2026-11-11T19:59:36.338325Z  INFO bevy_pbr::cluster: GPU clustering is supported on this device.
+2026-11-11T19:59:36.338358Z  INFO bevy_render::batching::gpu_preprocessing: GPU preprocessing is fully supported on this device.
+2026-11-11T19:59:36.338856Z  INFO bevy_winit::system: Creating new window Midnight Survival (77v0)
+2026-11-11T19:59:36.360571Z  WARN sctk_adwaita::buttons: Ignoring unknown button type: menu
+2026-11-11T19:59:44.332377Z  INFO client_core::application: Loaded 400 validated APK terrain/road meshes; 40 legacy models remain pending source reconstruction
+2026-11-11T19:59:44.338320Z  WARN client_core::terrain: Terrain_jichang: source mesh has no tangents; rendering geometric normals. Original shader LOD remains unverified.
+2026-11-11T19:59:44.342951Z  INFO client_core::application: Renderer: Vulkan | GPU: NVIDIA GeForce RTX 4060 Laptop GPU | DiscreteGpu
+2026-11-11T19:59:56.525389Z  WARN bevy_input_focus::tab_navigation: Tab navigation error: No tab groups found
+2026-11-11T19:59:58.382575Z  WARN bevy_input_focus::tab_navigation: Tab navigation error: No tab groups found

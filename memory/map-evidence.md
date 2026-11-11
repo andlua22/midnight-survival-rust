@@ -1,6 +1,6 @@
 # Map evidence
 
-Updated: 2026-11-09. The runtime now consumes one validated APK scene package
+Updated: 2026-11-11. The runtime now consumes one validated APK scene package
 for rendering and terrain physics. This handoff combines static APK evidence
 with GPU validation of the Rust renderer. The Android game's execution and
 pixel equivalence remain unobserved; these records are not REA Evidence IDs.
@@ -14,24 +14,27 @@ Sampled bundles report Unity `2021.3.23f1c1`.
 Package root: `assets/imported_map/terrain/`.
 `manifest.json` uses schema 2 and identifies `meshes.bin`, whose archive magic
 is `MSMAP003`. Geometry SHA-256:
-`89febd1decfaa5ed58089e9912fd61dedcb5285d51acb86f665e35c23413e8ee`.
+`ab54dffcd939dd6bde74e05b115436f94d514c76825aaf5b57b3c5118dda4836`.
+Manifest SHA-256:
+`48aa616669b2aa71c8187a6c349db961bc363584dc62dc414de3ea4828f68391`.
 The current source inventory and validation results are retained in
-`evidence/terrain-verification.json`.
+`evidence/terrain-z01-augmentation.json`; `evidence/terrain-verification.json`
+records the 2026-11-09 predecessor.
 
 | Verified inventory | Count |
 | --- | ---: |
-| Imported scene bundles | 241 |
-| Distinct source mesh instances / render records | 399 |
-| Terrain instances | 287 |
+| Imported terrain scene bundles | 242 |
+| Distinct source mesh instances / render records | 400 |
+| Terrain instances | 288 |
 | Three-layer terrain instances | 160 |
-| Four-layer terrain instances | 127 |
+| Four-layer terrain instances | 128 |
 | `_URP/LambertLit` instances | 95 |
 | `Yo/Add` instances | 17 |
-| Enabled, non-trigger source colliders | 382 |
-| Distinct source materials | 289 |
-| Retained source texture assets | 316 |
+| Enabled, non-trigger source colliders | 383 |
+| Distinct source materials | 290 |
+| Retained source texture assets | 323 |
 
-The 399 records include multiple terrain and other mesh instances within some
+The 400 records include multiple terrain and other mesh instances within some
 scene bundles. Preserve the qualified bundle/CAB/PathID and GameObject
 identity; a scene filename or a shared Mesh PathID alone does not identify an
 instance. The archive also preserves supplied normals, tangents, UV0 and
@@ -54,7 +57,7 @@ does not serve as a runtime fallback.
 The canonical island path no longer spawns the legacy guessed scene-info
 placements, legacy `water.bin` geometry, or the synthetic ocean floor; it
 also removes terrain distance hiding. Source lake, road and other surfaces
-included among the 399 imported records retain their source identity.
+included among the 400 imported records retain their source identity.
 Demo island NPCs, vehicles and resource nodes are cleared. Old extracted
 archives remain available as evidence; full prefab reconstruction and their
 placement provenance still need separate work.
@@ -70,9 +73,9 @@ lengths. The runtime loader in `crates/client_core/src/map_texture.rs`
 uploads that chain; terrain materials select it through `TextureAsset.gpu`.
 
 The importer handles the shipped ASTC channel order explicitly. Texture
-sampling retains source color-space, wrap and filter settings. The 316
-package textures have mip-count distribution `1:100, 9:1, 10:211, 11:4`;
-315 use source Unity format 50 and one uses format 4. Exact GPU sampling and
+sampling retains source color-space, wrap and filter settings. The 323
+package textures have mip-count distribution `1:101, 9:1, 10:217, 11:4`;
+322 use source Unity format 50 and one uses format 4. Exact GPU sampling and
 Unity's global mip bias still require a runtime comparison.
 
 ## Findings that affect the import
@@ -83,7 +86,7 @@ Unity's global mip bias still require a runtime comparison.
    Do not apply it a second time merely because the raw mesh uses another up axis.
    The earlier `MSMAP001` audit is retained in
    `evidence/map-evidence-audit.log`; its record inventory is historical and
-   has been superseded by the 399-instance canonical package. Sampled
+   has been superseded by the 400-instance canonical package. Sampled
    source transforms are recorded at lines 21–22, 36–37 and 50. This sample
    does not prove every scene transform is identical.
 2. `assets/sceneprefab/building_chaoshi_01.ab` contains 303 GameObjects,

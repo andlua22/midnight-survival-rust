@@ -2,6 +2,14 @@
 
 Started: 2026-11-09. Updated: 2026-11-10.
 
+Continuation on 2026-11-11: [the implementation ledger](../PLAN/source_reconstruction.md)
+supersedes current-engine/UI claims in this dated snapshot. Native Bevy UI
+replaces the egui runtime, nine source UI panels and the supermarket prefab
+are extracted, six original gameplay tables are retained/loaded, and the island
+uses a shared validated world descriptor. See [source imports](source-imports-2026-11-11.md),
+[gameplay data](gameplay-data-2026-11-11.md) and [storage audit](storage-2026-11-11.md).
+Historical extraction identities and captures below remain preserved evidence.
+
 ## Objective and constraints
 
 Reconstruct `export/lite4.0.apk` faithfully, including its map, UI and gameplay.

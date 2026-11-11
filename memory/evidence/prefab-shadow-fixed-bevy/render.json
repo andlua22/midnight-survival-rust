@@ -1,0 +1,596 @@
+{
+  "backend": "Vulkan",
+  "bevy_version": "0.20.1",
+  "contact_shadow_review": false,
+  "desktop_contact_shadows_enabled": false,
+  "diagnostic_stage_offset": [
+    -2339.01904296875,
+    -36.47327423095703,
+    664.6287841796875
+  ],
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "limitations": [
+    "Standalone preview; no authenticated world placements are inferred.",
+    "Source shader execution and baked/probe lighting are not reproduced. Glass/cubemap parts are explicitly omitted.",
+    "Source non-fading LOD thresholds use a single perspective camera and unit native LOD bias; original QualitySettings.lodBias remains unknown."
+  ],
+  "manifest_sha256": "10ce651cdd1adabde1815b3b5653c866be904fc6eafe44597b6a97b374c32fd9",
+  "partial_placement_rejected": true,
+  "preview_only": true,
+  "strict_error": "prefab rendering rejected: [{\"renderer\":{\"bundle\":\"assets/sceneprefab/building_chaoshi_01.ab\",\"cab\":\"CAB-cdc98491955a205fc1b531bc1fca26e7\",\"path_id\":\"7895572744906868979\"},\"mesh_part\":\"CAB-cdc98491955a205fc1b531bc1fca26e7:-5447385529568075304@0\",\"detail\":\"Building_boli_01: unsupported samplers [\\\"_Cubemap\\\"]\"}]",
+  "strict_rejected_before_assets": true,
+  "support": {
+    "lod_groups": 1,
+    "prepared_parts": 297,
+    "shading_policy": "Explicit Bevy diffuse preview adaptation for URP LambertLit/SimpleLit; source shader execution and baked/probe lighting are not reproduced.",
+    "source_nodes": 303,
+    "source_renderers": 298,
+    "unsupported": [
+      {
+        "detail": "Building_boli_01: unsupported samplers [\"_Cubemap\"]",
+        "mesh_part": "CAB-cdc98491955a205fc1b531bc1fca26e7:-5447385529568075304@0",
+        "renderer": {
+          "bundle": "assets/sceneprefab/building_chaoshi_01.ab",
+          "cab": "CAB-cdc98491955a205fc1b531bc1fca26e7",
+          "path_id": "7895572744906868979"
+        }
+      }
+    ]
+  },
+  "textures": [
+    {
+      "encoded": {
+        "path": "textures/6ace19d87602bbcf2d146bd3a339b43f0141b1c7662249c8aae130eb9e6498e2.texture.bin",
+        "sha256": "a12d0be8deaa92c9c2b435ed72c70d171562b7fc2dd7083e81c431313ebf6152"
+      },
+      "file": {
+        "path": "textures/6ace19d87602bbcf2d146bd3a339b43f0141b1c7662249c8aae130eb9e6498e2.png",
+        "sha256": "72136a2c12e69229600c70e365099c50f7cb148b49eaa715da97f2aaf879bfc4"
+      },
+      "gpu": {
+        "path": "textures/6ace19d87602bbcf2d146bd3a339b43f0141b1c7662249c8aae130eb9e6498e2.msrgba",
+        "sha256": "7ba2f6e5fb0a4c61f872f3fb6fec56e650d2ebb5d3ed996f2e489ac9ff4fb143"
+      },
+      "height": 512,
+      "mip_count": 10,
+      "name": "project_hbxj_01_d",
+      "sampler": {
+        "aniso": 1,
+        "filter_mode": 1,
+        "mip_bias": 0.0,
+        "wrap": [
+          0,
+          0,
+          0
+        ]
+      },
+      "source": {
+        "bundle": "assets/scenetexture/project_hbxj_01_d.ab",
+        "cab": "CAB-af7588ba9ce7ec6faa19640022375d07",
+        "path_id": "-2410684268101778895"
+      },
+      "unity_color_space": 1,
+      "unity_format": 50,
+      "unity_version": "2021.3.23f1c1",
+      "width": 512
+    },
+    {
+      "encoded": {
+        "path": "textures/8629f9df14389a281f90402cdf827791af4d76948bf45484645feaebe872c5dd.texture.bin",
+        "sha256": "a9778aac8517005f87869710be536f319d54920c5561ae55dab215c0ba4908b3"
+      },
+      "file": {
+        "path": "textures/8629f9df14389a281f90402cdf827791af4d76948bf45484645feaebe872c5dd.png",
+        "sha256": "0d233eead5ac19fdc724118d13c2ca136856bdc98d40b48f627adbaad9decbac"
+      },
+      "gpu": {
+        "path": "textures/8629f9df14389a281f90402cdf827791af4d76948bf45484645feaebe872c5dd.msrgba",
+        "sha256": "b22d9f25e4e35c4acba7ef710812cf3f3c03ed13b00f6ec8c350c3a4ad669591"
+      },
+      "height": 512,
+      "mip_count": 10,
+      "name": "project_hbxj_02_d",
+      "sampler": {
+        "aniso": 1,
+        "filter_mode": 1,
+        "mip_bias": 0.0,
+        "wrap": [
+          0,
+          0,
+          0
+        ]
+      },
+      "source": {
+        "bundle": "assets/scenetexture/project_hbxj_02_d.ab",
+        "cab": "CAB-f5028882ebb74d912353c4ca1124d223",
+        "path_id": "-1551445925184717381"
+      },
+      "unity_color_space": 1,
+      "unity_format": 50,
+      "unity_version": "2021.3.23f1c1",
+      "width": 512
+    },
+    {
+      "encoded": {
+        "path": "textures/b23f74dc888bcaba6d9b07e4ee2bb9f013612529029a47a2a27c04129e4188a8.texture.bin",
+        "sha256": "ded54075a46f9febeec59abb9db8ffe4df026c7a30040f3ccefd530e54ccc586"
+      },
+      "file": {
+        "path": "textures/b23f74dc888bcaba6d9b07e4ee2bb9f013612529029a47a2a27c04129e4188a8.png",
+        "sha256": "9581c23c8fbdf36507209341907c6de313a0b4ac5f955435bffc00ab275e37d9"
+      },
+      "gpu": {
+        "path": "textures/b23f74dc888bcaba6d9b07e4ee2bb9f013612529029a47a2a27c04129e4188a8.msrgba",
+        "sha256": "570f9cba84dff9fed11956b99f67eb15c08407474dcc5915d0ddd46a740ee3c1"
+      },
+      "height": 512,
+      "mip_count": 10,
+      "name": "project_shouyintai_01_d",
+      "sampler": {
+        "aniso": 1,
+        "filter_mode": 1,
+        "mip_bias": 0.0,
+        "wrap": [
+          0,
+          0,
+          0
+        ]
+      },
+      "source": {
+        "bundle": "assets/scenetexture/project_shouyintai_d_01.ab",
+        "cab": "CAB-a739dd3431c2b7e61e7b56b959d85df9",
+        "path_id": "-6939061693498933011"
+      },
+      "unity_color_space": 1,
+      "unity_format": 50,
+      "unity_version": "2021.3.23f1c1",
+      "width": 512
+    },
+    {
+      "encoded": {
+        "path": "textures/bb3c0761606ba99bd7b8cccf20fd6bcbbb3c8527a176bd724019b9f9c57ad52f.texture.bin",
+        "sha256": "2e9bb4779f283ecf92fc9f2afb2ed7179e9a66a904346305152df9ee59147555"
+      },
+      "file": {
+        "path": "textures/bb3c0761606ba99bd7b8cccf20fd6bcbbb3c8527a176bd724019b9f9c57ad52f.png",
+        "sha256": "af26add520f3d42a3f680d99914d1cfe57726d739e9d3d838e370ab76d836303"
+      },
+      "gpu": {
+        "path": "textures/bb3c0761606ba99bd7b8cccf20fd6bcbbb3c8527a176bd724019b9f9c57ad52f.msrgba",
+        "sha256": "f698afc1d8fe0ddf721ae08fd4181ceb28e177742ea5ac28a72d9d0e920cf8f0"
+      },
+      "height": 512,
+      "mip_count": 10,
+      "name": "project_tieguizi_02_d",
+      "sampler": {
+        "aniso": 1,
+        "filter_mode": 1,
+        "mip_bias": 0.0,
+        "wrap": [
+          0,
+          0,
+          0
+        ]
+      },
+      "source": {
+        "bundle": "assets/scenetexture/project_tieguizi_02_d.ab",
+        "cab": "CAB-015ae1fa6af54f411f60b19d982658a5",
+        "path_id": "-2211094299870182439"
+      },
+      "unity_color_space": 1,
+      "unity_format": 50,
+      "unity_version": "2021.3.23f1c1",
+      "width": 512
+    },
+    {
+      "encoded": {
+        "path": "textures/39446c7fa0d94beb3ac1babc8453b172403c19e9b62409a27891c2e573ee10c2.texture.bin",
+        "sha256": "34aa826e1647f96fbc7398e6eb076d7ed63c156a0ebc2711a6f578894a9f9f27"
+      },
+      "file": {
+        "path": "textures/39446c7fa0d94beb3ac1babc8453b172403c19e9b62409a27891c2e573ee10c2.png",
+        "sha256": "b7ec79108d6f030f27e7d2b744010eefebcd55e3fb687e5955b6b6e11d06c9b3"
+      },
+      "gpu": {
+        "path": "textures/39446c7fa0d94beb3ac1babc8453b172403c19e9b62409a27891c2e573ee10c2.msrgba",
+        "sha256": "fa36ce0e6c8d8aee6bb50da723957f0d1e11b99f7ff320dd56c12dcb2dbf41e9"
+      },
+      "height": 512,
+      "mip_count": 10,
+      "name": "project_muxiang_01_d",
+      "sampler": {
+        "aniso": 1,
+        "filter_mode": 1,
+        "mip_bias": 0.0,
+        "wrap": [
+          0,
+          0,
+          0
+        ]
+      },
+      "source": {
+        "bundle": "assets/scenetexture/project_muxiang_01_d.ab",
+        "cab": "CAB-a4c3e6618ef0d54873b452e7575cf3c4",
+        "path_id": "-283067627003394486"
+      },
+      "unity_color_space": 1,
+      "unity_format": 50,
+      "unity_version": "2021.3.23f1c1",
+      "width": 512
+    },
+    {
+      "encoded": {
+        "path": "textures/ee623d7246ff074514ef38ceb8ae8a6df2b6b0542ce437975844011380747d87.texture.bin",
+        "sha256": "da6f3e1a05f60446f14a6ebc74fb202dd0c5b08bb5db99451b60914bca5e7f9b"
+      },
+      "file": {
+        "path": "textures/ee623d7246ff074514ef38ceb8ae8a6df2b6b0542ce437975844011380747d87.png",
+        "sha256": "ad259265e8aff6fe4c02cae8c4ace2ed8db2ed4ce2cb5d16766efb50895d126f"
+      },
+      "gpu": {
+        "path": "textures/ee623d7246ff074514ef38ceb8ae8a6df2b6b0542ce437975844011380747d87.msrgba",
+        "sha256": "1662659ec757846b0bb26e182efecb925abc2fa1568a89ee38484f8618830392"
+      },
+      "height": 512,
+      "mip_count": 10,
+      "name": "project_muguizi_d",
+      "sampler": {
+        "aniso": 1,
+        "filter_mode": 1,
+        "mip_bias": 0.0,
+        "wrap": [
+          0,
+          0,
+          0
+        ]
+      },
+      "source": {
+        "bundle": "assets/scenetexture/project_muguizi_d.ab",
+        "cab": "CAB-6d83b6c7c5aeb7a3ac048861750a8289",
+        "path_id": "3173547754528109661"
+      },
+      "unity_color_space": 1,
+      "unity_format": 50,
+      "unity_version": "2021.3.23f1c1",
+      "width": 512
+    },
+    {
+      "encoded": {
+        "path": "textures/6de8cbf3e0e3a78475f6f734a825059aad2ad3df206a52d3dcc61766795a7927.texture.bin",
+        "sha256": "ed4e2e137330a13a30146f91b15bb00800b664fd47b09c6ba380e641ad0c7154"
+      },
+      "file": {
+        "path": "textures/6de8cbf3e0e3a78475f6f734a825059aad2ad3df206a52d3dcc61766795a7927.png",
+        "sha256": "ed07e55a86affd0c58bb4a250801a9d695d98e810ee91cf4b6c1e93780fc4523"
+      },
+      "gpu": {
+        "path": "textures/6de8cbf3e0e3a78475f6f734a825059aad2ad3df206a52d3dcc61766795a7927.msrgba",
+        "sha256": "12a70c1aa55249fbce334c1fd217e081e08716f7e74804f903ae5d8ccf578d72"
+      },
+      "height": 512,
+      "mip_count": 10,
+      "name": "project_lajidui_02_d",
+      "sampler": {
+        "aniso": 1,
+        "filter_mode": 1,
+        "mip_bias": 0.0,
+        "wrap": [
+          0,
+          0,
+          0
+        ]
+      },
+      "source": {
+        "bundle": "assets/scenetexture/project_lajidui_02_d.ab",
+        "cab": "CAB-626527fee1d2a643cd6ae0438ccf85f8",
+        "path_id": "-6945896686951169773"
+      },
+      "unity_color_space": 1,
+      "unity_format": 50,
+      "unity_version": "2021.3.23f1c1",
+      "width": 512
+    },
+    {
+      "encoded": {
+        "path": "textures/8ba3533337f6ee3943ed74274d733328bb12a35aef30d48d31ba5895609d7e9b.texture.bin",
+        "sha256": "8601ed0fc789e0f02b6e1fee0d6edacb15188b880da53ca57ab03e80ca1e5b0a"
+      },
+      "file": {
+        "path": "textures/8ba3533337f6ee3943ed74274d733328bb12a35aef30d48d31ba5895609d7e9b.png",
+        "sha256": "ad3908fb3ac257b1169858c2fd1b574033b57b1cef12da09275396dbb86f91ce"
+      },
+      "gpu": {
+        "path": "textures/8ba3533337f6ee3943ed74274d733328bb12a35aef30d48d31ba5895609d7e9b.msrgba",
+        "sha256": "964f6f10136f58b43dc08fbe3c17517275b1059ec5692d7c4b0d0943492d3ce5"
+      },
+      "height": 128,
+      "mip_count": 8,
+      "name": "Building_chaoshi_01_LOD2",
+      "sampler": {
+        "aniso": 1,
+        "filter_mode": 1,
+        "mip_bias": 0.0,
+        "wrap": [
+          0,
+          0,
+          0
+        ]
+      },
+      "source": {
+        "bundle": "assets/sceneprefab/building_chaoshi_01.ab",
+        "cab": "CAB-cdc98491955a205fc1b531bc1fca26e7",
+        "path_id": "4570798548227889780"
+      },
+      "unity_color_space": 1,
+      "unity_format": 50,
+      "unity_version": "2021.3.23f1c1",
+      "width": 128
+    },
+    {
+      "encoded": {
+        "path": "textures/df9d2d20e622856cfa4bc55d9c09c236d51e80d68a53b25fa7a678c9d96a93c6.texture.bin",
+        "sha256": "89ffad7336b09a1ad22c23a1b79b45803617860013f27e1cc640c365c7cebef6"
+      },
+      "file": {
+        "path": "textures/df9d2d20e622856cfa4bc55d9c09c236d51e80d68a53b25fa7a678c9d96a93c6.png",
+        "sha256": "d397712b477170b1f66dd79cffffd89f291b7f15ff743b5d8d9d827ee88ca9b2"
+      },
+      "gpu": {
+        "path": "textures/df9d2d20e622856cfa4bc55d9c09c236d51e80d68a53b25fa7a678c9d96a93c6.msrgba",
+        "sha256": "0382c57eed1ab6709362561a283eaf1e3f583c93144615a10ce8bb99a6e865ab"
+      },
+      "height": 512,
+      "mip_count": 10,
+      "name": "Building_chaoshi_01_d",
+      "sampler": {
+        "aniso": 1,
+        "filter_mode": 1,
+        "mip_bias": 0.0,
+        "wrap": [
+          0,
+          0,
+          0
+        ]
+      },
+      "source": {
+        "bundle": "assets/sceneprefab/building_chaoshi_01.ab",
+        "cab": "CAB-cdc98491955a205fc1b531bc1fca26e7",
+        "path_id": "7682374177632729948"
+      },
+      "unity_color_space": 1,
+      "unity_format": 50,
+      "unity_version": "2021.3.23f1c1",
+      "width": 512
+    },
+    {
+      "encoded": {
+        "path": "textures/e51a0f122d54004648e2cd1f935f00419eff7e40328081b67402cbe3bb62ae80.texture.bin",
+        "sha256": "ff3c4c7a2b09675b90197987a0b670b547256f085935bcd86a7f74c94247dddd"
+      },
+      "file": {
+        "path": "textures/e51a0f122d54004648e2cd1f935f00419eff7e40328081b67402cbe3bb62ae80.png",
+        "sha256": "114d89bea4722fdd5a821115cd9354b284e112b62371b63be95a8029ea879871"
+      },
+      "gpu": {
+        "path": "textures/e51a0f122d54004648e2cd1f935f00419eff7e40328081b67402cbe3bb62ae80.msrgba",
+        "sha256": "fc5f63d030b9196ab842fd90eccc9a9c0b79e6b6a49e76ebffcc511e40c4a870"
+      },
+      "height": 512,
+      "mip_count": 10,
+      "name": "project_tieguizi_01_d",
+      "sampler": {
+        "aniso": 1,
+        "filter_mode": 1,
+        "mip_bias": 0.0,
+        "wrap": [
+          0,
+          0,
+          0
+        ]
+      },
+      "source": {
+        "bundle": "assets/scenetexture/project_tieguizi_01_d.ab",
+        "cab": "CAB-68252b7587f3650b518f737800894b20",
+        "path_id": "4714365400096335806"
+      },
+      "unity_color_space": 1,
+      "unity_format": 50,
+      "unity_version": "2021.3.23f1c1",
+      "width": 512
+    },
+    {
+      "encoded": {
+        "path": "textures/fb3207d9d886da3fd119501bd7ec22684dbc03077c84a3c9e4f79a19b1fa94db.texture.bin",
+        "sha256": "196567feeb95db161d5b5403871ca2e84a723034434fa8343b224161bae2a30e"
+      },
+      "file": {
+        "path": "textures/fb3207d9d886da3fd119501bd7ec22684dbc03077c84a3c9e4f79a19b1fa94db.png",
+        "sha256": "b7331e8e1f84f9af37c3f6f508d587825954f6ecd332981f061c89853df8bfd3"
+      },
+      "gpu": {
+        "path": "textures/fb3207d9d886da3fd119501bd7ec22684dbc03077c84a3c9e4f79a19b1fa94db.msrgba",
+        "sha256": "3f5748bea353d35b81e50bfef607ba7260414f12d035fa1fb700f5a87be03385"
+      },
+      "height": 512,
+      "mip_count": 10,
+      "name": "project_poqiche_02_d",
+      "sampler": {
+        "aniso": 1,
+        "filter_mode": 1,
+        "mip_bias": 0.0,
+        "wrap": [
+          0,
+          0,
+          0
+        ]
+      },
+      "source": {
+        "bundle": "assets/scenetexture/project_poqiche_02_d.ab",
+        "cab": "CAB-1b9d815eef1846abb3ce57173368af69",
+        "path_id": "6466257222310414710"
+      },
+      "unity_color_space": 1,
+      "unity_format": 50,
+      "unity_version": "2021.3.23f1c1",
+      "width": 512
+    },
+    {
+      "encoded": {
+        "path": "textures/229ab0b9c2f10993eae3e16bc2c82eb517b9232b8268d927670d68c6edbe7f2b.texture.bin",
+        "sha256": "ce16a79c7e7ee8be18f5fb625461ec34fb0452713d2892fd1c4bf22d9470920e"
+      },
+      "file": {
+        "path": "textures/229ab0b9c2f10993eae3e16bc2c82eb517b9232b8268d927670d68c6edbe7f2b.png",
+        "sha256": "990084b9cb59915147fe0d4add4b465a7ca5b1e0aab326b428cece35b764a623"
+      },
+      "gpu": {
+        "path": "textures/229ab0b9c2f10993eae3e16bc2c82eb517b9232b8268d927670d68c6edbe7f2b.msrgba",
+        "sha256": "368399684b706822e7910ec211b1e2e8a713ef7f2322d063379ccdf3a408b696"
+      },
+      "height": 512,
+      "mip_count": 10,
+      "name": "Building_dizhuan_01",
+      "sampler": {
+        "aniso": 1,
+        "filter_mode": 1,
+        "mip_bias": 0.0,
+        "wrap": [
+          0,
+          0,
+          0
+        ]
+      },
+      "source": {
+        "bundle": "assets/scenetexture/building_dizhuan_01.ab",
+        "cab": "CAB-29d7b4d85808062c49bc6b79bdc411cf",
+        "path_id": "8577906724713645400"
+      },
+      "unity_color_space": 1,
+      "unity_format": 50,
+      "unity_version": "2021.3.23f1c1",
+      "width": 512
+    }
+  ],
+  "verified_hierarchy": true,
+  "verified_source_mips": true,
+  "views": [
+    {
+      "camera_distance": 45.0,
+      "contact_length": null,
+      "contact_shadows_enabled": false,
+      "contact_steps": null,
+      "contact_thickness": null,
+      "file": "near.png",
+      "rgb_buckets": 275,
+      "shadow_maps_enabled": true,
+      "source_nodes": 303,
+      "visible_parts": 296,
+      "wall_darkened_vs_reference": null
+    },
+    {
+      "repeat": "near-repeat.png",
+      "wall_changed_pixels": 0
+    },
+    {
+      "camera_distance": 45.0,
+      "contact_length": null,
+      "contact_shadows_enabled": false,
+      "contact_steps": null,
+      "contact_thickness": null,
+      "file": "near-repeat.png",
+      "rgb_buckets": 275,
+      "shadow_maps_enabled": true,
+      "source_nodes": 303,
+      "visible_parts": 296,
+      "wall_darkened_vs_reference": 0
+    },
+    {
+      "shadow_toggle_darkened_lower_pixels": 10819
+    },
+    {
+      "camera_distance": 45.0,
+      "contact_length": null,
+      "contact_shadows_enabled": false,
+      "contact_steps": null,
+      "contact_thickness": null,
+      "file": "near-shadows-off.png",
+      "rgb_buckets": 262,
+      "shadow_maps_enabled": false,
+      "source_nodes": 303,
+      "visible_parts": 296,
+      "wall_darkened_vs_reference": 0
+    },
+    {
+      "camera_distance": 22.0,
+      "contact_length": null,
+      "contact_shadows_enabled": false,
+      "contact_steps": null,
+      "contact_thickness": null,
+      "file": "close.png",
+      "rgb_buckets": 339,
+      "shadow_maps_enabled": true,
+      "source_nodes": 303,
+      "visible_parts": 296,
+      "wall_darkened_vs_reference": null
+    },
+    {
+      "repeat": "close-repeat.png",
+      "wall_changed_pixels": 0
+    },
+    {
+      "camera_distance": 22.0,
+      "contact_length": null,
+      "contact_shadows_enabled": false,
+      "contact_steps": null,
+      "contact_thickness": null,
+      "file": "close-repeat.png",
+      "rgb_buckets": 339,
+      "shadow_maps_enabled": true,
+      "source_nodes": 303,
+      "visible_parts": 296,
+      "wall_darkened_vs_reference": 0
+    },
+    {
+      "camera_distance": 45.0,
+      "contact_length": null,
+      "contact_shadows_enabled": false,
+      "contact_steps": null,
+      "contact_thickness": null,
+      "file": "opposite.png",
+      "rgb_buckets": 168,
+      "shadow_maps_enabled": true,
+      "source_nodes": 303,
+      "visible_parts": 296,
+      "wall_darkened_vs_reference": null
+    },
+    {
+      "camera_distance": 180.0,
+      "contact_length": null,
+      "contact_shadows_enabled": false,
+      "contact_steps": null,
+      "contact_thickness": null,
+      "file": "far-lod.png",
+      "rgb_buckets": 120,
+      "shadow_maps_enabled": true,
+      "source_nodes": 303,
+      "visible_parts": 2,
+      "wall_darkened_vs_reference": null
+    }
+  ],
+  "wall_comparison": {
+    "close": [
+      625,
+      320,
+      95,
+      30
+    ],
+    "darkening_threshold_rgb_sum": 30,
+    "near": [
+      637,
+      415,
+      30,
+      39
+    ],
+    "repeat_threshold_any_rgb_channel": 8
+  }
+}

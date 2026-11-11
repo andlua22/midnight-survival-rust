@@ -1,0 +1,178 @@
+{
+  "width": 1280,
+  "height": 720,
+  "dark_threshold": "sum(current RGB)+30 < sum(contact-off RGB)",
+  "repeat_threshold": "any channel absolute difference >8",
+  "views": [
+    {
+      "file": "near.png",
+      "wall_region": {
+        "x": [
+          637,
+          667
+        ],
+        "y": [
+          415,
+          454
+        ]
+      },
+      "wall_pixels": 1170,
+      "darkened_vs_contact_off": 192,
+      "darkened_percent": 16.41025641025641,
+      "changed_vs_first": null
+    },
+    {
+      "file": "near-contact-thin.png",
+      "wall_region": {
+        "x": [
+          637,
+          667
+        ],
+        "y": [
+          415,
+          454
+        ]
+      },
+      "wall_pixels": 1170,
+      "darkened_vs_contact_off": 279,
+      "darkened_percent": 23.846153846153847,
+      "changed_vs_first": null
+    },
+    {
+      "file": "near-contact-thin-repeat.png",
+      "wall_region": {
+        "x": [
+          637,
+          667
+        ],
+        "y": [
+          415,
+          454
+        ]
+      },
+      "wall_pixels": 1170,
+      "darkened_vs_contact_off": 273,
+      "darkened_percent": 23.333333333333332,
+      "changed_vs_first": 561
+    },
+    {
+      "file": "near-contact-finer.png",
+      "wall_region": {
+        "x": [
+          637,
+          667
+        ],
+        "y": [
+          415,
+          454
+        ]
+      },
+      "wall_pixels": 1170,
+      "darkened_vs_contact_off": 19,
+      "darkened_percent": 1.623931623931624,
+      "changed_vs_first": null
+    },
+    {
+      "file": "near-contact-finer-repeat.png",
+      "wall_region": {
+        "x": [
+          637,
+          667
+        ],
+        "y": [
+          415,
+          454
+        ]
+      },
+      "wall_pixels": 1170,
+      "darkened_vs_contact_off": 21,
+      "darkened_percent": 1.794871794871795,
+      "changed_vs_first": 43
+    },
+    {
+      "file": "close-contact-default.png",
+      "wall_region": {
+        "x": [
+          625,
+          720
+        ],
+        "y": [
+          320,
+          350
+        ]
+      },
+      "wall_pixels": 2850,
+      "darkened_vs_contact_off": 307,
+      "darkened_percent": 10.771929824561404,
+      "changed_vs_first": null
+    },
+    {
+      "file": "close-contact-thin.png",
+      "wall_region": {
+        "x": [
+          625,
+          720
+        ],
+        "y": [
+          320,
+          350
+        ]
+      },
+      "wall_pixels": 2850,
+      "darkened_vs_contact_off": 301,
+      "darkened_percent": 10.56140350877193,
+      "changed_vs_first": null
+    },
+    {
+      "file": "close-contact-thin-repeat.png",
+      "wall_region": {
+        "x": [
+          625,
+          720
+        ],
+        "y": [
+          320,
+          350
+        ]
+      },
+      "wall_pixels": 2850,
+      "darkened_vs_contact_off": 296,
+      "darkened_percent": 10.385964912280702,
+      "changed_vs_first": 597
+    },
+    {
+      "file": "close-contact-finer.png",
+      "wall_region": {
+        "x": [
+          625,
+          720
+        ],
+        "y": [
+          320,
+          350
+        ]
+      },
+      "wall_pixels": 2850,
+      "darkened_vs_contact_off": 101,
+      "darkened_percent": 3.543859649122807,
+      "changed_vs_first": null
+    },
+    {
+      "file": "close-contact-finer-repeat.png",
+      "wall_region": {
+        "x": [
+          625,
+          720
+        ],
+        "y": [
+          320,
+          350
+        ]
+      },
+      "wall_pixels": 2850,
+      "darkened_vs_contact_off": 99,
+      "darkened_percent": 3.473684210526316,
+      "changed_vs_first": 207
+    }
+  ]
+}

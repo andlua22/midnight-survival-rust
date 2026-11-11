@@ -1,0 +1,562 @@
+{
+  "date": "2026-11-11",
+  "scope": "Read-only recovered metadata: placement-loader string candidates and topology field owner; exact native association unresolved",
+  "metadata_evidence": {
+    "evidence_id": "ev_5730e067f9baf0392c87819fb7eeb2bba97d052b51e8c025dbaf95beedf36978",
+    "subject": {
+      "name": "global-metadata.dat",
+      "digest": {
+        "sha256": "548b4e3e990641716e6e368de780fbf8c82f9806c0238d01e3bc02d0d644f2e6"
+      },
+      "local_path": "/tmp/codex-memory-dump-review/source/global-metadata.dat",
+      "format": "file",
+      "architecture": null
+    },
+    "provider": {
+      "id": "rea-analysis-view",
+      "name": "REA analysis view projection",
+      "version": "1"
+    },
+    "analysis_profile": null,
+    "predicate_type": "rea.analysis-view",
+    "operation": "inspect_analysis_view",
+    "parameters": {
+      "parent_evidence_id": "ev_5849ca51956c07987800616c6ab46655dbe3004f7fe539d3c71f9c9dae988d88",
+      "view": {
+        "kind": "summary"
+      }
+    },
+    "raw_result": null,
+    "normalized_result": {
+      "kind": "summary",
+      "view": {
+        "kind": "summary"
+      },
+      "parent_evidence_id": "ev_5849ca51956c07987800616c6ab46655dbe3004f7fe539d3c71f9c9dae988d88",
+      "parent_operation": "inspect_il2cpp_metadata",
+      "parent_digest": "5849ca51956c07987800616c6ab46655dbe3004f7fe539d3c71f9c9dae988d88",
+      "view_digest": "08a17111c7273dcf7ecb278f2309548236c788f55dfbf091f98d5e27b1517768",
+      "artifact": {
+        "path": "/tmp/codex-memory-dump-review/source/global-metadata.dat",
+        "sha256": "548b4e3e990641716e6e368de780fbf8c82f9806c0238d01e3bc02d0d644f2e6"
+      },
+      "coverage": {
+        "status": "complete-within-view",
+        "examined": 1,
+        "total": 1,
+        "next_offset": null,
+        "exhausted": true
+      },
+      "limitations": [
+        "Only unencrypted global-metadata.dat versions 24, 27, 29, 31 and 39 are decoded; names, counts and string literals are observed file content, not runtime behavior.",
+        "Native code addresses and IL2CPP binary registration are not recovered without binary_path.",
+        "Field, parameter and return types are not recovered without binary_path; type indices refer to the native binary.",
+        "declaring_type for types is derived from the nestedTypes section, and member and parameter owners from the owners' index ranges; row positions are the metadata indices."
+      ],
+      "unknowns": [
+        "Generic method instances were not requested; their count is unknown.",
+        "Names come from unencrypted metadata only; native code addresses and runtime registration remain unknown."
+      ],
+      "summary": {
+        "artifact": {
+          "path": "/tmp/codex-memory-dump-review/source/global-metadata.dat",
+          "sha256": "548b4e3e990641716e6e368de780fbf8c82f9806c0238d01e3bc02d0d644f2e6",
+          "bytes": 16788272
+        },
+        "magic": 4205910959,
+        "metadata_version": 29,
+        "index_widths": {
+          "type_definition": 4,
+          "generic_container": 4,
+          "parameter": 4,
+          "type": 4,
+          "type_width_source": "fixed-width-version"
+        },
+        "limitations": [
+          "Only unencrypted global-metadata.dat versions 24, 27, 29, 31 and 39 are decoded; names, counts and string literals are observed file content, not runtime behavior.",
+          "Native code addresses and IL2CPP binary registration are not recovered without binary_path.",
+          "Field, parameter and return types are not recovered without binary_path; type indices refer to the native binary.",
+          "declaring_type for types is derived from the nestedTypes section, and member and parameter owners from the owners' index ranges; row positions are the metadata indices."
+        ],
+        "binary": null,
+        "counts": {
+          "sections": 31,
+          "images": 66,
+          "types": 18256,
+          "methods": 130543,
+          "nested_types": 7038,
+          "fields": 138860,
+          "properties": 10593,
+          "events": 204,
+          "parameters": 127542,
+          "string_literals": 14033,
+          "code_gen_modules": null,
+          "method_addresses": null,
+          "method_address_states": null,
+          "return_types": null,
+          "field_types": null,
+          "parameter_types": null,
+          "generic_method_instances": null,
+          "generic_method_instance_states": null,
+          "generic_method_issues": null
+        }
+      }
+    },
+    "confidence": "derived",
+    "authority": "shipped-artifact",
+    "environment": null,
+    "limitations": [
+      "Only unencrypted global-metadata.dat versions 24, 27, 29, 31 and 39 are decoded; names, counts and string literals are observed file content, not runtime behavior.",
+      "Native code addresses and IL2CPP binary registration are not recovered without binary_path.",
+      "Field, parameter and return types are not recovered without binary_path; type indices refer to the native binary.",
+      "declaring_type for types is derived from the nestedTypes section, and member and parameter owners from the owners' index ranges; row positions are the metadata indices."
+    ],
+    "relationship_coverage": null,
+    "locations": [
+      {
+        "kind": "artifact-path",
+        "path": "/tmp/codex-memory-dump-review/source/global-metadata.dat"
+      }
+    ],
+    "evidence_links": [
+      "ev_5849ca51956c07987800616c6ab46655dbe3004f7fe539d3c71f9c9dae988d88"
+    ]
+  },
+  "selected_views": [
+    {
+      "evidence_id": "ev_3951759b019f5da2bfa825a1f55f2979455cfb8e4c1c624c2525e5482123376e",
+      "subject": {
+        "name": "global-metadata.dat",
+        "digest": {
+          "sha256": "548b4e3e990641716e6e368de780fbf8c82f9806c0238d01e3bc02d0d644f2e6"
+        },
+        "local_path": "/tmp/codex-memory-dump-review/source/global-metadata.dat",
+        "format": "file",
+        "architecture": null
+      },
+      "provider": {
+        "id": "rea-analysis-view",
+        "name": "REA analysis view projection",
+        "version": "1"
+      },
+      "analysis_profile": null,
+      "predicate_type": "rea.analysis-view",
+      "operation": "inspect_analysis_view",
+      "parameters": {
+        "parent_evidence_id": "ev_5849ca51956c07987800616c6ab46655dbe3004f7fe539d3c71f9c9dae988d88",
+        "view": {
+          "kind": "il2cpp-metadata",
+          "indices": [
+            1085,
+            10863,
+            10864,
+            10865,
+            10866,
+            10874,
+            10875,
+            12046,
+            12471
+          ],
+          "offset": 0,
+          "limit": 9,
+          "collection": "string_literals"
+        }
+      },
+      "raw_result": null,
+      "normalized_result": {
+        "kind": "il2cpp-metadata",
+        "view": {
+          "kind": "il2cpp-metadata",
+          "indices": [
+            1085,
+            10863,
+            10864,
+            10865,
+            10866,
+            10874,
+            10875,
+            12046,
+            12471
+          ],
+          "offset": 0,
+          "limit": 9,
+          "collection": "string_literals"
+        },
+        "items": [
+          {
+            "value": ".oc",
+            "value_base64": null,
+            "index": 1085
+          },
+          {
+            "value": "gameconfig/allscenelist.obj",
+            "value_base64": null,
+            "index": 10863
+          },
+          {
+            "value": "gameconfig/allscenelist_jidi.obj",
+            "value_base64": null,
+            "index": 10864
+          },
+          {
+            "value": "gameconfig/partpreabs.obj",
+            "value_base64": null,
+            "index": 10865
+          },
+          {
+            "value": "gameconfig/preabs.obj",
+            "value_base64": null,
+            "index": 10866
+          },
+          {
+            "value": "gameconfig/scenecell.obj",
+            "value_base64": null,
+            "index": 10874
+          },
+          {
+            "value": "gameconfig/scenecell_jidi.obj",
+            "value_base64": null,
+            "index": 10875
+          },
+          {
+            "value": "objectInfo.obj",
+            "value_base64": null,
+            "index": 12046
+          },
+          {
+            "value": "sceneinfo/",
+            "value_base64": null,
+            "index": 12471
+          }
+        ],
+        "parent_evidence_id": "ev_5849ca51956c07987800616c6ab46655dbe3004f7fe539d3c71f9c9dae988d88",
+        "parent_operation": "inspect_il2cpp_metadata",
+        "parent_digest": "5849ca51956c07987800616c6ab46655dbe3004f7fe539d3c71f9c9dae988d88",
+        "view_digest": "72d10bffe44f21329f57a4c5bdbee834b5ee17369bb5cfaaf34b6872f7e1d8ef",
+        "artifact": {
+          "path": "/tmp/codex-memory-dump-review/source/global-metadata.dat",
+          "sha256": "548b4e3e990641716e6e368de780fbf8c82f9806c0238d01e3bc02d0d644f2e6"
+        },
+        "coverage": {
+          "status": "page",
+          "examined": 9,
+          "total": 9,
+          "next_offset": null,
+          "exhausted": true
+        },
+        "limitations": [
+          "Only unencrypted global-metadata.dat versions 24, 27, 29, 31 and 39 are decoded; names, counts and string literals are observed file content, not runtime behavior.",
+          "Native code addresses and IL2CPP binary registration are not recovered without binary_path.",
+          "Field, parameter and return types are not recovered without binary_path; type indices refer to the native binary.",
+          "declaring_type for types is derived from the nestedTypes section, and member and parameter owners from the owners' index ranges; row positions are the metadata indices."
+        ],
+        "unknowns": [
+          "Generic method instances were not requested; their count is unknown.",
+          "Names come from unencrypted metadata only; native code addresses and runtime registration remain unknown."
+        ],
+        "metadata_version": 29,
+        "counts": {
+          "sections": 31,
+          "images": 66,
+          "types": 18256,
+          "methods": 130543,
+          "nested_types": 7038,
+          "fields": 138860,
+          "properties": 10593,
+          "events": 204,
+          "parameters": 127542,
+          "string_literals": 14033,
+          "code_gen_modules": null,
+          "method_addresses": null,
+          "method_address_states": null,
+          "return_types": null,
+          "field_types": null,
+          "parameter_types": null,
+          "generic_method_instances": null,
+          "generic_method_instance_states": null,
+          "generic_method_issues": null
+        }
+      },
+      "confidence": "derived",
+      "authority": "shipped-artifact",
+      "environment": null,
+      "limitations": [
+        "Only unencrypted global-metadata.dat versions 24, 27, 29, 31 and 39 are decoded; names, counts and string literals are observed file content, not runtime behavior.",
+        "Native code addresses and IL2CPP binary registration are not recovered without binary_path.",
+        "Field, parameter and return types are not recovered without binary_path; type indices refer to the native binary.",
+        "declaring_type for types is derived from the nestedTypes section, and member and parameter owners from the owners' index ranges; row positions are the metadata indices."
+      ],
+      "relationship_coverage": null,
+      "locations": [
+        {
+          "kind": "artifact-path",
+          "path": "/tmp/codex-memory-dump-review/source/global-metadata.dat"
+        }
+      ],
+      "evidence_links": [
+        "ev_5849ca51956c07987800616c6ab46655dbe3004f7fe539d3c71f9c9dae988d88"
+      ]
+    },
+    {
+      "evidence_id": "ev_1f5203dcb9089f19e1df2d3fabb5c9bc9eccbd3d34bc51b52531ffe46d7e56fe",
+      "subject": {
+        "name": "global-metadata.dat",
+        "digest": {
+          "sha256": "548b4e3e990641716e6e368de780fbf8c82f9806c0238d01e3bc02d0d644f2e6"
+        },
+        "local_path": "/tmp/codex-memory-dump-review/source/global-metadata.dat",
+        "format": "file",
+        "architecture": null
+      },
+      "provider": {
+        "id": "rea-analysis-view",
+        "name": "REA analysis view projection",
+        "version": "1"
+      },
+      "analysis_profile": null,
+      "predicate_type": "rea.analysis-view",
+      "operation": "inspect_analysis_view",
+      "parameters": {
+        "parent_evidence_id": "ev_5849ca51956c07987800616c6ab46655dbe3004f7fe539d3c71f9c9dae988d88",
+        "view": {
+          "kind": "il2cpp-metadata",
+          "indices": [
+            8983
+          ],
+          "offset": 0,
+          "limit": 1,
+          "collection": "types"
+        }
+      },
+      "raw_result": null,
+      "normalized_result": {
+        "kind": "il2cpp-metadata",
+        "view": {
+          "kind": "il2cpp-metadata",
+          "indices": [
+            8983
+          ],
+          "offset": 0,
+          "limit": 1,
+          "collection": "types"
+        },
+        "items": [
+          {
+            "name": "SmallSceneList",
+            "namespace": "SC.LargeScene",
+            "method_start": 64548,
+            "method_count": 5,
+            "nested_type_start": -1,
+            "nested_type_count": 0,
+            "declaring_type": -1,
+            "index": 8983
+          }
+        ],
+        "parent_evidence_id": "ev_5849ca51956c07987800616c6ab46655dbe3004f7fe539d3c71f9c9dae988d88",
+        "parent_operation": "inspect_il2cpp_metadata",
+        "parent_digest": "5849ca51956c07987800616c6ab46655dbe3004f7fe539d3c71f9c9dae988d88",
+        "view_digest": "e715a20aeec23d216ab2598d54ea1b1bd14dcb1fe5a2e46d6d20976662f06bbd",
+        "artifact": {
+          "path": "/tmp/codex-memory-dump-review/source/global-metadata.dat",
+          "sha256": "548b4e3e990641716e6e368de780fbf8c82f9806c0238d01e3bc02d0d644f2e6"
+        },
+        "coverage": {
+          "status": "page",
+          "examined": 1,
+          "total": 1,
+          "next_offset": null,
+          "exhausted": true
+        },
+        "limitations": [
+          "Only unencrypted global-metadata.dat versions 24, 27, 29, 31 and 39 are decoded; names, counts and string literals are observed file content, not runtime behavior.",
+          "Native code addresses and IL2CPP binary registration are not recovered without binary_path.",
+          "Field, parameter and return types are not recovered without binary_path; type indices refer to the native binary.",
+          "declaring_type for types is derived from the nestedTypes section, and member and parameter owners from the owners' index ranges; row positions are the metadata indices."
+        ],
+        "unknowns": [
+          "Generic method instances were not requested; their count is unknown.",
+          "Names come from unencrypted metadata only; native code addresses and runtime registration remain unknown."
+        ],
+        "metadata_version": 29,
+        "counts": {
+          "sections": 31,
+          "images": 66,
+          "types": 18256,
+          "methods": 130543,
+          "nested_types": 7038,
+          "fields": 138860,
+          "properties": 10593,
+          "events": 204,
+          "parameters": 127542,
+          "string_literals": 14033,
+          "code_gen_modules": null,
+          "method_addresses": null,
+          "method_address_states": null,
+          "return_types": null,
+          "field_types": null,
+          "parameter_types": null,
+          "generic_method_instances": null,
+          "generic_method_instance_states": null,
+          "generic_method_issues": null
+        }
+      },
+      "confidence": "derived",
+      "authority": "shipped-artifact",
+      "environment": null,
+      "limitations": [
+        "Only unencrypted global-metadata.dat versions 24, 27, 29, 31 and 39 are decoded; names, counts and string literals are observed file content, not runtime behavior.",
+        "Native code addresses and IL2CPP binary registration are not recovered without binary_path.",
+        "Field, parameter and return types are not recovered without binary_path; type indices refer to the native binary.",
+        "declaring_type for types is derived from the nestedTypes section, and member and parameter owners from the owners' index ranges; row positions are the metadata indices."
+      ],
+      "relationship_coverage": null,
+      "locations": [
+        {
+          "kind": "artifact-path",
+          "path": "/tmp/codex-memory-dump-review/source/global-metadata.dat"
+        }
+      ],
+      "evidence_links": [
+        "ev_5849ca51956c07987800616c6ab46655dbe3004f7fe539d3c71f9c9dae988d88"
+      ]
+    },
+    {
+      "evidence_id": "ev_882f87cc1c4c48dfa2b1f763606005beb7aadbd50cdaa5261030ad126bdc2c0d",
+      "subject": {
+        "name": "global-metadata.dat",
+        "digest": {
+          "sha256": "548b4e3e990641716e6e368de780fbf8c82f9806c0238d01e3bc02d0d644f2e6"
+        },
+        "local_path": "/tmp/codex-memory-dump-review/source/global-metadata.dat",
+        "format": "file",
+        "architecture": null
+      },
+      "provider": {
+        "id": "rea-analysis-view",
+        "name": "REA analysis view projection",
+        "version": "1"
+      },
+      "analysis_profile": null,
+      "predicate_type": "rea.analysis-view",
+      "operation": "inspect_analysis_view",
+      "parameters": {
+        "parent_evidence_id": "ev_5849ca51956c07987800616c6ab46655dbe3004f7fe539d3c71f9c9dae988d88",
+        "view": {
+          "kind": "il2cpp-metadata",
+          "offset": 0,
+          "limit": 2,
+          "names": [
+            "sceneInfoPath",
+            "sceneInfoPath_jidi"
+          ],
+          "collection": "fields"
+        }
+      },
+      "raw_result": null,
+      "normalized_result": {
+        "kind": "il2cpp-metadata",
+        "view": {
+          "kind": "il2cpp-metadata",
+          "offset": 0,
+          "limit": 2,
+          "names": [
+            "sceneInfoPath",
+            "sceneInfoPath_jidi"
+          ],
+          "collection": "fields"
+        },
+        "items": [
+          {
+            "name": "sceneInfoPath",
+            "declaring_type": 8983,
+            "index": 32551
+          },
+          {
+            "name": "sceneInfoPath_jidi",
+            "declaring_type": 8983,
+            "index": 32552
+          }
+        ],
+        "parent_evidence_id": "ev_5849ca51956c07987800616c6ab46655dbe3004f7fe539d3c71f9c9dae988d88",
+        "parent_operation": "inspect_il2cpp_metadata",
+        "parent_digest": "5849ca51956c07987800616c6ab46655dbe3004f7fe539d3c71f9c9dae988d88",
+        "view_digest": "34fadee94e24ad2bdb19e3019971b58446c662bc3838334503b65f7c73bb4b32",
+        "artifact": {
+          "path": "/tmp/codex-memory-dump-review/source/global-metadata.dat",
+          "sha256": "548b4e3e990641716e6e368de780fbf8c82f9806c0238d01e3bc02d0d644f2e6"
+        },
+        "coverage": {
+          "status": "page",
+          "examined": 2,
+          "total": 2,
+          "next_offset": null,
+          "exhausted": true
+        },
+        "limitations": [
+          "Only unencrypted global-metadata.dat versions 24, 27, 29, 31 and 39 are decoded; names, counts and string literals are observed file content, not runtime behavior.",
+          "Native code addresses and IL2CPP binary registration are not recovered without binary_path.",
+          "Field, parameter and return types are not recovered without binary_path; type indices refer to the native binary.",
+          "declaring_type for types is derived from the nestedTypes section, and member and parameter owners from the owners' index ranges; row positions are the metadata indices."
+        ],
+        "unknowns": [
+          "Generic method instances were not requested; their count is unknown.",
+          "Names come from unencrypted metadata only; native code addresses and runtime registration remain unknown."
+        ],
+        "metadata_version": 29,
+        "counts": {
+          "sections": 31,
+          "images": 66,
+          "types": 18256,
+          "methods": 130543,
+          "nested_types": 7038,
+          "fields": 138860,
+          "properties": 10593,
+          "events": 204,
+          "parameters": 127542,
+          "string_literals": 14033,
+          "code_gen_modules": null,
+          "method_addresses": null,
+          "method_address_states": null,
+          "return_types": null,
+          "field_types": null,
+          "parameter_types": null,
+          "generic_method_instances": null,
+          "generic_method_instance_states": null,
+          "generic_method_issues": null
+        }
+      },
+      "confidence": "derived",
+      "authority": "shipped-artifact",
+      "environment": null,
+      "limitations": [
+        "Only unencrypted global-metadata.dat versions 24, 27, 29, 31 and 39 are decoded; names, counts and string literals are observed file content, not runtime behavior.",
+        "Native code addresses and IL2CPP binary registration are not recovered without binary_path.",
+        "Field, parameter and return types are not recovered without binary_path; type indices refer to the native binary.",
+        "declaring_type for types is derived from the nestedTypes section, and member and parameter owners from the owners' index ranges; row positions are the metadata indices."
+      ],
+      "relationship_coverage": null,
+      "locations": [
+        {
+          "kind": "artifact-path",
+          "path": "/tmp/codex-memory-dump-review/source/global-metadata.dat"
+        }
+      ],
+      "evidence_links": [
+        "ev_5849ca51956c07987800616c6ab46655dbe3004f7fe539d3c71f9c9dae988d88"
+      ]
+    }
+  ],
+  "native_link_attempt": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"error\":{\"code\":\"invalid_request\",\"category\":\"invalid_input\",\"message\":\"Analysis input is invalid. Check the arguments and try again.\",\"retryable\":false,\"remediation\":{\"action\":\"Read the declared input schema or CLI usage for inspect_il2cpp_metadata; if using MCP and the catalog may be stale, call tools/list. Correct the listed fields, then retry. Do not repeat the unchanged call.\"},\"recovery\":{\"kind\":\"inspect_input_contract\",\"operation\":\"inspect_il2cpp_metadata\"},\"details\":{\"operation\":\"inspect_il2cpp_metadata\",\"issues\":[{\"path\":[\"binary_path\"],\"reason\":\"invalid_format\",\"message\":\"Selected binary /tmp/codex-minimap-review/libil2cpp.so does not link to the metadata: invalid-type: type definition 2019059728 is out of range\"}],\"partial_observation\":{\"kind\":\"retained-evidence\",\"evidence_id\":\"ev_2d0cc54292daeb7eff45e1875a3368f2e6696dedab6479fb7e3011148b83db39\"}}}}"
+      }
+    ],
+    "isError": true
+  },
+  "unknowns": [
+    "REA could not link the supplied recovered binary registration to metadata; this does not contradict the separately pinned member hashes or recovery attestation.",
+    "sceneinfo/ plus a scene name plus .oc is a candidate until its runtime literal pointer slots are resolved; objectInfo.obj is a distinct unassociated literal."
+  ]
+}

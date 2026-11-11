@@ -1,4 +1,4 @@
-//! Independently compare shipped-font character coverage with the egui parser.
+//! Independently compare shipped-font character coverage across font parsers.
 //! No system font fallback or fabricated glyph is used.
 
 use std::{collections::BTreeMap, path::Path};

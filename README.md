@@ -1,153 +1,147 @@
 # Midnight Survival
 
-Linux-прототип survival-гри: полігон із камерою від першої особи, фізика Rapier, Vulkan-рендеринг Bevy, редактор HUD на egui та авторитетний мультиплеєр через QUIC.
+A Rust/Bevy reconstruction of the retained Unity APK, developed and tested on
+Linux first. The current client explores the imported island with native Bevy UI,
+Rapier collision, a day/night sun and ray-marched volumetric clouds. Original
+gameplay rules and complete visual parity are still being reconstructed.
 
-Фаза 2.1 додає сервер із лімітом **150 гравців**, симуляцію **60 Гц**, знімки стану **20 Гц**, прогнозування локального руху, узгодження із сервером, інтерполяцію інших гравців та фізичне блокування між ними. Доступ — за адресою сервера й кодом запрошення. Виживання, інвентар, будівництво та збереження світу залишаються наступними етапами.
+The current implementation and remaining milestones are recorded in
+[the reconstruction plan](PLAN/source_reconstruction.md). Earlier prototype
+work remains documented in [phase 1](PLAN/phase1_validation.md) and
+[phase 2](PLAN/phase2_validation.md).
 
-Команди запуску через Інтернет, навантажувальний тест і поточні результати — у [журналі фази 2.1](PLAN/phase2_validation.md). Заявлена місткість потребує 30-хвилинного приймання на реальному сервері й каналі зв’язку. Приблизно **90 FPS**, які користувач підтвердив раніше, стосуються [версії фази 1](PLAN/phase1_validation.md).
+## Run on Linux
 
-## Запуск на Linux
+The lockfile pins Bevy **0.20.1** and bevy_rapier3d **0.37.0**. The workspace
+requires Rust 1.97 or newer; this machine has Rust 1.99.1. Use the existing
+Vulkan driver and X11/Wayland development libraries. Android packaging is a
+later milestone.
 
-Потрібні Rust stable, C/C++ toolchain, `pkg-config`, бібліотеки розробки X11, Wayland і xkbcommon, Vulkan loader та ICD-драйвер GPU. Перед графічним запуском `vulkaninfo --summary` має показувати доступний GPU. У середовищі реалізації встановлений Rust 1.99.1.
-
-Кореневий `Cargo.lock` фіксує Bevy `0.17.3`, `bevy_egui` `0.38.1`, `bevy_rapier3d` `0.32.0` та egui `0.33.3`. Фаза 2.1 зберігає версії рушія й додає Tokio `1.54.1`, Quinn `0.11.12`, rustls `0.23.46` і postcard `1.1.3`.
-
-Запуск:
-
-```bash
-cargo run --locked -p client_runner -- --config-dir .local
+```sh
+bash tools/storage_audit.sh --check
+cargo run --offline --locked -p client_runner -- --config-dir .local/client
 ```
 
-Обидва lockfile — кореневий і `tools/core_checks/Cargo.lock` — входять до проєкту. `--locked` зберігає узгоджені версії залежностей.
+The default map is `imported-island`. It requires the verified terrain,
+expanded UI and gameplay packages described in
+[the import notes](memory/source-imports-2026-11-11.md) and
+[gameplay data notes](memory/gameplay-data-2026-11-11.md). Invalid island data
+fails loading; it does not silently select a different map.
 
-Початкове вікно — 1280×720 із VSync; активний GPU та backend записуються в журнал. Щоб вимкнути VSync:
+For the existing playable mechanics test fixture:
 
-```bash
-cargo run --locked -p client_runner -- --config-dir .local --no-vsync
+```sh
+cargo run --offline --locked -p client_runner -- --map polygon --config-dir .local/client
 ```
 
-Геометрія, сітка полігона та іконки HUD створюються кодом; зовнішні моделі й текстури для цієї фази не потрібні.
+`--map load-arena` selects the multiplayer load-test fixture. These fixtures
+retain prototype survival, crafting, building and combat rules. Their values
+are not evidence of the original game's rules.
 
-| Керування | Дія |
-| --- | --- |
-| WASD | Рух |
-| Миша | Огляд |
-| ЛКМ або E | Удар інструментом / збір ресурсів / будівництво / покращення Киянкою |
-| ПКМ або R | Зміна форми будівлі (Фундамент / Стіна / Дверний проріз / Дах / Шафа TC / Багаття) |
-| 1–6 або Колесо миші | Вибір активного слота хотбару |
-| Tab або I | Відкрити / закрити Інвентар та Майстерню (Крафт) |
-| M або клік по Міні-карті | Відкрити / закрити Повноекранну Тактичну Карту острова (4 біоми, радар, маркери) |
-| Space | Стрибок із землі |
-| Shift | Спринт (блокується при зневодненні < 40 води) |
-| Escape | Меню; в інвентарі або на карті — повернення в гру; у редакторі — скасування змін |
-| F2 | Відкрити редактор HUD |
+| Input | Action |
+|---|---|
+| WASD / mouse | Move / look |
+| Space / Shift | Jump / sprint |
+| Tab or I | Inventory and recovered item/blueprint catalog |
+| M / minimap click | Map |
+| Wheel over minimap | Minimap zoom |
+| Escape | Menu or close a modal screen |
+| F2 | HUD editor |
+| 1–6 / wheel while playing | Prototype hotbar selection on fixtures |
 
-Меню й редактор звільняють курсор і зупиняють керування персонажем; фізичний час продовжується. Після втрати фокуса гра повертається до меню. Натисніть «Грати», щоб знову захопити курсор.
+Menus release the cursor and block movement input. The HUD editor retains
+presets, position, scale, opacity, visibility, anchors and save/cancel behavior.
+Cloud quality can be changed between 12, 24 and 48 ray steps in the menu.
+`--help` lists launch and benchmark options.
 
-## Мережева гра
+## Source packages
 
-Зібрати сервер і клієнт:
+All extraction uses Rust and the existing Unity asset crates. No Python or
+Unity installation is required. Generated packages are Git-ignored; retain the
+source APK, exports, hashes and import reports.
 
-```bash
-cargo build --locked --release -p server --bins
-cargo build --locked --release -p client_runner
-```
+- Terrain: `assets/imported_map/terrain/`; 400 source mesh instances and 383
+  enabled non-trigger source colliders, shared by local simulation and server.
+  The omitted 512×512 Z-01 scene is now included at its source coordinates;
+  [its predecessor is preserved](memory/terrain-z01-2026-11-11.md).
+- Expanded UI: nine verified source prefabs, rendered through Bevy UI nodes,
+  materials and text. The original three-panel package remains available.
+- Gameplay: 16,861 items, 315 blueprints, 38 tree definitions, 67 use-item
+  settings, two equipment-slot rows and one special recipe row. Original IDs,
+  flags, requirements and binary tables are retained.
+- Prefabs: verified supermarket hierarchy, meshes, source mip textures and
+  component evidence; Bevy diagnostic rendering with source LOD thresholds;
+  shared Box/Mesh collision queries. World placement, original glass/cubemap
+  shading and gameplay callbacks still need source verification.
 
-Створити приватне запрошення й запустити сервер в одному терміналі:
+The source catalog can be browsed in bounded pages. Source inventory capacity,
+unlocks, crafting clocks, durability and callbacks must be recovered before
+these definitions replace the fixture's rules. The imported island does not
+receive invented starter items or fixture resource placements.
 
-```bash
+## Multiplayer
+
+Build and run an island server using the same validated packages as the client:
+
+```sh
+cargo build --offline --locked -p server --bins
 umask 077
-target/release/server invite --data-dir server-data > playtest.invite
-target/release/server serve --listen 0.0.0.0:5000 --data-dir server-data \
-  --max-players 150 --report .local/server.json
+target/debug/server invite --data-dir server-data > playtest.invite
+target/debug/server serve --listen 0.0.0.0:5000 --data-dir server-data --map imported-island
 ```
 
-Підключити клієнт на цьому самому ПК з іншого термінала:
+Connect from another terminal:
 
-```bash
-target/release/client_runner --config-dir .local/client-a \
-  --connect 127.0.0.1:5000 --join-code-file playtest.invite \
-  --network-report .local/client-a-network.json
+```sh
+cargo run --offline --locked -p client_runner -- --connect 127.0.0.1:5000 --join-code-file playtest.invite --config-dir .local/client
 ```
 
-Або запустіть клієнт без мережевих параметрів і введіть адресу та код `MS1-…` у меню «Гра в мережі». Під час гри показуються пінг і кількість гравців. Escape → «Від’єднатися» повертає локальний полігон; наступне підключення створює нового персонажа. За обриву зв’язку сервер видаляє персонажа після тайм-ауту приблизно 10 секунд.
+The welcome message identifies both terrain and gameplay content. Clients
+reject mismatched packages. Protocol version 2 is incompatible with earlier
+prototype binaries. `--map polygon` or `--map load-arena` must match the
+server's explicit fixture selection. External networking and capacity
+acceptance procedures are in the historical phase 2 report.
 
-Для зовнішніх гравців потрібні доступна публічна IPv4-адреса та перенаправлення **UDP 5000** на сервер. Перевірка CGNAT, firewall, upload і сценарії на 150 підключень описані в [інструкції мережевого тесту](PLAN/phase2_validation.md). Файл `server-data/identity.json` містить приватний ключ і секрет доступу; запрошення передавайте лише учасникам закритого тесту.
+## Validation and disk usage
 
-## HUD та збереження
+Run builds one at a time. The workspace and extractor dev profiles disable
+incremental output and debug information to keep link sizes bounded. The
+[storage audit](memory/storage-2026-11-11.md) records exact rebuildable cache
+candidates and protected data. The audit script only reports storage; it never
+deletes files or changes system configuration.
 
-Доступні всі 11 віджетів із дизайн-документа: показники здоров’я/води/їжі, хотбар, мінікарта, джойстик, дві кнопки вогню, прицілювання, стрибок, присідання, перезарядка та інвентар. Показники здоров’я/води/їжі та хотбар відображають живий стан персонажа (офлайн і через авторитетний сервер), а на полігоні доступні дерева й кам’яні жили для добування ресурсів і крафту.
-
-Редактор підтримує перетягування, дев’ять прив’язок, масштаб 0.5–2.5, прозорість 0.1–1.0, видимість і пресети ПК/2/3/4 пальці. Приховані віджети доступні через список і контури. «Скинути поточний пресет» змінює чернетку.
-
-«Зберегти» атомарно записує `hud.json`. «Скасувати» та Escape відновлюють попередню розкладку, включно з пресетом. Якщо запис не вдався, редактор залишає чернетку відкритою та показує помилку. Пошкоджений або невідомий формат завантажує стандартний HUD із повідомленням; початковий файл не перезаписується автоматично.
-
-Каталог за замовчуванням — `$XDG_CONFIG_HOME/midnight-survival`, або `$HOME/.config/midnight-survival`, якщо XDG-шлях не заданий чи не абсолютний. `--config-dir PATH` задає каталог безпосередньо. Координати зберігаються в логічних одиницях egui; тимчасове зменшення вікна не руйнує збережену розкладку.
-
-## Архітектура
-
-| Крейт | Відповідальність |
-| --- | --- |
-| `shared` | Протокол, карти, контролер руху, Rapier, серверна симуляція 60 Гц, prediction/reconciliation, AOI |
-| `midnight_network` (`crates/network`) | QUIC/TLS, перевірка запрошення, обмежені черги, серіалізація й пакування знімків у датаграми |
-| `server` | Авторитетний сервер, статистика навантаження, CLI та генератор реальних QUIC-клієнтів `net_load` |
-| `client_core` | Рендер, локальний і мережевий режими, інтерполяція, egui, HUD, редактор, метрики та сховище |
-| `client_runner` | Linux-запуск, перевірка Vulkan, визначення каталогу конфігурації, підключення адаптера вводу |
-
-`PlayerInputCommand` передає номер тіку, рух вправо/вперед, зміну огляду в радіанах, стрибок і спринт. `InputAccumulator` утримує рух між тіками й споживає стрибок та огляд лише один раз. Показ камери інтерполює дві фізичні позиції; поточний рух миші одразу впливає на огляд.
-
-`build_app(options, storage)` приймає `StorageService`. Linux-runner встановлює `DesktopInputPlugin`; майбутній Android-runner може підставити сенсорний адаптер, що заповнює той самий `SimulationInput`, та сховище у приватному каталозі застосунку. APK, Android lifecycle і кроскомпіляція до цієї фази не входять.
-
-Геометрія колізій і видимі об’єкти походять з одного опису полігона. Фізичні залежності `shared` налаштовані без графічних можливостей за замовчуванням. Спільний код і фіксований крок не є обіцянкою бітової детермінованості на різних CPU.
-
-Клієнт передає напрямок руху, абсолютні кути огляду та команди стрибка/спринту з номером серверного тіку. Позиції обчислює сервер. Капсули рухаються у стабільному порядку; індекс колізій оновлюється після кожного гравця. Для вертикальних капсул використовується прямий розрахунок зіткнення, для решти геометрії — запити Rapier/Parry. Інтерпольовані візуальні позиції інших гравців відокремлені від їхніх колізійних представлень під час прогнозування.
-
-```bash
-cargo run --locked -p server -- --ticks 120
+```sh
+cargo check --offline --locked --workspace --all-targets
+cargo test --offline --locked --workspace
+cargo clippy --offline --locked --workspace --all-targets
+cargo test --offline --locked -p shared canonical_world_rebuilds -- --ignored
+cargo test --offline --locked -p shared retained_supermarket_builds -- --ignored
+cargo test --offline --locked -p midnight_map_data verifies_retained_supermarket -- --ignored
+cargo test --offline --locked -p client_core native_bevy_ui_asset -- --ignored
+cargo run --offline --locked -p server -- --ticks 120
 ```
 
-Ця команда виконує скінченну офлайн-перевірку й виводить кількість тіків, позицію та стан контакту із землею. Тривалий мережевий сервер запускається підкомандою `serve`. Наступні ігрові системи описані в [дизайн-документі](PLAN/rust_survival_game_plan.md).
+The extractor has an independent manifest and lockfile:
 
-## Перевірки
-
-Повний набір після завантаження залежностей:
-
-```bash
-cargo fmt --all --check
-cargo clippy --locked --workspace --all-targets -- -D warnings
-cargo test --locked --workspace
-cargo run --locked -p server -- --ticks 120
+```sh
+cargo test --offline --locked --manifest-path tools/asset_unpacker/Cargo.toml
+cargo clippy --offline --locked --manifest-path tools/asset_unpacker/Cargo.toml --all-targets -- -D warnings
 ```
 
-Тести, які відкривають реальні UDP-сокети, запускаються окремо:
+Native capture examples are `environment_probe`, `prefab_probe` and `minimap_probe`. Their
+shader/capture assertions verify the Bevy implementation; comparisons with a
+matched running Unity reference remain a separate acceptance step.
 
-```bash
-cargo test --locked -p server --test networking -- --ignored --test-threads=1
+```sh
+cargo run --offline --locked -p client_core --example prefab_probe -- .local/captures/prefab
+cargo run --offline --locked -p client_core --example environment_probe -- .local/captures/environment
 ```
 
-Вони перевіряють шифроване підключення, неправильні коди/сертифікати/версії, рух і блокування, ліміт 150, повторне підключення, звичайний вихід, затримку, втрати пакетів та тайм-аут. Звичайний `cargo test` їх пропускає; потрібне середовище з дозволеним UDP.
-
-Швидкі перевірки без Bevy та GPU:
-
-```bash
-cargo test --locked --offline --manifest-path tools/core_checks/Cargo.toml
-cargo clippy --locked --offline --manifest-path tools/core_checks/Cargo.toml --all-targets -- -D warnings
-cargo run --locked --offline --manifest-path tools/core_checks/Cargo.toml --bin vulkan_probe
-```
-
-`core_checks` імпортує виробничі модулі за шляхами; копій їхньої реалізації немає. Ці тести перевіряють ввід, математику руху, HUD, транзакції редактора, реальне файлове сховище, CLI та статистику кадрів. Тести колізій Rapier залишаються в основному workspace. `--offline` потребує вже завантажених залежностей самого набору перевірок.
-
-## Замір продуктивності
-
-```bash
-cargo run --locked --release -p client_runner -- \
-  --config-dir .local \
-  --benchmark \
-  --benchmark-report .local/benchmark.json
-```
-
-Режим встановлює 1920×1080, вимикає VSync, фіксує камеру та використовує стандартний HUD незалежно від збережених налаштувань. Після 10 секунд прогріву збирає кадри протягом 60 секунд, друкує JSON, записує файл і завершується. Втрата фокуса або зміна фактичного розміру вікна перезапускає прогрів. Escape скасовує замір без запису нового звіту.
-
-Звіт містить GPU/backend, фактичну роздільність, середній FPS, середній час кадру та p95/p99. `target_conditions_met` позначає release-запуск на RTX 4060 з Vulkan, 1080p і вимкненим VSync. На іншому обладнанні результати зберігаються, а `target_achieved` дорівнює `null`.
-
-120 FPS — ціль. Нижчий результат у референсних умовах зберігається для окремої задачі оптимізації й не змінює успішний код завершення заміру. За ручною перевіркою користувача клієнт працює приблизно на **90 FPS**; режим збірки, GPU, роздільність і VSync для цього результату не зафіксовані. Порівняння з ціллю потребує контрольного запуску `--benchmark` за описаними вище умовами.
+The prefab probe explicitly reports unsupported glass parts. Its stage is a
+diagnostic preview; exact world coordinates come from separately authenticated
+placement payloads. The environment probe includes a paired visible/hidden
+Z-01 view. [Placement discovery](memory/world-placements-2026-11-11.md) records
+the inspected APK/export results, protected-cache access limits and the strict
+Rust reader contract. The production desktop preset disables the contact-shadow
+effect that caused wall speckling and retains directional shadow maps; see
+[MapObject validation](memory/implementation-mapobjects-2026-11-11.md).

@@ -3,6 +3,8 @@ use std::collections::BTreeMap;
 use serde::{Deserialize, Serialize};
 
 pub const HUD_VERSION: u32 = 1;
+/// Retained BattleMinimap envelope, including its source header overhang.
+pub const MINIMAP_PANEL_SIZE: [f32; 2] = [360.0, 363.0];
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
@@ -55,7 +57,7 @@ impl WidgetId {
         match self {
             Self::HealthBars => [232.0, 108.0],
             Self::Hotbar => [384.0, 62.0],
-            Self::Minimap => crate::source_minimap::PANEL_SIZE,
+            Self::Minimap => MINIMAP_PANEL_SIZE,
             Self::VirtualJoystickLeft => [126.0, 126.0],
             _ => [68.0, 68.0],
         }
@@ -428,7 +430,7 @@ mod tests {
         let config = HudLayout::default().widgets[&WidgetId::Minimap].clone();
         let large = config.placement(WidgetId::Minimap, [1920.0, 1080.0]);
         let small = config.placement(WidgetId::Minimap, [1280.0, 720.0]);
-        assert_eq!(large.size, crate::source_minimap::PANEL_SIZE);
+        assert_eq!(large.size, MINIMAP_PANEL_SIZE);
         for axis in 0..2 {
             assert!((small.size[axis] - large.size[axis] * 2.0 / 3.0).abs() < 0.001);
         }

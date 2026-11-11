@@ -1,0 +1,239 @@
+{
+  "apk": "export/lite4.0.apk",
+  "assets": [
+    {
+      "cab": "BuildPlayer-A-01.sharedAssets",
+      "class_counts": {
+        "142": 1,
+        "150": 1,
+        "21": 1,
+        "28": 1,
+        "43": 1
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-0bc9ce17ff019440e43b8eb24d2b47b0/CAB-0bc9ce17ff019440e43b8eb24d2b47b0",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-25f9676e028cfe5dbf9f7cd5c45f3cf1/CAB-25f9676e028cfe5dbf9f7cd5c45f3cf1",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-7cb948de0d6dd1f3286c1d6930561c08/CAB-7cb948de0d6dd1f3286c1d6930561c08",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-b99e201845a48115c6b6a24e89d01efe/CAB-b99e201845a48115c6b6a24e89d01efe",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [
+        {
+          "byte_count": 148,
+          "class_id": 142,
+          "path_id": "2",
+          "properties": {
+            "m_AssetBundleName": "",
+            "m_Container": [
+              [
+                "Assets/Scenes/maps_final/zhanju_01/A-01.unity",
+                {
+                  "asset": {
+                    "m_FileID": 0,
+                    "m_PathID": 0
+                  },
+                  "preloadIndex": 0,
+                  "preloadSize": 0
+                }
+              ]
+            ],
+            "m_Dependencies": [],
+            "m_ExplicitDataLayout": 0,
+            "m_IsStreamedSceneAssetBundle": true,
+            "m_MainAsset": {
+              "asset": {
+                "m_FileID": 0,
+                "m_PathID": 0
+              },
+              "preloadIndex": 0,
+              "preloadSize": 0
+            },
+            "m_Name": "scene/a-01.ab",
+            "m_PathFlags": 7,
+            "m_PreloadTable": [],
+            "m_RuntimeCompatibility": 1,
+            "m_SceneHashes": []
+          }
+        }
+      ],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    },
+    {
+      "cab": "BuildPlayer-A-01",
+      "class_counts": {
+        "1": 1,
+        "104": 1,
+        "157": 1,
+        "196": 1,
+        "23": 1,
+        "33": 1,
+        "4": 1,
+        "64": 1,
+        "850595691": 1
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/BuildPlayer-A-01/BuildPlayer-A-01.sharedAssets",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    }
+  ],
+  "bundle": "assets/scene/a-01.ab"
+}

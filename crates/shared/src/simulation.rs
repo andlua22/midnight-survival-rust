@@ -4,11 +4,12 @@ use bevy::{prelude::*, time::TimeUpdateStrategy, transform::TransformPlugin};
 
 use crate::{
     input::InputAccumulator,
-    level::{LevelBox, MapId, SPAWN_POSITION, map_geometry},
+    level::{LevelBox, MapId, map_geometry},
     movement::{FIXED_HZ, MotionState},
     physics::CollisionWorld,
     protocol::{PlayerId, PlayerState, ServerTick},
     survival::{PlacedStructure, ResourceNode, SurvivalWorld},
+    world::{LoadedWorld, WorldLoadFailure, WorldSelection},
 };
 
 #[derive(Resource, Default)]
@@ -71,16 +72,26 @@ pub struct SharedSimulationPlugin;
 
 impl Plugin for SharedSimulationPlugin {
     fn build(&self, app: &mut App) {
-        let mut survival = SurvivalWorld::new(MapId::Polygon);
-        survival.join(PlayerId(0));
+        let selection = app
+            .world()
+            .get_resource::<WorldSelection>()
+            .cloned()
+            .unwrap_or_default();
         app.init_resource::<SimulationInput>()
             .init_resource::<SimulationClock>()
             .init_resource::<SimulationMode>()
-            .insert_resource(SimulationWorld(CollisionWorld::new(MapId::Polygon)))
-            .insert_resource(SimulationSurvival(survival))
+            .insert_resource(selection.clone())
+            .insert_resource(SimulationWorld(CollisionWorld::new(selection.map)))
+            .insert_resource(SimulationSurvival(SurvivalWorld::new(selection.map)))
             .insert_resource(Time::<Fixed>::from_hz(FIXED_HZ))
+            .add_systems(PreStartup, initialize_world)
             .add_systems(Startup, spawn_world)
-            .add_systems(FixedUpdate, drive_players.in_set(SimulationSet::Step));
+            .add_systems(
+                FixedUpdate,
+                drive_players
+                    .in_set(SimulationSet::Step)
+                    .run_if(resource_exists::<LoadedWorld>),
+            );
     }
 }
 
@@ -121,9 +132,30 @@ pub fn spawn_local(commands: &mut Commands, id: PlayerId, state: PlayerState) ->
         .id()
 }
 
-fn spawn_world(mut commands: Commands) {
-    spawn_geometry(&mut commands, MapId::Polygon);
-    spawn_local(&mut commands, PlayerId(0), PlayerState::at(SPAWN_POSITION));
+fn initialize_world(world: &mut World) {
+    let selection = world.resource::<WorldSelection>().clone();
+    match LoadedWorld::load(&selection) {
+        Ok((loaded, collision)) => {
+            let mut survival = SurvivalWorld::new(selection.map);
+            survival.join(PlayerId(0));
+            world.insert_resource(SimulationWorld(collision));
+            world.insert_resource(SimulationSurvival(survival));
+            world.insert_resource(loaded);
+        }
+        Err(error) => {
+            error!("Cannot initialize selected world: {error}");
+            world.insert_resource(WorldLoadFailure(error.to_string()));
+            if let Some(mut exits) = world.get_resource_mut::<Messages<AppExit>>() {
+                exits.write(AppExit::error());
+            }
+        }
+    }
+}
+
+fn spawn_world(mut commands: Commands, loaded: Option<Res<LoadedWorld>>) {
+    let Some(loaded) = loaded else { return };
+    spawn_geometry(&mut commands, loaded.descriptor.map);
+    spawn_local(&mut commands, PlayerId(0), PlayerState::at(loaded.spawn));
 }
 
 #[allow(clippy::type_complexity)] // Explicit Bevy component access.

@@ -67,10 +67,6 @@ impl Material for TerrainSplatMaterial {
     fn fragment_shader() -> ShaderRef {
         "shaders/terrain_splat.wesl".into()
     }
-    fn enable_prepass() -> bool {
-        false
-    }
-
     fn specialize(
         _pipeline: &bevy::pbr::MaterialPipeline,
         descriptor: &mut bevy::render::render_resource::RenderPipelineDescriptor,

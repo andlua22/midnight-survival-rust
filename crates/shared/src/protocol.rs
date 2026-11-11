@@ -11,7 +11,7 @@ use crate::{
     },
 };
 
-pub const PROTOCOL_VERSION: u32 = 1;
+pub const PROTOCOL_VERSION: u32 = 2;
 pub const MAX_PLAYERS: usize = 150;
 pub const INPUT_REDUNDANCY: usize = 6;
 pub const INPUT_WINDOW: u64 = 60;
@@ -125,6 +125,7 @@ pub enum ServerControl {
         tick: ServerTick,
         epoch: u32,
         map: MapId,
+        world: crate::content::WorldDescriptor,
         state: PlayerState,
         capacity: u16,
     },

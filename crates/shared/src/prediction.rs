@@ -92,7 +92,16 @@ impl Prediction {
         epoch: u32,
         state: PlayerState,
     ) -> Self {
-        let mut world = CollisionWorld::new(map);
+        Self::from_world(CollisionWorld::new(map), player, tick, epoch, state)
+    }
+
+    pub fn from_world(
+        mut world: CollisionWorld,
+        player: PlayerId,
+        tick: ServerTick,
+        epoch: u32,
+        state: PlayerState,
+    ) -> Self {
         world.set_player(player, state);
         Self {
             player,

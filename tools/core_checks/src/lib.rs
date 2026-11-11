@@ -1,6 +1,9 @@
 //! Fast checks of the exact production modules without a GPU/Bevy dependency.
 //! Rapier integration and rendering are checked by the main workspace instead.
 
+#[path = "../../../crates/shared/src/content.rs"]
+pub mod content;
+
 #[path = "../../../crates/client_core/src/editor.rs"]
 pub mod editor;
 #[path = "../../../crates/client_core/src/hud.rs"]

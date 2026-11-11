@@ -1,0 +1,160 @@
+{
+  "checked_at_utc": "2026-11-11T19:35:35.006Z",
+  "evidence_type": "bounded_read_only_host_package_filename_search",
+  "package": "com.herogame.gplay.survival.lite",
+  "identity_reference": "android-runtime-check.json",
+  "source_apk_sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df",
+  "runtime_counterpart_apk_sha256": "527ae0a10681fd0dfdbe957b65fee79729cc665d0e7afcce43f25054366fc37b",
+  "source_and_runtime_assets_match": "retained prior APK comparison; not rechecked here",
+  "host_path_observations": {
+    "standard_var_lib_package_roots": {
+      "prefix": "/var/lib/waydroid/data/",
+      "suffixes": [
+        "data/com.herogame.gplay.survival.lite",
+        "user/0/com.herogame.gplay.survival.lite",
+        "user_de/0/com.herogame.gplay.survival.lite",
+        "media/0/Android/data/com.herogame.gplay.survival.lite",
+        "media/0/Android/obb/com.herogame.gplay.survival.lite"
+      ],
+      "result": "stat: No such file or directory for each exact package path"
+    },
+    "user_local_package_roots": [
+      {
+        "path": "/home/andlua/.local/share/waydroid/data/data/com.herogame.gplay.survival.lite",
+        "result": "directory exists",
+        "mode": "700",
+        "owner": "nobody:nobody"
+      },
+      {
+        "path": "/home/andlua/.local/share/waydroid/data/user/0/com.herogame.gplay.survival.lite",
+        "result": "stat: No such file or directory"
+      },
+      {
+        "path": "/home/andlua/.local/share/waydroid/data/user_de/0/com.herogame.gplay.survival.lite",
+        "result": "directory exists",
+        "mode": "700",
+        "owner": "nobody:nobody"
+      },
+      {
+        "path": "/home/andlua/.local/share/waydroid/data/media/0/Android/data/com.herogame.gplay.survival.lite",
+        "result": "stat: Permission denied"
+      },
+      {
+        "path": "/home/andlua/.local/share/waydroid/data/media/0/Android/obb/com.herogame.gplay.survival.lite",
+        "result": "stat: Permission denied"
+      }
+    ]
+  },
+  "filename_search": {
+    "command": "rg --files --hidden --no-ignore -- <four exact package roots>",
+    "roots": [
+      "/home/andlua/.local/share/waydroid/data/data/com.herogame.gplay.survival.lite",
+      "/home/andlua/.local/share/waydroid/data/user_de/0/com.herogame.gplay.survival.lite",
+      "/home/andlua/.local/share/waydroid/data/media/0/Android/data/com.herogame.gplay.survival.lite",
+      "/home/andlua/.local/share/waydroid/data/media/0/Android/obb/com.herogame.gplay.survival.lite"
+    ],
+    "name_filter": "sceneinfo directory or objectInfo.obj basename or .oc suffix, case-insensitive",
+    "exit_code": 2,
+    "enumerated_filename_count": 0,
+    "matching_filenames": [],
+    "stderr": "rg: /home/andlua/.local/share/waydroid/data/media/0/Android/data/com.herogame.gplay.survival.lite: Permission denied (os error 13)\nrg: /home/andlua/.local/share/waydroid/data/media/0/Android/obb/com.herogame.gplay.survival.lite: Permission denied (os error 13)\nrg: /home/andlua/.local/share/waydroid/data/user_de/0/com.herogame.gplay.survival.lite: Permission denied (os error 13)\nrg: /home/andlua/.local/share/waydroid/data/data/com.herogame.gplay.survival.lite: Permission denied (os error 13)\n",
+    "error": "Error: spawnSync rg EPERM"
+  },
+  "adb_availability": {
+    "prior_serial": "192.168.240.112:5555",
+    "adb_executable": "/usr/bin/adb",
+    "exact_process_probe": {
+      "command": "pgrep -af '^(/usr/bin/)?adb( |$)'",
+      "exit_code": 1,
+      "stdout": ""
+    },
+    "port_probe": {
+      "command": "ss -ltn 'sport = :5037'",
+      "sandbox_result": "Cannot open netlink socket: Operation not permitted",
+      "escalated_exit_code": 0,
+      "escalated_stdout": "State Recv-Q Send-Q Local Address:Port Peer Address:Port\n",
+      "listening_adb_server_observed": false
+    },
+    "adb_devices_executed": false,
+    "reason": "No existing ADB process or listener observed; adb devices can start a server, which this search did not authorize.",
+    "current_device_state": "not queried; no existing default-server endpoint observed"
+  },
+  "limitation": "Host package data remains inaccessible. Initial filename traversal was denied. Final authorized ADB check started only its incidental host server, observed a stopped Waydroid session, timed out on the prior known local endpoint and still found no device. Cache absence remains unverified.",
+  "first_phase_operations_not_performed": [
+    "app launch",
+    "Waydroid start or service changes",
+    "adb server start",
+    "device connection",
+    "root/sudo/chmod access to package data",
+    "private-data content reads",
+    "unrelated package enumeration",
+    "asset extraction",
+    "downloads",
+    "Cargo builds",
+    "file deletion"
+  ],
+  "final_alternate_access": {
+    "checked_at_utc": "2026-11-11T19:45:02.998Z",
+    "authorization": "Root relayed user authorization to try the original cache and explicitly allowed incidental ADB host-server startup; no game/container/service startup, password request, unknown-host connection or package permissions change.",
+    "root_reported_host_elevation": {
+      "reported_by": "/root",
+      "command": "sudo -n rg --files --hidden --no-ignore -- <four exact game package roots>",
+      "result": "sudo requires a password",
+      "package_files_read": false,
+      "password_requested": false,
+      "independently_reexecuted_by_this_agent": false
+    },
+    "waydroid_status": {
+      "command": "waydroid status",
+      "exit_code": 0,
+      "stdout": "Session:\tSTOPPED\nVendor type:\tMAINLINE\n"
+    },
+    "container_service_status": {
+      "command": "systemctl is-active waydroid-container",
+      "sandbox_exit_code": 1,
+      "sandbox_stderr": "Failed to connect to system scope bus via local transport: Operation not permitted (consider using --machine=<user>@.host --user to connect to bus of other user)\n",
+      "escalated_exit_code": 0,
+      "escalated_stdout": "active\n"
+    },
+    "adb_initial_devices": {
+      "command": "adb devices -l",
+      "sandbox_exit_code": 1,
+      "sandbox_result": "ADB daemon startup could not install the local smartsocket listener: Operation not permitted",
+      "escalated_exit_code": 0,
+      "escalated_stdout": "* daemon not running; starting now at tcp:5037\n* daemon started successfully\nList of devices attached\n\n",
+      "incidental_host_server_started": true,
+      "attached_devices": []
+    },
+    "known_local_endpoint_attempt": {
+      "command": "timeout 12 adb connect 192.168.240.112:5555",
+      "endpoint_source": "prior adb_serial in android-runtime-check.json",
+      "exit_code": 124,
+      "stdout": "",
+      "result": "bounded command timeout; no successful connection observed"
+    },
+    "adb_final_devices": {
+      "command": "adb devices -l",
+      "escalated_exit_code": 0,
+      "escalated_stdout": "List of devices attached\n\n",
+      "attached_devices": []
+    },
+    "package_filenames_enumerated": 0,
+    "package_content_files_read": 0,
+    "operations_not_performed": [
+      "game launch",
+      "Waydroid container/session startup",
+      "system service changes",
+      "installation",
+      "downloads",
+      "password request",
+      "permissions changes",
+      "unknown/remote host connection",
+      "unrelated app enumeration",
+      "package content reads",
+      "asset extraction",
+      "Cargo builds",
+      "file deletion"
+    ],
+    "conclusion": "Known cache routes are exhausted in this scope. Exact host package roots deny traversal; root reports passwordless sudo unavailable; session is stopped; retained local ADB endpoint times out and no device is attached. Cache contents remain unknown, rather than proven absent. No authentic payload was handed to the Rust decoder."
+  }
+}

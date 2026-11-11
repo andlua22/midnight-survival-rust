@@ -11,13 +11,12 @@ use shared::{
     CharacterMotion, LevelGeometry, LocalPlayer, Player, ResourceNodeMarker, SimulationClock,
     SimulationInput, SimulationMode, SimulationPose, SimulationSet, SimulationSurvival,
     SimulationWorld, StructureMarker,
-    level::{MapId, SPAWN_POSITION},
     movement::{FIXED_DT, PLAYER_HALF_SEGMENT, PLAYER_RADIUS, preview_look},
-    physics::CollisionWorld,
     prediction::Prediction,
     protocol::*,
     simulation::{spawn_geometry, spawn_local},
     survival::SurvivalWorld,
+    world::LoadedWorld,
 };
 use std::{
     collections::{BTreeMap, BTreeSet},
@@ -173,6 +172,7 @@ fn receive(
     mut input: ResMut<SimulationInput>,
     mut physics: ResMut<SimulationWorld>,
     mut survival: ResMut<SimulationSurvival>,
+    loaded: Res<LoadedWorld>,
     players: Query<Entity, With<Player>>,
     geometry: Query<Entity, With<LevelGeometry>>,
     mut node_entities: Query<(Entity, &mut ResourceNodeMarker)>,
@@ -236,9 +236,24 @@ fn receive(
                     tick,
                     epoch,
                     map,
+                    world,
                     state,
                     capacity,
                 } => {
+                    if map != world.map || !loaded.descriptor.compatible_with(&world) {
+                        online.status =
+                            "Server world content does not match the loaded world.".into();
+                        return_offline = true;
+                        break;
+                    }
+                    let collision = match loaded.collision() {
+                        Ok(collision) => collision,
+                        Err(error) => {
+                            online.status = format!("Cannot initialize server world: {error}");
+                            return_offline = true;
+                            break;
+                        }
+                    };
                     for entity in &players {
                         commands.entity(entity).despawn();
                     }
@@ -256,7 +271,9 @@ fn receive(
                     spawn_geometry(&mut commands, map);
                     spawn_local(&mut commands, player, state);
                     *mode = SimulationMode::Network;
-                    online.prediction = Some(Prediction::new(map, player, tick, epoch, state));
+                    online.prediction = Some(Prediction::from_world(
+                        collision, player, tick, epoch, state,
+                    ));
                     online.observed_tick = tick;
                     online.observed_at = received;
                     online.connected = true;
@@ -382,11 +399,19 @@ fn receive(
             for entity in &structure_entities {
                 commands.entity(entity).despawn();
             }
-            physics.0 = CollisionWorld::new(MapId::Polygon);
-            survival.0 = SurvivalWorld::new(MapId::Polygon);
+            let collision = match loaded.collision() {
+                Ok(collision) => collision,
+                Err(error) => {
+                    online.status = format!("Cannot restore local world: {error}");
+                    commands.write_message(AppExit::error());
+                    return;
+                }
+            };
+            physics.0 = collision;
+            survival.0 = SurvivalWorld::new(loaded.descriptor.map);
             survival.0.join(PlayerId(0));
-            spawn_geometry(&mut commands, MapId::Polygon);
-            spawn_local(&mut commands, PlayerId(0), PlayerState::at(SPAWN_POSITION));
+            spawn_geometry(&mut commands, loaded.descriptor.map);
+            spawn_local(&mut commands, PlayerId(0), PlayerState::at(loaded.spawn));
             *mode = SimulationMode::Offline;
         }
         input.0.clear();

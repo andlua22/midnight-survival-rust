@@ -1,0 +1,55 @@
+{
+  "apk": "export/lite4.0.apk",
+  "assets": [
+    {
+      "cab": "CAB-713de628f689398bcc2f72caf476e9c5",
+      "class_counts": {
+        "142": 1,
+        "290": 1
+      },
+      "externals": [],
+      "objects": [
+        {
+          "byte_count": 104,
+          "class_id": 142,
+          "path_id": "1",
+          "properties": {
+            "m_AssetBundleName": "",
+            "m_Container": [
+              [
+                "assetbundlemanifest",
+                {
+                  "asset": {
+                    "m_FileID": 0,
+                    "m_PathID": 2
+                  },
+                  "preloadIndex": 0,
+                  "preloadSize": 0
+                }
+              ]
+            ],
+            "m_Dependencies": [],
+            "m_ExplicitDataLayout": 0,
+            "m_IsStreamedSceneAssetBundle": false,
+            "m_MainAsset": {
+              "asset": {
+                "m_FileID": 0,
+                "m_PathID": 0
+              },
+              "preloadIndex": 0,
+              "preloadSize": 0
+            },
+            "m_Name": "",
+            "m_PathFlags": 7,
+            "m_PreloadTable": [],
+            "m_RuntimeCompatibility": 1,
+            "m_SceneHashes": []
+          }
+        }
+      ],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    }
+  ],
+  "bundle": "assets/StreamingAssets"
+}

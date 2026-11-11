@@ -3,6 +3,14 @@
 This directory records evidence, decisions, commands and unfinished work for
 the Rust/Bevy reconstruction of `export/lite4.0.apk`.
 
+Current continuation (2026-11-11): use [the implementation ledger](../PLAN/source_reconstruction.md),
+[MapObject implementation](implementation-mapobjects-2026-11-11.md),
+[source imports](source-imports-2026-11-11.md), [gameplay data](gameplay-data-2026-11-11.md)
+and [storage audit](storage-2026-11-11.md). The client now uses native Bevy UI,
+a ray-marched atmosphere and shared validated island collision/content identity.
+The Bevy/egui notes and older captures below describe the preserved earlier
+implementation. Original-runtime 1:1 gameplay and pixel parity remain open.
+
 Start with [the requested handoff](<щоб інші ші знали, про що це.md>).
 [apk-reconstruction.md](apk-reconstruction.md) records implementation status
 and commands. [map-evidence.md](map-evidence.md) retains map/shader evidence;
@@ -10,9 +18,10 @@ and commands. [map-evidence.md](map-evidence.md) retains map/shader evidence;
 
 The canonical map is `assets/imported_map/terrain/` (MSMAP003, schema 2).
 The verified UI source package is under `assets/imported_ui/`, keyed by APK
-SHA-256 and schema version. The native Arch Linux HUD now renders the extracted
-`BattleMinimap` through Bevy/egui. The other HUD widgets, compass and large map
-continue to use their existing painters.
+SHA-256 and schema version. The current Linux runtime uses native Bevy UI.
+The terrain package now includes the omitted Z-01 scene: 400 render instances
+and 383 solid colliders. Its predecessor and earlier capture evidence remain
+available. The older egui implementation reports below are historical.
 
 Compact reports: [terrain](evidence/terrain-verification.json),
 [UI](evidence/ui-verification.json), and
@@ -23,7 +32,7 @@ Compact reports: [terrain](evidence/terrain-verification.json),
 imports and a file inventory without stale files. [Archive index](evidence/archive-index.md)
 locates preserved candidates, earlier reports and code/package backups.
 
-The shared source renderer uses `crates/ui_data` and the client's egui backend.
+The earlier source renderer used `crates/ui_data` and the client's egui backend.
 [Prefab minimap captures](evidence/minimap-render/render.json) record
 1920×1080 and 1280×720 authored and initialization-visibility previews with
 explicit canvas inputs. The optional profile applies 21 source-backed template

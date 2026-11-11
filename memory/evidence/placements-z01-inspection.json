@@ -1,0 +1,1397 @@
+{
+  "apk": "export/lite4.0.apk",
+  "assets": [
+    {
+      "cab": "BuildPlayer-Z-01.sharedAssets",
+      "class_counts": {
+        "115": 1,
+        "142": 1,
+        "150": 1,
+        "21": 2,
+        "28": 2,
+        "43": 1
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            15,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Resources/unity_builtin_extra",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-0bc9ce17ff019440e43b8eb24d2b47b0/CAB-0bc9ce17ff019440e43b8eb24d2b47b0",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-1fdbfc48106b31d7e228971b27b87c72/CAB-1fdbfc48106b31d7e228971b27b87c72",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-362f50ffda3cd78251d8227844cd0823/CAB-362f50ffda3cd78251d8227844cd0823",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-675a2f5b3a986fb21d67ed74b61410cf/CAB-675a2f5b3a986fb21d67ed74b61410cf",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-82e880e6afc59f2810e28eae4307a4c0/CAB-82e880e6afc59f2810e28eae4307a4c0",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-afbe62dd8dee58cc4bad4141b8a395ea/CAB-afbe62dd8dee58cc4bad4141b8a395ea",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-b99e201845a48115c6b6a24e89d01efe/CAB-b99e201845a48115c6b6a24e89d01efe",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-bceb76fdf0c889958b21278174e0af14/CAB-bceb76fdf0c889958b21278174e0af14",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-da5f25f3d29e9c2335c33ac6b27bc6e7/CAB-da5f25f3d29e9c2335c33ac6b27bc6e7",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-e6e399907a35c0d4b4e8eba8b6c2cbd7/CAB-e6e399907a35c0d4b4e8eba8b6c2cbd7",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-f10cafb89b379fb2b51efdbd5d6ccbd7/CAB-f10cafb89b379fb2b51efdbd5d6ccbd7",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-f2d192c7d57f7f94fb5bde78a01c3aee/CAB-f2d192c7d57f7f94fb5bde78a01c3aee",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [
+        {
+          "byte_count": 148,
+          "class_id": 142,
+          "path_id": "2",
+          "properties": {
+            "m_AssetBundleName": "",
+            "m_Container": [
+              [
+                "Assets/Scenes/maps_final/zhanju_01/Z-01.unity",
+                {
+                  "asset": {
+                    "m_FileID": 0,
+                    "m_PathID": 0
+                  },
+                  "preloadIndex": 0,
+                  "preloadSize": 0
+                }
+              ]
+            ],
+            "m_Dependencies": [],
+            "m_ExplicitDataLayout": 0,
+            "m_IsStreamedSceneAssetBundle": true,
+            "m_MainAsset": {
+              "asset": {
+                "m_FileID": 0,
+                "m_PathID": 0
+              },
+              "preloadIndex": 0,
+              "preloadSize": 0
+            },
+            "m_Name": "scene/z-01.ab",
+            "m_PathFlags": 7,
+            "m_PreloadTable": [],
+            "m_RuntimeCompatibility": 1,
+            "m_SceneHashes": []
+          }
+        }
+      ],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    },
+    {
+      "cab": "BuildPlayer-Z-01",
+      "class_counts": {
+        "1": 13,
+        "104": 1,
+        "114": 1,
+        "157": 1,
+        "196": 1,
+        "198": 6,
+        "199": 6,
+        "23": 1,
+        "33": 5,
+        "4": 13,
+        "64": 1,
+        "65": 4
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/BuildPlayer-Z-01/BuildPlayer-Z-01.sharedAssets",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-1fdbfc48106b31d7e228971b27b87c72/CAB-1fdbfc48106b31d7e228971b27b87c72",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-e6e399907a35c0d4b4e8eba8b6c2cbd7/CAB-e6e399907a35c0d4b4e8eba8b6c2cbd7",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-f10cafb89b379fb2b51efdbd5d6ccbd7/CAB-f10cafb89b379fb2b51efdbd5d6ccbd7",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-362f50ffda3cd78251d8227844cd0823/CAB-362f50ffda3cd78251d8227844cd0823",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [
+        {
+          "byte_count": 59,
+          "class_id": 1,
+          "path_id": "1",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 14
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 28
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 34
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "Cube (4)",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 35,
+          "class_id": 1,
+          "path_id": "2",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 15
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "nodelete",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 59,
+          "class_id": 1,
+          "path_id": "3",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 16
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 29
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 35
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "Cube (3)",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 59,
+          "class_id": 1,
+          "path_id": "4",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 17
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 30
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 36
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "Cube (2)",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 59,
+          "class_id": 1,
+          "path_id": "5",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 18
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 31
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 37
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "Cube (5)",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 63,
+          "class_id": 1,
+          "path_id": "6",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 22
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 42
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 47
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "huoxing_01",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 55,
+          "class_id": 1,
+          "path_id": "7",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 24
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 43
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 49
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "1",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 51,
+          "class_id": 1,
+          "path_id": "8",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 19
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 53
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "EF_huodui_01",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 59,
+          "class_id": 1,
+          "path_id": "9",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 23
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 41
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 51
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "smoke",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 63,
+          "class_id": 1,
+          "path_id": "10",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 20
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 46
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 50
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "FireField",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 67,
+          "class_id": 1,
+          "path_id": "11",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 25
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 45
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 48
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "glow_particles",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 71,
+          "class_id": 1,
+          "path_id": "12",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 21
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 44
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 52
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "glow_particles (1)",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 67,
+          "class_id": 1,
+          "path_id": "13",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 26
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 32
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 27
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 33
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 18,
+            "m_Name": "Z-01",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "14",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 15
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 1
+            },
+            "m_LocalPosition": {
+              "x": -3265.0,
+              "y": 18.8799991607666,
+              "z": 945.0
+            },
+            "m_LocalRotation": {
+              "w": 1.0,
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalScale": {
+              "x": 10.0,
+              "y": 0.5,
+              "z": 10.0
+            }
+          }
+        },
+        {
+          "byte_count": 128,
+          "class_id": 4,
+          "path_id": "15",
+          "properties": {
+            "m_Children": [
+              {
+                "m_FileID": 0,
+                "m_PathID": 17
+              },
+              {
+                "m_FileID": 0,
+                "m_PathID": 16
+              },
+              {
+                "m_FileID": 0,
+                "m_PathID": 14
+              },
+              {
+                "m_FileID": 0,
+                "m_PathID": 18
+              },
+              {
+                "m_FileID": 0,
+                "m_PathID": 19
+              }
+            ],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 2
+            },
+            "m_LocalPosition": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalRotation": {
+              "w": 1.0,
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "16",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 15
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 3
+            },
+            "m_LocalPosition": {
+              "x": -3275.0,
+              "y": 18.579999923706055,
+              "z": 954.989990234375
+            },
+            "m_LocalRotation": {
+              "w": 0.999798595905304,
+              "x": 0.016135845333337784,
+              "y": 0.00019267620518803596,
+              "z": 0.011938476003706455
+            },
+            "m_LocalScale": {
+              "x": 10.0,
+              "y": 0.5,
+              "z": 10.0
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "17",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 15
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 4
+            },
+            "m_LocalPosition": {
+              "x": -3265.0,
+              "y": 18.739999771118164,
+              "z": 955.0
+            },
+            "m_LocalRotation": {
+              "w": 0.9998798370361328,
+              "x": 0.013209734112024307,
+              "y": -0.00010714125528465956,
+              "z": -0.008109813556075096
+            },
+            "m_LocalScale": {
+              "x": 10.0,
+              "y": 0.5,
+              "z": 10.0
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "18",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 15
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 5
+            },
+            "m_LocalPosition": {
+              "x": -3274.989990234375,
+              "y": 18.739999771118164,
+              "z": 945.0
+            },
+            "m_LocalRotation": {
+              "w": 0.9998739361763,
+              "x": -0.002129090018570423,
+              "y": -0.0003375151427462697,
+              "z": 0.015730924904346466
+            },
+            "m_LocalScale": {
+              "x": 10.0,
+              "y": 0.5,
+              "z": 10.0
+            }
+          }
+        },
+        {
+          "byte_count": 80,
+          "class_id": 4,
+          "path_id": "19",
+          "properties": {
+            "m_Children": [
+              {
+                "m_FileID": 0,
+                "m_PathID": 24
+              }
+            ],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 15
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 8
+            },
+            "m_LocalPosition": {
+              "x": -3263.2109375,
+              "y": 19.604839324951172,
+              "z": 951.6939697265625
+            },
+            "m_LocalRotation": {
+              "w": 1.0,
+              "x": -0.0,
+              "y": -0.0,
+              "z": -0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "20",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 24
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 10
+            },
+            "m_LocalPosition": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalRotation": {
+              "w": 1.0,
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "21",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 24
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 12
+            },
+            "m_LocalPosition": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalRotation": {
+              "w": 1.0,
+              "x": -0.0,
+              "y": -0.0,
+              "z": -0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0000001192092896,
+              "z": 1.0000001192092896
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "22",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 24
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 6
+            },
+            "m_LocalPosition": {
+              "x": 0.0,
+              "y": 1.0,
+              "z": -10.0
+            },
+            "m_LocalRotation": {
+              "w": 1.0,
+              "x": -0.0,
+              "y": -0.0,
+              "z": -0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "23",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 24
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 9
+            },
+            "m_LocalPosition": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalRotation": {
+              "w": 1.0,
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 128,
+          "class_id": 4,
+          "path_id": "24",
+          "properties": {
+            "m_Children": [
+              {
+                "m_FileID": 0,
+                "m_PathID": 25
+              },
+              {
+                "m_FileID": 0,
+                "m_PathID": 23
+              },
+              {
+                "m_FileID": 0,
+                "m_PathID": 20
+              },
+              {
+                "m_FileID": 0,
+                "m_PathID": 22
+              },
+              {
+                "m_FileID": 0,
+                "m_PathID": 21
+              }
+            ],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 19
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 7
+            },
+            "m_LocalPosition": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": -0.0
+            },
+            "m_LocalRotation": {
+              "w": 0.7071068286895752,
+              "x": -0.7071068286895752,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalScale": {
+              "x": 0.009999999776482582,
+              "y": 0.01000000350177288,
+              "z": 0.01000000350177288
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "25",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 24
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 11
+            },
+            "m_LocalPosition": {
+              "x": 2.0,
+              "y": -0.4000000059604645,
+              "z": -14.100000381469727
+            },
+            "m_LocalRotation": {
+              "w": 1.0,
+              "x": -0.0,
+              "y": -0.0,
+              "z": -0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "26",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 13
+            },
+            "m_LocalPosition": {
+              "x": -3639.0,
+              "y": -5.599999904632568,
+              "z": 757.0
+            },
+            "m_LocalRotation": {
+              "w": 1.0,
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        }
+      ],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    }
+  ],
+  "bundle": "assets/scene/z-01.ab"
+}

@@ -308,6 +308,9 @@ pub struct UiManifest {
     pub schema_version: u32,
     pub source_apk: SourceApk,
     pub dependency_index: FileIdentity,
+    /// Explicit selected-panel contract for expanded packages; absent retains the original three-panel contract.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub panel_selection: Option<FileIdentity>,
     pub bundles: Vec<BundleEvidence>,
     pub panels: Vec<PanelSummary>,
     pub sprites: Vec<UiSprite>,

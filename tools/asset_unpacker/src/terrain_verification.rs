@@ -81,9 +81,9 @@ pub fn verify_loaded(
             "candidate terrain package comes from a different APK",
         ));
     }
-    if members.len() != 241 {
+    if members.len() != 242 {
         return Err(invalid(format!(
-            "expected 241 terrain bundles in the source APK, found {}",
+            "expected 242 terrain bundles in the source APK, found {}",
             members.len()
         )));
     }

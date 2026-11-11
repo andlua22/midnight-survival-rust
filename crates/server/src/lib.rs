@@ -69,6 +69,15 @@ impl GameServer {
         }
     }
 
+    pub fn try_new(map: MapId, capacity: usize, spread: bool) -> NetResult<Self> {
+        let (loaded, collision) =
+            shared::world::LoadedWorld::load(&shared::world::WorldSelection::for_map(map))
+                .map_err(|error| error.to_string())?;
+        let mut game = Self::new(map, capacity, spread);
+        game.authority = Authority::from_loaded_world(&loaded, collision, capacity);
+        Ok(game)
+    }
+
     pub fn population(&self) -> usize {
         self.sessions.len()
     }
@@ -133,6 +142,7 @@ impl GameServer {
                             tick: self.authority.tick,
                             epoch: 1,
                             map: self.authority.world.map,
+                            world: self.authority.descriptor.clone(),
                             state,
                             capacity: self.capacity as u16,
                         };
@@ -551,6 +561,7 @@ pub async fn serve(options: ServerOptions) -> NetResult<Report> {
     if options.spread && options.map != MapId::LoadArena {
         return Err("--layout spread потребує --map load-arena".into());
     }
+    let mut game = GameServer::try_new(options.map, options.capacity, options.spread)?;
     let identity = ServerIdentity::load_or_create(&options.data_dir)?;
     let mut transport = ServerTransport::bind(&identity, options.listen)?;
     println!(
@@ -563,7 +574,6 @@ pub async fn serve(options: ServerOptions) -> NetResult<Report> {
         "Код доступу: server invite --data-dir {}",
         options.data_dir.display()
     );
-    let mut game = GameServer::new(options.map, options.capacity, options.spread);
     let mut metrics = Metrics::default();
     let dt = Duration::from_secs_f64(1.0 / FIXED_HZ);
     let mut interval = tokio::time::interval_at(tokio::time::Instant::now() + dt, dt);

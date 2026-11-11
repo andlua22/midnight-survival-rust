@@ -1,0 +1,23 @@
+{
+  "bundle": "assets/sceneprefab/building_chaoshi_01.ab",
+  "collision_meshes": 3,
+  "limitations": [
+    "Root positions are serialized prefab values, not authenticated runtime placements.",
+    "All component fields/bytes are retained, including renderer shadow/lightmap metadata and collider flags; MonoBehaviour execution and skinned animation conversion remain separate work.",
+    "Material and source 2D texture mip assets are decoded; non-2D samplers retain full fields/bytes and explicit unsupported status. Shader execution and original runtime appearance remain unverified.",
+    "Unresolved built-in references remain explicit; decoded mesh/material dependencies are required.",
+    "Bundle-cache statistics bound cache-owned payloads, excluding caller-held handles and parsed object metadata."
+  ],
+  "manifest_sha256": "10ce651cdd1adabde1815b3b5653c866be904fc6eafe44597b6a97b374c32fd9",
+  "mesh_parts": 46,
+  "nodes": 303,
+  "package": "assets/imported_prefabs/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df/building_chaoshi_01-3be4bce3aeca",
+  "renderers": 298,
+  "runtime_equivalence_verified": false,
+  "source_apk": {
+    "byte_count": 1115839572,
+    "path": "export/lite4.0.apk",
+    "sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df"
+  },
+  "verified_retained_files": 1314
+}

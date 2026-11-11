@@ -1,0 +1,537 @@
+{
+  "apk": "export/lite4.0.apk",
+  "assets": [
+    {
+      "cab": "BuildPlayer-zhujiemian_01.sharedAssets",
+      "class_counts": {
+        "114": 4,
+        "115": 6,
+        "142": 1,
+        "150": 1,
+        "21": 3,
+        "258": 1,
+        "28": 2,
+        "43": 1,
+        "89": 2
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-b99e201845a48115c6b6a24e89d01efe/CAB-b99e201845a48115c6b6a24e89d01efe",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [
+        {
+          "byte_count": 156,
+          "class_id": 142,
+          "path_id": "2",
+          "properties": {
+            "m_AssetBundleName": "",
+            "m_Container": [
+              [
+                "Assets/Scenes/CommonScene/zhujiemian_01.unity",
+                {
+                  "asset": {
+                    "m_FileID": 0,
+                    "m_PathID": 0
+                  },
+                  "preloadIndex": 0,
+                  "preloadSize": 0
+                }
+              ]
+            ],
+            "m_Dependencies": [],
+            "m_ExplicitDataLayout": 0,
+            "m_IsStreamedSceneAssetBundle": true,
+            "m_MainAsset": {
+              "asset": {
+                "m_FileID": 0,
+                "m_PathID": 0
+              },
+              "preloadIndex": 0,
+              "preloadSize": 0
+            },
+            "m_Name": "scene/zhujiemian_01.ab",
+            "m_PathFlags": 7,
+            "m_PreloadTable": [],
+            "m_RuntimeCompatibility": 1,
+            "m_SceneHashes": []
+          }
+        }
+      ],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    },
+    {
+      "cab": "BuildPlayer-zhujiemian_01",
+      "class_counts": {
+        "1": 6,
+        "104": 1,
+        "108": 2,
+        "114": 2,
+        "157": 1,
+        "196": 1,
+        "20": 1,
+        "23": 2,
+        "33": 2,
+        "4": 6,
+        "850595691": 1
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/BuildPlayer-zhujiemian_01/BuildPlayer-zhujiemian_01.sharedAssets",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [
+        {
+          "byte_count": 55,
+          "class_id": 1,
+          "path_id": "1",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 7
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 24
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "Global Volume",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 59,
+          "class_id": 1,
+          "path_id": "2",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 8
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 19
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "Directional Light",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 63,
+          "class_id": 1,
+          "path_id": "3",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 9
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 13
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 25
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "Main Camera",
+            "m_Tag": 20029
+          }
+        },
+        {
+          "byte_count": 51,
+          "class_id": 1,
+          "path_id": "4",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 10
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 20
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "Point Light ",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 71,
+          "class_id": 1,
+          "path_id": "5",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 11
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 16
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 15
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "zhujiemianBG_01 (1)",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 67,
+          "class_id": 1,
+          "path_id": "6",
+          "properties": {
+            "m_Component": [
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 12
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 17
+                }
+              },
+              {
+                "component": {
+                  "m_FileID": 0,
+                  "m_PathID": 14
+                }
+              }
+            ],
+            "m_IsActive": true,
+            "m_Layer": 0,
+            "m_Name": "zhujiemianBG_01",
+            "m_Tag": 0
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "7",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 1
+            },
+            "m_LocalPosition": {
+              "x": -3.894573450088501,
+              "y": -27.116952896118164,
+              "z": 5.159965515136719
+            },
+            "m_LocalRotation": {
+              "w": 1.0,
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "8",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 2
+            },
+            "m_LocalPosition": {
+              "x": -4.230000019073486,
+              "y": -24.695999145507812,
+              "z": -3.9619998931884766
+            },
+            "m_LocalRotation": {
+              "w": 0.9666566252708435,
+              "x": 0.1857459396123886,
+              "y": -0.045511968433856964,
+              "z": 0.17030003666877747
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "9",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 3
+            },
+            "m_LocalPosition": {
+              "x": -3.1610000133514404,
+              "y": -25.493999481201172,
+              "z": -6.381999969482422
+            },
+            "m_LocalRotation": {
+              "w": 0.9975317120552063,
+              "x": 0.07021823525428772,
+              "y": -0.0,
+              "z": -0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "10",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 4
+            },
+            "m_LocalPosition": {
+              "x": -5.541999816894531,
+              "y": -24.770000457763672,
+              "z": -1.5520000457763672
+            },
+            "m_LocalRotation": {
+              "w": 0.999559223651886,
+              "x": 0.029689647257328033,
+              "y": -0.0,
+              "z": -0.0
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "11",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 5
+            },
+            "m_LocalPosition": {
+              "x": -3.128000020980835,
+              "y": -26.950000762939453,
+              "z": -2.787100076675415
+            },
+            "m_LocalRotation": {
+              "w": 0.0,
+              "x": -0.0,
+              "y": -0.0,
+              "z": -1.0
+            },
+            "m_LocalScale": {
+              "x": 0.1750546395778656,
+              "y": 0.1750546395778656,
+              "z": 0.2594659924507141
+            }
+          }
+        },
+        {
+          "byte_count": 68,
+          "class_id": 4,
+          "path_id": "12",
+          "properties": {
+            "m_Children": [],
+            "m_Father": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 6
+            },
+            "m_LocalPosition": {
+              "x": -2.903700113296509,
+              "y": -25.18000030517578,
+              "z": 4.329999923706055
+            },
+            "m_LocalRotation": {
+              "w": 0.0,
+              "x": -0.0,
+              "y": -0.7071068286895752,
+              "z": -0.7071068286895752
+            },
+            "m_LocalScale": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        }
+      ],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    }
+  ],
+  "bundle": "assets/scene/zhujiemian_01.ab"
+}

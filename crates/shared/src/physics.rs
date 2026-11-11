@@ -2,6 +2,9 @@
 //! two kinematic capsules from moving into the same gap in a single tick.
 use std::collections::BTreeMap;
 
+mod source_prefabs;
+pub use source_prefabs::PrefabCollisionReport;
+
 use bevy::prelude::Vec3;
 use bevy_rapier3d::rapier::{
     control::{CharacterAutostep, CharacterLength, KinematicCharacterController},
@@ -38,6 +41,7 @@ pub struct CollisionWorld {
     capsule: SharedShape,
     players: BTreeMap<PlayerId, (ColliderHandle, PlayerState)>,
     structures: BTreeMap<u32, Vec<ColliderHandle>>,
+    source_prefabs: BTreeMap<String, Vec<ColliderHandle>>,
     initial_colliders: Vec<ColliderHandle>,
     imported_ground: bool,
 }
@@ -72,6 +76,7 @@ impl CollisionWorld {
             capsule: SharedShape::capsule_y(PLAYER_HALF_SEGMENT, PLAYER_RADIUS),
             players: BTreeMap::new(),
             structures: BTreeMap::new(),
+            source_prefabs: BTreeMap::new(),
             initial_colliders: Vec::new(),
             imported_ground: false,
         };

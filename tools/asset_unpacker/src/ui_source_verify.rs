@@ -4,7 +4,7 @@
 use std::{
     collections::{BTreeMap, BTreeSet},
     fs::File,
-    io::{BufReader, Read},
+    io::BufReader,
     path::Path,
 };
 
@@ -14,16 +14,16 @@ use midnight_map_data::{
 use serde::{Serialize, de::DeserializeOwned};
 use serde_json::Value;
 use sha2::{Digest, Sha256};
-use unity_asset_binary::{bundle::load_bundle_from_memory, object::ObjectHandle};
+use unity_asset_binary::object::ObjectHandle;
 
 use crate::{
     fields::invalid,
     pass1_index::GlobalIndex,
-    unity::{Error, cab_name, read_object, source_apk},
+    unity::{Apk, BundleLimits, Error, cab_name, parse_bundle, read_object, source_apk},
 };
 
 use super::{
-    importer::{PANELS, empty_font_texture},
+    importer::{PANELS, PanelSelection, empty_font_texture, validate_selection},
     types::*,
 };
 
@@ -244,7 +244,7 @@ fn hierarchy(
 }
 
 fn verify_sources(manifest: &UiManifest, index: &GlobalIndex, apk: &Path) -> Result<(), Error> {
-    let mut archive = zip::ZipArchive::new(File::open(apk)?)?;
+    let mut archive = Apk::open(apk)?;
     let mut expected_cabs = BTreeMap::new();
     let members: BTreeSet<_> = manifest
         .bundles
@@ -279,8 +279,7 @@ fn verify_sources(manifest: &UiManifest, index: &GlobalIndex, apk: &Path) -> Res
                 ));
             }
         }
-        let mut data = Vec::new();
-        archive.by_name(&evidence.member)?.read_to_end(&mut data)?;
+        let data = archive.member_data(&evidence.member)?;
         if data.len() as u64 != evidence.byte_count
             || format!("{:x}", Sha256::digest(&data)) != evidence.sha256
         {
@@ -289,7 +288,7 @@ fn verify_sources(manifest: &UiManifest, index: &GlobalIndex, apk: &Path) -> Res
                 evidence.member
             )));
         }
-        let bundle = load_bundle_from_memory(data)?;
+        let bundle = parse_bundle(data, BundleLimits::default())?;
         let mut objects = BTreeMap::new();
         if evidence.cabs.len() != bundle.assets.len() {
             return Err(invalid("UI CAB count differs from APK bundle"));
@@ -397,15 +396,24 @@ pub fn verify(package: &Path, apk: &Path) -> Result<UiVerification, Error> {
         files.blobs(&fields)?;
     }
     verify_sources(&manifest, &index, apk)?;
-    if manifest.panels.len() != PANELS.len() || !manifest.hierarchy_complete {
+    let selection: PanelSelection = if let Some(identity) = &manifest.panel_selection {
+        files.json(identity)?
+    } else {
+        PANELS
+            .iter()
+            .map(|(name, member, filename)| ((*name).into(), (*member).into(), (*filename).into()))
+            .collect()
+    };
+    validate_selection(&selection)?;
+    if manifest.panels.len() != selection.len() || !manifest.hierarchy_complete {
         return Err(invalid("UI panel hierarchy coverage is incomplete"));
     }
     let mut panels = BTreeMap::new();
-    for (name, member, _) in PANELS {
+    for (name, member, _) in &selection {
         let summary = manifest
             .panels
             .iter()
-            .find(|panel| panel.name == name && panel.bundle == member)
+            .find(|panel| panel.name == *name && panel.bundle == *member)
             .ok_or_else(|| invalid("expected UI panel is absent from manifest"))?;
         let layout = summary
             .layout
@@ -414,8 +422,8 @@ pub fn verify(package: &Path, apk: &Path) -> Result<UiVerification, Error> {
         let panel: UiPanel = files.json(layout)?;
         if panel.schema_version != SCHEMA_VERSION
             || panel.source_apk_sha256 != source.sha256
-            || panel.name != name
-            || panel.bundle != member
+            || panel.name != *name
+            || panel.bundle != *member
             || !summary.hierarchy_complete
             || summary.stats.as_ref() != Some(&panel.stats)
             || target(&panel.prefab_reference) != Some(&panel.root.source)
@@ -428,14 +436,14 @@ pub fn verify(package: &Path, apk: &Path) -> Result<UiVerification, Error> {
         let source_nodes = manifest
             .source_objects
             .iter()
-            .filter(|record| record.class_id == 1 && record.source.bundle == member)
+            .filter(|record| record.class_id == 1 && record.source.bundle == *member)
             .count();
         if counts != (panel.stats.nodes, panel.stats.components) || counts.0 != source_nodes {
             return Err(invalid(
                 "UI panel node/component coverage differs from retained source objects",
             ));
         }
-        panels.insert(name.into(), panel.stats);
+        panels.insert(name.clone(), panel.stats);
     }
     for sprite in &manifest.sprites {
         let record = source_record(&records, &sprite.source, 213)?;

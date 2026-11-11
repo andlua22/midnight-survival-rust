@@ -1,312 +1,240 @@
-# APK UI reconstruction
+# Native Bevy UI reconstruction
 
-Updated: 2026-11-10. Target: `export/lite4.0.apk`, SHA-256
+Updated: 2026-11-11. Source: `export/lite4.0.apk`, SHA-256
 `2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df`.
 
-All three selected prefabs are now extracted directly from the APK in Rust.
-This is verified static source data. The native Arch Linux client now renders
-BattleMinimap from the extracted panel through Bevy/egui; other HUD widgets,
-the compass and the large map use their existing painters. Communicate in
-English; use Rust and installed tools. No Python ran.
+The current Linux client uses Bevy 0.20.1 UI. The egui rendering dependency,
+context passes and painters have been removed. Source images are presented with
+Bevy `MaterialNode`, text with Bevy Text, controls with native `Button`,
+`TextInput` and `ScrollArea`. Android builds and original Android runtime
+observation are outside the current implementation stage. Static extraction
+uses Rust; no Python or Waydroid is required.
 
-## Current source package
+## Verified source packages
 
-Root:
-`assets/imported_ui/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df-v1/`.
-Schema-1 manifest: `source_ui.json`. Layouts: `panels/*.json`.
-Read `evidence/ui-verification.json` instead of dumping the enormous manifest.
+The active nine-panel package is:
 
-| Prefab | Nodes | Components | Images | RawImages | Texts | Disabled components | Canvases | CanvasScalers | Masks |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| BattleMinimap | 225 | 593 | 133 | 1 | 14 | 2 | 4 | 0 | 2 |
-| BattlePanel | 1817 | 5213 | 905 | 4 | 259 | 36 | 16 | 0 | 16 |
-| BattleMapPanel | 416 | 1181 | 214 | 7 | 73 | 4 | 1 | 0 | 14 |
+`assets/imported_ui/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df-v1-panels-e1739e152490099d/`.
 
-All 2,458 source nodes have `active_self=true`, read from actual GameObjects
-without defaults. This does not establish runtime visibility: scripts and
-parent canvases can change it. The 42 disabled components remain disabled.
-Custom/native components without a projection retain complete fields/bytes;
-Image/Text totals therefore differ from the old exporter.
+Its `source_ui.json` SHA-256 is
+`ee1df91b8dbf610b108a55fd5530044a09104dd803d7ffe674db258181a3e883`.
+Read [the expanded verification report](evidence/ui-expanded-verification.json)
+for bounded inventory and verification results. The original three-panel
+package remains intact, including its historical reproducibility evidence.
 
-The 36-bundle dependency closure retains 10,047 source objects, 322 sprites,
-88 decoded Texture2D resources, one deferred font atlas and two fonts.
-Texture mip counts: `1:83, 7:3, 8:1, 9:1`. `FogLightMask`, missed by the old
-export, was recovered from the actual APK.
+| Panel | Source nodes | Images | Texts | Masks | Current native use |
+| --- | ---: | ---: | ---: | ---: | --- |
+| BattleMinimap | 225 | 133 | 14 | 2 | Live player, map, waypoint and simulation markers |
+| BattlePanel | 1,817 | 905 | 259 | 16 | Selected HUD groups, vitals, hotbar and source actions |
+| BattleMapPanel | 416 | 214 | 73 | 14 | Map image, player/waypoint, zoom, pan, close and clear |
+| BagAndBuildPanel | 1,685 | 932 | 288 | 11 | Bag page shell; inactive item/detail/crafting templates hidden |
+| BattleLoadingPanel | 29 | 14 | 3 | 1 | Source layout with native world-loading state |
+| MainPanel | 358 | 178 | 67 | 18 | Selected menu chrome and return/settings actions |
+| SettingPanel | 2,836 | 1,169 | 606 | 11 | Selected settings chrome; back/editor actions |
+| DeathPanel | 150 | 76 | 21 | 4 | Loaded; original death transition pending |
+| BluePrintBuildPanel | 113 | 38 | 40 | 1 | Loaded; original blueprint transition pending |
 
-The data preserves qualified `(bundle, CAB, signed PathID)` identities, PPtr
-FileIDs and explicit resolution states; hierarchy/component order; quaternions,
-anchors/pivots; zero fill values; graphic/material/raycast/mask settings;
-canvas metadata; font/text settings; atlas packing, trim, borders and sprite
-mesh data. Large integers and non-finite floats use explicit JSON encodings;
-original binary objects remain authoritative for float width/NaN payloads.
+The verified closure includes 70 bundles, 30,629 source objects, 555 sprites and
+166 decoded textures. Verification checks 62,236 files / 831,070,387 bytes.
+There are zero import errors and 90 explicit warnings: 80 unresolved resource
+references, eight sprite preview variants, one font without embedded outlines,
+and one empty source font atlas. Hierarchy completeness is verified; graphics
+completeness and runtime equivalence are not.
 
-Imports build fresh staging directories, serialize the dependency index with
-stable key order and verify before publishing. Prior packages are retained
-under `.local/ui-import-backups/`; failed reruns preserve their predecessor.
-Legacy `assets/ui/` remains available; it is not the native minimap's source.
+All selected source nodes serialize as active. That is authored prefab state,
+not evidence that all popups, templates, effects or account controls should be
+visible during gameplay. The native bindings select an explicit current state.
+Qualified `(bundle, CAB, signed PathID)` identities, references, source bytes,
+hierarchy order, transforms, material fields and font settings remain retained.
 
-## Verified extraction and remaining gaps
+## Renderer and binding contracts
 
-The current import completes with **zero errors and 61 warnings**:
+`crates/ui_data` owns the shared package DTOs, package access, RectTransform
+layout and sprite geometry. `client_core::source_ui::SourcePanelRenderer` loads
+verified source textures/fonts and returns `PanelFrame` plus per-graphic reports.
+`native_ui::update_source_frame` is the shared Bevy UI presentation path used by
+both the game and the capture probe.
 
-- 56 unresolved Unity built-in/default-resource references.
-- Three sprite previews requiring source mesh geometry or trim handling.
-- One Font without embedded outlines (`hitFont`); glyph/material data is retained.
-- One explicitly empty source `Font Texture`, retained as deferred.
+Source atlas color sampling stays on the GPU. Full source mip chains, color
+space and sampler metadata are retained in Bevy `Image` assets. Source sprite
+geometry is rasterized into RGBA32Float UV/coverage textures; these contain
+coordinates and stencil coverage, rather than CPU-painted atlas colors.
+Standard Mask alpha coverage uses threshold 0.001 at physical pixel centers.
+RectMask2D uses the source rectangle. Nested source transforms and masks are
+preserved. Text-mask coverage inside source text bounds is decomposed into
+disjoint native overflow-clip rectangles. Identical horizontal spans merge
+across pixel rows; each copy keeps the same Bevy text layout and rotation.
+Coverage budgets are 16 million pixels per viewport, four million pixels per
+graphic and 4,096 clip rectangles per text. Excessive fragmentation is reported
+unsupported. Retired live-instance nodes, text clips and coordinate/material
+assets are released.
 
-Reference counts: 40,071 resolved, 11,385 null and 56 unresolved.
-Hierarchy completeness is true; graphics completeness, reference coverage
-and runtime equivalence are false. Success verifies the stated static scope.
+Bindings accept qualified targets for RawImage texture/UV, text, visibility,
+anchored position, rectangle anchors, scale, rotation, sprite, tint, fill amount
+and repeated source instances. Invalid target types, duplicate instance keys,
+invalid numeric input and invalid PPU are rejected. Binding evidence uses entry
+arrays so qualified IDs remain structured JSON objects. Source component order
+and runtime instance identities remain visible in each report.
 
-`ADOBEHEITISTD-REGULAR` has 12,649,568 embedded outline bytes. A bounded Rust
-Font reader uses its shipped type tree and retains the exact original object
-bytes while restoring the complete font array. The parser's general
-one-million-element array limit was not raised.
+Embedded font payloads are supplied to Bevy Text. The retained Adobe font has
+12,649,568 outline bytes. [Historical independent font coverage](evidence/minimap-font-coverage.json)
+records missing nominal mappings for seven source characters. Bevy rendering
+is not proof of Unity TextGenerator metrics, font fallback or text rasterization.
+Zero-area source Text and nonpositive authored font sizes are omitted before
+font submission. The Linux client enables Bevy's cached
+`complex_script_segmentation` feature for source Chinese/Japanese text.
 
-The touched empty font Texture2D is in `assets/fonts/fonts.ab`, CAB
-`CAB-096add6cdbb7663c007ed458ab0c7475`, PathID `6707847669886887298`.
-Its dimensions, image count and complete image size are zero; format is RGBA32
-(4), mip count is one, image bytes are empty and no stream exists. Another
-empty object, PathID `1493665959590621418`, is in that bundle's inventory
-outside the touched graphics closure. See `evidence/font-textures.json`.
-No blank PNG was invented. Runtime font-atlas generation/content is unverified.
+## Native runtime behavior
 
-`--verify-ui` checks 20,782 referenced files: hashes and nested blob lengths,
-raw object bytes against the APK, CAB metadata/dependency coverage, hierarchy
-parents/ordered children/components and decoded mip dimensions/counts/base
-PNG consistency. It does not independently rerun every decoder, rasterize
-Unity sprite meshes or compare Unity pixels. Commands are in
-`apk-reconstruction.md`; `evidence/ui-verification.json` is the compact report.
+`NativeUiPlugin` loads panels in Startup, processes native actions after Bevy
+picking in PreUpdate, and updates source panels in Update. Desktop input runs
+after the native UI boundary. Modal screens, hovered UI buttons and focused
+text fields block gameplay input. Editor-mode source hit targets are disabled
+so dragging a widget does not activate a gameplay button.
 
-Two fresh local imports produce the same manifest digest, recorded in
-`evidence/ui-reproducibility.json`. The canonical folder contains exactly the
-20,782 verified files, with no unreferenced output files. This establishes
-local static repeatability rather than cross-platform or runtime equivalence.
+The native menu retains server address/invitation input and Connect/Disconnect
+through the existing Online resource. Bevy `TextInput` supplies Unicode editing,
+selection, clipboard and IME behavior. Fields are bounded and single-line.
+Editor Save/Cancel, persisted layout, storage error feedback, presets, reanchoring,
+scale, opacity, visibility and Escape cancellation remain available. Native
+buttons/text fields participate in tab navigation. The developer overlay keeps
+fly, fog, HUD visibility and cloud-quality controls. Obsolete egui-only GM tab,
+item-spawn selector, target-coordinate and timed-loading-tip state was removed;
+source equivalents for those prototype tools are not claimed.
 
-## Shared schema and source minimap renderer
+Source HUD groups are transformed using their resolved source bounds and parent
+transform inverses. The editor modifies health bars, hotbar, joystick, fire,
+aim, jump, crouch and inventory groups while preserving their internal geometry.
+The source reload widget has not been identified; it is an explicit editor gap.
+The minimap keeps its source envelope and applies saved placement/opacity.
+Editor hit rectangles follow the rendered source groups.
 
-`crates/ui_data` (`midnight_ui_data`) now owns the schema-1 DTO, package loader,
-RectTransform layout and sprite geometry. The extractor re-exports this schema;
-it does not maintain a second copy. Full UI verification after that move checks
-20,782 files / 394,890,740 bytes and preserves manifest SHA-256
-`677424f9e43225f3677f5713bed526dd9099339f2a8b44dbaecee7d41928cae5`.
-Consumed payloads are hashed from the exact byte buffer returned to the caller.
+Vitals text targets use full source paths, including `txt_mybloodNum`,
+`txt_hunger` and `txt_bodyWater`. Filled images/slider anchors reflect current
+native simulation values. Authored hotbar count, icon and durability placeholders
+are hidden or replaced with native state. Item-to-source-sprite selection remains
+unresolved, so guessed icons are not substituted. The source has seven hotbar
+entries; the prototype has six. The seventh source entry has no invented native
+slot action. The imported-island runtime does not infer original bag capacity
+from prototype six/eighteen-slot inventories.
 
-The layout resolver applies anchors, stretch, pivots, inherited transforms,
-activity and source child order in a supplied parent canvas. Sprite geometry
-supports Simple, Sliced and horizontal/vertical Filled images, fractional atlas
-UVs, packing rotations 0–4, trim, aspect and source PPU. All 120 minimap images
-with static sprite bindings pass geometry generation; 13 source Images have
-null sprite references. Unsupported radial/tiled/source-mesh/atlas variants
-return explicit errors. Collapsed Sliced borders share one inner split to avoid
-float32 rounding reversing the center; a regression test covers the source case.
+The inventory sidebar reads `LoadedWorld.gameplay` and presents bounded pages
+of original item IDs/names and recovered blueprint requirements. It displays
+DrawingCfg target IDs, output counts, material IDs/counts, time, workbench/level
+and mode flags. This is a read-only catalog; it does not infer unlock eligibility
+or map source IDs to prototype ItemKind labels. The separate CraftRecipeCfg table
+contains only the special battery row; it is not the ordinary full crafting list.
 
-`crates/client_core/src/source_ui/` renders these layouts through the existing
-Bevy/egui backend. It prepares verified full-atlas base pixels and the embedded
-source font, clips triangles through standard Mask alpha coverage at physical
-pixel centers (threshold 0.001), and preserves interpolated UVs across clipping.
-`SourceUiBindings` accepts qualified RawImage textures/UV rectangles, text,
-node visibility, RectTransform anchored positions/local scales/local rotations,
-sprites, colors and source instances, with target/type validation. Instances
-retain original source identities and distinct runtime keys. `resolve_subtree`
-reuses the layout resolver so real parent transforms, activity and masks apply.
-Binding evidence uses entry arrays, preserving qualified IDs as JSON objects.
-Font atlas UVs normalize after all glyph allocations, including the first frame.
-Vertical text truncation limits rows without an ellipsis; it does not add an
-invented rectangle stencil around each Text.
+Loading percentage follows native world/package readiness, without a fabricated
+progress timer. Source account, equipment, selected-item, crafting and service
+states that have not been reconstructed are hidden where explicitly identified.
+Remaining source screens and graphics are reported without claiming complete
+runtime coverage. Technical reconstruction notices belong in documentation,
+logs or developer diagnostics rather than ordinary play screens.
 
-The preserved prefab probes were captured after the text/binding-report fixes.
-See
-[render.json](evidence/minimap-render/render.json) and the
-[1920×1080 detail](evidence/minimap-render/prefab-1920x1080-detail.png).
-Both captures use NVIDIA RTX 4060 Laptop / Vulkan, six prepared atlases, one
-embedded font and one standard mask. Each reports 125 submitted graphics,
-20 unsupported, two disabled, two empty and one mask-only graphic.
-These are Bevy prefab previews, not APK screenshots. Their empty-binding mode
-is retained independently of the production native HUD adapter.
-Templates overlap because the serialized nodes are active and runtime visibility
-has not been applied in these previews. Their minimap RawImage is explicitly unbound.
+## Map policies and evidence boundaries
 
-The optional `initialization-visibility.json` profile now adds two more
-captures at the same sizes. It applies only the 21 qualified GO false overrides
-in [the native review](evidence/minimap-runtime-review.md), hiding their
-descendants without altering source records. Each initialization preview has
-103 submitted graphics, 27 inactive, 15 unsupported, two disabled, two empty
-and one mask-only. See the
-[initialization detail](evidence/minimap-render/initialization-1920x1080-detail.png).
-These are partial lifecycle previews, not successful native Awake/init or
-gameplay frames. The profile includes APK/bundle/layout identity, GO/Transform
-pairs, retained indices and native provenance; malformed/foreign/duplicate IDs
-and non-false overrides are rejected. Its evidence hash covers the parsed byte
-buffer. Texture, UV, local scale and zoom bindings are not inferred from it.
-
-Remaining renderer gaps include custom stencil/fog/materials, line renderers,
-particles, additional sprite variants, source mip sampling and Unity text
-metrics/rasterization. egui shaping, line spacing, best-fit, color/tint and
-premultiplied blending remain preview approximations. Per-graphic JSON reports
-retain the exact source identities and reasons for omissions.
-
-[Font coverage](evidence/minimap-font-coverage.json) independently compares
-skrifa (the parser used by egui 0.36) and ttf-parser. The shipped OTF has 30,284
-glyphs but lacks nominal mappings for `丧 尸 时 秒 解 计 领`, affecting three
-minimap templates. This does not prove there are no corresponding outlines;
-Unity fallback and runtime atlas behavior still require evidence. No substitute
-font was introduced to conceal the gap.
-
-## Native Arch Linux HUD integration
-
-`client_core::source_minimap::NativeMinimap` now loads the pinned BattleMinimap
-package and supplies the live HUD bindings. `application.rs` initializes it in
-PreUpdate, after egui creates contexts and before its first pass;
-`interface.rs::draw_widgets` paints it with the saved HUD placement and opacity.
-The old minimap painter, rotation helper and duplicate minimap/sound PNG loads
-were removed. Native Linux use has no Waydroid dependency.
-
-| Binding | Implemented native behavior | Source evidence boundary |
-| --- | --- | --- |
-| Texture | Retained 2048×2048 `Map_map`, bilinear/clamp, bound to minimap RawImage `910110631840687877` | Original BattleMapPanel assignment is established; BattleMinimap assignment is a native choice |
-| Map image scale | `260/2048` on XY; anchored position `[0,0]` | Fits the source 260×260 standard mask; original runtime scale is unverified |
-| UV crop | Player-centered span `1/zoom`; Unity bottom-left rect `[u-0.5/zoom, 1-v-0.5/zoom, 1/zoom, 1/zoom]` | Uses top-left overview `(u,v)` and a single V conversion; original RawImage setter is unverified |
-| World projection | Shared provisional overview half extent 5360; marker XY follows `[delta_x,-delta_z]` with the same zoom | North is Bevy -Z and east +X; exact Unity world/image calibration is unverified |
-| Zoom | Default 15, finite values constrained to 3–60 | Constructor 15 is recovered; native wheel behavior and limits are implementation choices |
-| HUD layout | Source 330×330 root inside a 360×363 envelope, 32.5 header gutter; 1920×1080 reference scaling | Keeps source anchors/pivots and accommodates the header/time background; the editor controls root placement |
-| Live state | Player yaw, waypoint, resource/structure/NPC/vehicle/cargo/sound instances; Unity XZ coordinates, height and tick-derived time/day phase | Simulation categories, marker sizes and lifecycle are native policies |
-
-Texture identity is `assets/texture/map_map.ab`, CAB
+The retained `Map_map` identity is `assets/texture/map_map.ab`, CAB
 `CAB-6f665c88cf2187ff08df209ad5c96ca6`, PathID `-945003921129902140`.
-The minimap RawImage belongs to `assets/ui/battleminimap.ab`, CAB
-`CAB-88df926bf45d4de159fb33b326042714`. The adapter validates qualified IDs
-and full source paths, so repeated node names cannot redirect bindings.
+Its assignment to BattleMapPanel is source-backed. Assigning it to the minimap
+RawImage `910110631840687877` is an explicit native policy.
 
-Authored placeholders and unsupported effects are hidden by the Rust lifecycle.
-Required source ancestors are activated, and retained templates produce separate
-live instances while preserving parent visibility, transforms and clipping.
-Non-finite inputs are rejected or omitted. Out-of-range resource markers are
-hidden; waypoints and directional sound markers clamp to the minimap edge.
+The minimap uses player-centered RawImage UVs, default zoom 15, native limits
+3–60 and a 260-pixel source mask. The 360×363 envelope includes the header gutter.
+North is Bevy -Z and east +X. Unity +Z is reflected once into Bevy -Z. Texture
+crop and marker projection share `shared::map_projection` and the provisional
+world overview half extent 5360. Exact original world/image calibration remains
+unverified. Required ancestors are activated for native template instances;
+far waypoints/sound markers clamp to the edge and inactive vehicle markers retire.
+No fixed cargo marker is fabricated.
 
-Scroll over the minimap to zoom. Click it to open the existing tactical map;
-M also toggles that map. F2 opens the HUD editor for dragging, scale and opacity.
-The source cone widens upward from its player-facing tip. Its broad end and
-the arrow follow the same yaw; adding PI reverses the field of view. The GPU
-review found and corrected that mistake, and the cardinal/DPI test now covers
-both graphics. Final native captures were refreshed after the correction.
-The source panel is integrated now; exact Unity rendering, custom fog/stencil,
-particles, line graphics, text/color equivalence and remaining panels still
-require work.
+The large map uses the retained 8640×8640 source rectangle with native overview
+scale `0.125 * zoom`, zoom limits 0.5–4, right-button pan and inverse-transform
+click-to-waypoint. Native player/waypoint icon sizes and lifecycle are policy,
+not recovered original setters. Selected source close, zoom and clear buttons
+activate native actions. Other players/service templates are hidden until their
+state exists. M toggles the map; scrolling over the minimap zooms it; clicking
+it opens the map. F2 opens the HUD editor.
 
-The native probe mode writes four controlled states—north, east, moved and
-zoomed/night—at 1920×1080 and 1280×720 under `evidence/native-minimap/`.
-Each capture includes a detail image, source/instance report and exact bindings;
-it rejects unsupported active graphics or missing map/player submission.
-The run completed with eight captures on NVIDIA RTX 4060 Laptop/Vulkan, driver
-615.71.09. Every ordinary capture reports 17 submitted, 141 inactive and one
-mask-only graphic; zoomed/night captures submit 15. There are zero unsupported
-active graphics. See [the native report](evidence/native-minimap/render.json).
-This fixture exercises the production adapter with explicit simulation inputs.
-It does not establish APK pixel equality. Commands are in `apk-reconstruction.md`.
-The Rust `inspect_panel` example supports bounded `--bindings` and
-`--sprites [FILTER]` queries for further source work.
+[Canvas evidence](evidence/minimap-canvas-review.md) establishes bootstrap
+1920×1080 / PPU 100 scaling and recovered scalar formulas. It does not establish
+the instantiated minimap ancestor chain, IFix state or final effective map scale.
+[Native method review](evidence/minimap-runtime-review.md) and
+[dump pairing](evidence/minimap-dump-pairing.md) retain exact static boundaries.
+Recovered `export/SC.UI/*.cs` is pseudo-C# with incomplete decompilation, rather
+than original compilable Unity source. Historical Android member comparisons
+remain read-only evidence and are not a dependency of current Linux work.
 
-## Historical export boundary
+## Validation and next work
 
-Old `assets/ui` layouts had 1817/225/416 nodes and 906/134/215 Images, but
-discarded FileID, defaulted missing active flags to true, could replace zero
-fill with one and ignored component failures. The former pass3 copied PNGs
-from those layouts and ignored its APK argument; that code is replaced.
+The native minimap probe uses the same Bevy UI material/text presenter as the
+game. It covers north/east headings, movement, waypoint/resource/sound markers,
+zoom/night, 1920×1080, 1280×720 and DPI 1.5. Reports retain source/instance IDs,
+bindings, GPU metadata and preview caveats. It rejects a missing map/player,
+unsupported active graphics and captures without enough texture variation.
 
-The historical audit found 33 distinct missing sprite names and redundant
-panel stores. Those findings describe the old export and are not proof that
-the APK lacks the assets. Large prior import evidence is retained under
-`.local/ui-import-history/`.
+The native GPU probe completed all 12 captures on Linux / NVIDIA RTX 4060 Laptop
+/ Vulkan, driver 615.71.09. Final captures were rerun after enabling source CJK
+segmentation and omitting zero-area Text. [The current report](evidence/minimap-bevy-ui/render.json)
+records 311–413 distinct RGB buckets per frame and no unsupported active graphics.
+Map, player, coordinate/height text, clock and marker bindings are submitted.
+The coordinate text uses four clip rectangles at 1920×1080 DPI 1. This validates
+the native renderer and explicit simulation bindings, without proving original
+Unity pixel equality or behavior.
 
-## Map projection and C# boundaries
+Seven focused `native_` tests passed, including the retained asset check, exact
+binary text-mask holes/nested intersections, clip fragmentation budget, modal
+input boundary and deferred overlay creation/retirement across Loading, Menu,
+Inventory, Map, Editor and developer controls. The cached material test checks
+invalidation when UV/coverage pixels change and avoids invalidation for unchanged
+pixels. Menu fields retain bounded single-line editing state. The strict client
+library Clippy check passes with `--lib --no-deps -- -D warnings`; broader
+workspace/example lint baselines are recorded separately. These tests do not
+exercise platform IME/clipboard
+interaction. Full-client Linux launch validation is recorded separately.
 
-`crates/shared/src/map_projection.rs` owns overview projection/inversion,
-radar offsets and bearings. Canonical Bevy north is **-Z**, east **+X**.
-Camera yaw zero moves toward -Z and points upward. The importer reflects
-Unity +Z into Bevy -Z once.
+The capture harness explicitly uses the project's asset root and marks its
+headless Camera2d as `IsDefaultUiCamera`. The full-client smoke test exposed a
+duplicate Node in a label bundle; that was removed and the overlay regression
+test now exercises deferred bundle insertion.
 
-The HUD uses the same helpers for tactical-map positions/clicks, radar
-background crops/markers, headings and compass bearings. Edge crops remain
-unclamped to avoid stretching the background independently of markers.
-Native arrow/cone orientation uses the source local rotations. Six projection
-tests cover off-center crops, cardinal axes and simulation heading agreement.
+The visual review also caught stale player heading after coordinate-image
+updates: replacing a GPU image view did not refresh the cached UiMaterial bind
+group. Coordinate changes now invalidate the material. The probe explicitly
+checks east/north pixel differences inside player bounds: 296 changed pixels
+at 1920×1080 and 137 at 1280×720, including the 1920 DPI 1.5 run.
 
-`1BattlePanel_ann_f` is a translucent black 62×62 backplate (center alpha
-102); its existing HUD use does not reproduce the source layout.
-`MAP_OVERVIEW_HALF_EXTENT = 5360.0` remains provisional. The large-map prefab's
-2048² `Map_map` texture binding is established. The Rust minimap now explicitly
-binds it as described above; original Unity minimap assignment, effective
-scales/UVs and matched world calibration remain unverified.
+Independent visual review passes heading, movement/recentering, zoom, moon/time,
+height/coordinates and map masks in representative resolution/DPI captures.
+Against the historical renderer, Bevy text baselines are approximately ten
+pixels lower at 1920 and the yellow player marker is brighter. These are retained
+migration parity limits; neither capture set proves original Unity text/color
+equivalence.
 
-`export/SC.UI/*.cs` is recovered pseudo-C#, with useful names/native addresses
-and partial call clues, plus unresolved external types, invalid operations
-and decompilation placeholders. Do not translate its bodies literally or
-describe it as original compilable Unity source.
+Historical egui captures under `evidence/minimap-render/` and
+`evidence/native-minimap/` remain dated evidence of the former renderer. They are
+not baselines or passing checks for the current Bevy UI backend. New captures use
+`evidence/minimap-bevy-ui/` so the historical artifacts remain intact.
 
-## Calibration recovered and next runtime work
+Useful checks after a material or interaction change:
 
-[The canvas review](evidence/minimap-canvas-review.md) recovers enabled
-CanvasScaler components in bootstrap `level0` and `level1`: reference
-1920×1080, reference PPU 100. Native `AdjustResolution.Awake` ordinarily selects
-`min(width/1920,height/1080)`. This supports the supplied preview inputs; the
-live minimap ancestor chain and IFix state remain unobserved.
+```sh
+cargo check --offline -p client_core --all-targets
+cargo test --offline -p client_core native_ui::tests
+cargo test --offline -p client_core native_bevy_ui_asset -- --ignored
+cargo run --offline -p client_core --example minimap_probe -- memory/evidence/minimap-bevy-ui --native
+```
 
-The serialized minimap root has top-right anchors/pivot, 330×330 size and position
-`[10,-32.399994]`; its standard mask is 260×260. MapCfg decoding consumes all
-1465 bytes and associates all 241 terrain bundles with map 1's scene list.
-For map 1 and initialized MapMgr.MapSize=10000, native fallback formulas yield
-offsetForBase=0 and battleMapRate=0.4096. The source image and icon-parent
-translation must use one calibration. Do not change the production 5360 extent
-to 5000 from these scalar values alone.
+The ignored asset test explicitly requires the retained APK-derived package; it
+checks native map/player submission and rejection of foreign binding targets.
+The modal test checks gameplay boundaries and Escape/editor cancellation.
+The overlay test checks native screen controls and retirement. Source geometry
+and projection tests retain their separate contracts.
 
-The native review records constructor zoom=15. An internal reciprocal-zoom Rect
-at +0x130 is not a verified RawImage UV setter; the scale vector's metadata
-identity remains unresolved. OnShowCompassAndMinimap's `_mapRate` is the zero
-gate, not the coordinate multiplier `_battleMapRate`. Native Awake requests
-indices 0–93 while the retained GameObjectData has 86 entries (0–85): actual
-list construction, prefab revision and IFix execution still need runtime evidence.
-
-1. Extend source-driven integration to the remaining HUD panels and transitions,
-   keeping static prefab inspection separate from live simulation bindings.
-2. Refine original Unity image selection, zoom/scales, UVs, binding-list construction
-   and initialization visibility using recovered bodies and paired runtime evidence.
-   The working Linux adapter does not depend on Waydroid observation.
-3. Interpret custom stencil/fog and font fallback, and implement the required
-   graphics omitted from the current native lifecycle.
-4. Compare matched scene/camera/resolution captures against the paired APK runtime,
-   including off-center landmarks, map edges, clipping and panel transitions.
-
-ADB found Waydroid with package/version `com.herogame.gplay.survival.lite`,
-40 / 4.0. Its base APK SHA-256 is
-`527ae0a10681fd0dfdbe957b65fee79729cc665d0e7afcce43f25054366fc37b`.
-The Rust full-member comparison hashes all 9,320 regular files: 9,318 match,
-including all assets, Java/manifest and libunity.so. Only libil2cpp.so and
-global-metadata.dat differ. The user clarified that **lite4.0.apk contains the
-recovered memory artifacts**, whereas the installed counterpart has the
-encrypted originals. See `evidence/android-runtime-check.json` and
-`evidence/apk-runtime-member-comparison.json`; the cached read-only APK copy is
-under `.local/apk-runtime-candidates/`, ignored by Git.
-
-[Dump pairing](evidence/minimap-dump-pairing.md) compares 20,488 mapped bytes
-across seven native methods. OnShowCompassAndMinimap, GetPosOnMap and
-AdjustResolution.Awake match exactly. The four initialization/constructor
-ranges differ on disk; the constructor's final 1,592 bytes match. This supports
-using the recovered source for analysis and the matching assets for previews,
-without claiming whole-method or live-state equivalence. No Android app launch,
-installation change or APK screenshot was performed. Continue with the paired
-runtime and recovered artifacts; do not discard it merely because the outer
-APK hashes differ.
-
-Current native validation: 30 ordinary client tests and three explicitly executed
-asset-backed tests pass. The latter cover source geometry, movement, four cardinal
-headings, DPI, parent visibility, invalid bindings, and the actual HUD system's
-initialization, wheel zoom, map opening and editor dragging. Shared UI data has
-15 passing tests. Offline workspace all-target Clippy, scoped formatting and
-`git diff --check` pass; only existing map package, compass, terrain probe and
-shared test warnings remain. Earlier foundation checks recorded map data 19,
-shared 46 with one intentional stress-test ignore, extractor 24 and APK comparison
-three tests. The comparison example's scoped release Clippy check passes.
-
-Full UI behavior, interactions/animations, placements, water, original
-lighting, gameplay and complete-game fidelity remain unfinished.
+Next work is source inventory/item-use/equipment rules and source icon selection;
+full HUD/compass/ammo bindings and original screen transitions; settings state;
+death/blueprint screens; source particles, custom fog/stencil/materials and lines;
+additional sprite variants; and Unity rich text, best-fit, font styles,
+line spacing and vertical alignment. Pixel equality and complete
+UI behavior remain unverified. Use matched static evidence and deterministic
+Bevy captures while continuing Linux-first development.

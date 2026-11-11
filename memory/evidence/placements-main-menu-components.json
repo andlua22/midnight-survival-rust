@@ -1,0 +1,990 @@
+{
+  "apk": "export/lite4.0.apk",
+  "assets": [
+    {
+      "cab": "BuildPlayer-zhujiemian_01.sharedAssets",
+      "class_counts": {
+        "114": 4,
+        "115": 6,
+        "142": 1,
+        "150": 1,
+        "21": 3,
+        "258": 1,
+        "28": 2,
+        "43": 1,
+        "89": 2
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-b99e201845a48115c6b6a24e89d01efe/CAB-b99e201845a48115c6b6a24e89d01efe",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [
+        {
+          "byte_count": 740,
+          "class_id": 21,
+          "path_id": "3",
+          "properties": {
+            "disabledShaderPasses": [],
+            "m_BuildTextureStacks": [],
+            "m_CustomRenderQueue": 2050,
+            "m_DoubleSidedGI": false,
+            "m_EnableInstancingVariants": true,
+            "m_InvalidKeywords": [],
+            "m_LightmapFlags": 4,
+            "m_Name": "zhujiemian_04",
+            "m_SavedProperties": {
+              "m_Colors": [
+                [
+                  "_BaseColor",
+                  {
+                    "a": 1.0,
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                  }
+                ],
+                [
+                  "_Color",
+                  {
+                    "a": 1.0,
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                  }
+                ],
+                [
+                  "_EmissionColor",
+                  {
+                    "a": 1.0,
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                  }
+                ],
+                [
+                  "_SpecColor",
+                  {
+                    "a": 1.0,
+                    "b": 0.19999995827674866,
+                    "g": 0.19999995827674866,
+                    "r": 0.19999995827674866
+                  }
+                ]
+              ],
+              "m_Floats": {
+                "item_count": 21,
+                "preview": [
+                  [
+                    "_AlphaClip",
+                    0.0
+                  ],
+                  [
+                    "_Blend",
+                    0.0
+                  ],
+                  [
+                    "_BumpScale",
+                    1.0
+                  ],
+                  [
+                    "_Cull",
+                    2.0
+                  ],
+                  [
+                    "_Cutoff",
+                    0.5
+                  ],
+                  [
+                    "_DstBlend",
+                    0.0
+                  ],
+                  [
+                    "_EnvironmentReflections",
+                    1.0
+                  ],
+                  [
+                    "_GlossMapScale",
+                    0.0
+                  ],
+                  [
+                    "_Glossiness",
+                    0.0
+                  ],
+                  [
+                    "_GlossyReflections",
+                    0.0
+                  ],
+                  [
+                    "_Metallic",
+                    0.0
+                  ],
+                  [
+                    "_OcclusionStrength",
+                    1.0
+                  ],
+                  [
+                    "_QueueOffset",
+                    0.0
+                  ],
+                  [
+                    "_ReceiveShadows",
+                    1.0
+                  ],
+                  [
+                    "_Smoothness",
+                    0.5
+                  ],
+                  [
+                    "_SmoothnessTextureChannel",
+                    0.0
+                  ]
+                ],
+                "truncated": true
+              },
+              "m_Ints": [],
+              "m_TexEnvs": [
+                [
+                  "_BaseMap",
+                  {
+                    "m_Offset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "m_Scale": {
+                      "x": 1.0,
+                      "y": 1.0
+                    },
+                    "m_Texture": {
+                      "m_FileID": 0,
+                      "m_PathID": 6
+                    }
+                  }
+                ]
+              ]
+            },
+            "m_Shader": {
+              "m_FileID": 2,
+              "m_PathID": -6597694194654567683
+            },
+            "m_ValidKeywords": [],
+            "stringTagMap": [
+              [
+                "RenderType",
+                "Opaque"
+              ]
+            ]
+          }
+        },
+        {
+          "byte_count": 2068,
+          "class_id": 21,
+          "path_id": "4",
+          "properties": {
+            "disabledShaderPasses": [
+              "SHADOWCASTER"
+            ],
+            "m_BuildTextureStacks": [],
+            "m_CustomRenderQueue": 3050,
+            "m_DoubleSidedGI": true,
+            "m_EnableInstancingVariants": true,
+            "m_InvalidKeywords": [],
+            "m_LightmapFlags": 4,
+            "m_Name": "zhujiemian_04_shadow",
+            "m_SavedProperties": {
+              "m_Colors": [
+                [
+                  "_BaseColor",
+                  {
+                    "a": 0.7450980544090271,
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                  }
+                ],
+                [
+                  "_ChangeColor",
+                  {
+                    "a": 1.0,
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                  }
+                ],
+                [
+                  "_Color",
+                  {
+                    "a": 1.0,
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                  }
+                ],
+                [
+                  "_EmissionColor",
+                  {
+                    "a": 1.0,
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                  }
+                ],
+                [
+                  "_PanOrPulsate",
+                  {
+                    "a": 0.0,
+                    "b": 0.5,
+                    "g": 1.0,
+                    "r": 1.0
+                  }
+                ],
+                [
+                  "_SheenColor",
+                  {
+                    "a": 1.0,
+                    "b": 0.5,
+                    "g": 0.5,
+                    "r": 0.5
+                  }
+                ],
+                [
+                  "_SpecColor",
+                  {
+                    "a": 0.0,
+                    "b": 0.1998005211353302,
+                    "g": 0.1998005211353302,
+                    "r": 0.1998005211353302
+                  }
+                ],
+                [
+                  "_SubsurfaceColor",
+                  {
+                    "a": 1.0,
+                    "b": 0.2499999701976776,
+                    "g": 0.3999999761581421,
+                    "r": 1.0
+                  }
+                ],
+                [
+                  "_TextureSize",
+                  {
+                    "a": 1.0,
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                  }
+                ],
+                [
+                  "_ValueRemap",
+                  {
+                    "a": 1.0,
+                    "b": 0.0,
+                    "g": 0.5,
+                    "r": 0.0
+                  }
+                ],
+                [
+                  "_VertexOffset",
+                  {
+                    "a": 1.0,
+                    "b": 0.0,
+                    "g": 8.0,
+                    "r": 8.0
+                  }
+                ]
+              ],
+              "m_Floats": {
+                "item_count": 62,
+                "preview": [
+                  [
+                    "_AlphaClip",
+                    1.0
+                  ],
+                  [
+                    "_Anisotropy",
+                    0.0
+                  ],
+                  [
+                    "_BaseColorRGBIntensity",
+                    1.0
+                  ],
+                  [
+                    "_BaseMapAlphaAsSmoothness",
+                    0.0
+                  ],
+                  [
+                    "_Blend",
+                    0.0
+                  ],
+                  [
+                    "_BlendAngle",
+                    60.0
+                  ],
+                  [
+                    "_BlendDistance",
+                    1.0
+                  ],
+                  [
+                    "_BumpScale",
+                    1.0
+                  ],
+                  [
+                    "_ColorMode",
+                    0.0
+                  ],
+                  [
+                    "_Cull",
+                    0.0
+                  ],
+                  [
+                    "_Cutoff",
+                    0.0
+                  ],
+                  [
+                    "_Debug",
+                    0.0
+                  ],
+                  [
+                    "_DepthOcclusionTestZBias",
+                    -0.0010000000474974513
+                  ],
+                  [
+                    "_DetailNormalMapScale",
+                    1.0
+                  ],
+                  [
+                    "_Distortion",
+                    0.009999999776482582
+                  ],
+                  [
+                    "_DstBlend",
+                    10.0
+                  ]
+                ],
+                "truncated": true
+              },
+              "m_Ints": [],
+              "m_TexEnvs": [
+                [
+                  "_BaseMap",
+                  {
+                    "m_Offset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "m_Scale": {
+                      "x": 1.0,
+                      "y": 1.0
+                    },
+                    "m_Texture": {
+                      "m_FileID": 0,
+                      "m_PathID": 7
+                    }
+                  }
+                ]
+              ]
+            },
+            "m_Shader": {
+              "m_FileID": 2,
+              "m_PathID": -4629885063101019428
+            },
+            "m_ValidKeywords": [
+              "_ALPHATEST_ON"
+            ],
+            "stringTagMap": [
+              [
+                "RenderType",
+                "Transparent"
+              ]
+            ]
+          }
+        },
+        {
+          "byte_count": 756,
+          "class_id": 21,
+          "path_id": "5",
+          "properties": {
+            "disabledShaderPasses": [],
+            "m_BuildTextureStacks": [],
+            "m_CustomRenderQueue": 2200,
+            "m_DoubleSidedGI": false,
+            "m_EnableInstancingVariants": true,
+            "m_InvalidKeywords": [
+              "_SUNDISK_HIGH_QUALITY"
+            ],
+            "m_LightmapFlags": 4,
+            "m_Name": "zhujiemian_sky",
+            "m_SavedProperties": {
+              "m_Colors": [
+                [
+                  "_Color",
+                  {
+                    "a": 1.0,
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                  }
+                ],
+                [
+                  "_EmissionColor",
+                  {
+                    "a": 1.0,
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                  }
+                ],
+                [
+                  "_GroundColor",
+                  {
+                    "a": 1.0,
+                    "b": 0.3409999907016754,
+                    "g": 0.3490000069141388,
+                    "r": 0.36899998784065247
+                  }
+                ],
+                [
+                  "_SkyTint",
+                  {
+                    "a": 1.0,
+                    "b": 0.5,
+                    "g": 0.5,
+                    "r": 0.5
+                  }
+                ],
+                [
+                  "_Tint",
+                  {
+                    "a": 0.5,
+                    "b": 0.5843137502670288,
+                    "g": 0.5843137502670288,
+                    "r": 0.5843137502670288
+                  }
+                ]
+              ],
+              "m_Floats": {
+                "item_count": 21,
+                "preview": [
+                  [
+                    "_AtmosphereThickness",
+                    1.0
+                  ],
+                  [
+                    "_BumpScale",
+                    1.0
+                  ],
+                  [
+                    "_Cutoff",
+                    0.5
+                  ],
+                  [
+                    "_DetailNormalMapScale",
+                    1.0
+                  ],
+                  [
+                    "_DstBlend",
+                    0.0
+                  ],
+                  [
+                    "_Exposure",
+                    0.550000011920929
+                  ],
+                  [
+                    "_GlossMapScale",
+                    1.0
+                  ],
+                  [
+                    "_Glossiness",
+                    0.5
+                  ],
+                  [
+                    "_GlossyReflections",
+                    1.0
+                  ],
+                  [
+                    "_Metallic",
+                    0.0
+                  ],
+                  [
+                    "_Mode",
+                    0.0
+                  ],
+                  [
+                    "_OcclusionStrength",
+                    1.0
+                  ],
+                  [
+                    "_Parallax",
+                    0.019999999552965164
+                  ],
+                  [
+                    "_Rotation",
+                    0.0
+                  ],
+                  [
+                    "_SmoothnessTextureChannel",
+                    0.0
+                  ],
+                  [
+                    "_SpecularHighlights",
+                    1.0
+                  ]
+                ],
+                "truncated": true
+              },
+              "m_Ints": [],
+              "m_TexEnvs": [
+                [
+                  "_Tex",
+                  {
+                    "m_Offset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "m_Scale": {
+                      "x": 1.0,
+                      "y": 1.0
+                    },
+                    "m_Texture": {
+                      "m_FileID": 0,
+                      "m_PathID": 9
+                    }
+                  }
+                ]
+              ]
+            },
+            "m_Shader": {
+              "m_FileID": 2,
+              "m_PathID": -5307861274975013336
+            },
+            "m_ValidKeywords": [],
+            "stringTagMap": []
+          }
+        },
+        {
+          "byte_count": 552,
+          "class_id": 43,
+          "path_id": "8",
+          "properties": {
+            "m_BakedConvexCollisionMesh": {
+              "byte_count": 0,
+              "preview": [],
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "m_BakedTriangleCollisionMesh": {
+              "byte_count": 0,
+              "preview": [],
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "m_BindPose": [],
+            "m_BoneNameHashes": [],
+            "m_BonesAABB": [],
+            "m_CompressedMesh": {
+              "m_BoneIndices": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              },
+              "m_FloatColors": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_NormalSigns": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              },
+              "m_Normals": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_TangentSigns": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              },
+              "m_Tangents": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_Triangles": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              },
+              "m_UV": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_UVInfo": 0,
+              "m_Vertices": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0,
+                "m_Range": 0.0,
+                "m_Start": 0.0
+              },
+              "m_Weights": {
+                "m_BitSize": 0,
+                "m_Data": {
+                  "byte_count": 0,
+                  "preview": [],
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "m_NumItems": 0
+              }
+            },
+            "m_IndexBuffer": {
+              "byte_count": 12,
+              "preview": [
+                0,
+                0,
+                1,
+                0,
+                2,
+                0,
+                1,
+                0,
+                0,
+                0,
+                3,
+                0
+              ],
+              "sha256": "a7fd580deb01e72f2afaa98f553770f2510dc3ba1915fe0c9e14853668122d19"
+            },
+            "m_IndexFormat": 0,
+            "m_IsReadable": false,
+            "m_KeepIndices": true,
+            "m_KeepVertices": true,
+            "m_LocalAABB": {
+              "m_Center": {
+                "x": 0.0011463165283203125,
+                "y": 0.0,
+                "z": 0.0006356239318847656
+              },
+              "m_Extent": {
+                "x": 11.101297378540039,
+                "y": 7.258414029820415e-7,
+                "z": 7.198989391326904
+              }
+            },
+            "m_MeshCompression": 0,
+            "m_MeshMetrics[0]": 319.6724853515625,
+            "m_MeshMetrics[1]": 1.0,
+            "m_MeshUsageFlags": 0,
+            "m_Name": "zhujiemianBG_01",
+            "m_RootBoneNameHash": 0,
+            "m_Shapes": {
+              "channels": [],
+              "fullWeights": [],
+              "shapes": [],
+              "vertices": []
+            },
+            "m_StreamData": {
+              "offset": 0,
+              "path": "",
+              "size": 0
+            },
+            "m_SubMeshes": [
+              {
+                "baseVertex": 0,
+                "firstByte": 0,
+                "firstVertex": 0,
+                "indexCount": 6,
+                "localAABB": {
+                  "m_Center": {
+                    "x": 0.0011463165283203125,
+                    "y": 0.0,
+                    "z": 0.0006356239318847656
+                  },
+                  "m_Extent": {
+                    "x": 11.101297378540039,
+                    "y": 7.258414029820415e-7,
+                    "z": 7.198989391326904
+                  }
+                },
+                "topology": 0,
+                "vertexCount": 4
+              }
+            ],
+            "m_VariableBoneCountWeights": {
+              "m_Data": []
+            },
+            "m_VertexData": {
+              "m_Channels": [
+                {
+                  "dimension": 3,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 3,
+                  "format": 0,
+                  "offset": 12,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 2,
+                  "format": 0,
+                  "offset": 24,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                },
+                {
+                  "dimension": 0,
+                  "format": 0,
+                  "offset": 0,
+                  "stream": 0
+                }
+              ],
+              "m_DataSize": {
+                "byte_count": 128,
+                "preview": [
+                  56,
+                  154,
+                  49,
+                  193,
+                  113,
+                  215,
+                  66,
+                  181,
+                  84,
+                  99,
+                  230,
+                  64,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "sha256": "b8d7ab8655e9541319dfd8c42cedb4dcafb6fa3a08315b727620927b39d9daac"
+              },
+              "m_VertexCount": 4
+            }
+          }
+        }
+      ],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    },
+    {
+      "cab": "BuildPlayer-zhujiemian_01",
+      "class_counts": {
+        "1": 6,
+        "104": 1,
+        "108": 2,
+        "114": 2,
+        "157": 1,
+        "196": 1,
+        "20": 1,
+        "23": 2,
+        "33": 2,
+        "4": 6,
+        "850595691": 1
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/BuildPlayer-zhujiemian_01/BuildPlayer-zhujiemian_01.sharedAssets",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    }
+  ],
+  "bundle": "assets/scene/zhujiemian_01.ab"
+}

@@ -1,7 +1,7 @@
 //! Source scene matrices, qualified PPtrs, raw textures, and one validated terrain package.
 
 use std::{
-    collections::BTreeMap,
+    collections::{BTreeMap, BTreeSet},
     fs::{File, create_dir_all},
     io::{BufWriter, Write},
     path::Path,
@@ -11,8 +11,9 @@ use std::{
 use glam::{Mat4, Vec3};
 use midnight_map_data::{
     FileIdentity, MeshRecord, SceneMesh, SourceCollider, TERRAIN_MAGIC, TERRAIN_MANIFEST_VERSION,
-    TerrainManifest, load_terrain_package, write_mesh_archive,
+    TerrainManifest, file_sha256, load_terrain_package, package_path, write_mesh_archive,
 };
+use serde::Serialize;
 use sha2::{Digest, Sha256};
 
 use crate::{
@@ -31,6 +32,9 @@ pub(crate) fn is_chunk(member: &str) -> bool {
     else {
         return false;
     };
+    if name == "z-01" {
+        return true;
+    }
     if let Some(number) = name.strip_prefix("junshijidi_terrain_") {
         return number
             .parse::<u8>()
@@ -204,9 +208,9 @@ fn import(apk: &Path, output: &Path) -> Result<(), Error> {
         .filter(|member| is_chunk(member))
         .collect::<Vec<_>>();
     members.sort();
-    if members.len() != 241 {
+    if members.len() != 242 {
         return Err(invalid(format!(
-            "expected 241 terrain bundles in source APK, found {}",
+            "expected 242 terrain bundles in source APK, found {}",
             members.len()
         )));
     }
@@ -271,4 +275,257 @@ fn import(apk: &Path, output: &Path) -> Result<(), Error> {
 
 pub fn run(apk: &Path, output: &Path) -> Result<(), Box<dyn std::error::Error>> {
     import(apk, output).map_err(|error| error as Box<dyn std::error::Error>)
+}
+
+#[derive(Debug, Serialize)]
+pub struct TerrainAugmentation {
+    pub package: String,
+    pub backup: Option<String>,
+    pub scene: String,
+    pub source_bundle_sha256: String,
+    pub map_scene_list_sha256: String,
+    pub previous_manifest_sha256: String,
+    pub previous_geometry_sha256: String,
+    pub added_records: Vec<String>,
+    pub added_scene_meshes: BTreeMap<String, SceneMesh>,
+    pub already_present: bool,
+    pub verification: TerrainVerification,
+}
+
+/// Decode one authenticated omitted scene; preserve every existing source record.
+pub fn augment(apk_path: &Path, output: &Path, member: &str) -> Result<TerrainAugmentation, Error> {
+    if member != "assets/scene/z-01.ab" {
+        return Err(invalid(
+            "terrain augmentation currently supports the audited assets/scene/z-01.ab only",
+        ));
+    }
+    let imported = output.join("imported_map");
+    let canonical = imported.join("terrain");
+    let source = source_apk(apk_path)?;
+    let previous = load_terrain_package(&canonical)?;
+    if previous.manifest.source_apk.sha256 != source.sha256
+        || previous.manifest.source_apk.byte_count != source.byte_count
+    {
+        return Err(invalid(
+            "canonical terrain and selected scene come from different APKs",
+        ));
+    }
+    let previous_manifest_sha256 = file_sha256(&canonical.join("manifest.json"))?;
+    let previous_geometry_sha256 = previous.manifest.geometry.sha256.clone();
+    let index: GlobalIndex =
+        serde_json::from_reader(File::open(imported.join("global_asset_index.json"))?)?;
+    let mut resolver = Resolver::new(apk_path, &index)?;
+    let all_members = resolver
+        .apk
+        .members()?
+        .into_iter()
+        .filter(|name| is_chunk(name))
+        .collect::<BTreeSet<_>>();
+    if all_members.len() != 242 || !all_members.contains(member) {
+        return Err(invalid(
+            "source terrain membership differs from the audited 242-scene inventory",
+        ));
+    }
+    let scene_list = resolver
+        .apk
+        .member_data("assets/gameconfig/allscenelist.obj")?;
+    let list: serde_json::Value = serde_json::from_slice(&scene_list)?;
+    if !list
+        .get("sceneList")
+        .and_then(serde_json::Value::as_array)
+        .is_some_and(|rows| {
+            rows.iter()
+                .any(|row| row.get("scenename").and_then(serde_json::Value::as_str) == Some("Z-01"))
+        })
+    {
+        return Err(invalid(
+            "Z-01 is absent from the source map-1 scene inventory",
+        ));
+    }
+    let map_scene_list_sha256 = format!("{:x}", Sha256::digest(&scene_list));
+    let source_bundle_sha256 = format!("{:x}", Sha256::digest(resolver.apk.member_data(member)?));
+    let covered = previous
+        .manifest
+        .meshes
+        .values()
+        .filter(|mesh| mesh.material.terrain_layer_count().is_some())
+        .map(|mesh| mesh.game_object.bundle.clone())
+        .collect::<BTreeSet<_>>();
+    if covered == all_members {
+        let verification = terrain_verification::verify_loaded(&previous, &source, &all_members)?;
+        return Ok(TerrainAugmentation {
+            package: canonical.display().to_string(),
+            backup: None,
+            scene: member.into(),
+            source_bundle_sha256,
+            map_scene_list_sha256,
+            previous_manifest_sha256,
+            previous_geometry_sha256,
+            added_records: Vec::new(),
+            added_scene_meshes: BTreeMap::new(),
+            already_present: true,
+            verification,
+        });
+    }
+    let expected_previous = all_members
+        .iter()
+        .filter(|name| name.as_str() != member)
+        .cloned()
+        .collect::<BTreeSet<_>>();
+    if covered != expected_previous {
+        return Err(invalid(
+            "canonical coverage must differ only by the explicitly selected Z-01 scene",
+        ));
+    }
+    let stamp = SystemTime::now().duration_since(UNIX_EPOCH)?.as_millis();
+    let staged = imported.join(format!(".terrain-augment-{stamp}"));
+    std::fs::create_dir(&staged)?;
+    let mut files = BTreeSet::new();
+    for source_mesh in previous.manifest.meshes.values() {
+        for texture in source_mesh
+            .material
+            .textures
+            .values()
+            .filter_map(|binding| binding.texture.as_ref())
+        {
+            files.insert(texture.file.path.clone());
+            files.insert(texture.encoded.path.clone());
+            if let Some(gpu) = &texture.gpu {
+                files.insert(gpu.path.clone());
+            }
+        }
+    }
+    let canonical_real = std::fs::canonicalize(&canonical)?;
+    for relative in files {
+        let source_file = package_path(&canonical, &relative)?;
+        if !std::fs::canonicalize(&source_file)?.starts_with(&canonical_real) {
+            return Err(invalid("canonical terrain dependency escapes its package"));
+        }
+        let target = package_path(&staged, &relative)?;
+        if let Some(parent) = target.parent() {
+            std::fs::create_dir_all(parent)?;
+        }
+        std::fs::copy(source_file, target)?;
+    }
+    let mut records = previous
+        .records
+        .iter()
+        .cloned()
+        .map(|record| (record.name.clone(), record))
+        .collect::<BTreeMap<_, _>>();
+    let mut manifest = previous.manifest.clone();
+    collect_scene(
+        &mut resolver,
+        member,
+        &staged,
+        &mut records,
+        &mut manifest.meshes,
+    )?;
+    let added_records = records
+        .keys()
+        .filter(|name| !previous.manifest.meshes.contains_key(*name))
+        .cloned()
+        .collect::<Vec<_>>();
+    if added_records.len() != 1 {
+        return Err(invalid(
+            "audited Z-01 scene must add exactly one terrain mesh record",
+        ));
+    }
+    let added = manifest
+        .meshes
+        .get(&added_records[0])
+        .ok_or_else(|| invalid("added scene record is absent"))?;
+    if added.game_object.bundle != member
+        || added.game_object.cab != "BuildPlayer-Z-01"
+        || added.game_object.path_id != "13"
+        || added.source.cab != "BuildPlayer-Z-01.sharedAssets"
+        || added.source.path_id != "7"
+        || added.material.shader_name != "_URP/TerrainMeshBase/4 Textures"
+        || !added.collider.as_ref().is_some_and(|collider| {
+            collider.source.path_id == "33"
+                && collider.mesh == added.source
+                && collider.enabled
+                && !collider.is_trigger
+                && !collider.convex
+        })
+    {
+        return Err(invalid(
+            "Z-01 renderer/material/source MeshCollider differs from the audited source identities",
+        ));
+    }
+    let added_scene_meshes = BTreeMap::from([(added_records[0].clone(), added.clone())]);
+    // Old source records and metadata are immutable during augmentation.
+    for record in &previous.records {
+        if records.get(&record.name) != Some(record) {
+            return Err(invalid("augmentation changed existing terrain geometry"));
+        }
+    }
+    for (name, mesh) in &previous.manifest.meshes {
+        if serde_json::to_vec(mesh)? != serde_json::to_vec(&manifest.meshes[name])? {
+            return Err(invalid(
+                "augmentation changed existing terrain source metadata",
+            ));
+        }
+    }
+    let ordered = records.into_values().collect::<Vec<_>>();
+    let mut writer = BufWriter::new(File::create(staged.join("meshes.bin"))?);
+    write_mesh_archive(&mut writer, TERRAIN_MAGIC, &ordered)?;
+    writer.flush()?;
+    writer.get_ref().sync_all()?;
+    manifest.geometry = FileIdentity {
+        path: "meshes.bin".into(),
+        sha256: file_sha256(&staged.join("meshes.bin"))?,
+    };
+    let manifest_file = File::create(staged.join("manifest.json"))?;
+    serde_json::to_writer_pretty(&manifest_file, &manifest)?;
+    manifest_file.sync_all()?;
+    let loaded = load_terrain_package(&staged)?;
+    if loaded.records != ordered {
+        return Err(invalid("augmented terrain geometry roundtrip differs"));
+    }
+    let verification = terrain_verification::verify_loaded(&loaded, &source, &all_members)?;
+    let after = source_apk(apk_path)?;
+    if after.sha256 != source.sha256
+        || after.byte_count != source.byte_count
+        || file_sha256(&canonical.join("manifest.json"))? != previous_manifest_sha256
+    {
+        return Err(invalid(
+            "source APK or canonical terrain changed during augmentation",
+        ));
+    }
+    let backup = output
+        .parent()
+        .unwrap_or(Path::new("."))
+        .join(".local/map-import-backups")
+        .join(stamp.to_string())
+        .join("terrain");
+    crate::package_publish::publish_verified(&staged, &canonical, &backup)?;
+    Ok(TerrainAugmentation {
+        package: canonical.display().to_string(),
+        backup: Some(backup.display().to_string()),
+        scene: member.into(),
+        source_bundle_sha256,
+        map_scene_list_sha256,
+        previous_manifest_sha256,
+        previous_geometry_sha256,
+        added_records,
+        added_scene_meshes,
+        already_present: false,
+        verification,
+    })
+}
+
+#[cfg(test)]
+mod tests {
+    use super::is_chunk;
+
+    #[test]
+    fn terrain_inventory_includes_exact_z01_and_excludes_menu_scenes() {
+        assert!(is_chunk("assets/scene/z-01.ab"));
+        assert!(is_chunk("assets/scene/a-01.ab"));
+        assert!(is_chunk("assets/scene/junshijidi_terrain_16.ab"));
+        assert!(!is_chunk("assets/scene/z-02.ab"));
+        assert!(!is_chunk("assets/scene/zhujiemian_01.ab"));
+        assert!(!is_chunk("assets/sceneprefab/z-01.ab"));
+    }
 }

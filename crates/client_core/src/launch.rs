@@ -9,6 +9,8 @@ pub struct ClientOptions {
     pub connect: Option<String>,
     pub join_code_file: Option<PathBuf>,
     pub network_report: Option<PathBuf>,
+    /// None selects the canonical APK island; test fixtures require an explicit flag.
+    pub map: Option<crate::level::MapId>,
 }
 
 #[derive(Debug, PartialEq, Eq)]
@@ -21,6 +23,7 @@ pub const HELP: &str = "Midnight Survival — Linux prototype\n\
 Usage: client_runner [OPTIONS]\n\n\
   --config-dir PATH        Override the HUD configuration directory\n\
   --no-vsync               Disable vertical synchronization\n\
+  --map MAP               imported-island (default), polygon, or load-arena\n\
   --benchmark              Fixed camera, 1920x1080, no VSync; 10s warmup + 60s capture\n\
   --benchmark-report PATH  Save the benchmark JSON (requires --benchmark)\n\
   --connect HOST:PORT      Open a server connection (default port 5000)\n\
@@ -40,6 +43,15 @@ pub fn parse_args(arguments: impl IntoIterator<Item = OsString>) -> Result<Launc
                 options.config_dir = Some(path_argument(&mut args, "--config-dir")?)
             }
             Some("--no-vsync") => options.no_vsync = true,
+            Some("--map") => {
+                let value = path_argument(&mut args, "--map")?;
+                options.map = Some(match value.to_str() {
+                    Some("imported-island") => crate::level::MapId::ImportedIsland,
+                    Some("polygon") => crate::level::MapId::Polygon,
+                    Some("load-arena") => crate::level::MapId::LoadArena,
+                    _ => return Err("--map must be imported-island, polygon, or load-arena".into()),
+                });
+            }
             Some("--connect") => {
                 options.connect = Some(
                     path_argument(&mut args, "--connect")?

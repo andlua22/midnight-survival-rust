@@ -44,7 +44,7 @@ fn run() -> Result<(), String> {
         match argument.as_str() {
             "--help" | "-h" => {
                 println!(
-                    "Midnight Survival server\n\nserver [--ticks N] — finite offline smoke test (default: 120)\nserver serve [OPTIONS] — authoritative QUIC server\nserver invite [--data-dir PATH] — print the private invitation code\n\nServe options:\n  --listen IP:PORT       Default: 0.0.0.0:5000 (UDP)\n  --data-dir PATH        Persistent certificate and access secret (server-data)\n  --max-players N        1..150, default 150\n  --map MAP             polygon or load-arena\n  --layout LAYOUT       crowd or spread (spread needs load-arena)\n  --seconds N           Stop after N seconds; otherwise run until Ctrl+C\n  --report PATH         Write periodic and final JSON metrics"
+                    "Midnight Survival server\n\nserver [--ticks N] — finite offline smoke test (default: 120)\nserver serve [OPTIONS] — authoritative QUIC server\nserver invite [--data-dir PATH] — print the private invitation code\n\nServe options:\n  --listen IP:PORT       Default: 0.0.0.0:5000 (UDP)\n  --data-dir PATH        Persistent certificate and access secret (server-data)\n  --max-players N        1..150, default 150\n  --map MAP             imported-island, polygon, or load-arena\n  --layout LAYOUT       crowd or spread (spread needs load-arena)\n  --seconds N           Stop after N seconds; otherwise run until Ctrl+C\n  --report PATH         Write periodic and final JSON metrics"
                 );
                 return Ok(());
             }
@@ -99,7 +99,8 @@ fn parse_server_options(
                 options.map = match value.as_str() {
                     "polygon" => shared::level::MapId::Polygon,
                     "load-arena" => shared::level::MapId::LoadArena,
-                    _ => return Err("--map must be polygon or load-arena".into()),
+                    "imported-island" => shared::level::MapId::ImportedIsland,
+                    _ => return Err("--map must be polygon, load-arena, or imported-island".into()),
                 }
             }
             "--layout" => {

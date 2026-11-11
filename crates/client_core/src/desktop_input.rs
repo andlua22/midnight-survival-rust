@@ -6,7 +6,6 @@ use bevy::{
     prelude::*,
     window::{CursorGrabMode, CursorOptions, PrimaryWindow},
 };
-use bevy_egui::EguiContexts;
 use shared::{
     CharacterMotion, LocalPlayer, ResourceNodeMarker, SimulationClock, SimulationInput,
     SimulationMode, SimulationPose, SimulationSurvival, SimulationWorld, protocol::PlayerId,
@@ -28,7 +27,12 @@ pub struct DesktopInputPlugin;
 
 impl Plugin for DesktopInputPlugin {
     fn build(&self, app: &mut App) {
-        app.add_systems(PreUpdate, collect_input.after(bevy::input::InputSystems));
+        app.add_systems(
+            PreUpdate,
+            collect_input
+                .after(bevy::input::InputSystems)
+                .after(crate::native_ui::NativeUiSet::Input),
+        );
     }
 }
 
@@ -55,7 +59,7 @@ fn collect_input(
         With<LocalPlayer>,
     >,
     mut nodes: Query<&mut ResourceNodeMarker>,
-    mut contexts: EguiContexts,
+    ui_input: Res<crate::native_ui::NativeUiInput>,
     (telemetry, mut commands, scenic_entities, mut exit): (
         Res<Telemetry>,
         Commands,
@@ -188,9 +192,7 @@ fn collect_input(
         }
     }
 
-    let ui_wants_input = contexts
-        .ctx_mut()
-        .is_ok_and(|ctx| ctx.egui_wants_keyboard_input() || ctx.egui_wants_pointer_input());
+    let ui_wants_input = ui_input.blocks_gameplay;
     let playing = window.focused
         && interface.mode == UiMode::Playing
         && !ui_wants_input

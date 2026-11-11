@@ -10,10 +10,16 @@ use std::{
 use serde::{Deserialize, Serialize};
 
 mod package;
+mod prefab;
 mod terrain;
 mod texture;
 
 pub use package::{TerrainPackage, file_sha256, load_terrain_package, mesh_bounds};
+pub use prefab::{
+    PrefabCollisionMesh, PrefabManifest, PrefabMaterial, PrefabNode, PrefabNodePose, PrefabPackage,
+    PrefabRender, SourceComponent, load_prefab_package, prefab_affine_product,
+    prefab_transform_point, validate_prefab_affine,
+};
 pub use terrain::{TerrainParameters, terrain_albedo, terrain_tangent_normal};
 pub use texture::{
     RGBA_MIP_MAGIC, RgbaMipChain, read_rgba_mip_archive, rgba_mip_byte_len, write_rgba_mip_archive,

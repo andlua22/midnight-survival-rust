@@ -1699,6 +1699,7 @@ pub enum ActionOutcome {
 }
 
 pub struct SurvivalWorld {
+    source_rules_pending: bool,
     pub nodes: Vec<ResourceNode>,
     pub structures: Vec<PlacedStructure>,
     next_structure_id: u32,
@@ -1712,6 +1713,7 @@ pub struct SurvivalWorld {
 impl SurvivalWorld {
     pub fn new(map: MapId) -> Self {
         Self {
+            source_rules_pending: map == MapId::ImportedIsland,
             nodes: map_resource_nodes(map),
             structures: Vec::new(),
             next_structure_id: 1,
@@ -1984,7 +1986,20 @@ impl SurvivalWorld {
     }
 
     pub fn join(&mut self, id: PlayerId) -> &PlayerSurvival {
-        self.players.entry(id).or_default()
+        let pending = self.source_rules_pending;
+        self.players.entry(id).or_insert_with(|| {
+            let mut state = PlayerSurvival::default();
+            if pending {
+                state.inventory = Inventory::empty();
+                state.notice =
+                    Some("Source inventory and gameplay rules are being reconstructed.".into());
+            }
+            state
+        })
+    }
+
+    pub fn source_rules_pending(&self) -> bool {
+        self.source_rules_pending
     }
 
     pub fn leave(&mut self, id: PlayerId) {
@@ -2073,6 +2088,9 @@ impl SurvivalWorld {
         tick: ServerTick,
         players: impl IntoIterator<Item = (PlayerId, bool, [f32; 3])>,
     ) -> (Vec<ResourceNode>, Vec<PlayerId>) {
+        if self.source_rules_pending {
+            return (Vec::new(), Vec::new());
+        }
         self.monument.step();
         let transitioned_nuclear = self.nuclear.step();
         let mut respawned_nodes = Vec::new();
@@ -2687,6 +2705,9 @@ impl SurvivalWorld {
         pitch: f32,
         other_players: &[(PlayerId, [f32; 3])],
     ) -> Result<ActionOutcome, &'static str> {
+        if self.source_rules_pending {
+            return Err("Source gameplay configuration is not loaded yet.");
+        }
         if !yaw.is_finite() || !pitch.is_finite() {
             return Err("Некоректний кут дії");
         }

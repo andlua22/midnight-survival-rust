@@ -1,0 +1,44 @@
+{
+  "schema_version": 2,
+  "source_apk_sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df",
+  "tables": {
+    "cfg.CraftRecipeCfg.oc": {
+      "sha256": "e8d25272beb89eace4a25b44cbac498a126ea4af2be977ed4aa26ba93e29f482",
+      "bytes": 32,
+      "records": 1
+    },
+    "cfg.DrawingCfg.oc": {
+      "sha256": "affb26d2d324ab084d41f5e318f598c9a0534905d24f55a92aff9d8cf05ad7fd",
+      "bytes": 42805,
+      "records": 315
+    },
+    "cfg.EquipSlotCfg.oc": {
+      "sha256": "5ebc4edad939a7931fbc2fe0f4118248cf8c755b2932adeb210b16d786e47fff",
+      "bytes": 40,
+      "records": 2
+    },
+    "cfg.ItemCfg.oc": {
+      "sha256": "e35d73fd5611d37e6eefe98221da06ba98cfa030c5c965dfe40e0c78ee20daf7",
+      "bytes": 4309704,
+      "records": 16861
+    },
+    "cfg.TreeCfg.oc": {
+      "sha256": "a92f2b529f6b62df40583974b90704a7acb162dbe51dccf145eaddd514e7ec64",
+      "bytes": 2708,
+      "records": 38
+    },
+    "cfg.UseItemCfg.oc": {
+      "sha256": "a9414e6f4e7c8837bb0902b562466a0321db885b86be4f47eb90a3fa9e7832bf",
+      "bytes": 1072,
+      "records": 67
+    }
+  },
+  "catalog": {
+    "sha256": "7c7180460167a2cc202d7280bdd3cb4eca0d00e25712698b3f936f068061b38c",
+    "bytes": 16389253,
+    "records": 17284
+  },
+  "limitations": [
+    "Configuration serialization is decoded; runtime callbacks, IFix overrides, crafting time units and item behavior still require native-code corroboration."
+  ]
+}

@@ -7,9 +7,13 @@ pub enum MapId {
     #[default]
     Polygon,
     LoadArena,
+    ImportedIsland,
 }
 
 pub fn map_geometry(map: MapId) -> Vec<LevelBox> {
+    if map == MapId::ImportedIsland {
+        return Vec::new();
+    }
     if map == MapId::Polygon {
         return test_level();
     }
@@ -584,7 +588,9 @@ pub fn asset_root() -> std::path::PathBuf {
         let mut current = executable.parent();
         while let Some(parent) = current {
             let candidate = parent.join("assets");
-            if candidate.join("imported_map").is_dir() { return candidate; }
+            if candidate.join("imported_map").is_dir() {
+                return candidate;
+            }
             current = parent.parent();
         }
     }
@@ -593,13 +599,17 @@ pub fn asset_root() -> std::path::PathBuf {
 
 /// Runtime terrain has one versioned package. Legacy archives remain evidence,
 /// and are never activated as a fallback for a missing or invalid package.
-pub fn load_imported_terrain() -> Result<Option<midnight_map_data::TerrainPackage>, midnight_map_data::ArchiveError> {
+pub fn load_imported_terrain()
+-> Result<Option<midnight_map_data::TerrainPackage>, midnight_map_data::ArchiveError> {
     let root = asset_root().join("imported_map/terrain");
-    if !root.exists() { return Ok(None); }
+    if !root.exists() {
+        return Ok(None);
+    }
     midnight_map_data::load_terrain_package(&root).map(Some)
 }
 
-pub fn load_imported_terrain_records() -> Result<Vec<ImportedMeshRecord>, midnight_map_data::ArchiveError> {
+pub fn load_imported_terrain_records()
+-> Result<Vec<ImportedMeshRecord>, midnight_map_data::ArchiveError> {
     Ok(load_imported_terrain()?.map_or_else(Vec::new, |package| package.records))
 }
 
@@ -717,7 +727,8 @@ mod tests {
 
     #[test]
     fn imported_map_archives_parse_cleanly_if_present() {
-        let terrain = load_imported_terrain_records().expect("canonical terrain must validate when present");
+        let terrain =
+            load_imported_terrain_records().expect("canonical terrain must validate when present");
         if !terrain.is_empty() {
             assert!(terrain.len() >= 225);
             assert!(terrain.iter().any(|r| r.name == "A-57"));
