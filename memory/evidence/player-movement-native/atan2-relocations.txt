@@ -1,0 +1,12 @@
+readelf: Error:  bad symbol index: 00000a66 in reloc
+readelf: Error:  bad symbol index: 00000a69 in reloc
+readelf: Error:  bad symbol index: 00000a61 in reloc
+readelf: Error:  bad symbol index: 00000a62 in reloc
+readelf: Error:  bad symbol index: 00000a63 in reloc
+readelf: Error:  bad symbol index: 00000a64 in reloc
+readelf: Error:  bad symbol index: 00000a65 in reloc
+readelf: Error:  bad symbol index: 00000a67 in reloc
+readelf: Error:  bad symbol index: 00000a68 in reloc
+readelf: Error:  bad symbol index: 00000a6a in reloc
+00000000045ac500  000000bc00000402 R_AARCH64_JUMP_SLOT    0000000000000000 atan2 + 0
+00000000045ac880  000000f700000402 R_AARCH64_JUMP_SLOT    0000000000000000 atan2f + 0

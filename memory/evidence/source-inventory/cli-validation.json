@@ -1,0 +1,56 @@
+{
+  "scope": "Synthetic explicit bodies against verified real catalog; no captured traffic or source-runtime parity",
+  "checks": {
+    "snapshot_and_deltas": true,
+    "shrink_preserves_item": true,
+    "identity_and_timeout": true,
+    "durability": true,
+    "alert_does_not_mutate": true,
+    "hand_identity": true,
+    "existing_report_preserved": true,
+    "no_partial_reports": true
+  },
+  "scenarios": [
+    {
+      "name": "existing_report",
+      "command": "target/debug/inspect_inventory --catalog assets/imported_gameplay/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df-v2 --packet 59771964 10.25 .local/validation-source-inventory/snapshot.bin --report memory/evidence/source-inventory/synthetic-sequence.json",
+      "expected_error": "report already exists",
+      "passed": true,
+      "exit_code": 1,
+      "output": "inspect_inventory: report already exists: memory/evidence/source-inventory/synthetic-sequence.json\n"
+    },
+    {
+      "name": "truncated_later",
+      "command": "target/debug/inspect_inventory --catalog assets/imported_gameplay/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df-v2 --packet 59771964 10.25 .local/validation-source-inventory/snapshot.bin --packet 59771867 11.1 .local/validation-source-inventory/truncated.bin --report memory/evidence/source-inventory/malformed-should-not-exist.json",
+      "expected_error": "decode failed",
+      "passed": true,
+      "exit_code": 1,
+      "output": "inspect_inventory: packet 2 (.local/validation-source-inventory/truncated.bin, type 59771867): decode failed: inventory body byte 0: truncated field\n"
+    },
+    {
+      "name": "reversed_clock",
+      "command": "target/debug/inspect_inventory --catalog assets/imported_gameplay/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df-v2 --packet 59771964 10.25 .local/validation-source-inventory/snapshot.bin --packet 59771878 9.1 .local/validation-source-inventory/size.bin --report memory/evidence/source-inventory/reversed-should-not-exist.json",
+      "expected_error": "must be nondecreasing",
+      "passed": true,
+      "exit_code": 1,
+      "output": "inspect_inventory: packet receive realtime seconds must be nondecreasing\n"
+    },
+    {
+      "name": "unsupported_clear",
+      "command": "target/debug/inspect_inventory --catalog assets/imported_gameplay/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df-v2 --packet 59771964 10.25 .local/validation-source-inventory/snapshot.bin --packet 59771886 11.1 .local/validation-source-inventory/clear.bin --report memory/evidence/source-inventory/clear-should-not-exist.json",
+      "expected_error": "unported weapon",
+      "passed": true,
+      "exit_code": 1,
+      "output": "inspect_inventory: packet 2 (.local/validation-source-inventory/clear.bin, type 59771886): apply failed: source clear requires unported weapon/extra-data mutations\n"
+    },
+    {
+      "name": "snapshot_first",
+      "command": "target/debug/inspect_inventory --catalog assets/imported_gameplay/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df-v2 --packet 59771878 10.25 .local/validation-source-inventory/size.bin",
+      "expected_error": "first must be SItems",
+      "passed": true,
+      "exit_code": 1,
+      "output": "inspect_inventory: at least one --packet is required, and the first must be SItems (59771964)\n"
+    }
+  ],
+  "report_sha256": "1dd189bf9e1699b2344953edd254b85a22a5dd0b18634b54183724fdaacd06e6"
+}

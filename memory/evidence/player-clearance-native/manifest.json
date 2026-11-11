@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "bounded_static_local_rust_capstone",
+  "date": "2026-11-11",
+  "target": {
+    "apk_path": "export/lite4.0.apk",
+    "apk_sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df",
+    "elf_path": "/tmp/codex-minimap-review/libil2cpp.so",
+    "elf_bytes": 76608224,
+    "elf_sha256": "2e2efde1a103549694b17b361cacc18faa5714d06c444945e44b30f1377e2b3c"
+  },
+  "helper": {
+    "path": "/tmp/codex-minimap-review/native",
+    "sha256": "000d6b773e4f8ed574b62b1803a1d4d1314bd0178262359cb3a176a5ac7fd8e9",
+    "source_path": "/tmp/codex-minimap-review/native.rs",
+    "source_sha256": "91d59a9b3b42ca2e4af1880151decd98b5c00d982978c4e5a9848f8eea03bf18",
+    "capstone_version": "5.0"
+  },
+  "source_files": [
+    {
+      "path": "export/PlayerController.cs",
+      "sha256": "c835524a62f5b674c36cc3772ba5de1b3ba191de52699889266df34a2a34bd56"
+    },
+    {
+      "path": "export/BasePlayerController.cs",
+      "sha256": "b1322444dcd7a3aa5a13218af6ba6b4359843410e861456036e995ea2632c541"
+    }
+  ],
+  "slices": [
+    {
+      "path": "check-can-crouch-up.asm",
+      "operation": "disasm",
+      "rva": "0x1eb3344",
+      "length_bytes": 240,
+      "sha256": "f978841dc0f212d01641fc335fd05f8fea66a52c5ae15e8236251da9716aedc2"
+    },
+    {
+      "path": "check-can-pa-to-stand.asm",
+      "operation": "disasm",
+      "rva": "0x1ec35d0",
+      "length_bytes": 244,
+      "sha256": "1f0cab892cf8c90dffd7425757cd9e7da5168279792336aa929884954c87b683"
+    },
+    {
+      "path": "spherecast-default-trigger-overload.asm",
+      "operation": "disasm",
+      "rva": "0x34788b8",
+      "length_bytes": 8,
+      "sha256": "a953eae1ad23cb51944419a8868eb7cc4873e095f69f06f84dddbfc3059f03a1"
+    },
+    {
+      "path": "spherecast-default-scene.asm",
+      "operation": "disasm",
+      "rva": "0x34787e4",
+      "length_bytes": 204,
+      "sha256": "460738160000a1e979818aa215bceb9af50861cff4a64798de7df77f103207c3"
+    },
+    {
+      "path": "physics-scene-spherecast.asm",
+      "operation": "disasm",
+      "rva": "0x347d9d4",
+      "length_bytes": 300,
+      "sha256": "d1f82c4cfc782a17f2048982eccaffc3c60223f84b629b2079e384808baf559d"
+    },
+    {
+      "path": "spherecast-injected-wrapper.asm",
+      "operation": "disasm",
+      "rva": "0x347d8ac",
+      "length_bytes": 156,
+      "sha256": "15848ac5cc44c0325373baf0f540483177a3d4d85228e0fd26149325108604aa"
+    },
+    {
+      "path": "root-transform-position-wrapper.asm",
+      "operation": "disasm",
+      "rva": "0x3438a14",
+      "length_bytes": 92,
+      "sha256": "c906c0764256afe8a918db848d576d49826c706ad59425448b3a76272df3535c"
+    },
+    {
+      "path": "vector3-static-initializer.asm",
+      "operation": "disasm",
+      "rva": "0x34309d8",
+      "length_bytes": 252,
+      "sha256": "17106b7e6423670be710d165706197112c620d6e400b69fbb281783c03e22eea"
+    },
+    {
+      "path": "vector3-up-getter.asm",
+      "operation": "disasm",
+      "rva": "0x3430580",
+      "length_bytes": 76,
+      "sha256": "343872e26f1670d133119e6751c6d833e5d87831f5d2b79de8a624464782fa39"
+    },
+    {
+      "path": "clearance-radius-and-direction.words",
+      "operation": "words",
+      "rva": "0x361f580",
+      "length_bytes": 8,
+      "sha256": "f8328fe89e7fc21f87c7c9543e42d2d8e8e4e0c961778f885c6c2e834337fb70"
+    },
+    {
+      "path": "vector3-up-xy.words",
+      "operation": "words",
+      "rva": "0x361f7a8",
+      "length_bytes": 8,
+      "sha256": "424a9a56b308046f74d20c0f3a7053178ae38159e42f8d6688470130b55ee038"
+    },
+    {
+      "path": "pa-stand-distance.words",
+      "operation": "words",
+      "rva": "0x3622ccc",
+      "length_bytes": 4,
+      "sha256": "50f9d6c9e6735f02576d9de9d8909d1c1c4586322b032eb6abfde4d93fec04df"
+    },
+    {
+      "path": "check-can-pa-up.asm",
+      "operation": "disasm",
+      "rva": "0x1ec332c",
+      "length_bytes": 676,
+      "sha256": "b7c0074ee9c6926fb755e71cca26d25713502ea6ba27a88e535f5eb513ec8aa2"
+    },
+    {
+      "path": "pa-up-extra-constants.words",
+      "operation": "words",
+      "rva": "0x361f98c",
+      "length_bytes": 4,
+      "sha256": "660b3ba55dd35387db1247eb4cd15cc83ca6c3f7e20f601fd00738a202fa6c1e"
+    },
+    {
+      "path": "pa-up-distance.words",
+      "operation": "words",
+      "rva": "0x361fa2c",
+      "length_bytes": 4,
+      "sha256": "71fd4b070d59395ebd7b840237b669ea4cbd0598f5f5b6681c23e4cf30bde48d"
+    },
+    {
+      "path": "spherecast-injected-name.txt",
+      "operation": "text",
+      "rva": "0x3715ace",
+      "length_bytes": 336,
+      "sha256": "f7956507e4bc8015ecaefe8ad9df3ad7580bc3484c752193179df2ca7e56d3c0"
+    },
+    {
+      "path": "default-physics-scene-name.txt",
+      "operation": "text",
+      "rva": "0x3713cf1",
+      "length_bytes": 128,
+      "sha256": "7305f3388188610adab2d692554c3c6d92c86045e3cc7ee838075b0a7892cd6b"
+    },
+    {
+      "path": "transform-position-name.txt",
+      "operation": "text",
+      "rva": "0x370a68c",
+      "length_bytes": 128,
+      "sha256": "c259c2d030278c816e8a842d7c19dcb9455d93bd323d2a2e06c21c3db7e9603a"
+    }
+  ],
+  "source_slices": [
+    {
+      "path": "clearance-source-methods.txt",
+      "sha256": "68aae0ec5559bc85fa40800355ff431f2c77123bc42b46867409404bd5c11389"
+    },
+    {
+      "path": "rootbone-source-fields.txt",
+      "sha256": "0d8fd98bc524c7b9424c70d1f924b08fb55490ed20923819bae5c17942d55faf"
+    }
+  ],
+  "contract": {
+    "methods": [
+      {
+        "name": "CheckCanCrouchUp",
+        "rva": "0x1eb3344",
+        "exclusive_end": "0x1eb3434",
+        "ifix_id": 3264,
+        "radius_bits": "0x3e4ccccd",
+        "distance": 1.5,
+        "origin": "RootBone.position"
+      },
+      {
+        "name": "CheckCanPaToStand",
+        "rva": "0x1ec35d0",
+        "exclusive_end": "0x1ec36c4",
+        "ifix_id": 3263,
+        "radius_bits": "0x3e4ccccd",
+        "distance_bits": "0x3ff33333",
+        "origin": "RootBone.position"
+      }
+    ],
+    "direction": [
+      0,
+      1,
+      0
+    ],
+    "layer_mask": "0x40080001",
+    "included_layer_indices": [
+      0,
+      19,
+      30
+    ],
+    "query_trigger_interaction": 0,
+    "scene": "default PhysicsScene",
+    "result": "not SphereCast hit"
+  },
+  "limitations": [
+    "Static base methods only; IFix runtime state not observed.",
+    "RootBone world transform/rig pose is a caller input, not inferred from actor or PlayerTransform position.",
+    "UseGlobal trigger state, full collider coverage/layer names and default-scene runtime state remain caller/source dependencies.",
+    "Initial-overlap, contact/tolerance and Unity PhysX cooking semantics were not observed; do not infer clear from an unresolved overlap.",
+    "CheckCanPaUp is distinct and not fully modeled; dynamic ray-layer identity and excluded parent-component type remain unresolved.",
+    "No original-game execution, REA provider Evidence IDs or active controller integration established."
+  ]
+}

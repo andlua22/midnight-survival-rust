@@ -1,0 +1,137 @@
+	[Token(Token = "0x600277C")]
+	[Address(RVA = "0x1EB3344", Offset = "0x1EB3344", VA = "0x1EB3344")]
+	public unsafe bool CheckCanCrouchUp()
+	{
+		//IL_0012: Expected I8, but got I4
+		//IL_0070: Expected native int or pointer, but got Obj
+		//IL_003c: Expected I8, but got I4
+		//IL_00fd: Expected I4, but got Obj
+		//IL_009d: Expected I4, but got Obj
+		//IL_00c1: Expected Obj, but got I4
+		//IL_00db: Expected Obj, but got I4
+		//IL_00e2: Expected Obj, but got I4
+		//IL_00e5: Expected I8, but got Obj
+		//IL_00f0: Expected I4, but got I8
+		//IL_006d: Expected I8, but got I4
+		_ = null;
+		Console.WriteLine("unmodelled SIMD/vector instruction: MOVI");
+		object obj = null;
+		long num = 0L;
+		object obj2 = obj;
+		bool flag = WrappersManagerImpl.IsPatched(3264);
+		PlayerController val = default;
+		object obj3;
+		long num4;
+		if (((flag ? 1 : 0) & 1) != 0)
+		{
+			long num2 = 0L;
+			object patch = WrappersManagerImpl.GetPatch(3264);
+			int num3 = ((patch == null) ? 1 : 0);
+			obj3 = patch;
+			num4 = num2;
+			if (num3 != 0)
+			{
+				goto IL_00f0;
+			}
+			bool flag2 = ((ILFixDynamicMethodWrapper)patch).__Gen_Wrap_0((object)val);
+			long num5 = (flag2 ? 1 : 0);
+		}
+		Transform transform = System.Runtime.CompilerServices.Unsafe.Read<Transform>((void*)(nint)val);
+		int num6 = ((transform == null) ? 1 : 0);
+		obj3 = transform;
+		num4 = num;
+		if (num6 == 0)
+		{
+			object position = ((Transform)null).position;
+			nint num7 = 76525568;
+			sbyte b = (sbyte)(int)System.Runtime.CompilerServices.Unsafe.Read<object>((void*)num7);
+			int num8 = ((b != (sbyte)0) ? 1 : 0);
+			nint num9 = 73588736;
+			object obj4 = System.Runtime.CompilerServices.Unsafe.Read<object>((void*)num9);
+			Console.WriteLine("call to unresolved address");
+			obj4 = 1;
+			int num10 = default;
+			bool flag3 = Physics.SphereCast((object)null, 0f, (object)1074266113, (IntPtr)0, 0f, num10);
+			obj4 = (flag3 ? 1 : 0) ^ 1;
+			long num5 = (long)obj4;
+			long num11 = num5 & 1;
+			_ = null;
+			return (byte)num11 != 0;
+		}
+		goto IL_00f0;
+		IL_00f0:
+		Console.WriteLine("call to unresolved address");
+		object obj5 = default;
+		return (byte)(int)obj5 != 0;
+	}
+
+	[Token(Token = "0x600277D")]
+	[Address(RVA = "0x1EC35D0", Offset = "0x1EC35D0", VA = "0x1EC35D0")]
+	public unsafe bool CheckCanPaToStand()
+	{
+		//IL_0012: Expected I8, but got I4
+		//IL_0070: Expected native int or pointer, but got Obj
+		//IL_003c: Expected I8, but got I4
+		//IL_00fd: Expected I4, but got Obj
+		//IL_009d: Expected I4, but got Obj
+		//IL_00c1: Expected Obj, but got I4
+		//IL_00db: Expected Obj, but got I4
+		//IL_00e2: Expected Obj, but got I4
+		//IL_00e5: Expected I8, but got Obj
+		//IL_00f0: Expected I4, but got I8
+		//IL_006d: Expected I8, but got I4
+		_ = null;
+		Console.WriteLine("unmodelled SIMD/vector instruction: MOVI");
+		object obj = null;
+		long num = 0L;
+		object obj2 = obj;
+		bool flag = WrappersManagerImpl.IsPatched(3263);
+		PlayerController val = default;
+		object obj3;
+		long num4;
+		if (((flag ? 1 : 0) & 1) != 0)
+		{
+			long num2 = 0L;
+			object patch = WrappersManagerImpl.GetPatch(3263);
+			int num3 = ((patch == null) ? 1 : 0);
+			obj3 = patch;
+			num4 = num2;
+			if (num3 != 0)
+			{
+				goto IL_00f0;
+			}
+			bool flag2 = ((ILFixDynamicMethodWrapper)patch).__Gen_Wrap_0((object)val);
+			long num5 = (flag2 ? 1 : 0);
+		}
+		Transform transform = System.Runtime.CompilerServices.Unsafe.Read<Transform>((void*)(nint)val);
+		int num6 = ((transform == null) ? 1 : 0);
+		obj3 = transform;
+		num4 = num;
+		if (num6 == 0)
+		{
+			object position = ((Transform)null).position;
+			nint num7 = 76525568;
+			sbyte b = (sbyte)(int)System.Runtime.CompilerServices.Unsafe.Read<object>((void*)num7);
+			int num8 = ((b != (sbyte)0) ? 1 : 0);
+			nint num9 = 73588736;
+			object obj4 = System.Runtime.CompilerServices.Unsafe.Read<object>((void*)num9);
+			Console.WriteLine("call to unresolved address");
+			obj4 = 1;
+			int num10 = default;
+			bool flag3 = Physics.SphereCast((object)null, 0f, (object)1074266113, (IntPtr)0, 0f, num10);
+			obj4 = (flag3 ? 1 : 0) ^ 1;
+			long num5 = (long)obj4;
+			long num11 = num5 & 1;
+			_ = null;
+			return (byte)num11 != 0;
+		}
+		goto IL_00f0;
+		IL_00f0:
+		Console.WriteLine("call to unresolved address");
+		object obj5 = default;
+		return (byte)(int)obj5 != 0;
+	}
+
+	[Token(Token = "0x600277E")]
+	[Address(RVA = "0x1EC36C4", Offset = "0x1EC36C4", VA = "0x1EC36C4")]
+	public unsafe bool CheckCanPa()

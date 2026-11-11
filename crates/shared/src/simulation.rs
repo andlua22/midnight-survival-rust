@@ -83,6 +83,7 @@ impl Plugin for SharedSimulationPlugin {
             .insert_resource(selection.clone())
             .insert_resource(SimulationWorld(CollisionWorld::new(selection.map)))
             .insert_resource(SimulationSurvival(SurvivalWorld::new(selection.map)))
+            .add_plugins(crate::source_inventory::SourceInventoryPlugin)
             .insert_resource(Time::<Fixed>::from_hz(FIXED_HZ))
             .add_systems(PreStartup, initialize_world)
             .add_systems(Startup, spawn_world)
@@ -136,6 +137,15 @@ fn initialize_world(world: &mut World) {
     let selection = world.resource::<WorldSelection>().clone();
     match LoadedWorld::load(&selection) {
         Ok((loaded, collision)) => {
+            let mut inventory = loaded
+                .gameplay
+                .as_ref()
+                .map(|catalog| {
+                    crate::source_inventory::SourceInventoryWorld::from_catalog(catalog.clone())
+                })
+                .unwrap_or_default();
+            inventory.join(PlayerId(0));
+            world.insert_resource(inventory);
             let mut survival = SurvivalWorld::new(selection.map);
             survival.join(PlayerId(0));
             world.insert_resource(SimulationWorld(collision));

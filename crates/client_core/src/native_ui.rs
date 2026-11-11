@@ -14,10 +14,13 @@ use crate::{
 };
 use bevy::{
     asset::RenderAssetUsages,
-    input::mouse::AccumulatedMouseScroll,
+    input::{ButtonState, keyboard::KeyboardInput, mouse::AccumulatedMouseScroll},
     input_focus::{
-        InputFocus,
-        tab_navigation::{TabGroup, TabIndex, TabNavigationPlugin},
+        FocusedInput, InputFocus, InputFocusSystems, InputFocusVisible,
+        tab_navigation::{
+            NavAction, TabGroup, TabIndex, TabNavigation, acquire_focus_tab_index,
+            handle_tab_navigation,
+        },
     },
     picking::{Pickable, hover::Hovered},
     prelude::*,
@@ -125,9 +128,7 @@ struct MapHit {
 pub struct NativeUiPlugin;
 impl Plugin for NativeUiPlugin {
     fn build(&self, app: &mut App) {
-        if !app.is_plugin_added::<TabNavigationPlugin>() {
-            app.add_plugins(TabNavigationPlugin);
-        }
+        configure_tab_navigation(app);
         app.init_resource::<NativeUiRuntime>()
             .init_resource::<NativeUiInput>()
             .init_resource::<UiActions>()
@@ -145,9 +146,66 @@ impl Plugin for NativeUiPlugin {
                 Update,
                 (editor_drag, render_panels, render_overlay)
                     .chain()
+                    .after(shared::source_inventory::SourceInventorySet::Apply)
                     .in_set(NativeUiSet::Presentation),
             );
     }
+}
+
+pub(crate) fn uses_ui_tab_navigation(interface: &Interface) -> bool {
+    !matches!(interface.mode, UiMode::Playing | UiMode::Benchmark) || interface.show_gm_panel
+}
+
+fn configure_tab_navigation(app: &mut App) {
+    app.add_observer(acquire_focus_tab_index)
+        .add_systems(Startup, setup_tab_navigation)
+        .configure_sets(
+            PreUpdate,
+            NativeUiSet::Input.after(InputFocusSystems::Dispatch),
+        );
+}
+
+fn setup_tab_navigation(
+    mut commands: Commands,
+    windows: Query<Entity, With<bevy::window::PrimaryWindow>>,
+) {
+    for window in &windows {
+        commands
+            .entity(window)
+            .observe(handle_native_tab_navigation);
+    }
+}
+
+#[allow(clippy::too_many_arguments, clippy::type_complexity)]
+fn handle_native_tab_navigation(
+    event: On<FocusedInput<KeyboardInput>>,
+    nav: TabNavigation,
+    mut focus: ResMut<InputFocus>,
+    visible: ResMut<InputFocusVisible>,
+    keys: Res<ButtonInput<KeyCode>>,
+    interface: Res<Interface>,
+    groups: Query<Entity, (With<Overlay>, With<TabGroup>, With<Children>)>,
+    windows: Query<(), With<Window>>,
+) {
+    if !uses_ui_tab_navigation(&interface)
+        || groups.is_empty()
+        || event.input.key_code != KeyCode::Tab
+        || event.input.state != ButtonState::Pressed
+        || event.input.repeat
+    {
+        return;
+    }
+    if !groups
+        .iter()
+        .any(|group| nav.initialize(group, NavAction::First).is_ok())
+    {
+        return;
+    }
+    // Initial focus belongs to the window; enter the overlay's first control.
+    if focus.get().is_some_and(|entity| windows.contains(entity)) {
+        focus.clear();
+    }
+    handle_tab_navigation(event, nav, focus, visible, keys);
 }
 
 fn load_panels(
@@ -1497,6 +1555,7 @@ fn render_overlay(
     windows: Query<&Window, With<bevy::window::PrimaryWindow>>,
     old: Query<Entity, With<Overlay>>,
     online: Res<Online>,
+    source_inventory: Option<Res<shared::source_inventory::SourceInventoryWorld>>,
 ) {
     let Ok(window) = windows.single() else { return };
     interface.tick_sound_cues();
@@ -1508,7 +1567,7 @@ fn render_overlay(
         0.0
     };
     let state = survival.0.player(PlayerId(0));
-    let key = format!(
+    let mut key = format!(
         "{:?}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{:?}:{:?}:{}:{}:{}:{}:{}:{}",
         interface.mode as u8,
         interface.show_gm_panel,
@@ -1534,6 +1593,13 @@ fn render_overlay(
         online.connecting,
         online.status
     );
+    if let Some(inventory) = &source_inventory {
+        key.push_str(&format!(
+            ":source-inventory:{}:{}",
+            online.local_player_id().0,
+            inventory.revision()
+        ));
+    }
     if runtime.overlay_key == key {
         return;
     }
@@ -1541,7 +1607,7 @@ fn render_overlay(
     for entity in &old {
         commands.entity(entity).despawn();
     }
-    if matches!(interface.mode, UiMode::Playing | UiMode::Benchmark) && !interface.show_gm_panel {
+    if !uses_ui_tab_navigation(&interface) {
         return;
     }
     let width = 340.0_f32.min(window.width() - 20.0).max(180.0);
@@ -1615,6 +1681,68 @@ fn render_overlay(
                     .renderers
                     .get("BagAndBuildPanel")
                     .and_then(SourcePanelRenderer::embedded_font);
+                let bag = source_inventory
+                    .as_ref()
+                    .and_then(|inventory| inventory.player(online.local_player_id()));
+                if let Some(snapshot) = bag.and_then(|bag| bag.snapshot()) {
+                    label(
+                        &mut commands,
+                        parent,
+                        format!(
+                            "Backpack · {} / {}",
+                            snapshot.bag_items.len(),
+                            bag.and_then(|bag| bag.visible_capacity()).unwrap_or(0)
+                        ),
+                    );
+                    for item in snapshot.bag_items.iter().take(20) {
+                        let name = catalog
+                            .items
+                            .get(&item.item_id)
+                            .map(|item| item.name.as_str())
+                            .unwrap_or("Unknown item");
+                        catalog_label(
+                            &mut commands,
+                            parent,
+                            format!("{name} ×{}", item.number),
+                            catalog_font.as_ref(),
+                        );
+                    }
+                    if snapshot.bag_items.len() > 20 {
+                        label(
+                            &mut commands,
+                            parent,
+                            format!("{} more items", snapshot.bag_items.len() - 20),
+                        );
+                    }
+                    for (index, item) in snapshot.quick_use_items.iter().take(20) {
+                        let name = catalog
+                            .items
+                            .get(&item.item_id)
+                            .map(|item| item.name.as_str())
+                            .unwrap_or("Unknown item");
+                        catalog_label(
+                            &mut commands,
+                            parent,
+                            format!("Quick {index} · {name} ×{}", item.number),
+                            catalog_font.as_ref(),
+                        );
+                    }
+                    for item in snapshot.equip_items.iter().take(20) {
+                        let name = catalog
+                            .items
+                            .get(&item.item_id)
+                            .map(|item| item.name.as_str())
+                            .unwrap_or("Unknown item");
+                        catalog_label(
+                            &mut commands,
+                            parent,
+                            format!("Equipped · {name}"),
+                            catalog_font.as_ref(),
+                        );
+                    }
+                } else {
+                    label(&mut commands, parent, "Waiting for inventory");
+                }
                 const PAGE_SIZE: usize = 20;
                 let pages = catalog.items.len().div_ceil(PAGE_SIZE).max(1);
                 let page = runtime.catalog_page.min(pages - 1);
@@ -1953,6 +2081,219 @@ mod tests {
         fn save_hud(&self, _: &crate::hud::HudLayout) -> Result<(), crate::storage::StorageError> {
             Ok(())
         }
+    }
+    #[test]
+    fn source_snapshot_and_size_update_refresh_native_inventory_in_the_application_frame() {
+        use shared::source_inventory::{
+            GameplayCatalog,
+            inventory_wire::{S_BAG_SIZE_CHANGE_TYPE_ID, S_ITEMS_TYPE_ID},
+        };
+        use shared::{
+            source_inventory::{
+                SourceInventoryBodyMessage, SourceInventoryPlugin, SourceInventorySet,
+                SourceInventoryWorld,
+            },
+            world::LoadedWorld,
+        };
+        use std::sync::Arc;
+        let catalog = Arc::new(GameplayCatalog::default());
+        let mut inventory = SourceInventoryWorld::from_catalog(catalog.clone());
+        inventory.join(PlayerId(0));
+        let mut interface = Interface::new(&TestStorage, false);
+        interface.mode = UiMode::Inventory;
+        let mut app = App::new();
+        app.add_plugins((MinimalPlugins, SourceInventoryPlugin))
+            .insert_resource(inventory)
+            .init_resource::<NativeUiRuntime>()
+            .insert_resource(interface)
+            .insert_resource(SimulationSurvival(shared::survival::SurvivalWorld::new(
+                shared::level::MapId::Polygon,
+            )))
+            .insert_resource(Online::new(&crate::launch::ClientOptions::default()))
+            .insert_resource(LoadedWorld {
+                descriptor: shared::world::WorldDescriptor::fixture(shared::level::MapId::Polygon),
+                terrain: None,
+                gameplay: Some(catalog),
+                spawn: [0.0, 1.0, 0.0],
+            })
+            .add_systems(Update, render_overlay.after(SourceInventorySet::Apply));
+        app.world_mut()
+            .spawn((Window::default(), bevy::window::PrimaryWindow));
+        // Independent empty SItems source body, capacity 2.
+        app.world_mut().write_message(SourceInventoryBodyMessage {
+            player: PlayerId(0),
+            type_id: S_ITEMS_TYPE_ID,
+            body: vec![
+                123, 123, 123, 123, 14, 14, 14, 14, 7, 7, 7, 7, 63, 63, 63, 63, 81, 104, 106, 106,
+                106,
+            ],
+        });
+        app.update();
+        let mut texts = app.world_mut().query::<&Text>();
+        assert!(
+            texts
+                .iter(app.world())
+                .any(|text| text.0 == "Backpack · 0 / 2")
+        );
+        app.world_mut().write_message(SourceInventoryBodyMessage {
+            player: PlayerId(0),
+            type_id: S_BAG_SIZE_CHANGE_TYPE_ID,
+            body: vec![78, 77, 77, 77],
+        });
+        app.update();
+        assert!(
+            texts
+                .iter(app.world())
+                .any(|text| text.0 == "Backpack · 0 / 3")
+        );
+        assert!(
+            !texts
+                .iter(app.world())
+                .any(|text| text.0 == "Backpack · 0 / 2")
+        );
+        let revision = app.world().resource::<SourceInventoryWorld>().revision();
+        app.world_mut().write_message(SourceInventoryBodyMessage {
+            player: PlayerId(0),
+            type_id: S_BAG_SIZE_CHANGE_TYPE_ID,
+            body: vec![0],
+        });
+        app.update();
+        assert_eq!(
+            app.world().resource::<SourceInventoryWorld>().revision(),
+            revision
+        );
+        assert!(
+            texts
+                .iter(app.world())
+                .any(|text| text.0 == "Backpack · 0 / 3")
+        );
+    }
+    #[test]
+    fn tab_opens_inventory_once_then_navigates_inventory_and_gm_controls() {
+        use bevy::{
+            camera::visibility::VisibilityPlugin,
+            input::{InputPlugin, keyboard::Key},
+            input_focus::{InputDispatchPlugin, InputFocusPlugin},
+            mesh::skinning::SkinnedMeshInverseBindposes,
+            time::TimeUpdateStrategy,
+        };
+        use shared::{SimulationInput, SimulationWorld, level::MapId, physics::CollisionWorld};
+        use std::time::Duration;
+
+        let mut app = App::new();
+        let mut survival = shared::survival::SurvivalWorld::new(MapId::Polygon);
+        survival
+            .players
+            .insert(PlayerId(0), shared::survival::PlayerSurvival::default());
+        app.add_plugins((
+            MinimalPlugins,
+            AssetPlugin::default(),
+            TransformPlugin,
+            VisibilityPlugin,
+            InputPlugin,
+            InputFocusPlugin,
+            InputDispatchPlugin,
+        ))
+        .insert_resource(TimeUpdateStrategy::ManualDuration(Duration::ZERO))
+        .init_asset::<Mesh>()
+        .init_asset::<SkinnedMeshInverseBindposes>()
+        .init_resource::<NativeUiRuntime>()
+        .init_resource::<NativeUiInput>()
+        .init_resource::<UiActions>()
+        .init_resource::<Telemetry>()
+        .init_resource::<SimulationInput>()
+        .init_resource::<SimulationClock>()
+        .init_resource::<SimulationMode>()
+        .insert_resource(SimulationWorld(CollisionWorld::new(MapId::Polygon)))
+        .insert_resource(SimulationSurvival(survival))
+        .insert_resource(Interface::new(&TestStorage, false))
+        .insert_resource(Online::new(&crate::launch::ClientOptions::default()))
+        .add_message::<AppExit>()
+        .add_systems(PreUpdate, update_input_boundary.in_set(NativeUiSet::Input))
+        .add_systems(Update, render_overlay)
+        .add_plugins(crate::desktop_input::DesktopInputPlugin);
+        configure_tab_navigation(&mut app);
+        let window = app
+            .world_mut()
+            .spawn((
+                Window {
+                    focused: true,
+                    ..default()
+                },
+                bevy::window::PrimaryWindow,
+                bevy::window::CursorOptions::default(),
+            ))
+            .id();
+        let key = |app: &mut App, key_code: KeyCode, state: ButtonState| {
+            let logical_key = match key_code {
+                KeyCode::Tab => Key::Tab,
+                KeyCode::ShiftLeft => Key::Shift,
+                KeyCode::KeyI => Key::Character("i".into()),
+                KeyCode::Escape => Key::Escape,
+                _ => unreachable!("unsupported fixture key"),
+            };
+            app.world_mut().write_message(KeyboardInput {
+                key_code,
+                logical_key,
+                state,
+                text: None,
+                repeat: false,
+                window,
+            });
+            app.update();
+        };
+        let tap = |app: &mut App, key_code| {
+            key(app, key_code, ButtonState::Pressed);
+            key(app, key_code, ButtonState::Released);
+        };
+
+        app.update();
+        // Loading has a real overlay but no focusable controls yet.
+        tap(&mut app, KeyCode::Tab);
+        assert!(app.world().resource::<Interface>().mode == UiMode::Loading);
+        assert_eq!(app.world().resource::<InputFocus>().get(), Some(window));
+
+        app.world_mut().resource_mut::<Interface>().mode = UiMode::Playing;
+        app.update();
+        key(&mut app, KeyCode::Tab, ButtonState::Pressed);
+        assert!(app.world().resource::<Interface>().mode == UiMode::Inventory);
+        assert_eq!(app.world().resource::<InputFocus>().get(), Some(window));
+        app.update();
+        assert!(app.world().resource::<Interface>().mode == UiMode::Inventory);
+        key(&mut app, KeyCode::Tab, ButtonState::Released);
+
+        tap(&mut app, KeyCode::Tab);
+        let first = app.world().resource::<InputFocus>().get().unwrap();
+        assert!(app.world().get::<TabIndex>(first).is_some());
+        assert!(app.world().resource::<Interface>().mode == UiMode::Inventory);
+        tap(&mut app, KeyCode::Tab);
+        let second = app.world().resource::<InputFocus>().get().unwrap();
+        assert_ne!(first, second);
+        assert!(app.world().resource::<Interface>().mode == UiMode::Inventory);
+        key(&mut app, KeyCode::ShiftLeft, ButtonState::Pressed);
+        tap(&mut app, KeyCode::Tab);
+        key(&mut app, KeyCode::ShiftLeft, ButtonState::Released);
+        assert_eq!(app.world().resource::<InputFocus>().get(), Some(first));
+
+        tap(&mut app, KeyCode::KeyI);
+        assert!(app.world().resource::<Interface>().mode == UiMode::Playing);
+        tap(&mut app, KeyCode::KeyI);
+        assert!(app.world().resource::<Interface>().mode == UiMode::Inventory);
+        tap(&mut app, KeyCode::Escape);
+        assert!(app.world().resource::<Interface>().mode == UiMode::Playing);
+
+        app.world_mut().resource_mut::<Interface>().show_gm_panel = true;
+        app.update();
+        tap(&mut app, KeyCode::Tab);
+        let first = app.world().resource::<InputFocus>().get().unwrap();
+        assert!(app.world().get::<TabIndex>(first).is_some());
+        tap(&mut app, KeyCode::Tab);
+        assert_ne!(app.world().resource::<InputFocus>().get(), Some(first));
+        let interface = app.world().resource::<Interface>();
+        assert!(interface.mode == UiMode::Playing && interface.show_gm_panel);
+        tap(&mut app, KeyCode::Escape);
+        let interface = app.world().resource::<Interface>();
+        assert!(interface.mode == UiMode::Playing && !interface.show_gm_panel);
     }
     #[test]
     fn modal_boundary_and_escape_restore_cursor_gameplay_state() {

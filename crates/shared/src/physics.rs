@@ -4,6 +4,11 @@ use std::collections::BTreeMap;
 
 mod source_prefabs;
 pub use source_prefabs::PrefabCollisionReport;
+mod source_clearance;
+pub use midnight_game_data::clearance::{
+    SourceQueryTriggerInteraction, SourceStandClearanceCast, SourceStandClearanceKind,
+};
+pub use source_clearance::{SourceClearanceError, SourceClearanceResult};
 
 use bevy::prelude::Vec3;
 use bevy_rapier3d::rapier::{
@@ -42,6 +47,8 @@ pub struct CollisionWorld {
     players: BTreeMap<PlayerId, (ColliderHandle, PlayerState)>,
     structures: BTreeMap<u32, Vec<ColliderHandle>>,
     source_prefabs: BTreeMap<String, Vec<ColliderHandle>>,
+    source_collision_layers: std::collections::HashMap<ColliderHandle, u8>,
+    source_unrepresented_trigger_layers: BTreeMap<String, Vec<u8>>,
     initial_colliders: Vec<ColliderHandle>,
     imported_ground: bool,
 }
@@ -77,6 +84,8 @@ impl CollisionWorld {
             players: BTreeMap::new(),
             structures: BTreeMap::new(),
             source_prefabs: BTreeMap::new(),
+            source_collision_layers: std::collections::HashMap::new(),
+            source_unrepresented_trigger_layers: BTreeMap::new(),
             initial_colliders: Vec::new(),
             imported_ground: false,
         };

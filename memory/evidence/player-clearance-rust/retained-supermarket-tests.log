@@ -1,0 +1,11 @@
+   Compiling midnight_game_data v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/game_data)
+   Compiling shared v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/shared)
+    Finished `test` profile [optimized] target(s) in 4.02s
+     Running unittests src/lib.rs (target/debug/deps/shared-486dc5a9c673a231)
+
+running 1 test
+verified supermarket: 55 solid, 0 inactive/disabled, 1 triggers
+test physics::source_prefabs::tests::retained_supermarket_builds_identical_shared_collision ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 65 filtered out; finished in 0.18s
+

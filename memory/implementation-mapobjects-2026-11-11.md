@@ -1,7 +1,8 @@
 # MapObject milestone implementation — 2026-11-11
 
 This continuation implements source-prefab loading/collision, bounded placement
-readers/discovery and the omitted Z-01 terrain scene on Linux with Bevy 0.20.1.
+readers/discovery, the omitted Z-01 terrain scene, the contact-shadow correction
+and deterministic native UI Tab routing on Linux with Bevy 0.20.1.
 It builds on [the earlier implementation validation](implementation-2026-11-11.md).
 No Python, Android build, system cleanup or source-data deletion was performed.
 
@@ -115,24 +116,44 @@ remain open. See [placement reader/discovery](world-placements-2026-11-11.md),
 [source audit](mapobjects-source-2026-11-11.md) and
 [cache search](evidence/placement-cache-search.md).
 
+## Native keyboard routing
+
+The real game-window check exposed two stock tab-navigation warnings and a
+concrete conflict: raw Tab toggled inventory while Bevy also tried to navigate
+menu focus. The native UI now delegates to Bevy's tab handler only while an
+actual focusable overlay exists. It skips playing/benchmark input and loading
+overlays with no controls. UI dispatch precedes desktop shortcut collection;
+the Tab press that opens inventory therefore cannot also navigate the newly
+created overlay in that frame.
+
+Tab opens inventory during play and moves focus inside menus; Shift+Tab moves
+backward. I still toggles inventory and Escape retains its existing close/menu
+behavior. Developer controls use the same focus route. The new regression
+uses real `KeyboardInput` messages, `DesktopInputPlugin::collect_input` and
+the actual overlay builder to exercise loading, opening/holding Tab,
+forward/backward focus, I/Escape and developer controls. It does not infer the
+original Android input bindings.
+
 ## Rust validation
 
 | Check | Observed result |
 |---|---|
-| Offline locked workspace all-target check after the final shadow/LOD changes | Passed |
-| Offline locked workspace tests after the final shadow/LOD changes | 151 passed, ten intentionally ignored |
+| Offline locked workspace all-target check after the final shadow/LOD/input changes | Passed |
+| Offline locked workspace tests after the final shadow/LOD/input changes | 152 passed, ten intentionally ignored |
 | Full-plugin same-frame prefab visibility regression | Passed, including child/parent/camera transitions |
+| Native Tab routing through real keyboard messages and desktop input | Passed, including inventory/developer focus and I/Escape |
 | Client library strict Clippy with `--no-deps -- -D warnings` | Passed |
 | Workspace all-target Clippy | Completed with the same five inherited warnings; no new warning in this continuation |
-| Scoped formatting of prefab loader/collision/renderer, environment and both capture probes | Passed |
+| Scoped formatting of prefab loader/collision/renderer, environment, native UI/desktop input and both capture probes | Passed |
 | Retained supermarket shared loader | Passed: 303 nodes, 298 renderers, 46 mesh parts, three collision meshes, 1,314 retained files |
 | Retained supermarket shared collision | Passed: 55 solid colliders, one trigger; independent query worlds agree |
 | Retained canonical-world rebuild | Passed: 400 render instances, 383 solid colliders, matching spawn/clearance including Z-01 |
 | Independent extractor tests and strict all-target Clippy | 41 tests passed; strict Clippy passed |
+| Final rebuilt Linux game-window startup | Alive for the bounded 30-second host Vulkan run; 400 source meshes loaded; expected timeout exit 124 |
 
 The retained-asset and extractor checks above were completed earlier in this
-continuation; subsequent changes only affected Bevy presentation, its LOD
-regression and documentation. Ordinary workspace tests omit the retained-asset
+continuation; subsequent changes only affected Bevy presentation, native input,
+their regressions and documentation. Ordinary workspace tests omit the retained-asset
 cases, real-UDP acceptance and sustained capacity/timing scenarios. Earlier
 desktop/network/UI checks remain recorded in the predecessor validation.
 The five inherited Clippy warnings are in `map_data/src/package.rs`,
@@ -155,8 +176,29 @@ and floor slabs. See [accepted prefab captures](evidence/prefab-shadow-fixed-bev
 and [their exact report](evidence/prefab-shadow-fixed-bevy/render.json).
 The [initial rejected result](evidence/prefab-bevy/README.md) is preserved.
 
+All ten environment GPU cases also pass with the corrected policy. Cloud
+toggling changes 403,344 sky pixels and zero opaque foreground pixels; the
+reference directional caster darkens 5,522 ground pixels. The single-sample
+and four-sample MSAA paths, 12/24/48 ray steps, a camera inside the volume and
+the sunrise disc render successfully. Noon mean luminance is 193.56 versus
+15.27 at night. Toggling Z-01 changes 118,602 pixels. See
+[the updated environment captures](evidence/environment-shadow-fixed-bevy/README.md).
+These checks validate Bevy rendering and terrain visibility, not original
+shader/weather-curve execution or source-runtime pixel parity.
+
 The final desktop executable was rebuilt after the correction; its predecessor
 is retained at `.local/runtime-backups/pre-contact-shadow-fix/client_runner`.
+The shadow-corrected executable before the Tab change is separately retained
+at `.local/runtime-backups/pre-tab-routing-fix/client_runner`.
+The real Linux Winit game remained alive for a bounded 30-second host Vulkan
+run and loaded all 400 validated terrain/road meshes. The expected timeout
+exit was 124, with process-local core dumps disabled and configuration under
+`.local/validation-contact-shadow-fixed/`. The retained
+[final startup evidence](evidence/desktop-shadow-fixed-bevy/README.md) records
+the run and preserves the pre-input-correction log. The final log contains no
+tab-navigation warning, panic or GPU pipeline error; the window-decoration
+and inherited airport tangent warnings remain visible.
+It is a startup/liveness check, not an interactive original-game comparison.
 The repository filesystem still has approximately 128 GiB available. No
 cleanup of source exports, user files, system directories or Cargo caches
 was needed or performed in this continuation.

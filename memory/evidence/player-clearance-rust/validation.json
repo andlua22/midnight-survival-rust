@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "scope": "Typed source standing-clearance requests, shared Rapier query and source-only OnClickCrouch2 continuation; no active controller or original-runtime parity",
+  "checked_native_artifact_and_source_records": 56,
+  "unique_native_artifact_and_source_files": 54,
+  "native_hashes_match": true,
+  "native_evidence_manifests": [
+    "memory/evidence/player-clearance-native/manifest.json",
+    "memory/evidence/player-transitions-native/manifest.json"
+  ],
+  "identities": [
+    {
+      "path": "crates/game_data/src/clearance.rs",
+      "sha256": "e217b8b69254c6bd741ec44df1de70a58d570992645fd2cbf92e78140fd6498d"
+    },
+    {
+      "path": "crates/game_data/src/posture.rs",
+      "sha256": "647f8d22c16ceca924391fcac95766e027bc274c15d5feef2659eafa7feab0ac"
+    },
+    {
+      "path": "crates/game_data/src/lib.rs",
+      "sha256": "3040749412bfbfb33cc521dfda03df136615da960325e49e2eb9c0fb1c51ae9f"
+    },
+    {
+      "path": "crates/shared/src/physics/source_clearance.rs",
+      "sha256": "3a0672eaf6fff6a5608042d87fe371b4f42f833d07926aff458596109a7b16c4"
+    },
+    {
+      "path": "crates/shared/src/physics/source_prefabs.rs",
+      "sha256": "fa88bbaabe2d2ac62493f441c3c5c2954b79ff1addddb81cbdc8b6d123b6954a"
+    },
+    {
+      "path": "crates/shared/src/physics.rs",
+      "sha256": "43c75e5d33c70f8be58aea912962eff78e5d85550934fa27ecfbe65bc8af6bac"
+    },
+    {
+      "path": "crates/shared/src/lib.rs",
+      "sha256": "b8122e1def0c57007b2a3148d20a01e78a49a3919565ec823b326228fda47c96"
+    },
+    {
+      "path": "memory/evidence/player-clearance-native/manifest.json",
+      "sha256": "1cf77e62bff4e5f2ed4a759c798234400a94c7f3de6270784d3279e27b9dea16"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/manifest.json",
+      "sha256": "dc2da37fe120e2fdb139a27f8945e62bc0db0b94e453757f4da8cc7cb387a57c"
+    },
+    {
+      "path": "memory/evidence/player-clearance-rust/data-clippy.log",
+      "sha256": "22971fea1007a24f90970ceeaa15929cd52a4a7b1386af29878e34395a1cde68"
+    },
+    {
+      "path": "memory/evidence/player-clearance-rust/data-posture-clippy.log",
+      "sha256": "22971fea1007a24f90970ceeaa15929cd52a4a7b1386af29878e34395a1cde68"
+    },
+    {
+      "path": "memory/evidence/player-clearance-rust/data-posture-tests.log",
+      "sha256": "25c52c88ea1b762d6f9c0f97c2635c86b4c960a0a74992dd9c4aedf1230774b8"
+    },
+    {
+      "path": "memory/evidence/player-clearance-rust/data-shared-tests.log",
+      "sha256": "720110c2283905ad653d5949f43ad2067bb03d3c40b36f8e8fb8d8958f341245"
+    },
+    {
+      "path": "memory/evidence/player-clearance-rust/retained-supermarket-tests.log",
+      "sha256": "b78b0c5a64e41d315adf52136258af14a4f331d94281448307e5a9d2bdb1e13e"
+    },
+    {
+      "path": "memory/evidence/player-clearance-rust/shared-lib-clippy.log",
+      "sha256": "280020eb7ab0ecba01e0fc2a0e0c3ff4111d2abff04c0566783d0f2d4bff3483"
+    },
+    {
+      "path": "memory/evidence/player-clearance-rust/workspace-check.log",
+      "sha256": "d328775254892a950e08c985656ab190f543c7d0ad94fb65c00465d7384e0571"
+    },
+    {
+      "path": "memory/evidence/player-clearance-rust/workspace-tests.log",
+      "sha256": "4f5216d680ef76723627761b29c4425aba8a1eb77be51edd8bb27972b6de7268"
+    }
+  ],
+  "source_contract": {
+    "clearance": {
+      "kinds": [
+        "CrouchUp",
+        "PaToStand"
+      ],
+      "origin": "Explicit RootBone world position",
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "radius": 0.2,
+      "distances": {
+        "CrouchUp": 1.5,
+        "PaToStand": 1.9
+      },
+      "mask": "0x40080001",
+      "layers": [
+        0,
+        19,
+        30
+      ],
+      "query_trigger_interaction": "UseGlobal (0); boolean supplied by host",
+      "unresolved_results": [
+        "UnknownColliderLayers",
+        "UnrepresentedTriggers",
+        "UnresolvedInitialOverlap"
+      ]
+    },
+    "callback": {
+      "name": "SC.UI.BattlePanel.OnClickCrouch2",
+      "explicit_callback_selection": true,
+      "targets": [
+        "PanelSelf",
+        "BattleSelfPlayer"
+      ],
+      "play2d_ids": [
+        339,
+        435
+      ],
+      "switch_args": "null",
+      "switch_returns_are_not_commits": true,
+      "pa_up_verdict_is_distinct_from_pa_to_stand": true
+    }
+  },
+  "checks": [
+    {
+      "command": "cargo test --offline --locked -p midnight_game_data -p shared",
+      "command_kind": "reproduction; original shell invocation not retained in log",
+      "reported_exit_code": 0,
+      "passed_tests": {
+        "midnight_game_data": 39,
+        "shared": 63
+      },
+      "ignored_tests": {
+        "midnight_game_data": 0,
+        "shared": 3
+      },
+      "stage": "Clearance before source callback was added",
+      "log": "data-shared-tests.log"
+    },
+    {
+      "command": "cargo test --offline --locked -p midnight_game_data",
+      "command_kind": "reproduction; original shell invocation not retained in log",
+      "reported_exit_code": 0,
+      "passed_tests": 44,
+      "ignored_tests": 0,
+      "stage": "Final source callback included",
+      "log": "data-posture-tests.log"
+    },
+    {
+      "command": "cargo test --offline --locked --workspace",
+      "command_kind": "reproduction; original shell invocation not retained in log",
+      "reported_exit_code": 0,
+      "passed_tests": 199,
+      "failed_tests": 0,
+      "ignored_tests": 10,
+      "stage": "Final source callback included",
+      "log": "workspace-tests.log"
+    },
+    {
+      "command": "cargo test --offline --locked -p shared physics::source_prefabs::tests::retained_supermarket_builds_identical_shared_collision -- --ignored --nocapture",
+      "command_kind": "reproduction; original shell invocation not retained in log",
+      "reported_exit_code": 0,
+      "passed_tests": 1,
+      "solid_colliders": 55,
+      "inactive_or_disabled_colliders": 0,
+      "skipped_triggers": 1,
+      "source_layer_metadata_checked": true,
+      "log": "retained-supermarket-tests.log"
+    },
+    {
+      "command": "cargo clippy --offline --locked --no-deps -p midnight_game_data --all-targets -- -D warnings",
+      "command_kind": "recorded invocation",
+      "exit_code": 0,
+      "stage": "Clearance before source callback was added",
+      "log": "data-clippy.log"
+    },
+    {
+      "command": "cargo clippy --offline --locked --no-deps -p midnight_game_data --all-targets -- -D warnings",
+      "command_kind": "recorded invocation",
+      "exit_code": 0,
+      "stage": "Final source callback included",
+      "log": "data-posture-clippy.log"
+    },
+    {
+      "command": "cargo clippy --offline --locked --no-deps -p shared --lib -- -D warnings",
+      "command_kind": "recorded invocation",
+      "exit_code": 0,
+      "log": "shared-lib-clippy.log"
+    },
+    {
+      "command": "cargo check --offline --locked --workspace --all-targets",
+      "command_kind": "recorded invocation",
+      "exit_code": 0,
+      "log": "workspace-check.log"
+    },
+    {
+      "command": "rustfmt --edition 2024 --config skip_children=true --check crates/game_data/src/clearance.rs crates/game_data/src/posture.rs crates/game_data/src/lib.rs crates/shared/src/physics/source_clearance.rs crates/shared/src/physics/source_prefabs.rs",
+      "command_kind": "recorded invocation",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "command_kind": "recorded invocation",
+      "exit_code": 0
+    }
+  ],
+  "limitations": [
+    "Full strict workspace Clippy retains five inherited warnings; successful scoped Clippy does not claim workspace-wide cleanliness",
+    "Static unpatched native methods only; IFix runtime state unobserved",
+    "Effective RootBone/HeadTop transforms, terrain/player source layers and complete source collider/trigger coverage remain runtime prerequisites",
+    "UseGlobal trigger state must be supplied explicitly",
+    "Distinct PaUp dynamic ray-layer/component dependencies and FSM switch arbitration remain unresolved",
+    "Rapier query tests do not establish PhysX overlap/contact/tolerance parity",
+    "Continuation requests do not commit posture, select an authentic input binding or play audio",
+    "No original-game execution or new GUI/GPU probe was performed",
+    "Broader formatting check of shared/physics.rs retains inherited formatting differences; final scoped rustfmt excludes that file after introduced re-export ordering was corrected"
+  ],
+  "post_validation_nonbehavioral_changes": [
+    "crates/shared/src/physics.rs re-export ordering corrected; final identity refreshed, no behavioral change or repeated Cargo checks"
+  ]
+}
+

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "scope": "Source-only player IDs/input/Stand classification; no active controller or original runtime parity",
+  "source_id_count": 62,
+  "source_rust_names_and_integers_match": true,
+  "checked_native_artifacts_and_source_files": 28,
+  "native_hashes_match": true,
+  "identities": [
+    {
+      "path": "export/StateID.cs",
+      "sha256": "e73cf0980f13eacad21666812d6484dc55ac7148d3947d60485a42f5a156fd0e"
+    },
+    {
+      "path": "crates/game_data/src/player_state.rs",
+      "sha256": "108ccaa904573ccb7138963810f3e784f88023111676e90ca33a47ce19f1f4da"
+    },
+    {
+      "path": "crates/game_data/src/controller.rs",
+      "sha256": "4a942bf29225dc03e1ddccff6fff7a718bb6c340824386846339609446d06025"
+    },
+    {
+      "path": "crates/game_data/src/lib.rs",
+      "sha256": "a48a6bb276ad05cb1310956ce4890ad66e89151f19e44612fc3a5b7fb442345f"
+    }
+  ],
+  "checks": [
+    {
+      "command": "cargo test --offline --locked -p midnight_game_data",
+      "exit_code": 0,
+      "passed_tests": 36,
+      "new_player_state_tests": 9,
+      "log": "game-data-tests.log"
+    },
+    {
+      "command": "cargo clippy --offline --locked --no-deps -p midnight_game_data --all-targets -- -D warnings",
+      "exit_code": 0,
+      "log": "game-data-clippy.log"
+    },
+    {
+      "command": "cargo check --offline --locked --workspace --all-targets",
+      "exit_code": 0,
+      "log": "workspace-check.log"
+    },
+    {
+      "command": "rustfmt --edition 2024 --config skip_children=true --check crates/game_data/src/player_state.rs crates/game_data/src/controller.rs crates/game_data/src/lib.rs",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "limitations": [
+    "Native libm rounding and IFix runtime behavior unobserved",
+    "Finite/nonnegative/overflow checks and numeric Serde are reconstruction contracts",
+    "State transitions and active movement remain unported"
+  ]
+}

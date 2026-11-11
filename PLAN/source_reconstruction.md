@@ -1,6 +1,6 @@
 # Source reconstruction plan and implementation ledger
 
-Updated 2026-11-11. Target: `export/lite4.0.apk`, SHA-256
+Updated 2026-11-12. Target: `export/lite4.0.apk`, SHA-256
 `2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df`.
 Use Rust and Bevy 0.20.1. Test on this Linux machine first; Android comes after
 a stable desktop slice. Preserve source exports, packages, evidence and rollback
@@ -13,10 +13,13 @@ separate acceptance stages.
 |---|---|---|
 | Bounded import pipeline | Selected deterministic scans, bounded ZIP/bundle reads and caches, explicit CLI actions, verification before publishing | `memory/source-imports-2026-11-11.md` |
 | UI extraction | Nine source panels published separately; original three-panel package preserved | `memory/evidence/ui-expanded-verification.json` |
-| Native Bevy UI | Source atlas/mip rendering, source geometry/masks, Bevy text, live HUD/minimap, inventory/catalog pages, menu and editor controls | `crates/client_core/src/native_ui.rs`, `source_ui/native.rs` |
+| Native Bevy UI | Source atlas/mip rendering, source geometry/masks, Bevy text, live HUD/minimap, inventory/catalog pages, menu/editor controls and deterministic Tab focus routing | `crates/client_core/src/native_ui.rs`, `source_ui/native.rs` |
 | World selection | Imported island selected explicitly and by client default; identical validated source collision on client/server; content identity checked at connection | `crates/shared/src/world.rs`, `content.rs` |
 | Source gameplay definitions | Six strict Octets readers, original raw tables, hash-verified catalog, item IDs and blueprint requirements | `crates/game_data/`, `memory/evidence/gameplay-verification.json` |
 | Inventory model support | Source-ID stacking and completed-craft transactions roll back on missing materials or insufficient capacity | `crates/game_data/src/lib.rs` |
+| Source inventory bodies and state | Ten recovered body decoders, atomic snapshot/delta projection shared by authority/client, player lifecycle, bounded Bevy UI preview and Rust inspection CLI | `memory/implementation-player-inventory-2026-11-11.md` |
+| Source player definitions | Verified posture/constructor defaults, ordinary velocity requests, all 62 exact StateIDs and native input magnitude/orientation/Stand Run-Rush classification; active controller remains provisional | `memory/implementation-player-state-2026-11-11.md`, `crates/game_data/src/controller.rs`, `player_state.rs` |
+| Source clearance and crouch callback | Exact RootBone standing casts, shared layer-filtered queries with explicit unresolved results, atomic prefab layer/trigger metadata, and ordered OnClickCrouch2 continuation | `memory/implementation-player-clearance-2026-11-12.md`, `crates/game_data/src/posture.rs`, `crates/shared/src/physics/source_clearance.rs` |
 | Environment | Half-resolution world-space volume ray marching, opaque-depth clipping, bounded quality, below-horizon sun/night handling, cascaded shadow maps; artifact-producing contact shadows disabled on desktop | `crates/client_core/src/environment.rs`, `assets/shaders/volumetric_clouds.wesl` |
 | MapObject extraction pilot | Verified supermarket hierarchy, render parts/materials and exact mesh-collider data | `memory/evidence/prefab-supermarket-import.json` |
 | Omitted terrain scene | Source Z-01 geometry, four-layer material/mips and solid MeshCollider added; 400 render instances/383 colliders across 242 terrain scenes; previous package preserved | `memory/terrain-z01-2026-11-11.md` |
@@ -72,6 +75,59 @@ island, no guessed fallback placements. Prefab extraction alone does not meet
 this milestone.
 
 ### 2. Recover player and inventory rules
+
+The first boundary is implemented: ten native message IDs and default XOR
+body layouts; snapshot, count, quick-change, capacity, durability, count-alert
+and held-instance projection; shared authority/client state and same-frame
+Bevy UI updates. The Rust inspector verifies the real catalog, hashes explicit
+bodies and refuses existing reports. Validation is recorded in
+[player/inventory implementation](../memory/implementation-player-inventory-2026-11-11.md).
+No captured source snapshot or original frame/session adapter is available.
+Registered players therefore remain uninitialized until a validated snapshot
+arrives; no source starter contents or capacity are invented.
+
+The next definitions step is also complete: every StateID name/integer matches
+the retained declarations, and the source-only raw Input magnitude/orientation
+helpers and Stand Run/Rush classifier preserve the verified native thresholds,
+gates, flags and angle writes. [Player state validation](../memory/implementation-player-state-2026-11-11.md)
+records nine new tests and the bounded native direction audit. These rules are
+available to subsequent simulation work; no active state transitions or physical
+sprint speed are inferred from the classification.
+
+The [clearance/crouch continuation](../memory/implementation-player-clearance-2026-11-12.md)
+is now implemented and validated with 199 passing workspace tests. The native
+audit establishes Move invocation and FSM update order; source requests retain
+the exact RootBone origin, cast dimensions, layers and UseGlobal contract.
+Shared queries preserve imported prefab layer/trigger metadata and return
+explicit unresolved errors for missing layers, selected unrepresented triggers
+or initial overlaps. The callback preserves fresh state reads, separate player
+targets and audio/switch order without committing a state. CheckCanPaUp remains
+distinct and externally supplied. No active source posture binding is inferred.
+
+`SetQuickUseItem`, `SyncBagItem` and `ClearAllBag` decode but application is
+explicitly rejected. Their full swap/coffer, consumer and weapon/extra-data
+effects remain unresolved. Expiry, use-item effects and original crafting
+completion are not provided by the body projection. Static ItemCfg pile limits
+are not imposed on incoming state because community overrides are observed.
+
+Continue with these concrete steps:
+
+1. Identify/import the actual player rig and RootBone/HeadTop references;
+   recover effective transforms/scaling and retain terrain GameObject layers
+   through a verified compatible collision-package import. Current terrain
+   and provisional player colliders lack source layers for standing queries.
+2. Resolve runtime queriesHitTriggers, required collider/trigger coverage and
+   PhysX initial-overlap/contact semantics. Finish CheckCanPaUp's separate
+   HeadTop sphere cast and downward ray layer/component conditions.
+3. Recover FSM switch arbitration, active modifiers, capsule scaling,
+   jump/landing and animation/root-motion behavior, then wire admitted source
+   controller/posture state and ordered callback requests into shared physics,
+   Bevy UI and audio. Velocity bodies, Move invocation and callback order are
+   audited; full physical movement and successful state commits remain open.
+4. Finish quick-slot swap/coffer and clear weapon/extra-data dependencies;
+   establish the actual SyncBagItem consumer and use-item callbacks.
+5. Bind authenticated snapshots/deltas through a recovered source admission
+   adapter, then original UI slots/icons/actions and matched source scenarios.
 
 Trace the original controller, bag-size messages, equipment/quick slots,
 stack limits, starter contents, use-item callbacks and durability. Recover

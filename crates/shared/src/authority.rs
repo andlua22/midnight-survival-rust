@@ -71,6 +71,7 @@ impl InputQueue {
 pub struct Authority {
     pub descriptor: crate::world::WorldDescriptor,
     pub gameplay: Option<std::sync::Arc<midnight_game_data::GameplayCatalog>>,
+    pub source_inventory: crate::source_inventory::SourceInventoryWorld,
     pub world: CollisionWorld,
     pub survival: SurvivalWorld,
     pub tick: ServerTick,
@@ -84,6 +85,7 @@ impl Authority {
         Self {
             descriptor: crate::world::WorldDescriptor::fixture(map),
             gameplay: None,
+            source_inventory: crate::source_inventory::SourceInventoryWorld::default(),
             world: CollisionWorld::new(map),
             survival: SurvivalWorld::new(map),
             tick: ServerTick(0),
@@ -101,6 +103,13 @@ impl Authority {
         let mut authority = Self::new(loaded.descriptor.map, capacity);
         authority.descriptor = loaded.descriptor.clone();
         authority.gameplay = loaded.gameplay.clone();
+        authority.source_inventory = loaded
+            .gameplay
+            .as_ref()
+            .map(|catalog| {
+                crate::source_inventory::SourceInventoryWorld::from_catalog(catalog.clone())
+            })
+            .unwrap_or_default();
         authority.world = world;
         authority
     }
@@ -119,6 +128,7 @@ impl Authority {
         self.world.set_player(id, state);
         self.inputs.insert(id, InputQueue::new(self.tick, state));
         self.survival.join(id);
+        self.source_inventory.join(id);
         Ok((id, state))
     }
 
@@ -126,6 +136,25 @@ impl Authority {
         self.inputs.remove(&id);
         self.world.remove_player(id);
         self.survival.leave(id);
+        self.source_inventory.leave(id);
+    }
+
+    /// Trusted source-body adapter boundary. Original packet authentication and
+    /// frame/session decoding belong to the caller, not the fixture QUIC codec.
+    pub fn apply_source_inventory_body(
+        &mut self,
+        player: PlayerId,
+        type_id: i32,
+        body: &[u8],
+        realtime_seconds: f32,
+    ) -> Result<midnight_game_data::source_bag::SourceBagApply, midnight_game_data::DataError> {
+        if !self.inputs.contains_key(&player) {
+            return Err(midnight_game_data::DataError(
+                "inventory player is not admitted".into(),
+            ));
+        }
+        self.source_inventory
+            .apply_bytes(player, type_id, body, realtime_seconds)
     }
 
     pub fn step(&mut self) {
@@ -167,6 +196,60 @@ impl Authority {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn source_inventory_requires_admission_and_is_removed_on_player_departure() {
+        use crate::source_inventory::SourceInventoryWorld;
+        use midnight_game_data::{GameplayCatalog, inventory_wire::S_ITEMS_TYPE_ID};
+        let mut authority = Authority::new(MapId::Polygon, 2);
+        authority.source_inventory =
+            SourceInventoryWorld::from_catalog(std::sync::Arc::new(GameplayCatalog::default()));
+        let (player, _) = authority.join().unwrap();
+        assert!(
+            authority
+                .source_inventory
+                .player(player)
+                .unwrap()
+                .snapshot()
+                .is_none()
+        );
+        let body = [
+            123, 123, 123, 123, 14, 14, 14, 14, 7, 7, 7, 7, 63, 63, 63, 63, 81, 118, 106, 106, 106,
+        ];
+        authority
+            .apply_source_inventory_body(player, S_ITEMS_TYPE_ID, &body, 1.0)
+            .unwrap();
+        assert_eq!(
+            authority
+                .source_inventory
+                .player(player)
+                .unwrap()
+                .visible_capacity(),
+            Some(28)
+        );
+        let outsider = PlayerId(99);
+        authority.source_inventory.join(outsider);
+        assert!(
+            authority
+                .apply_source_inventory_body(outsider, S_ITEMS_TYPE_ID, &body, 1.0)
+                .is_err()
+        );
+        assert!(
+            authority
+                .source_inventory
+                .player(outsider)
+                .unwrap()
+                .snapshot()
+                .is_none()
+        );
+        authority.leave(player);
+        assert!(authority.source_inventory.player(player).is_none());
+        assert!(
+            authority
+                .apply_source_inventory_body(player, S_ITEMS_TYPE_ID, &body, 1.0)
+                .is_err()
+        );
+    }
 
     #[test]
     fn duplicates_late_input_and_gaps_do_not_repeat_jump_or_keep_walking() {

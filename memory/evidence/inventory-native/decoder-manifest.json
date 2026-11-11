@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "evidence_kind": "independent bounded decoder cross-check",
+  "provenance": "manifest.json",
+  "source_native_sha256": "2e2efde1a103549694b17b361cacc18faa5714d06c444945e44b30f1377e2b3c",
+  "mapping": "All requested ranges lie wholly inside PT_LOAD p_offset=p_vaddr=0; virtual addresses equal source file offsets.",
+  "limitations": [
+    "Default SItems codes independently reread from exported source; full native SItems unmarshal was not disassembled in this cross-check.",
+    "Unpatched base methods only; IFix runtime state unobserved."
+  ],
+  "ranges": [
+    {
+      "name": "item-changed-unmarshal",
+      "start_va": "0x10d7fe4",
+      "end_va_inclusive": "0x10d80e7",
+      "file_offset": 17661924,
+      "bytes": 260,
+      "disassembly": "item-changed-unmarshal.asm",
+      "disassembly_sha256": "6189ee5a0f32e7ba7257f1279eee76523aa5a4533411c3bbaed2871423b8a1a1"
+    },
+    {
+      "name": "quick-changed-unmarshal",
+      "start_va": "0x10e1988",
+      "end_va_inclusive": "0x10e1a9f",
+      "file_offset": 17701256,
+      "bytes": 280,
+      "disassembly": "quick-changed-unmarshal.asm",
+      "disassembly_sha256": "b7d2e863a6265e3ccb86bf6aa60859e825b094909d3f48af4527a00bf37056d3"
+    },
+    {
+      "name": "octets-coded-int",
+      "start_va": "0x21ad2e4",
+      "end_va_inclusive": "0x21ad34b",
+      "file_offset": 35312356,
+      "bytes": 104,
+      "disassembly": "octets-coded-int.asm",
+      "disassembly_sha256": "b8d4b86003554ca810d1dba7ef410e3c4bb3e7475aa5fa674d59ccb88eb819b4"
+    },
+    {
+      "name": "octets-coded-bytes",
+      "start_va": "0x21adca4",
+      "end_va_inclusive": "0x21add13",
+      "file_offset": 35314852,
+      "bytes": 112,
+      "disassembly": "octets-coded-bytes.asm",
+      "disassembly_sha256": "a9b44f2c0d2fcab594d73262eecc7cf6d76d8f5b03f96f48c136581ecae43c31"
+    }
+  ]
+}

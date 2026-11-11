@@ -1,0 +1,58 @@
+	}
+
+	[Token(Token = "0x4001838")]
+	[FieldOffset(Offset = "0x40")]
+	public __External_140168276550320 PlayerTransform;
+
+	[Token(Token = "0x4001839")]
+	[FieldOffset(Offset = "0x48")]
+	[AttributeAttribute(Name = "UnityEngine.SerializeField")]
+	public __External_140168276748320 PlayerAnimator;
+
+	[Token(Token = "0x400183A")]
+	[FieldOffset(Offset = "0x50")]
+	public __External_140168276748320 RoleHandAnimator;
+
+	[Token(Token = "0x400183B")]
+	[FieldOffset(Offset = "0x58")]
+	[AttributeAttribute(Name = "UnityEngine.SerializeField")]
+	public __External_140168276728960 PlayerCollider;
+
+	[Token(Token = "0x400183C")]
+	[FieldOffset(Offset = "0x60")]
+	[AttributeAttribute(Name = "UnityEngine.SerializeField")]
+	protected object[] m_BodyParts;
+
+	[Token(Token = "0x400183D")]
+	[FieldOffset(Offset = "0x68")]
+	[AttributeAttribute(Name = "UnityEngine.SerializeField")]
+	protected __External_140168276530520 m_SkinnedMeshRenderer;
+
+	[Token(Token = "0x400183E")]
+	[FieldOffset(Offset = "0x70")]
+	public __External_140168276550320 LeftFoot;
+
+	[Token(Token = "0x400183F")]
+	[FieldOffset(Offset = "0x78")]
+	public __External_140168276550320 RightFoot;
+
+	[Token(Token = "0x4001840")]
+	[FieldOffset(Offset = "0x80")]
+	public __External_140168276550320 HeadTop;
+
+	[Token(Token = "0x4001841")]
+	[FieldOffset(Offset = "0x88")]
+	public __External_140168276550320 HeadBub;
+
+	[Token(Token = "0x4001842")]
+	[FieldOffset(Offset = "0x90")]
+	public __External_140168276550320 HeadNameLabel;
+
+	[Token(Token = "0x4001843")]
+	[FieldOffset(Offset = "0x98")]
+	public __External_140168276550320 RootBone;
+
+	[Token(Token = "0x4001844")]
+	[FieldOffset(Offset = "0xA0")]
+	public __External_140168276550320 RightHand;
+

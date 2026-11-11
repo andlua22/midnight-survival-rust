@@ -1,0 +1,52 @@
+   Compiling midnight_game_data v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/game_data)
+    Finished `test` profile [optimized] target(s) in 1.85s
+     Running unittests src/lib.rs (target/debug/deps/midnight_game_data-1dd8fed0be1911fb)
+
+running 44 tests
+test clearance::tests::source_methods_preserve_rig_origin_and_distinct_cast_lengths ... ok
+test controller::tests::every_stand_modifier_rejects_non_finite_input ... ok
+test controller::tests::finite_inputs_that_overflow_are_rejected_at_the_request_boundary ... ok
+test clearance::tests::unity_root_position_is_reflected_once_without_an_actor_offset ... ok
+test clearance::tests::non_finite_rig_pose_is_rejected_in_each_coordinate_frame ... ok
+test controller::tests::ordinary_requests_use_each_modifier_and_keep_status_fields_separate ... ok
+test controller::tests::raw_jump_geometry_is_retained_and_unresolved_conversion_is_rejected ... ok
+test inventory_wire::tests::change_bodies_follow_their_own_orders_and_masks ... ok
+test controller::tests::heel_adjustment_preserves_top_and_lowers_bottom_for_stand_and_crouch ... ok
+test inventory_wire::tests::dispatcher_accepts_only_known_complete_bodies ... ok
+test inventory_wire::tests::duplicate_quick_indexes_reject_the_complete_body ... ok
+test inventory_wire::tests::invalid_lengths_counts_and_booleans_fail_before_publication ... ok
+test inventory_wire::tests::plain_and_uniform_code_records_preserve_signed_fields_and_opaque_octets ... ok
+test inventory_wire::tests::source_snapshot_masks_decode_distinct_collections_and_signed_quick_index ... ok
+test inventory_wire::tests::every_truncated_fixture_and_trailing_byte_is_rejected ... ok
+test player_state::tests::forward_sector_boundaries_are_not_wrapped_or_widened ... ok
+test player_state::tests::gating_and_zero_input_preserve_native_fallback_and_angle_writes ... ok
+test player_state::tests::non_finite_inputs_are_rejected_by_explicit_admission_policy ... ok
+test player_state::tests::raw_input_rejects_non_finite_values_and_native_magnitude_overflow ... ok
+test player_state::tests::orientation_preserves_source_factor_and_negative_zero_addition_rule ... ok
+test player_state::tests::rush_threshold_uses_promoted_float_against_native_double ... ok
+test player_state::tests::raw_source_axes_and_gates_produce_expected_classification ... ok
+test posture::tests::crouched_clearance_blocks_or_switches_self_then_plays_audio_after_return ... ok
+test player_state::tests::state_ids_round_trip_numerically_without_losing_source_names ... ok
+test posture::tests::pa_requires_its_distinct_check_and_failure_re_reads_the_current_state ... ok
+test player_state::tests::unknown_ids_and_non_integer_serialization_never_become_a_default_state ... ok
+test posture::tests::standing_plays_audio_before_switching_the_distinct_global_target ... ok
+test posture::tests::upper_body_attack_stops_before_any_base_read_or_effect ... ok
+test posture::tests::invalid_observations_and_completed_callbacks_preserve_control_state ... ok
+test source_bag::tests::absent_active_zero_updates_remove_equipment_only_after_the_source_config_id_gate ... ok
+test source_bag::tests::count_updates_are_absolute_preserve_existing_identity_and_deadline_and_create_with_receive_clock ... ok
+test source_bag::tests::alert_and_size_handlers_do_not_reorder_items_after_a_catalog_order_change ... ok
+test source_bag::tests::duration_searches_each_compartment_and_hand_and_alert_do_not_move_items ... ok
+test source_bag::tests::failures_and_unsupported_rules_leave_the_previous_inventory_unchanged ... ok
+test source_bag::tests::quick_updates_move_bag_entries_but_preserve_existing_quick_key ... ok
+test source_bag::tests::snapshot_uses_config_identity_order_and_runtime_clock_without_stack_or_capacity_loss ... ok
+test tests::completed_craft_consumes_exact_materials_and_never_loses_items_on_failure ... ok
+test tests::decodes_source_recipe_and_rejects_truncation_duplicate_or_negative_lengths ... ok
+test tests::malformed_utf8_boolean_and_nan_fail_before_publication ... ok
+test tests::blueprints_preserve_requirements_and_reject_every_truncated_record ... ok
+test tests::source_stacks_respect_capacity_and_unknown_or_unresolved_items_roll_back ... ok
+test package::tests::catalog_count_and_apk_digest_are_validated ... ok
+test package::tests::a_rehashed_catalog_cannot_disagree_with_retained_octets ... ok
+test package::tests::import_verifies_raw_tables_and_catalog_and_preserves_existing_output ... ok
+
+test result: ok. 44 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

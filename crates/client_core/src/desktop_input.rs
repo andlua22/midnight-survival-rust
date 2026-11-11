@@ -150,7 +150,9 @@ fn collect_input(
         interface.begin_editing();
     }
     if window.focused
-        && (keyboard.just_pressed(KeyCode::Tab) || keyboard.just_pressed(KeyCode::KeyI))
+        && ((keyboard.just_pressed(KeyCode::Tab)
+            && !crate::native_ui::uses_ui_tab_navigation(&interface))
+            || keyboard.just_pressed(KeyCode::KeyI))
         && matches!(
             interface.mode,
             UiMode::Playing | UiMode::Inventory | UiMode::Map

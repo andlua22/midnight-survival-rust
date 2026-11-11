@@ -1,0 +1,108 @@
+    Blocking waiting for file lock on build directory
+    Checking midnight_game_data v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/game_data)
+    Checking midnight_map_data v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/map_data)
+warning: this `if` statement can be collapsed
+   --> crates/map_data/src/package.rs:113:9
+    |
+113 | /         if let Some(collider) = &source.collider {
+114 | |             if collider.mesh != source.source || collider.convex {
+115 | |                 return Err(invalid(format!(
+116 | |                     "{}: separate/convex collision mesh requires its own import",
+...   |
+120 | |         }
+    | |_________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#collapsible_if
+    = note: `-W clippy::collapsible-if` implied by `-W clippy::all`
+    = help: to override `-W clippy::all` add `#[allow(clippy::collapsible_if)]`
+help: collapse nested if block
+    |
+113 ~         if let Some(collider) = &source.collider
+114 ~             && (collider.mesh != source.source || collider.convex) {
+115 |                 return Err(invalid(format!(
+...
+118 |                 )));
+119 ~             }
+    |
+
+warning: this `if` statement can be collapsed
+   --> crates/map_data/src/package.rs:151:21
+    |
+151 | /                     if let Some(previous) = textures.insert(&identity.path, &identity.sha256) {
+152 | |                         if previous != &identity.sha256 {
+153 | |                             return Err(invalid("conflicting texture file identities"));
+154 | |                         }
+155 | |                     }
+    | |_____________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#collapsible_if
+help: collapse nested if block
+    |
+151 ~                     if let Some(previous) = textures.insert(&identity.path, &identity.sha256)
+152 ~                         && previous != &identity.sha256 {
+153 |                             return Err(invalid("conflicting texture file identities"));
+154 ~                         }
+    |
+
+warning: this `if` statement can be collapsed
+   --> crates/map_data/src/package.rs:158:17
+    |
+158 | /                 if let Some(previous) = mip_metadata.insert(&gpu.path, metadata) {
+159 | |                     if previous != metadata {
+160 | |                         return Err(invalid("conflicting decoded mip metadata"));
+161 | |                     }
+162 | |                 }
+    | |_________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#collapsible_if
+help: collapse nested if block
+    |
+158 ~                 if let Some(previous) = mip_metadata.insert(&gpu.path, metadata)
+159 ~                     && previous != metadata {
+160 |                         return Err(invalid("conflicting decoded mip metadata"));
+161 ~                     }
+    |
+
+warning: `midnight_map_data` (lib test) generated 3 warnings (run `cargo clippy --fix --lib -p midnight_map_data --tests -- ` to apply 3 suggestions)
+warning: `midnight_map_data` (lib) generated 3 warnings (3 duplicates)
+    Checking midnight_ui_data v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/ui_data)
+    Checking shared v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/shared)
+    Checking midnight_network v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/network)
+warning: casting to the same type is unnecessary (`u64` -> `u64`)
+   --> crates/shared/src/physics.rs:610:34
+    |
+610 |                         tick_id: tick as u64,
+    |                                  ^^^^^^^^^^^ help: try: `tick`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#unnecessary_cast
+    = note: `#[warn(clippy::unnecessary_cast)]` on by default
+
+warning: `shared` (lib test) generated 1 warning (run `cargo clippy --fix --lib -p shared --tests -- ` to apply 1 suggestion)
+    Checking client_core v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/client_core)
+    Checking server v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/server)
+    Checking client_runner v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/client_runner)
+warning: this `if` statement can be collapsed
+   --> crates/client_core/examples/terrain_probe.rs:103:9
+    |
+103 | /         if let CachedPipelineState::Err(error) = &pipeline.state {
+104 | |             if !matches!(
+105 | |                 error,
+106 | |                 ShaderCacheError::ShaderNotLoaded(_)
+...   |
+111 | |         }
+    | |_________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#collapsible_if
+    = note: `#[warn(clippy::collapsible_if)]` on by default
+help: collapse nested if block
+    |
+103 ~         if let CachedPipelineState::Err(error) = &pipeline.state
+104 ~             && !matches!(
+105 |                 error,
+...
+109 |                 return Err(format!("GPU pipeline failed: {error}").into());
+110 ~             }
+    |
+
+warning: `client_core` (example "terrain_probe") generated 1 warning (run `cargo clippy --fix --example "terrain_probe" -p client_core -- ` to apply 1 suggestion)
+    Finished `dev` profile [optimized] target(s) in 14.08s

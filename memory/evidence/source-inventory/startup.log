@@ -1,0 +1,9 @@
+2026-11-11T21:18:53.971403Z  INFO bevy_diagnostic::system_information_diagnostics_plugin::internal: SystemInfo { os: "Linux (EndeavourOS rolling)", kernel: "6.18.52-1-lts", cpu: "13th Gen Intel(R) Core(TM) i9-13900H", core_count: "14", memory: "15.3 GiB" }
+2026-11-11T21:18:54.002291Z  INFO bevy_render::renderer: AdapterInfo { name: "NVIDIA GeForce RTX 4060 Laptop GPU", vendor: 4318, device: 10400, device_type: DiscreteGpu, device_pci_bus_id: "0000:01:00.0", driver: "NVIDIA", driver_info: "615.71.09", backend: Vulkan, subgroup_min_size: 32, subgroup_max_size: 32, transient_saves_memory: Some(false), limit_bucket: None }
+2026-11-11T21:18:54.171668Z  INFO bevy_pbr::cluster: GPU clustering is supported on this device.
+2026-11-11T21:18:54.171704Z  INFO bevy_render::batching::gpu_preprocessing: GPU preprocessing is fully supported on this device.
+2026-11-11T21:18:54.172180Z  INFO bevy_winit::system: Creating new window Midnight Survival (77v0)
+2026-11-11T21:18:54.196825Z  WARN sctk_adwaita::buttons: Ignoring unknown button type: menu
+2026-11-11T21:19:01.899808Z  INFO client_core::application: Loaded 400 validated APK terrain/road meshes; 40 legacy models remain pending source reconstruction
+2026-11-11T21:19:01.903127Z  WARN client_core::terrain: Terrain_jichang: source mesh has no tangents; rendering geometric normals. Original shader LOD remains unverified.
+2026-11-11T21:19:01.908614Z  INFO client_core::application: Renderer: Vulkan | GPU: NVIDIA GeForce RTX 4060 Laptop GPU | DiscreteGpu

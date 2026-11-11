@@ -32,7 +32,9 @@ product count, time, workbench/level, mode and unlock flags. The single
 `CraftRecipeCfg` row is ID 51010, referenced by `BatteryMakerBoard`; treating
 that table as all normal crafting recipes would omit the 315 blueprints.
 The source equipment-slot rows are not a declaration of backpack/hotbar
-capacity. Bag-size messages and runtime setup still need tracing.
+capacity. The later [inventory audit](evidence/inventory-rules-source-review.md)
+recovers explicit snapshot/capacity-change bodies and runtime display behavior;
+authoritative starter capacity and contents remain unknown.
 
 ## Runtime integration and transaction support
 
@@ -57,6 +59,31 @@ Prototype items, starter inventories, 6/18 slot limits and fixture recipes are
 not mapped to source IDs by names. The imported island has no fabricated
 starter inventory or fixture resource locations. Source harvesting, consumable
 effects, durability and full item use remain separate implementation steps.
+
+## Source body and replica boundary
+
+The later [player/inventory milestone](implementation-player-inventory-2026-11-11.md)
+adds `inventory_wire`, `SourceBagState`, shared `SourceInventoryWorld` and
+`inspect_inventory`. These preserve server-supplied instance identities,
+separate bag/skin/quick/equipment collections, signed source fields and opaque
+extra bytes. Count updates are absolute; capacity shrink does not discard
+items; count alerts do not change inventory. A supplied monotonic receive
+clock converts deadlines following the recovered base handlers.
+
+This received-state projection is separate from the earlier local
+`SourceInventory` stacking/completed-craft helper. Incoming snapshots are not
+rejected using ItemCfg pile limits: the native community-server override can
+raise those limits. Admission bounds and positive-count/identity validation are
+documented reconstruction policies. The authority adapter requires an admitted
+player; original frame/session authentication is still the caller's unresolved
+boundary. No source body is added to the fixture QUIC protocol.
+
+Bevy UI can display the local player's supplied source state with bounded
+entries and source font. A newly registered bag is uninitialized. Decode-only
+SetQuickUseItem/SyncBagItem/ClearAllBag remain unsupported at application;
+weapon effects, expiry, consumable callbacks and full original crafting are
+still separate work. Duration field updates are supported by this projection;
+that does not establish durability damage/repair rules.
 
 ## Reproduce and validate
 

@@ -1,0 +1,172 @@
+{
+  "schema": 1,
+  "evidence_kind": "bounded static source-native observation",
+  "source_apk": "export/lite4.0.apk",
+  "source_apk_sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df",
+  "source_native": "/tmp/codex-minimap-review/libil2cpp.so",
+  "source_native_sha256": "2e2efde1a103549694b17b361cacc18faa5714d06c444945e44b30f1377e2b3c",
+  "source_native_bytes": 76608224,
+  "helper": "/tmp/codex-minimap-review/native",
+  "helper_sha256": "000d6b773e4f8ed574b62b1803a1d4d1314bd0178262359cb3a176a5ac7fd8e9",
+  "helper_source_sha256": "91d59a9b3b42ca2e4af1880151decd98b5c00d982978c4e5a9848f8eea03bf18",
+  "helper_decoder": "installed Capstone 5.0, AArch64 little-endian",
+  "mapping": "all requested ranges wholly inside PT_LOAD p_offset=p_vaddr=0; virtual addresses therefore equal source file offsets; load base unobserved",
+  "limitations": [
+    "Static source base methods only; IFix runtime patch state unobserved.",
+    "No original runtime snapshot or packet capture read.",
+    "No original server starter-generation logic available.",
+    "Read-only exact ranges, no broad native target import or scan."
+  ],
+  "ranges": [
+    {
+      "name": "bag-capacity",
+      "start_va": "0x1942bd0",
+      "end_va_inclusive": "0x1942c73",
+      "file_offset": 26487760,
+      "bytes": 164,
+      "raw_sha256": "0679a4ae57722342f862e8fe7b5628fe4f155eb9842d0812da02afb8af0d5444",
+      "raw": "bag-capacity.bin",
+      "disassembly": "bag-capacity.asm"
+    },
+    {
+      "name": "real-bag-capacity",
+      "start_va": "0x1942c74",
+      "end_va_inclusive": "0x1942cbb",
+      "file_offset": 26487924,
+      "bytes": 72,
+      "raw_sha256": "e08a08ae61322670523784f0302ae9a40fb3f0964833396c2c923a17967849e8",
+      "raw": "real-bag-capacity.bin",
+      "disassembly": "real-bag-capacity.asm"
+    },
+    {
+      "name": "bag-size-change",
+      "start_va": "0x194bc78",
+      "end_va_inclusive": "0x194bd3b",
+      "file_offset": 26524792,
+      "bytes": 196,
+      "raw_sha256": "51bbbfe3f1c14e8ff73195396071e004a226fa319b33726b07da450d1764adc4",
+      "raw": "bag-size-change.bin",
+      "disassembly": "bag-size-change.asm"
+    },
+    {
+      "name": "items-snapshot",
+      "start_va": "0x1953eb0",
+      "end_va_inclusive": "0x19541df",
+      "file_offset": 26558128,
+      "bytes": 816,
+      "raw_sha256": "5a5e2689e55bc3c06a50f75bb28ac833a3650dea87450c996a556069ea5550da",
+      "raw": "items-snapshot.bin",
+      "disassembly": "items-snapshot.asm"
+    },
+    {
+      "name": "item-changed",
+      "start_va": "0x1952174",
+      "end_va_inclusive": "0x19530cb",
+      "file_offset": 26550644,
+      "bytes": 3928,
+      "raw_sha256": "759ed4a458809744bbee1632fed85f2439194b8f8ca854f8c616794c4f627c25",
+      "raw": "item-changed.bin",
+      "disassembly": "item-changed.asm"
+    },
+    {
+      "name": "quick-item-changed",
+      "start_va": "0x194867c",
+      "end_va_inclusive": "0x1948d8f",
+      "file_offset": 26510972,
+      "bytes": 1812,
+      "raw_sha256": "266b1c2ca9f6bae4c3964e877744b005658c4b363c205b6ffbb5802690df4fa0",
+      "raw": "quick-item-changed.bin",
+      "disassembly": "quick-item-changed.asm"
+    },
+    {
+      "name": "item-duration-changed",
+      "start_va": "0x1951ef0",
+      "end_va_inclusive": "0x1952173",
+      "file_offset": 26550000,
+      "bytes": 644,
+      "raw_sha256": "337309a661bf551066236c6319d290a424282f6c1bb3e57846c792ee574e0dbc",
+      "raw": "item-duration-changed.bin",
+      "disassembly": "item-duration-changed.asm"
+    },
+    {
+      "name": "lookup-bag-quick",
+      "start_va": "0x1948d90",
+      "end_va_inclusive": "0x1948fdf",
+      "file_offset": 26512784,
+      "bytes": 592,
+      "raw_sha256": "a037a19b8d32ec1534f45d370eb9f34fae5322b4f31a68a21128d5f1b95d1a62",
+      "raw": "lookup-bag-quick.bin",
+      "disassembly": "lookup-bag-quick.asm"
+    },
+    {
+      "name": "lookup-all-containers",
+      "start_va": "0x194738c",
+      "end_va_inclusive": "0x194769b",
+      "file_offset": 26506124,
+      "bytes": 784,
+      "raw_sha256": "77632c28833427216adab94e68d0bc4941a0e8d2981532d442be50165cc8f790",
+      "raw": "lookup-all-containers.bin",
+      "disassembly": "lookup-all-containers.asm"
+    },
+    {
+      "name": "remove-item",
+      "start_va": "0x1949324",
+      "end_va_inclusive": "0x19495c3",
+      "file_offset": 26514212,
+      "bytes": 672,
+      "raw_sha256": "8cc014560f8d886be18b550b7774536bbda4c2ac159797415efee8735ebe0373",
+      "raw": "remove-item.bin",
+      "disassembly": "remove-item.asm"
+    },
+    {
+      "name": "sort-bag",
+      "start_va": "0x1963988",
+      "end_va_inclusive": "0x1963a3f",
+      "file_offset": 26622344,
+      "bytes": 184,
+      "raw_sha256": "e86a8b24348e82fd00cf2821e5ae6930bc53216dc97bb5135826d00148f0b4f4",
+      "raw": "sort-bag.bin",
+      "disassembly": "sort-bag.asm"
+    },
+    {
+      "name": "init-data",
+      "start_va": "0x1954dd4",
+      "end_va_inclusive": "0x19551ab",
+      "file_offset": 26562004,
+      "bytes": 984,
+      "raw_sha256": "9653c0af7ece7073d41c0f8b0003cbba095032cf40782214c81254aa6c108ce0",
+      "raw": "init-data.bin",
+      "disassembly": "init-data.asm"
+    },
+    {
+      "name": "bag-ctor",
+      "start_va": "0x1943d54",
+      "end_va_inclusive": "0x1947223",
+      "file_offset": 26492244,
+      "bytes": 13520,
+      "raw_sha256": "20314d9aa9510dc5f80922aa0325e9ffefad8d1f6ec8beefb809aaa7ebda7986",
+      "raw": "bag-ctor.bin",
+      "disassembly": "bag-ctor.asm"
+    },
+    {
+      "name": "max-pile-override",
+      "start_va": "0x1800b20",
+      "end_va_inclusive": "0x1800d13",
+      "file_offset": 25168672,
+      "bytes": 500,
+      "raw_sha256": "64f80c38cb7e46e5c3c525b9c450c5afe536e6c9843cd4ffd227c041b426811e",
+      "raw": "max-pile-override.bin",
+      "disassembly": "max-pile-override.asm"
+    },
+    {
+      "name": "timeout-clock",
+      "start_va": "0x3423970",
+      "end_va_inclusive": "0x3423997",
+      "file_offset": 54671728,
+      "bytes": 40,
+      "raw_sha256": "3cdb70917c2661ea3b1b0291a855e7d8183808217553dadda9e19c586947ec86",
+      "raw": "timeout-clock.bin",
+      "disassembly": "timeout-clock.asm"
+    }
+  ]
+}

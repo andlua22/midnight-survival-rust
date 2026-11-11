@@ -3,10 +3,33 @@
 This directory records evidence, decisions, commands and unfinished work for
 the Rust/Bevy reconstruction of `export/lite4.0.apk`.
 
-Current continuation (2026-11-11): use [the implementation ledger](../PLAN/source_reconstruction.md),
+Current continuation (2026-11-12): use [the implementation ledger](../PLAN/source_reconstruction.md),
 [MapObject implementation](implementation-mapobjects-2026-11-11.md),
 [source imports](source-imports-2026-11-11.md), [gameplay data](gameplay-data-2026-11-11.md)
-and [storage audit](storage-2026-11-11.md). The client now uses native Bevy UI,
+and [storage audit](storage-2026-11-11.md). The latest step is
+[standing clearance and crouch callback](implementation-player-clearance-2026-11-12.md):
+exact RootBone cast requests, shared queries with explicit unresolved results,
+atomic prefab layer/trigger metadata and ordered OnClickCrouch2 continuation.
+Workspace validation passed 199 tests (10 ignored), with the separately selected
+real supermarket-package test and all-target check also passing.
+[Native clearance](evidence/player-clearance-native/README.md) and
+[transition evidence](evidence/player-transitions-native/README.md) retain Move
+invocation/FSM order, cast constants and callback targets/gates/audio order.
+The preceding [player state/input definitions](implementation-player-state-2026-11-11.md)
+retain all 62 exact StateIDs, source magnitude/orientation and Stand Run/Rush
+classification.
+The preceding completed boundary is
+[player/inventory implementation](implementation-player-inventory-2026-11-11.md):
+strict source bodies, atomic shared state, lifecycle, Bevy UI binding and a
+bounded Rust inspector. [Inventory rules](evidence/inventory-rules-source-review.md)
+and [player definitions](evidence/player-rules-source-review.md) retain native
+provenance and unresolved effects. No authentic source snapshot/session adapter
+is supplied; active source movement and animation remain unported. Continue
+with the actual rig and effective RootBone/HeadTop transforms, source terrain
+layers, runtime trigger/overlap policy, the distinct PaUp query and FSM switch
+arbitration before active posture/UI/audio bindings, then unresolved item-use
+rules. The latest disk check found about 127 GiB free; no cleanup was required.
+The client now uses native Bevy UI,
 a ray-marched atmosphere and shared validated island collision/content identity.
 The Bevy/egui notes and older captures below describe the preserved earlier
 implementation. Original-runtime 1:1 gameplay and pixel parity remain open.
@@ -21,7 +44,13 @@ The verified UI source package is under `assets/imported_ui/`, keyed by APK
 SHA-256 and schema version. The current Linux runtime uses native Bevy UI.
 The terrain package now includes the omitted Z-01 scene: 400 render instances
 and 383 solid colliders. Its predecessor and earlier capture evidence remain
-available. The older egui implementation reports below are historical.
+available. The current desktop preset retains directional shadow maps and
+disables the contact effect that caused prefab wall dots. The final
+[prefab](evidence/prefab-shadow-fixed-bevy/README.md),
+[environment](evidence/environment-shadow-fixed-bevy/README.md) and
+[game-window startup](evidence/desktop-shadow-fixed-bevy/README.md) evidence
+includes the native Tab routing correction. The older egui implementation
+reports below are historical.
 
 Compact reports: [terrain](evidence/terrain-verification.json),
 [UI](evidence/ui-verification.json), and
@@ -64,7 +93,7 @@ recovered files inside lite4.0.apk as memory dumps of the encrypted game.
 
 The user writes Ukrainian and wants English responses. Write new tools in
 Rust and reuse installed Unity/REA utilities and C# evidence. No Python was
-executed during this work; do not use it without a concrete missing capability.
+executed during this work; keep the extraction and investigation in Rust.
 
 Preserve user changes and old assets. Record static observations, Bevy renderer
 validation and unverified APK runtime behavior separately. REA is already

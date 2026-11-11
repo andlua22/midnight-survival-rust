@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "evidence_kind": "bounded static source-native observation",
+  "provenance": "manifest.json",
+  "source_native_sha256": "2e2efde1a103549694b17b361cacc18faa5714d06c444945e44b30f1377e2b3c",
+  "mapping": "All requested ranges lie wholly inside PT_LOAD p_offset=p_vaddr=0; virtual addresses equal source file offsets.",
+  "limitations": [
+    "Unpatched base methods only; IFix runtime state unobserved.",
+    "SetQuickUse slice includes GetQuickUseItemByIndex helper at 0x1951304; its complete domain behavior remains unsupported.",
+    "PutToHand slice ends before SmartPutAllGunPart helper at 0x194c92c; downstream weapon effects remain outside this audit."
+  ],
+  "ranges": [
+    {
+      "name": "clear-all-handle",
+      "start_va": "0x194ba50",
+      "end_va_inclusive": "0x194bb3b",
+      "file_offset": 26524240,
+      "bytes": 236,
+      "disassembly": "clear-all-handle.asm",
+      "disassembly_sha256": "27f8b06992178fd6a20bb88ed856e960f6038edde9fb141244984abd51b4fd59"
+    },
+    {
+      "name": "clear",
+      "start_va": "0x194bb3c",
+      "end_va_inclusive": "0x194bc1f",
+      "file_offset": 26524476,
+      "bytes": 228,
+      "disassembly": "clear.asm",
+      "disassembly_sha256": "481d7c95c338c11d13d004e415d2eb0cdfd8d6818ffa2270fb5422a53aaa838e"
+    },
+    {
+      "name": "clear-list",
+      "start_va": "0x19624fc",
+      "end_va_inclusive": "0x19625fb",
+      "file_offset": 26617084,
+      "bytes": 256,
+      "disassembly": "clear-list.asm",
+      "disassembly_sha256": "91347b2b46dad236e4036b41bf0ec1237cdbf343b821e557552cf7fbe3a4fdc0"
+    },
+    {
+      "name": "clear-quick",
+      "start_va": "0x19625fc",
+      "end_va_inclusive": "0x19628eb",
+      "file_offset": 26617340,
+      "bytes": 752,
+      "disassembly": "clear-quick.asm",
+      "disassembly_sha256": "2f1a5b876eab709afd4807a23803c1f2340c1d4e4315bb29c9ce6925844e311b"
+    },
+    {
+      "name": "put-to-hand",
+      "start_va": "0x194c710",
+      "end_va_inclusive": "0x194c92b",
+      "file_offset": 26527504,
+      "bytes": 540,
+      "disassembly": "put-to-hand.asm",
+      "disassembly_sha256": "28292e611905274894f2ccf1da784057a3a8a35f4f1605192673b2f4cfdbd541"
+    },
+    {
+      "name": "set-quick-use",
+      "start_va": "0x1950c68",
+      "end_va_inclusive": "0x19513cf",
+      "file_offset": 26545256,
+      "bytes": 1896,
+      "disassembly": "set-quick-use.asm",
+      "disassembly_sha256": "7eb886a799a5f8c7a31076b2f2f9698412d9fb4def0af347d05bfcd233790916"
+    },
+    {
+      "name": "equip-item-ids",
+      "start_va": "0x19430d8",
+      "end_va_inclusive": "0x19432bf",
+      "file_offset": 26489048,
+      "bytes": 488,
+      "disassembly": "equip-item-ids.asm",
+      "disassembly_sha256": "2583ab680641b5c1566306bb6536e81ebf0c6972aa82ca6ff18b9842425c530a"
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "scope": "Bounded static unpatched source/native base methods; not original-game execution, transition commits or REA provider Evidence IDs",
+  "apk": {
+    "path": "export/lite4.0.apk",
+    "sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df"
+  },
+  "elf": {
+    "path": "/tmp/codex-minimap-review/libil2cpp.so",
+    "bytes": 76608224,
+    "sha256": "2e2efde1a103549694b17b361cacc18faa5714d06c444945e44b30f1377e2b3c"
+  },
+  "helper": {
+    "path": "/tmp/codex-minimap-review/native",
+    "sha256": "000d6b773e4f8ed574b62b1803a1d4d1314bd0178262359cb3a176a5ac7fd8e9",
+    "source_path": "/tmp/codex-minimap-review/native.rs",
+    "source_sha256": "91d59a9b3b42ca2e4af1880151decd98b5c00d982978c4e5a9848f8eea03bf18",
+    "engine": "Capstone 5.0"
+  },
+  "sources": [
+    {
+      "path": "export/StateID.cs",
+      "sha256": "e73cf0980f13eacad21666812d6484dc55ac7148d3947d60485a42f5a156fd0e"
+    },
+    {
+      "path": "export/SC.UI/BattlePanel.cs",
+      "sha256": "78f629061a39a1901ca3f7019a8fc8b64f382f092cd695d8b058078a0c5a65f0"
+    },
+    {
+      "path": "export/BaseFsmState.cs",
+      "sha256": "f788c8f07236a7b3342d57b413b92d7940b908b7158810075ee3f483bb252339"
+    },
+    {
+      "path": "export/BaseFsmSystem.cs",
+      "sha256": "fedeae647d7b0baf2d1bdcef256e3abb82aac2aa5a3f10acf922d267563d94e7"
+    },
+    {
+      "path": "export/FSMState.cs",
+      "sha256": "be1a559e3bbfd11789086c9ef769a008bd321091bb8f491a98d31e25be3c44a3"
+    },
+    {
+      "path": "export/PlayerController.cs",
+      "sha256": "c835524a62f5b674c36cc3772ba5de1b3ba191de52699889266df34a2a34bd56"
+    },
+    {
+      "path": "export/BasePlayerController.cs",
+      "sha256": "b1322444dcd7a3aa5a13218af6ba6b4359843410e861456036e995ea2632c541"
+    },
+    {
+      "path": "export/StandState.cs",
+      "sha256": "19a3f0a3797d47f2bc096544e65a49e24d88017ebbb0fbcca9a45795423fc903"
+    },
+    {
+      "path": "export/CrouchState.cs",
+      "sha256": "1f193f309fdee229769b58e36fcbdfc57b7a9500db921f1029609d30b53b2d4a"
+    },
+    {
+      "path": "export/CrouchDownState.cs",
+      "sha256": "eac0628512df81a6b9caf4ceedbe5618f7ecb0fd137035a71c9e9e3b2fcb1485"
+    },
+    {
+      "path": "export/AudioManager.cs",
+      "sha256": "563f8bd888f4f5bb10e2f0571d1cbeb125f98dac600ac5fdc12467db010314af"
+    },
+    {
+      "path": "export/Battle.cs",
+      "sha256": "c519bfc31679f5a0b6c3ef236fdf96ad8137386ba6f40c7e7e00fd6b16f6fc5d"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "memory/evidence/player-transitions-native/README.md",
+      "sha256": "b42749bff489ace3a3d0c068e2d863dea3bb560a4ea8aa2194de080001184100"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/battle-awake-prologue-slice.asm",
+      "sha256": "cfd443569d5c61078f52793002c53eefa8163c7829ce7249619436f49174b1c9",
+      "rva": "0x20503f4",
+      "length": "0x5c",
+      "scope": "slice: Battle.Awake prologue sets x19=this"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/battle-awake-ins-store-slice.asm",
+      "sha256": "5ba3e50c660d6bb8e8e989697288a30a38eca29a50839638d39a95b46895080f",
+      "rva": "0x20508cc",
+      "length": "0x54",
+      "scope": "slice: Battle.Ins store and LoadFinish clear"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/stand-enter.asm",
+      "sha256": "f96d5d611a424c4aeffd12e6bdde5495724c46512795681f5d277946275c980d",
+      "rva": "0x1e7b110",
+      "length": "0x430",
+      "method": "StandState.DoBeforeEntering"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/crouch-enter.asm",
+      "sha256": "be92301a44d0f570b0f0d852c3e6a587385179b7e8a4c4ebf0541ea586981bbe",
+      "rva": "0x1e612d4",
+      "length": "0x2d4",
+      "method": "CrouchState.DoBeforeEntering"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/stand-act.asm",
+      "sha256": "4b46bd676bb4c9da849a0fc2cac1ba0301c6f231d2648f21c37a9417c7f392c9",
+      "rva": "0x1e7b5f4",
+      "length": "0x154",
+      "method": "StandState.Act"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/crouch-act.asm",
+      "sha256": "fc0dcca849069301465380241436ce5bb5d29e7791e8c040e992263727481ba7",
+      "rva": "0x1e618c8",
+      "length": "0xb4",
+      "method": "CrouchState.Act"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/stand-coroutine-next.asm",
+      "sha256": "c78ca9686420d13745b48d3fb2072b162de3ce11a2698d1f15e5fe68556e9a25",
+      "rva": "0x1e7cbb4",
+      "length": "0xbc",
+      "method": "StandState.ActCoroutine.MoveNext"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/crouch-coroutine-next.asm",
+      "sha256": "5060bb7b0e2dec8f0439334985fc8b5b7840a2c5596ced6aecce2361aa67e1c1",
+      "rva": "0x1e6222c",
+      "length": "0xd0",
+      "method": "CrouchState.ActCoroutine.MoveNext"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/stand-reason.asm",
+      "sha256": "360e60555649bd0eb82c06f031c7614a84e9046ba1df40e6d4121f190cae7734",
+      "rva": "0x1e7b9d0",
+      "length": "0x5c",
+      "method": "StandState.Reason"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/crouch-reason.asm",
+      "sha256": "d354cd0200a6f01bea50bf11e81d177baad83fffd028b0b70af28b2888d57231",
+      "rva": "0x1e61c90",
+      "length": "0x44",
+      "method": "CrouchState.Reason"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/crouch-down-enter.asm",
+      "sha256": "174f2708b8d7df5fb96fe4611dc1908eea20037c35c716021a7494355e02ca61",
+      "rva": "0x1e60d5c",
+      "length": "0x180",
+      "method": "CrouchDownState.DoBeforeEntering"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/crouch-down-change-animation.asm",
+      "sha256": "6deac343caad53559dc0f3752e9ecc2a243afd614c14bbf6c93351a31e5222b1",
+      "rva": "0x1e60edc",
+      "length": "0xd4",
+      "method": "CrouchDownState.UpdatePlayAimator"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/crouch-down-leave-act.asm",
+      "sha256": "0ba7eb390a3af2f7e86ad5b33b53df958304d1fb5d74400ff57fe59c449e15e6",
+      "rva": "0x1e60fb0",
+      "length": "0xb4",
+      "method": "CrouchDownState.DoBeforeLeaving and Act, adjacent complete bodies"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/crouch-down-reason.asm",
+      "sha256": "7cf7cefbc9cae8df12eb16fb9f709a2be0cb36bcfac55f6e03ddcc34436d2200",
+      "rva": "0x1e61064",
+      "length": "0x1a0",
+      "method": "CrouchDownState.Reason"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/player-update.asm",
+      "sha256": "9fd9f71c796a9116bcd07d1e89e71ef9f4eb90af0b98441884a79952056842ff",
+      "rva": "0x1eb568c",
+      "length": "0x2a4",
+      "method": "PlayerController.Update"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/fsm-update.asm",
+      "sha256": "45a993fb7ad64d752796f91cdb2d1b1916a2b6eaa2e9de1a15eae6901c11fc3a",
+      "rva": "0x2dd5d58",
+      "length": "0xc8",
+      "method": "BaseFsmSystem<T>.Update"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/ui-click-crouch2.asm",
+      "sha256": "14c04bf214942f04498fbc8b5ab89b7b9b4395b2b80d91b71d0e3528d9c81bb2",
+      "rva": "0x14d53c8",
+      "length": "0x330",
+      "method": "SC.UI.BattlePanel.OnClickCrouch2"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/ui-click-crouch.asm",
+      "sha256": "a314811679c17d5387ab53bb6baf8d04f673983bb05efb88f6dfa18ae2d039a9",
+      "rva": "0x14ddd9c",
+      "length": "0x1b4",
+      "method": "SC.UI.BattlePanel.OnClickCrouch"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/ui-click-stand.asm",
+      "sha256": "cda5408abe67859c8d96ee68c97fc71bf63a1b3bd3f64ed56ef7dc5d0d11cef9",
+      "rva": "0x14ddf50",
+      "length": "0x1a4",
+      "method": "SC.UI.BattlePanel.OnClickStand"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/horizontal-lerp.words",
+      "sha256": "f631774e986a935647bc611c9ef494fb691a2a2b881e56e8cd94e6a849a64e30",
+      "rva": "0x361f9e8",
+      "length": "0x4",
+      "kind": "words"
+    },
+    {
+      "path": "memory/evidence/player-transitions-native/stand-forward-lerp.words",
+      "sha256": "26e86996859c930bb8ed3c3529945e86126e56d27631a1b2fb51dec087e244f8",
+      "rva": "0x361f580",
+      "length": "0x4",
+      "kind": "words"
+    }
+  ],
+  "limitations": [
+    "IFix branches bypass recovered base procedures; runtime patch selection is unknown",
+    "Returned SwitchState requests do not establish committed state",
+    "Repeated ID reads and panel/global player targets must remain distinct",
+    "Audio IDs339/435 and request order are verified; playback params and assets remain external",
+    "CheckCanPaUp verdict remains externally supplied; not equated with PaToStand",
+    "Effective player transforms, capsule scaling, animation/root motion and physical movement remain unported",
+    "Battle.Awake slices authenticate only selected owner/field stores; not whole-method behavior"
+  ]
+}
+

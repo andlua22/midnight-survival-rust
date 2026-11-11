@@ -42,7 +42,8 @@ are not evidence of the original game's rules.
 |---|---|
 | WASD / mouse | Move / look |
 | Space / Shift | Jump / sprint |
-| Tab or I | Inventory and recovered item/blueprint catalog |
+| Tab | Open inventory during play; move focus inside menus (Shift+Tab moves backward) |
+| I | Toggle inventory and the recovered item/blueprint catalog |
 | M / minimap click | Map |
 | Wheel over minimap | Minimap zoom |
 | Escape | Menu or close a modal screen |
@@ -74,10 +75,33 @@ source APK, exports, hashes and import reports.
   shared Box/Mesh collision queries. World placement, original glass/cubemap
   shading and gameplay callbacks still need source verification.
 
-The source catalog can be browsed in bounded pages. Source inventory capacity,
-unlocks, crafting clocks, durability and callbacks must be recovered before
-these definitions replace the fixture's rules. The imported island does not
-receive invented starter items or fixture resource placements.
+The source catalog can be browsed in bounded pages. A source inventory snapshot
+and its supported count, quick-slot, capacity, durability and held-instance
+changes now use the same atomic state implementation in the authority and
+client. Bevy UI displays that state when supplied; a fresh island session has
+no source snapshot or invented starter capacity/items. Original transport,
+item-use effects, full slot swaps, expiry and crafting callbacks remain open.
+Verified player definitions now include all 62 source state IDs, native input
+orientation/Stand Run-Rush rules, exact RootBone standing casts and the ordered
+crouch callback. Shared clearance queries retain prefab collision layers and
+report unresolved layer/trigger/overlap inputs. Connecting this callback to
+gameplay requires the source rig, terrain layers and FSM arbitration; active
+movement/camera still use provisional values. See
+[clearance/crouch validation](memory/implementation-player-clearance-2026-11-12.md),
+[player state validation](memory/implementation-player-state-2026-11-11.md) and
+[player/inventory validation](memory/implementation-player-inventory-2026-11-11.md).
+
+The Rust inspector accepts explicit inventory bodies against a verified catalog:
+
+```sh
+cargo run --offline --locked -p midnight_game_data --bin inspect_inventory -- --help
+```
+
+Supply `--catalog`, then `--packet TYPE_ID REALTIME_SECONDS BODY_PATH` in
+receive order, starting with `SItems` (59771964). Time means monotonic seconds
+since runtime startup. `--report NEW_PATH` creates a report only after all
+bodies decode and apply successfully, and refuses an existing path. Inspection
+does not establish captured-body provenance or original session authentication.
 
 ## Multiplayer
 
@@ -109,6 +133,13 @@ incremental output and debug information to keep link sizes bounded. The
 [storage audit](memory/storage-2026-11-11.md) records exact rebuildable cache
 candidates and protected data. The audit script only reports storage; it never
 deletes files or changes system configuration.
+
+The latest clearance/crouch validation passed 199 workspace tests (10 ignored),
+the separately selected retained-supermarket collision test, all-target
+workspace check and strict Clippy for the changed data/shared-library scope.
+[The evidence ledger](memory/evidence/player-clearance-rust/README.md) records
+the exact scope and remaining runtime dependencies. About 127 GiB was free at
+the latest read-only disk check; no cleanup was needed.
 
 ```sh
 cargo check --offline --locked --workspace --all-targets

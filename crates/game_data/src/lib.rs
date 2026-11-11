@@ -6,7 +6,13 @@ use std::{
     fmt,
 };
 
+pub mod clearance;
+pub mod controller;
+pub mod inventory_wire;
 pub mod package;
+pub mod player_state;
+pub mod posture;
+pub mod source_bag;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DataError(pub String);
@@ -191,7 +197,7 @@ pub struct UseItemConfig {
     pub walk_speed_rate: f32,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
 pub struct GameplayCatalog {
     pub items: BTreeMap<i32, ItemConfig>,
     pub recipes: BTreeMap<i32, RecipeConfig>,
@@ -568,7 +574,7 @@ impl GameplayCatalog {
 mod tests {
     use super::*;
 
-    fn item(id: i32, pileable: bool, max_pile: i32) -> ItemConfig {
+    pub(crate) fn item(id: i32, pileable: bool, max_pile: i32) -> ItemConfig {
         ItemConfig {
             id,
             name: format!("item-{id}"),
@@ -625,7 +631,7 @@ mod tests {
         raw
     }
 
-    fn catalog() -> GameplayCatalog {
+    pub(crate) fn catalog() -> GameplayCatalog {
         GameplayCatalog {
             items: BTreeMap::from([
                 (50001, item(50001, true, 5)),

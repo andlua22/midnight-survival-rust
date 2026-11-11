@@ -13,6 +13,7 @@ pub mod prediction;
 pub mod protocol;
 pub mod replication;
 pub mod simulation;
+pub mod source_inventory;
 pub mod survival;
 pub mod world;
 

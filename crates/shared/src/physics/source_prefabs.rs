@@ -19,7 +19,9 @@ fn invalid(message: impl Into<String>) -> ArchiveError {
 impl CollisionWorld {
     /// Prepare all shapes before replacing one instance. Root TRS is assigned
     /// exactly as by the source placement loader; local mesh positions are already
-    /// Bevy-space. A failed replacement leaves the previous instance/BVH intact.
+    /// Bevy-space. A failed replacement leaves the previous instance/BVH and
+    /// source layer/trigger metadata intact. Triggers remain unrepresented in
+    /// physical collision, but their layers are retained for explicit queries.
     /// This API does not authenticate arbitrary caller-provided coordinates.
     pub fn replace_source_prefab(
         &mut self,
@@ -39,6 +41,7 @@ impl CollisionWorld {
             .map(|m| (&m.source, m))
             .collect::<BTreeMap<_, _>>();
         let mut builders = Vec::new();
+        let mut trigger_layers = Vec::new();
         let mut report = PrefabCollisionReport::default();
         for (node, pose) in package.manifest.nodes.iter().zip(&poses) {
             let Some(pose) = pose else {
@@ -58,8 +61,13 @@ impl CollisionWorld {
                     report.inactive_or_disabled += 1;
                     continue;
                 }
+                let layer = u8::try_from(node.layer)
+                    .ok()
+                    .filter(|&layer| layer < 32)
+                    .ok_or_else(|| invalid("source collider layer must be in 0..32"))?;
                 if component.boolean("m_IsTrigger")? {
                     report.triggers += 1;
+                    trigger_layers.push(layer);
                     continue;
                 }
                 let builder = match component.class_id {
@@ -142,13 +150,14 @@ impl CollisionWorld {
                         )));
                     }
                 };
-                builders.push(builder);
+                builders.push((builder, layer));
                 report.source_colliders.push(component.source.clone());
             }
         }
         report.solid_colliders = builders.len();
         let removed = self.source_prefabs.remove(instance).unwrap_or_default();
         for &handle in &removed {
+            self.source_collision_layers.remove(&handle);
             self.colliders.remove(
                 handle,
                 &mut self.islands,
@@ -159,17 +168,29 @@ impl CollisionWorld {
         }
         let handles = builders
             .into_iter()
-            .map(|builder| self.colliders.insert(builder))
+            .map(|(builder, layer)| {
+                let handle = self.colliders.insert(builder);
+                self.source_collision_layers.insert(handle, layer);
+                handle
+            })
             .collect::<Vec<_>>();
         self.source_prefabs
             .insert(instance.to_owned(), handles.clone());
+        if trigger_layers.is_empty() {
+            self.source_unrepresented_trigger_layers.remove(instance);
+        } else {
+            self.source_unrepresented_trigger_layers
+                .insert(instance.to_owned(), trigger_layers);
+        }
         self.refresh(&handles, &removed);
         Ok(report)
     }
 
     pub fn remove_source_prefab(&mut self, instance: &str) {
+        self.source_unrepresented_trigger_layers.remove(instance);
         if let Some(handles) = self.source_prefabs.remove(instance) {
             for &handle in &handles {
+                self.source_collision_layers.remove(&handle);
                 self.colliders.remove(
                     handle,
                     &mut self.islands,
@@ -184,24 +205,24 @@ impl CollisionWorld {
 }
 
 #[cfg(test)]
-mod tests {
+pub(in crate::physics) mod tests {
     use super::*;
     use midnight_map_data::{
         FileIdentity, PrefabCollisionMesh, PrefabManifest, PrefabNode, SourceApk, SourceComponent,
     };
     use serde_json::json;
 
-    const IDENTITY: [f32; 16] = [
+    pub(in crate::physics) const IDENTITY: [f32; 16] = [
         1., 0., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 0., 0., 1.,
     ];
-    fn source(id: i64) -> SourceObject {
+    pub(in crate::physics) fn source(id: i64) -> SourceObject {
         SourceObject {
             bundle: "source.ab".into(),
             cab: "CAB-source".into(),
             path_id: id.to_string(),
         }
     }
-    fn package() -> PrefabPackage {
+    pub(in crate::physics) fn package() -> PrefabPackage {
         let fields = json!({"m_Enabled":true, "m_IsTrigger":false, "m_Center":{"x":0.,"y":0.,"z":1.}, "m_Size":{"x":2.,"y":2.,"z":2.}});
         let component = SourceComponent {
             source: source(3),
@@ -293,8 +314,118 @@ mod tests {
                 .unwrap();
             assert_eq!(report.solid_colliders, 0);
             assert_eq!(report.inactive_or_disabled + report.triggers, 1);
+            assert!(world.source_collision_layers.is_empty());
+            if case == 2 {
+                assert_eq!(world.source_unrepresented_trigger_layers["flags"], [0]);
+            } else {
+                assert!(world.source_unrepresented_trigger_layers.is_empty());
+            }
             assert!(world.free_at([0., 0., -1.], None));
         }
+    }
+
+    #[test]
+    fn source_layer_and_trigger_metadata_follow_instance_replacement_and_removal() {
+        let mut world = CollisionWorld::new(MapId::ImportedIsland);
+        let mut first = package();
+        first.manifest.nodes[0].layer = 19;
+        let mut trigger = first.manifest.nodes[0].components[0].clone();
+        trigger.source = source(99);
+        trigger.fields["m_IsTrigger"] = json!(true);
+        first.manifest.nodes[0].components.push(trigger);
+        let report = world
+            .replace_source_prefab("first", &first, &source(1), IDENTITY)
+            .unwrap();
+        assert_eq!((report.solid_colliders, report.triggers), (1, 1));
+        let old = world.source_prefabs["first"][0];
+        assert_eq!(world.source_collision_layers.get(&old), Some(&19));
+        assert_eq!(world.source_unrepresented_trigger_layers["first"], [19]);
+        assert!(!world.free_at([0., 0., -1.], None));
+
+        let mut second = package();
+        second.manifest = first.manifest.clone();
+        second.manifest.nodes[0].layer = 30;
+        let mut moved = IDENTITY;
+        moved[12] = 50.;
+        world
+            .replace_source_prefab("second", &second, &source(1), moved)
+            .unwrap();
+        let second_handle = world.source_prefabs["second"][0];
+        assert_eq!(world.source_collision_layers.get(&second_handle), Some(&30));
+        assert_eq!(world.source_unrepresented_trigger_layers["second"], [30]);
+
+        first.manifest.nodes[0].layer = 0;
+        first.manifest.nodes[0].components.truncate(1);
+        world
+            .replace_source_prefab("first", &first, &source(1), IDENTITY)
+            .unwrap();
+        let replacement = world.source_prefabs["first"][0];
+        assert_eq!(world.source_collision_layers.get(&replacement), Some(&0));
+        assert!(!world.source_collision_layers.contains_key(&old));
+        assert!(world.colliders.get(old).is_none());
+        assert!(
+            !world
+                .source_unrepresented_trigger_layers
+                .contains_key("first")
+        );
+        assert_eq!(world.source_collision_layers.get(&second_handle), Some(&30));
+        assert!(!world.free_at([0., 0., -1.], None));
+
+        world.remove_source_prefab("first");
+        assert!(world.free_at([0., 0., -1.], None));
+        assert_eq!(world.source_collision_layers.len(), 1);
+        assert_eq!(world.source_collision_layers.get(&second_handle), Some(&30));
+        assert_eq!(world.source_unrepresented_trigger_layers["second"], [30]);
+        world.remove_source_prefab("second");
+        assert!(world.source_collision_layers.is_empty());
+        assert!(world.source_unrepresented_trigger_layers.is_empty());
+    }
+
+    #[test]
+    fn invalid_layer_and_late_shape_failure_preserve_existing_metadata_atomically() {
+        let mut world = CollisionWorld::new(MapId::ImportedIsland);
+        let mut valid = package();
+        valid.manifest.nodes[0].layer = 19;
+        let mut trigger = valid.manifest.nodes[0].components[0].clone();
+        trigger.source = source(99);
+        trigger.fields["m_IsTrigger"] = json!(true);
+        valid.manifest.nodes[0].components.push(trigger);
+        world
+            .replace_source_prefab("stable", &valid, &source(1), IDENTITY)
+            .unwrap();
+        let handles = world.source_prefabs["stable"].clone();
+        let layers = world.source_collision_layers.clone();
+        let triggers = world.source_unrepresented_trigger_layers.clone();
+        for invalid_layer in [-1, 32, 256] {
+            let mut invalid = package();
+            invalid.manifest = valid.manifest.clone();
+            invalid.manifest.nodes[0].layer = invalid_layer;
+            assert!(
+                world
+                    .replace_source_prefab("stable", &invalid, &source(1), IDENTITY)
+                    .is_err()
+            );
+            assert_eq!(world.source_prefabs["stable"], handles);
+            assert_eq!(world.source_collision_layers, layers);
+            assert_eq!(world.source_unrepresented_trigger_layers, triggers);
+        }
+
+        let mut late_failure = package();
+        late_failure.manifest = valid.manifest.clone();
+        late_failure.manifest.nodes[0].layer = 30;
+        let mut unsupported = late_failure.manifest.nodes[0].components[0].clone();
+        unsupported.source = source(100);
+        unsupported.class_id = 136;
+        late_failure.manifest.nodes[0].components.push(unsupported);
+        assert!(
+            world
+                .replace_source_prefab("stable", &late_failure, &source(1), IDENTITY)
+                .is_err()
+        );
+        assert_eq!(world.source_prefabs["stable"], handles);
+        assert_eq!(world.source_collision_layers, layers);
+        assert_eq!(world.source_unrepresented_trigger_layers, triggers);
+        assert!(!world.free_at([0., 0., -1.], None));
     }
 
     #[test]
@@ -413,6 +544,16 @@ mod tests {
             .unwrap();
         assert!(a.solid_colliders > 0);
         assert_eq!(a.source_colliders, b.source_colliders);
+        assert_eq!(server.source_collision_layers.len(), a.solid_colliders);
+        assert_eq!(client.source_collision_layers.len(), b.solid_colliders);
+        assert_eq!(
+            server
+                .source_unrepresented_trigger_layers
+                .values()
+                .map(Vec::len)
+                .sum::<usize>(),
+            a.triggers
+        );
         for (a, b) in server.source_prefabs["verified-preview"]
             .iter()
             .zip(&client.source_prefabs["verified-preview"])
@@ -420,6 +561,10 @@ mod tests {
             assert_eq!(
                 server.colliders[*a].compute_aabb(),
                 client.colliders[*b].compute_aabb()
+            );
+            assert_eq!(
+                server.source_collision_layers[a],
+                client.source_collision_layers[b]
             );
         }
         for position in [[0., 1., 0.], [5., 1., 5.], [-5., 1., -5.], [0., 10., 0.]] {

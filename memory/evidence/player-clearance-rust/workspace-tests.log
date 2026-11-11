@@ -1,0 +1,336 @@
+   Compiling midnight_game_data v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/game_data)
+   Compiling shared v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/shared)
+   Compiling midnight_network v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/network)
+   Compiling client_core v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/client_core)
+   Compiling server v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/server)
+   Compiling client_runner v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/client_runner)
+    Finished `test` profile [optimized] target(s) in 22.12s
+     Running unittests src/lib.rs (target/debug/deps/client_core-2c814490e9e154ec)
+
+running 46 tests
+test editor::tests::cancel_restores_committed_layout_including_preset_and_visibility ... ok
+test environment::tests::quality_settings_bound_shader_work ... ok
+test hud::tests::anchor_change_preserves_position_and_resize_preserves_saved_offsets ... ok
+test environment::tests::camera_settings_install_depth_and_hdr_requirements ... ok
+test editor::tests::failed_save_retains_draft_and_old_committed_layout ... ok
+test environment::tests::sun_passes_below_horizon_and_wraps_midnight ... ok
+test environment::tests::foreground_occludes_clouds_and_inside_camera_can_exit ... ok
+test editor::tests::successful_save_becomes_next_edit_sessions_baseline ... ok
+test hud::tests::every_widget_stays_accessible_at_resolutions_and_dpi_scales ... ok
+test hud::tests::drag_is_clamped_and_missing_widgets_are_restored ... ok
+test hud::tests::invalid_values_are_repaired_but_unknown_versions_are_rejected ... ok
+test hud::tests::source_minimap_uses_reference_canvas_scale_and_preserves_editor_settings ... ok
+test launch::tests::benchmark_enforces_no_vsync_and_preserves_paths_with_spaces ... ok
+test map_texture::tests::image_keeps_source_mips_color_space_and_sampler ... ok
+test metrics::tests::benchmark_excludes_warmup_and_finishes_once ... ok
+test launch::tests::invalid_or_incomplete_arguments_do_not_start_the_client ... ok
+test source_minimap::tests::native_bevy_ui_asset_bindings_keep_map_player_and_qualified_targets ... ignored, requires the retained APK-derived UI asset package
+test metrics::tests::long_session_histogram_keeps_slow_frames_and_exact_mean ... ok
+test source_prefabs::tests::lod_thresholds_select_source_levels_and_cull ... ok
+test source_prefabs::tests::source_reference_and_texture_st_convert_coordinate_frames_once ... ok
+test source_ui::native::tests::coverage_preserves_texture_holes_and_nested_masks ... ok
+test source_prefabs::tests::source_transform_rejects_shear_instead_of_discarding_it ... ok
+test source_ui::native::tests::source_uv_interpolation_is_preserved ... ok
+test storage::tests::benchmark_report_is_written_to_the_explicit_destination ... ok
+test source_minimap::tests::crop_and_markers_agree_after_movement_zoom_and_outside_overview_edges ... ok
+test storage::tests::io_failure_is_reported_and_does_not_destroy_existing_data ... ok
+test source_minimap::tests::far_waypoints_clamp_without_moving_the_map_crop_or_creating_nan ... ok
+test storage::tests::failed_rename_cleans_temporary_files_and_preserves_destination ... ok
+test storage::tests::partial_file_uses_its_declared_mobile_preset ... ok
+test storage::tests::round_trip_preserves_all_widget_settings_and_replaces_atomically ... ok
+test metrics::tests::fps_uses_total_elapsed_time_and_percentiles_include_slow_frames ... ok
+test source_ui::native::tests::native_text_clips_preserve_holes_and_nested_intersections_without_overlap ... ok
+test source_minimap::tests::simulation_binding_uses_tick_time_and_retires_dead_entities ... ok
+test source_minimap::tests::native_source_coordinates_put_north_up_and_east_right ... ok
+test storage::tests::xdg_paths_and_explicit_override_follow_platform_rules ... ok
+test storage::tests::corrupted_and_future_files_are_preserved_until_explicit_save ... ok
+test source_ui::native::tests::native_text_clip_fragmentation_is_bounded ... ok
+test native_ui::tests::modal_boundary_and_escape_restore_cursor_gameplay_state ... ok
+test source_prefabs::tests::lod_requires_one_camera_and_hides_parts_on_invalid_selection ... ok
+test native_ui::tests::desktop_overlays_spawn_and_retire_native_controls_across_modes ... ok
+test native_ui::tests::source_snapshot_and_size_update_refresh_native_inventory_in_the_application_frame ... ok
+test native_ui::tests::cached_native_material_refreshes_when_coordinate_pixels_change ... ok
+test source_prefabs::tests::lod_visibility_propagates_to_children_in_the_camera_update_frame ... ok
+test native_ui::tests::tab_opens_inventory_once_then_navigates_inventory_and_gm_controls ... ok
+test application::tests::volumetric_cloud_3d_density_texture_generation ... ok
+test application::tests::celestial_cloud_canopy_generation ... ok
+
+test result: ok. 45 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+     Running unittests src/main.rs (target/debug/deps/client_runner-9b431033fef24106)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/midnight_game_data-03eaf1a27dfbab50)
+
+running 44 tests
+test controller::tests::every_stand_modifier_rejects_non_finite_input ... ok
+test clearance::tests::unity_root_position_is_reflected_once_without_an_actor_offset ... ok
+test controller::tests::heel_adjustment_preserves_top_and_lowers_bottom_for_stand_and_crouch ... ok
+test clearance::tests::source_methods_preserve_rig_origin_and_distinct_cast_lengths ... ok
+test controller::tests::finite_inputs_that_overflow_are_rejected_at_the_request_boundary ... ok
+test controller::tests::ordinary_requests_use_each_modifier_and_keep_status_fields_separate ... ok
+test clearance::tests::non_finite_rig_pose_is_rejected_in_each_coordinate_frame ... ok
+test controller::tests::raw_jump_geometry_is_retained_and_unresolved_conversion_is_rejected ... ok
+test inventory_wire::tests::change_bodies_follow_their_own_orders_and_masks ... ok
+test inventory_wire::tests::dispatcher_accepts_only_known_complete_bodies ... ok
+test inventory_wire::tests::duplicate_quick_indexes_reject_the_complete_body ... ok
+test inventory_wire::tests::every_truncated_fixture_and_trailing_byte_is_rejected ... ok
+test inventory_wire::tests::plain_and_uniform_code_records_preserve_signed_fields_and_opaque_octets ... ok
+test inventory_wire::tests::invalid_lengths_counts_and_booleans_fail_before_publication ... ok
+test inventory_wire::tests::source_snapshot_masks_decode_distinct_collections_and_signed_quick_index ... ok
+test player_state::tests::forward_sector_boundaries_are_not_wrapped_or_widened ... ok
+test player_state::tests::gating_and_zero_input_preserve_native_fallback_and_angle_writes ... ok
+test player_state::tests::rush_threshold_uses_promoted_float_against_native_double ... ok
+test posture::tests::pa_requires_its_distinct_check_and_failure_re_reads_the_current_state ... ok
+test player_state::tests::raw_source_axes_and_gates_produce_expected_classification ... ok
+test player_state::tests::state_ids_round_trip_numerically_without_losing_source_names ... ok
+test player_state::tests::unknown_ids_and_non_integer_serialization_never_become_a_default_state ... ok
+test player_state::tests::orientation_preserves_source_factor_and_negative_zero_addition_rule ... ok
+test posture::tests::upper_body_attack_stops_before_any_base_read_or_effect ... ok
+test posture::tests::invalid_observations_and_completed_callbacks_preserve_control_state ... ok
+test tests::decodes_source_recipe_and_rejects_truncation_duplicate_or_negative_lengths ... ok
+test tests::source_stacks_respect_capacity_and_unknown_or_unresolved_items_roll_back ... ok
+test tests::malformed_utf8_boolean_and_nan_fail_before_publication ... ok
+test source_bag::tests::count_updates_are_absolute_preserve_existing_identity_and_deadline_and_create_with_receive_clock ... ok
+test source_bag::tests::duration_searches_each_compartment_and_hand_and_alert_do_not_move_items ... ok
+test posture::tests::crouched_clearance_blocks_or_switches_self_then_plays_audio_after_return ... ok
+test source_bag::tests::absent_active_zero_updates_remove_equipment_only_after_the_source_config_id_gate ... ok
+test source_bag::tests::snapshot_uses_config_identity_order_and_runtime_clock_without_stack_or_capacity_loss ... ok
+test source_bag::tests::quick_updates_move_bag_entries_but_preserve_existing_quick_key ... ok
+test player_state::tests::raw_input_rejects_non_finite_values_and_native_magnitude_overflow ... ok
+test source_bag::tests::failures_and_unsupported_rules_leave_the_previous_inventory_unchanged ... ok
+test posture::tests::standing_plays_audio_before_switching_the_distinct_global_target ... ok
+test player_state::tests::non_finite_inputs_are_rejected_by_explicit_admission_policy ... ok
+test tests::completed_craft_consumes_exact_materials_and_never_loses_items_on_failure ... ok
+test source_bag::tests::alert_and_size_handlers_do_not_reorder_items_after_a_catalog_order_change ... ok
+test tests::blueprints_preserve_requirements_and_reject_every_truncated_record ... ok
+test package::tests::catalog_count_and_apk_digest_are_validated ... ok
+test package::tests::import_verifies_raw_tables_and_catalog_and_preserves_existing_output ... ok
+test package::tests::a_rehashed_catalog_cannot_disagree_with_retained_octets ... ok
+
+test result: ok. 44 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running unittests src/bin/import_gameplay.rs (target/debug/deps/import_gameplay-67a752ce33da4f96)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/inspect_inventory.rs (target/debug/deps/inspect_inventory-5f43fd9f1849fa43)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/midnight_map_data-a2a12fb79073abc1)
+
+running 28 tests
+test prefab::tests::verifies_retained_supermarket_prefab ... ignored, requires retained supermarket source prefab package
+test tests::package_paths_cannot_escape_the_map_directory ... ok
+test terrain::tests::normal_residual_targets_encoded_layer_zero_and_preserves_three_layer_alpha ... ok
+test terrain::tests::residual_is_an_interpolation_and_weights_are_not_normalized ... ok
+test terrain::tests::three_layer_alpha_changes_the_residual_without_adding_a_color ... ok
+test tests::preserves_source_tangent_absence_and_rejects_partial_channels ... ok
+test tests::refuses_out_of_range_indices_and_non_finite_vertices ... ok
+test tests::refuses_unknown_vertex_attribute_flags ... ok
+test texture::tests::preserves_distinct_source_levels_with_non_square_dimensions ... ok
+test tests::preserves_geometry_and_attributes_losslessly ... ok
+test texture::tests::refuses_missing_levels_trailing_bytes_and_invalid_headers ... ok
+test tests::refuses_every_truncated_prefix_and_trailing_bytes ... ok
+test prefab::tests::placement_replaces_serialized_root_transform_and_never_reflects_again ... ok
+test prefab::tests::rejects_retained_symlink_escaping_package ... ok
+test prefab::tests::rejects_derived_activity_and_transform_differing_from_source_fields ... ok
+test prefab::tests::composes_unsorted_hierarchy_preserving_scale_reflection_and_active_parent ... ok
+test prefab::tests::rejects_missing_collision_mesh_and_cross_owned_component ... ok
+test prefab::tests::rejects_changed_evidence_geometry_and_escaping_paths ... ok
+test prefab::tests::rejects_cycles_duplicate_links_missing_roots_and_nonaffine_transforms ... ok
+test prefab::tests::rejects_material_order_and_cross_mesh_part_substitution ... ok
+test package::tests::refuses_changed_geometry_even_when_the_archive_still_parses ... ok
+test package::tests::loaded_geometry_keeps_its_world_coordinates_and_qualified_source_ids ... ok
+test package::tests::null_terrain_samplers_require_a_supported_shader_default ... ok
+test package::tests::refuses_missing_records_wrong_bounds_and_unsupported_frame ... ok
+test package::tests::source_mip_archive_must_match_declared_texture_dimensions_and_count ... ok
+test package::tests::normal_map_keywords_preserve_absent_tangents_and_still_validate_samplers ... ok
+test package::tests::collisions_follow_source_component_flags_including_roads ... ok
+test package::tests::checks_decoded_preview_source_mips_and_complete_encoded_payload ... ok
+
+test result: ok. 27 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running unittests src/lib.rs (target/debug/deps/midnight_network-a5b9d2369f496a95)
+
+running 4 tests
+test codec::tests::remote_quantization_is_small_and_owner_remains_exact ... ok
+test codec::tests::malformed_oversized_and_trailing_data_are_rejected ... ok
+test codec::tests::dense_snapshot_is_independently_decodable_and_fits_mtu ... ok
+test identity::tests::invitation_roundtrip_and_wrong_token ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/midnight_ui_data-d61a58bfc91444ec)
+
+running 15 tests
+test layout::tests::rejects_invalid_viewport_transforms_and_hierarchy_links ... ok
+test layout::tests::source_top_right_anchors_override_serialized_local_xy ... ok
+test layout::tests::canvas_scale_applies_once_to_sizes_and_anchor_offsets ... ok
+test sprite::tests::aspect_uses_the_recttransform_pivot_and_retains_asymmetric_trim ... ok
+test layout::tests::ordinary_parent_has_no_anchor_size_and_propagates_inactivity ... ok
+test sprite::tests::collapsed_slice_center_uses_one_edge_despite_float32_rounding ... ok
+test layout::tests::stretch_anchors_use_parent_size_and_asymmetric_pivot ... ok
+test sprite::tests::fractional_atlas_crop_and_uv_y_conversion_are_applied_once ... ok
+test sprite::tests::filled_zero_is_empty_and_fractional_fill_cuts_positions_and_uvs ... ok
+test layout::tests::rotated_nonuniform_parent_transforms_child_translation_and_corners ... ok
+test sprite::tests::packing_flips_and_quarter_rotation_map_into_the_full_texture ... ok
+test sprite::tests::sliced_borders_keep_source_ppu_and_can_omit_the_center ... ok
+test sprite::tests::sliced_borders_shrink_proportionally_and_zero_border_falls_back_to_simple ... ok
+test sprite::tests::sliced_trim_keeps_pixel_padding_and_exact_asymmetric_inner_uvs ... ok
+test sprite::tests::unsupported_geometry_and_invalid_source_parameters_return_errors ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/server-7da96d4eca037655)
+
+running 1 test
+test metrics::tests::empty_catchup_ticks_cannot_hide_slow_simulation_at_capacity ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/net_load.rs (target/debug/deps/net_load-aacfdf52b1c125e6)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/server-41dbbb17a830734a)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/networking.rs (target/debug/deps/networking-3835959fbd6e3058)
+
+running 5 tests
+test admits_150_connections_rejects_151_and_frees_every_slot ... ignored, opens 150 real QUIC connections; run with --ignored outside the restricted sandbox
+test certificate_access_code_and_versions_are_checked_before_spawn ... ignored, opens real UDP sockets; run with --ignored outside the restricted sandbox
+test dropping_graphical_client_releases_its_slot_without_idle_timeout ... ignored, opens real UDP sockets; run with --ignored outside the restricted sandbox
+test encrypted_movement_collision_capacity_and_cleanup ... ignored, opens real UDP sockets; run with --ignored outside the restricted sandbox
+test loss_jitter_reordering_reconciliation_and_timeout ... ignored, real UDP, 100ms RTT, +/-25ms per-leg jitter, 5% loss and a 10s blackhole timeout
+
+test result: ok. 0 passed; 0 failed; 5 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/shared-e802ddeb94c83a43)
+
+running 66 tests
+test authority::tests::sustained_crowd_of_150 ... ignored, CPU-only 60s simulation stress and timing; run in release with --ignored --nocapture
+test input::tests::focus_loss_discards_pending_actions_but_preserves_tick_sequence ... ok
+test map_projection::tests::camera_heading_agrees_with_projected_simulation_forward_motion ... ok
+test authority::tests::reset_rejects_old_epoch_and_nonfinite_input ... ok
+test input::tests::one_shot_input_waits_for_a_tick_and_is_not_replayed ... ok
+test capsule_query::tests::flat_box_face_hits_match_geometry_and_edges_use_the_general_cast ... ok
+test authority::tests::source_inventory_requires_admission_and_is_removed_on_player_departure ... ok
+test capsule_query::tests::grazing_near_contact_and_vertical_rays_hit_the_capsule_boundary ... ok
+test input::tests::diagonal_and_untrusted_axes_are_bounded ... ok
+test authority::tests::duplicates_late_input_and_gaps_do_not_repeat_jump_or_keep_walking ... ok
+test capsule_query::tests::upright_cast_matches_reference_for_sides_caps_and_separating_motion ... ok
+test map_projection::tests::overview_places_north_at_top_and_east_at_right ... ok
+test level::tests::sector_labels_match_xapk_quadrants ... ok
+test map_projection::tests::overview_round_trips_off_center_and_out_of_bounds_coordinates ... ok
+test map_projection::tests::radar_marker_matches_its_location_in_the_overview_crop ... ok
+test map_projection::tests::radar_places_north_and_east_relative_to_an_off_center_player ... ok
+test map_projection::tests::world_bearings_use_the_same_cardinal_axes_as_the_map ... ok
+test movement::tests::diagonal_distance_matches_straight_and_sprint_has_explicit_speed ... ok
+test movement::tests::look_clamps_pitch_and_ignores_non_finite_input ... ok
+test movement::tests::jumping_requires_ground_contact_and_ceiling_stops_upward_velocity ... ok
+test movement::tests::rendering_frequency_does_not_change_distance_or_total_look ... ok
+test physics::source_clearance::tests::source_cast_radius_lengths_and_root_bone_origin_determine_clearance ... ok
+test physics::source_prefabs::tests::retained_supermarket_builds_identical_shared_collision ... ignored, requires retained supermarket source prefab package
+test physics::source_clearance::tests::unknown_layers_triggers_and_initial_overlap_never_imply_clearance ... ok
+test physics::source_clearance::tests::independent_shared_worlds_agree_and_queries_leave_players_unchanged ... ok
+test physics::source_prefabs::tests::separate_mesh_collision_applies_converted_vertices_once ... ok
+test physics::source_prefabs::tests::rotated_child_box_retains_shape_and_inherits_parent_activity ... ok
+test physics::source_prefabs::tests::box_collision_uses_placement_scale_and_reflects_raw_center_once ... ok
+test physics::source_prefabs::tests::skips_inactive_disabled_and_trigger_collision ... ok
+test physics::source_clearance::tests::exact_unity_layers_filter_both_sweep_and_initial_overlap ... ok
+test physics::source_prefabs::tests::invalid_layer_and_late_shape_failure_preserve_existing_metadata_atomically ... ok
+test physics::source_prefabs::tests::source_layer_and_trigger_metadata_follow_instance_replacement_and_removal ... ok
+test physics::tests::canonical_map_replaces_demo_geometry_and_resources_but_keeps_players ... ok
+test physics::source_prefabs::tests::failed_replacement_preserves_collision_and_success_refreshes_bvh ... ok
+test prediction::tests::remote_history_reorders_samples_and_bounds_extrapolation ... ok
+test physics::tests::invalid_or_empty_replacement_preserves_the_previous_collision_world ... ok
+test physics::tests::source_road_collision_sets_spawn_height_and_disabled_or_trigger_surfaces_do_not ... ok
+test replication::tests::hysteresis_crosses_negative_cells_and_does_not_cap_a_crowd ... ok
+test source_inventory::tests::independent_worlds_apply_the_same_source_state_and_ignore_noop_changes ... ok
+test source_inventory::tests::wrong_players_malformed_bodies_and_invalid_clocks_preserve_state_and_revision ... ok
+test survival::tests::biomes_weather_day_night_and_campfire_regulate_body_temperature ... ok
+test survival::tests::building_plan_places_structures_hammer_upgrades_and_tc_protects_territory ... ok
+test survival::tests::harvesting_tree_and_rock_yields_resources_and_schedules_respawn ... ok
+test prediction::tests::missing_history_requires_reset_and_old_epochs_cannot_overwrite_it ... ok
+test survival::tests::hybrid_ballistics_ranged_weapons_consume_ammo_and_score_headshot_damage ... ok
+test survival::tests::starter_inventory_stacks_crafts_and_swaps_slots ... ok
+test survival::tests::phase5_vehicles_mount_drive_refuel_and_patrol_heli_aggression_rule ... ok
+test survival::tests::consumables_restore_vitals_and_low_hydration_blocks_sprint ... ok
+test survival::tests::phase5_c4_destroys_bradley_apc_and_nuclear_strike_shockwave_levels_twig_structures ... ok
+test survival::tests::radtown_radiation_fuse_keycard_puzzle_and_recycler_workflow ... ok
+test world::tests::canonical_world_rebuilds_identical_collision_and_spawn ... ignored, requires the retained APK terrain package
+test prediction::tests::acknowledging_substituted_ticks_does_not_double_apply_movement ... ok
+test survival::tests::wall_socket_snapping_and_90_degree_rotation_across_foundation_edges ... ok
+test world::tests::fixtures_are_explicit_and_content_identity_is_checked ... ok
+test world::tests::imported_selection_never_substitutes_fixture_geometry ... ok
+test prediction::tests::replay_keeps_remote_blocking_and_departure_removes_it ... ok
+test physics::tests::a_character_lands_on_the_imported_surface_at_its_actual_height ... ok
+test physics::tests::opposing_capsules_cannot_exchange_sides_or_overlap ... ok
+test source_inventory::tests::bevy_message_path_applies_bodies_and_reports_errors_without_default_players ... ok
+test authority::tests::capacity_cleanup_and_clock_do_not_depend_on_clients ... ok
+test physics::tests::step_benchmark_reports_timings ... ok
+test simulation::tests::controller_climbs_test_stairs ... ok
+test simulation::tests::jump_rises_then_lands_without_repeating ... ok
+test simulation::tests::capsule_lands_on_floor_and_cannot_pass_through_wall ... ok
+test authority::tests::dense_crowd_of_150_keeps_finite_nonintersecting_capsules ... ok
+test level::tests::imported_map_archives_parse_cleanly_if_present ... ok
+
+test result: ok. 63 passed; 0 failed; 3 ignored; 0 measured; 0 filtered out; finished in 1.61s
+
+   Doc-tests client_core
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests midnight_game_data
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests midnight_map_data
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests midnight_network
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests midnight_ui_data
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests server
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests shared
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

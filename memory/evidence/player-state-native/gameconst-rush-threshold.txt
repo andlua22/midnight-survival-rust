@@ -1,0 +1,5 @@
+138-
+139-	[Token(Token = "0x4002C74")]
+140:	public const float CanRushInputValue = 0.917f;
+141-
+142-	[Token(Token = "0x4002C75")]

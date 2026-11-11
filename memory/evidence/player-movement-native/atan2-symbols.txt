@@ -1,0 +1,3 @@
+Symbol table for image contains 2656 entries:
+   188: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND atan2
+   247: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND atan2f

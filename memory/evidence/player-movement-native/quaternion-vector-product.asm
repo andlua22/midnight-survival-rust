@@ -1,0 +1,42 @@
+034320cc 0728201e fadd     s7, s0, s0
+034320d0 3028211e fadd     s16, s1, s1
+034320d4 5128221e fadd     s17, s2, s2
+034320d8 1308271e fmul     s19, s0, s7
+034320dc 3408301e fmul     s20, s1, s16
+034320e0 4208311e fmul     s2, s2, s17
+034320e4 12102e1e fmov     s18, #1.00000000
+034320e8 1508301e fmul     s21, s0, s16
+034320ec 0008311e fmul     s0, s0, s17
+034320f0 2108311e fmul     s1, s1, s17
+034320f4 6708271e fmul     s7, s3, s7
+034320f8 7008301e fmul     s16, s3, s16
+034320fc 6308311e fmul     s3, s3, s17
+03432100 912a221e fadd     s17, s20, s2
+03432104 622a221e fadd     s2, s19, s2
+03432108 b63a231e fsub     s22, s21, s3
+0343210c a32a231e fadd     s3, s21, s3
+03432110 1528301e fadd     s21, s0, s16
+03432114 0038301e fsub     s0, s0, s16
+03432118 3038271e fsub     s16, s1, s7
+0343211c 2128271e fadd     s1, s1, s7
+03432120 672a341e fadd     s7, s19, s20
+03432124 513a311e fsub     s17, s18, s17
+03432128 423a221e fsub     s2, s18, s2
+0343212c b308361e fmul     s19, s5, s22
+03432130 8308231e fmul     s3, s4, s3
+03432134 8008201e fmul     s0, s4, s0
+03432138 a108211e fmul     s1, s5, s1
+0343213c 473a271e fsub     s7, s18, s7
+03432140 8408311e fmul     s4, s4, s17
+03432144 a208221e fmul     s2, s5, s2
+03432148 d408351e fmul     s20, s6, s21
+0343214c d008301e fmul     s16, s6, s16
+03432150 0528211e fadd     s5, s0, s1
+03432154 c608271e fmul     s6, s6, s7
+03432158 602a241e fadd     s0, s19, s4
+0343215c 6128221e fadd     s1, s3, s2
+03432160 802a201e fadd     s0, s20, s0
+03432164 012a211e fadd     s1, s16, s1
+03432168 a228261e fadd     s2, s5, s6
+0343216c c0035fd6 ret      
+Capstone 5.0: decoded 41 instructions / 164 bytes

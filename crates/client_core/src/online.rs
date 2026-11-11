@@ -172,6 +172,7 @@ fn receive(
     mut input: ResMut<SimulationInput>,
     mut physics: ResMut<SimulationWorld>,
     mut survival: ResMut<SimulationSurvival>,
+    mut source_inventory: ResMut<shared::source_inventory::SourceInventoryWorld>,
     loaded: Res<LoadedWorld>,
     players: Query<Entity, With<Player>>,
     geometry: Query<Entity, With<LevelGeometry>>,
@@ -268,6 +269,16 @@ fn receive(
                     }
                     survival.0 = SurvivalWorld::new(map);
                     survival.0.join(PlayerId(0));
+                    *source_inventory = loaded
+                        .gameplay
+                        .as_ref()
+                        .map(|catalog| {
+                            shared::source_inventory::SourceInventoryWorld::from_catalog(
+                                catalog.clone(),
+                            )
+                        })
+                        .unwrap_or_default();
+                    source_inventory.join(player);
                     spawn_geometry(&mut commands, map);
                     spawn_local(&mut commands, player, state);
                     *mode = SimulationMode::Network;
@@ -291,11 +302,13 @@ fn receive(
                     tick,
                     state,
                 } => {
+                    source_inventory.join(player);
                     if let Some(prediction) = &mut online.prediction {
                         prediction.enter(player, tick, state);
                     }
                 }
                 ServerControl::Leave { player, tick } => {
+                    source_inventory.leave(player);
                     if let Some(prediction) = &mut online.prediction {
                         prediction.leave(player, tick);
                     }
@@ -383,6 +396,14 @@ fn receive(
     if return_offline {
         online.link = None;
         online.prediction = None;
+        *source_inventory = loaded
+            .gameplay
+            .as_ref()
+            .map(|catalog| {
+                shared::source_inventory::SourceInventoryWorld::from_catalog(catalog.clone())
+            })
+            .unwrap_or_default();
+        source_inventory.join(PlayerId(0));
         online.connected = false;
         online.connecting = false;
         online.camera_offset = Vec3::ZERO;

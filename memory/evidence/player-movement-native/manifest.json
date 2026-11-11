@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "scope": "Static unpatched base-method native disassembly; not observed game execution or REA Evidence IDs",
+  "elf": {
+    "path": "/tmp/codex-minimap-review/libil2cpp.so",
+    "bytes": 76608224,
+    "sha256": "2e2efde1a103549694b17b361cacc18faa5714d06c444945e44b30f1377e2b3c"
+  },
+  "helper": {
+    "path": "/tmp/codex-minimap-review/native",
+    "sha256": "000d6b773e4f8ed574b62b1803a1d4d1314bd0178262359cb3a176a5ac7fd8e9",
+    "source_sha256": "91d59a9b3b42ca2e4af1880151decd98b5c00d982978c4e5a9848f8eea03bf18"
+  },
+  "artifacts": [
+    {
+      "path": "memory/evidence/player-movement-native/atan2f-plt.asm",
+      "sha256": "0a528432079a32444670c6e154f32cdf04e846e7b5c0e9dc34bc40832142cda1"
+    },
+    {
+      "path": "memory/evidence/player-movement-native/base-input-getter.asm",
+      "sha256": "d09ded4b9d20713a1921292ab4a474b735e278f150230c7205b7c275a1857865"
+    },
+    {
+      "path": "memory/evidence/player-movement-native/change-forward-velocity.asm",
+      "sha256": "859568c99289672e98d3da5e61ab191c86b3bf514fdebaedbead928f6abea61d"
+    },
+    {
+      "path": "memory/evidence/player-movement-native/change-velocity.asm",
+      "sha256": "6f8b9796a3c1ba10ff57965de78b2904c40d52f18c22d34f3ce9551e82ed0e55"
+    },
+    {
+      "path": "memory/evidence/player-movement-native/component-transform.asm",
+      "sha256": "42ac21f22a83290a928ed892dc2470e990da1a08bdb073d572e367a75750183d"
+    },
+    {
+      "path": "memory/evidence/player-movement-native/from-euler-radians.asm",
+      "sha256": "2902d0e3465813f60e8bab47b19614f4adc5f4f7f83aae4a6115866ac8719e66"
+    },
+    {
+      "path": "memory/evidence/player-movement-native/input-constructor.asm",
+      "sha256": "76bdbb812846a8ef23f4be5e9859feff51335e4a4b2fe84b68047410beaca8d9"
+    },
+    {
+      "path": "memory/evidence/player-movement-native/orientation-overloads.asm",
+      "sha256": "370f14736e0ecfe0b9d25d89dcc5ed3e8b5fbab6cab7f485d231ac9e4cb741f6"
+    },
+    {
+      "path": "memory/evidence/player-movement-native/quaternion-vector-product.asm",
+      "sha256": "78d2f8bd69a4d5e1be3a9a00890b6c41f7e0c80d38a888130628f7cf85532855"
+    },
+    {
+      "path": "memory/evidence/player-movement-native/rigidbody-get-velocity.asm",
+      "sha256": "820c571a31ec893981146d3c89527ac712a72d54e8b577fa45e8cd8eb1210634"
+    },
+    {
+      "path": "memory/evidence/player-movement-native/rigidbody-set-velocity.asm",
+      "sha256": "6932bb4083d24d83fc9ed106fda239faa79d15a81d53e20f09a7c7f842db8361"
+    },
+    {
+      "path": "memory/evidence/player-movement-native/stand-input-magnitude.asm",
+      "sha256": "47ebdd829a7b8ae173fe2c24952cd69de8efe44811088e07b978977aff5325f4"
+    },
+    {
+      "path": "memory/evidence/player-movement-native/status-getter-setter.asm",
+      "sha256": "e1deb2fbc6ae4eefe20910182f94d4936d334616a818d36ad44bbaf552bba2b4"
+    },
+    {
+      "path": "memory/evidence/player-movement-native/transform-euler-rotation.asm",
+      "sha256": "9e6616404f2e93397c9a87d67ab90a25b21cdbdeb8693e4ea5a23fed34fece6e"
+    },
+    {
+      "path": "memory/evidence/player-movement-native/atan2-relocations.txt",
+      "sha256": "1030818635608635485a317114d8f16d11de5db75fee969f92c3be0eb6a17ae5"
+    },
+    {
+      "path": "memory/evidence/player-movement-native/atan2-symbols.txt",
+      "sha256": "b7592b11a0c5be972e14b227f05be97a38dfd8d6f9f6925da3b67ab1b4e6efb7"
+    },
+    {
+      "path": "memory/evidence/player-movement-native/constants.txt",
+      "sha256": "eb81f8441a17046ca91149a18969879d0e08e0792968aa66ec511c388f8188d8"
+    }
+  ],
+  "limitations": [
+    "No native libm/Rust atan2f rounding comparison",
+    "Damaged source external-value-type offsets are not native layout",
+    "Some unrelated dynamic relocations have bad symbol indices",
+    "Physical controller integration and IFix runtime state not observed"
+  ]
+}
