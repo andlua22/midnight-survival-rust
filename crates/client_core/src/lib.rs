@@ -15,6 +15,7 @@ mod online;
 mod online_metrics;
 pub mod source_minimap;
 pub mod source_prefabs;
+pub mod source_player;
 pub mod source_ui;
 pub mod storage;
 mod terrain;

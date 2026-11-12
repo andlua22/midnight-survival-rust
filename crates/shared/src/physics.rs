@@ -5,10 +5,13 @@ use std::collections::BTreeMap;
 mod source_prefabs;
 pub use source_prefabs::PrefabCollisionReport;
 mod source_clearance;
+mod source_geometry;
+mod source_terrain;
 pub use midnight_game_data::clearance::{
-    SourceQueryTriggerInteraction, SourceStandClearanceCast, SourceStandClearanceKind,
+    SourcePaUpGroundRay, SourcePaUpHeadCast, SourceQueryTriggerInteraction, SourceStandClearanceCast,
+    SourceStandClearanceKind,
 };
-pub use source_clearance::{SourceClearanceError, SourceClearanceResult};
+pub use source_clearance::{SourceClearanceError, SourceClearanceResult, SourcePaUpClearanceResult};
 
 use bevy::prelude::Vec3;
 use bevy_rapier3d::rapier::{
@@ -49,6 +52,8 @@ pub struct CollisionWorld {
     source_prefabs: BTreeMap<String, Vec<ColliderHandle>>,
     source_collision_layers: std::collections::HashMap<ColliderHandle, u8>,
     source_unrepresented_trigger_layers: BTreeMap<String, Vec<u8>>,
+    source_terrain_trigger_layers: Vec<Option<u8>>,
+    source_terrain_solid_handles: BTreeMap<midnight_map_data::SourceObject, ColliderHandle>,
     initial_colliders: Vec<ColliderHandle>,
     imported_ground: bool,
 }
@@ -86,6 +91,8 @@ impl CollisionWorld {
             source_prefabs: BTreeMap::new(),
             source_collision_layers: std::collections::HashMap::new(),
             source_unrepresented_trigger_layers: BTreeMap::new(),
+            source_terrain_trigger_layers: Vec::new(),
+            source_terrain_solid_handles: BTreeMap::new(),
             initial_colliders: Vec::new(),
             imported_ground: false,
         };
@@ -278,32 +285,6 @@ impl CollisionWorld {
         }
     }
 
-    pub fn insert_canonical_terrain(&mut self, package: &midnight_map_data::TerrainPackage) -> Result<(), midnight_map_data::ArchiveError> {
-        // Prepare every source collider before replacing the current world.
-        // Renderer names and texture filenames do not decide collision presence.
-        let builders = package.collision_records().map(|chunk| {
-            midnight_map_data::validate_mesh(chunk)?;
-            let vertices = chunk.positions.iter().map(|position| Vec3::from_array(*position)).collect();
-            let triangles = chunk.indices.as_chunks::<3>().0.to_vec();
-            ColliderBuilder::trimesh(vertices, triangles).map_err(|error| {
-                midnight_map_data::ArchiveError::Invalid(format!("{}: {error}", chunk.name))
-            })
-        }).collect::<Result<Vec<_>, _>>()?;
-        if builders.is_empty() {
-            return Err(midnight_map_data::ArchiveError::Invalid("canonical map has no enabled source colliders".into()));
-        }
-        let removed = std::mem::take(&mut self.initial_colliders);
-        for &h in &removed {
-            self.colliders
-                .remove(h, &mut self.islands, &mut self.bodies, &mut self.soft_bodies, false);
-        }
-        let handles = builders.into_iter().map(|builder| self.colliders.insert(builder)).collect::<Vec<_>>();
-        self.initial_colliders = handles.clone();
-        self.imported_ground = true;
-        self.refresh(&handles, &removed);
-        Ok(())
-    }
-
     pub fn free_at(&self, position: [f32; 3], exclude: Option<PlayerId>) -> bool {
         let filter = QueryFilter {
             exclude_collider: exclude.and_then(|id| self.players.get(&id).map(|p| p.0)),
@@ -445,12 +426,12 @@ impl CollisionWorld {
 }
 
 #[cfg(test)]
-mod tests {
+pub(in crate::physics) mod tests {
     use super::*;
 
-    fn terrain_package() -> midnight_map_data::TerrainPackage {
+    pub(in crate::physics) fn terrain_package() -> midnight_map_data::TerrainPackage {
         use midnight_map_data::{FileIdentity, MeshRecord, SceneMesh, SourceApk, SourceCollider,
-            SourceMaterial, SourceObject, TERRAIN_MANIFEST_VERSION, TerrainManifest, mesh_bounds};
+            SourceMaterial, SourceObject, TerrainManifest, mesh_bounds};
         let mut records = Vec::new();
         let mut meshes = BTreeMap::new();
         for (index, (name, height, size, enabled, is_trigger)) in [
@@ -465,14 +446,14 @@ mod tests {
                 normals: vec![[0.0, 1.0, 0.0]; 4], tangents: Vec::new(), uvs: vec![[0.0, 0.0], [1.0, 0.0], [1.0, 1.0], [0.0, 1.0]],
                 indices: vec![0, 2, 1, 0, 3, 2],
             };
-            let source = SourceObject { bundle: "fixture".into(), cab: "CAB-scene".into(), path_id: format!("-{index}") };
+            let source = SourceObject { bundle: "fixture".into(), cab: "CAB-scene".into(), path_id: format!("-{}", index + 1) };
             let material = SourceMaterial {
                 source: source.clone(), name: name.into(), shader: source.clone(), shader_name: "_URP/LambertLit".into(),
                 textures: BTreeMap::new(), floats: BTreeMap::new(), colors: BTreeMap::new(), shader_defaults: BTreeMap::new(),
                 texture_defaults: BTreeMap::new(), valid_keywords: Vec::new(), render_queue: -1,
             };
             meshes.insert(name.into(), SceneMesh {
-                source: source.clone(), game_object: source.clone(),
+                source: source.clone(), game_object: source.clone(), layer: Some(0),
                 world_transform: [1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0],
                 bounds: mesh_bounds(&record), material,
                 collider: Some(SourceCollider { source: source.clone(), mesh: source, enabled, is_trigger, convex: false, cooking_options: 30 }),
@@ -480,12 +461,12 @@ mod tests {
             records.push(record);
         }
         midnight_map_data::TerrainPackage {
-            root: "fixture".into(), records,
+            root: "fixture".into(), records, collision_meshes: Vec::new(),
             manifest: TerrainManifest {
-                schema_version: TERRAIN_MANIFEST_VERSION,
+                schema_version: 3,
                 source_apk: SourceApk { path: "fixture.apk".into(), sha256: "a".repeat(64), byte_count: 1 },
                 coordinate_frame: "bevy_right_handed_y_up".into(), uv_origin: "top_left".into(),
-                geometry: FileIdentity { path: "meshes.bin".into(), sha256: "b".repeat(64) }, meshes, limitations: Vec::new(),
+                geometry: FileIdentity { path: "meshes.bin".into(), sha256: "b".repeat(64) }, meshes, limitations: Vec::new(), collision: None,
             },
         }
     }

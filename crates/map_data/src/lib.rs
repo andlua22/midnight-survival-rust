@@ -10,17 +10,32 @@ use std::{
 use serde::{Deserialize, Serialize};
 
 mod package;
+mod player;
+pub mod player_animation;
 mod prefab;
 mod terrain;
+mod terrain_collision;
+mod terrain_layers;
 mod texture;
 
 pub use package::{TerrainPackage, file_sha256, load_terrain_package, mesh_bounds};
+pub use player::{
+    PLAYER_BINDING_CONTRACT, PLAYER_RIG_VERSION, PLAYER_SOURCE_APK, PlayerAnimatorBinding, PlayerColliderShape,
+    PlayerAnimationMaps, PlayerClipOverride, PlayerDecodedAsset, PlayerRigManifest, PlayerRigPackage, PlayerRigRoot, PlayerSourceBundle,
+    PlayerSourceObject, SerializedPlayerCollider, load_player_rig_package, player_named_transform,
+    serialized_player_colliders, parse_player_animation_map, player_container_asset,
+};
 pub use prefab::{
     PrefabCollisionMesh, PrefabManifest, PrefabMaterial, PrefabNode, PrefabNodePose, PrefabPackage,
     PrefabRender, SourceComponent, load_prefab_package, prefab_affine_product,
     prefab_transform_point, validate_prefab_affine,
 };
 pub use terrain::{TerrainParameters, terrain_albedo, terrain_tangent_normal};
+pub use terrain_collision::{
+    COLLISION_MAGIC, TerrainCollisionEntry, TerrainCollisionManifest, TerrainCollisionMesh,
+    TerrainCollisionShape, read_collision_archive, validate_collision_mesh,
+    write_collision_archive,
+};
 pub use texture::{
     RGBA_MIP_MAGIC, RgbaMipChain, read_rgba_mip_archive, rgba_mip_byte_len, write_rgba_mip_archive,
 };
@@ -28,7 +43,9 @@ pub use texture::{
 /// Version three preserves source tangent frames as well as Bevy world
 /// positions/normals and top-left PNG UVs. Older archives are retained as evidence.
 pub const TERRAIN_MAGIC: &[u8; 8] = b"MSMAP003";
-pub const TERRAIN_MANIFEST_VERSION: u32 = 2;
+/// Manifest schema four adds an independent collider table and local collision
+/// mesh archive. Schemas two/three remain readable; MSMAP003 bytes are unchanged.
+pub const TERRAIN_MANIFEST_VERSION: u32 = 4;
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct MeshRecord {
@@ -381,6 +398,10 @@ pub struct SourceCollider {
 pub struct SceneMesh {
     pub source: SourceObject,
     pub game_object: SourceObject,
+    /// Numeric Unity GameObject layer, not a terrain material/splat layer.
+    /// None is retained for legacy schema-two packages, never defaulted to zero.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub layer: Option<u8>,
     pub world_transform: [f32; 16],
     pub bounds: [f32; 6],
     pub material: SourceMaterial,
@@ -395,6 +416,9 @@ pub struct TerrainManifest {
     pub uv_origin: String,
     pub geometry: FileIdentity,
     pub meshes: BTreeMap<String, SceneMesh>,
+    /// Absent in schemas two/three; schema four requires an independent table.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub collision: Option<TerrainCollisionManifest>,
     pub limitations: Vec<String>,
 }
 

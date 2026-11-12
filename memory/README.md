@@ -7,7 +7,30 @@ Current continuation (2026-11-12): use [the implementation ledger](../PLAN/sourc
 [MapObject implementation](implementation-mapobjects-2026-11-11.md),
 [source imports](source-imports-2026-11-11.md), [gameplay data](gameplay-data-2026-11-11.md)
 and [storage audit](storage-2026-11-11.md). The latest step is
-[standing clearance and crouch callback](implementation-player-clearance-2026-11-12.md):
+[independent terrain collision](implementation-terrain-collision-2026-11-12.md):
+schema-4 source table with 404 components, 389 active solids, 12 skipped triggers
+and three inactive records. Five omitted Boxes and B-32 MeshCollider 10 are
+restored with saved ancestor activity; B-32 components 10/11 retain distinct
+identities while sharing one mesh. All 400 render records and 970 retained
+payloads remain unchanged; 364 unique collision meshes have a separate archive.
+The first import, fresh source comparison, repeat preservation and schema-2/3
+compatibility passed, as did 50 extractor tests, strict extractor Clippy and
+three selected real-package shared collision/world tests. Workspace tests
+passed: 218 passed, 12 ignored; all-target workspace check and strict shared
+Clippy passed. Map all-target Clippy used the documented allowance for three
+inherited `collapsible_if` warnings. Exact scope is recorded in
+[the validation ledger](evidence/terrain-collision-source/README.md).
+Its predecessor is retained at
+`.local/map-import-backups/1794438051734897066/terrain`.
+The preceding [terrain source layers](implementation-terrain-layers-2026-11-12.md) added
+schema-3 enrichment with 400 verified GameObject layers, unchanged geometry/
+textures and 383 classified shared solid handles. Source collider inventory
+found 21 omissions: 12 triggers, six solids with active local flags and three
+solids with inactive local flags. Workspace validation passed 208 tests
+(11 ignored); extractor validation passed 46 tests, with fresh source/package
+verification and idempotent repeat. Its predecessor is retained at
+`.local/map-import-backups/1794435897062652886/terrain`.
+The preceding [standing clearance and crouch callback](implementation-player-clearance-2026-11-12.md) retains
 exact RootBone cast requests, shared queries with explicit unresolved results,
 atomic prefab layer/trigger metadata and ordered OnClickCrouch2 continuation.
 Workspace validation passed 199 tests (10 ignored), with the separately selected
@@ -25,10 +48,10 @@ bounded Rust inspector. [Inventory rules](evidence/inventory-rules-source-review
 and [player definitions](evidence/player-rules-source-review.md) retain native
 provenance and unresolved effects. No authentic source snapshot/session adapter
 is supplied; active source movement and animation remain unported. Continue
-with the actual rig and effective RootBone/HeadTop transforms, source terrain
-layers, runtime trigger/overlap policy, the distinct PaUp query and FSM switch
-arbitration before active posture/UI/audio bindings, then unresolved item-use
-rules. The latest disk check found about 127 GiB free; no cleanup was required.
+with the actual rig, source runtime binding and effective RootBone/HeadTop
+transforms/player layers, runtime trigger/overlap policy, the distinct PaUp query
+and FSM switch arbitration before active posture/UI/audio bindings, then unresolved item-use
+rules. The latest disk check found about 126 GiB free; no cleanup was required.
 The client now uses native Bevy UI,
 a ray-marched atmosphere and shared validated island collision/content identity.
 The Bevy/egui notes and older captures below describe the preserved earlier
@@ -39,13 +62,15 @@ Start with [the requested handoff](<щоб інші ші знали, про що
 and commands. [map-evidence.md](map-evidence.md) retains map/shader evidence;
 [ui-reconstruction.md](ui-reconstruction.md) covers source UI and runtime gaps.
 
-The canonical map is `assets/imported_map/terrain/` (MSMAP003, schema 2).
+The canonical map is `assets/imported_map/terrain/` (MSMAP003, schema 4), with
+a separate MSCOL001 collision archive. Legacy schemas 2/3 remain readable.
 The verified UI source package is under `assets/imported_ui/`, keyed by APK
 SHA-256 and schema version. The current Linux runtime uses native Bevy UI.
-The terrain package now includes the omitted Z-01 scene: 400 render instances
-and 383 solid colliders. Its predecessor and earlier capture evidence remain
-available. The current desktop preset retains directional shadow maps and
-disables the contact effect that caused prefab wall dots. The final
+The terrain package includes the omitted Z-01 scene: 400 render instances
+and an independent table with 389 active solid components. Its predecessor
+and earlier capture evidence remain available. The current desktop preset
+retains directional shadow maps and disables the contact effect that caused
+prefab wall dots. The final
 [prefab](evidence/prefab-shadow-fixed-bevy/README.md),
 [environment](evidence/environment-shadow-fixed-bevy/README.md) and
 [game-window startup](evidence/desktop-shadow-fixed-bevy/README.md) evidence

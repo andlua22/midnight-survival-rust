@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "source_sha256": "2e2efde1a103549694b17b361cacc18faa5714d06c444945e44b30f1377e2b3c",
+  "observations": {
+    "body_parts_pseudo": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"error\":{\"code\":\"provider_timeout\",\"category\":\"timeout\",\"message\":\"Ghidra did not finish importing and analyzing the target within its configured 330000 ms startup deadline (REA_GHIDRA_STARTUP_TIMEOUT_MS). Ghidra's output for this operation is incomplete. No OutOfMemoryError was confirmed; a memory cause cannot be ruled out.\",\"retryable\":true,\"remediation\":{\"action\":\"Large binaries can need longer: use update_analysis_settings with setting ghidra.startup_timeout_ms and action set above 330000, or set REA_GHIDRA_STARTUP_TIMEOUT_MS in the launch environment for future REA processes; REA_GHIDRA_DISABLED_ANALYZERS can skip selected expensive analyzers with reduced coverage. Export useful Evidence and resolve any retained cleanup before starting a new provider attempt. Runtime updates apply to the next startup attempt without restarting REA. Reopening repeats import from scratch. The MCP client's tool-call deadline must also allow startup and the query.\"},\"recovery\":{\"kind\":\"inspect_timeout_state\",\"operation\":\"procedure_pseudo_code\",\"timeout_ms\":330000},\"details\":{\"operation\":\"procedure_pseudo_code\",\"timeout_ms\":330000,\"limit\":{\"setting\":\"ghidra.startup_timeout_ms\",\"effective_value\":330000,\"unit\":\"ms\",\"minimum\":1,\"maximum\":2147483647,\"applies_at\":\"next_startup\",\"agent_editable\":true,\"scope\":\"rea-runtime\",\"rea_restart_required\":false},\"diagnostics\":{\"target_path\":\"/tmp/codex-minimap-review/libil2cpp.so\",\"target_sha256\":\"2e2efde1a103549694b17b361cacc18faa5714d06c444945e44b30f1377e2b3c\",\"transport\":\"unix-socket\",\"provider_version\":\"12.1.2\",\"profile_digest\":\"aa6b460c4341e4a6332973d9a44eba475741ef1608f6bdccfcad33bac281879c\",\"run_id\":\"314e2a5e-090d-4ffa-af67-c1cf18196795\",\"runtime_root\":\"/tmp/rea-ghidra-qsmovv\",\"endpoint_path\":\"/tmp/rea-ghidra-qsmovv/bridge.sock\",\"project_root\":\"/tmp/rea-ghidra-qsmovv/project\",\"ghidra_log_path\":\"/tmp/rea-ghidra-qsmovv/ghidra.log\",\"script_log_path\":\"/tmp/rea-ghidra-qsmovv/script.log\",\"process_id\":710038,\"launch_support\":[{\"mode\":\"-envvars\",\"stderr\":\"NOTE: Picked up JDK_JAVA_OPTIONS: \\nPicked up JAVA_TOOL_OPTIONS: \\nPicked up _JAVA_OPTIONS: \\n\",\"stderr_bytes\":91,\"stderr_truncated\":false},{\"mode\":\"-vmargs\",\"stderr\":\"NOTE: Picked up JDK_JAVA_OPTIONS: \\nPicked up JAVA_TOOL_OPTIONS: \\nPicked up _JAVA_OPTIONS: \\n\",\"stderr_bytes\":91,\"stderr_truncated\":false}],\"configured_jvm_max_heap\":\"2G\",\"exit_code\":null,\"exit_signal\":null,\"stop_requested\":false,\"diagnostic_truncated\":true,\"output_incomplete\":true,\"stdout\":{\"text\":\"INFO  Using log config file: jar:file:/opt/ghidra/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  \\nINFO  Using log file: /tmp/rea-ghidra-qsmovv/ghidra.log (LoggingInitialization)  \\nINFO  Loading user preferences: /tmp/rea-ghidra-qsmovv/config/andlua-ghidra/ghidra_12.1.2_DEV/preferences (Preferences)  \\nINFO  Searching for classes... (ClassSearcher)  \\nINFO  Class search complete (658 ms) (ClassSearcher)  \\nINFO  Initializing SSL Context (DefaultSSLContextInitializer)  \\nINFO  Initializing Random Number Generator... (SecureRandomFactory)  \\nINFO  Random Number Generator initialization complete: NativePRNGNonBlocking (SecureRandomFactory)  \\nINFO  Trust manager disabled, cacerts have not been set (DefaultTrustManagerFactory)  \\nINFO  Starting cache cleanup: /tmp/rea-ghidra-qsmovv/cache/andlua-ghidra/fscache2 (FileCacheMaintenanceDaemon)  \\nINFO  Finished cache cleanup, estimated storage used: 0 (FileCacheMaintenanceDaemon)  \\nINFO  Headless startup complete (1591 ms) (AnalyzeHeadless)  \\nINFO  Class searcher loaded 59 extension points (20 false positives) (ClassSearcher)  \\nINFO  HEADLESS Script Paths:\\n    /opt/ghidra/Ghidra/Features/SystemEmulation/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/GnuDemangler/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/WildcardAssembler/ghidra_scripts\\n    /opt/ghidra/Ghidra/Processors/DATA/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/DecompilerDependent/ghidra_scripts\\n    /opt/ghidra/Ghidra/Processors/JVM/ghidra_scripts\\n    /opt/ghidra/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/VersionTracking/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/PyGhidra/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/SwiftDemangler/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/Base/ghidra_scripts\\n    /opt/ghidra/Ghidra/Processors/Atmel/ghidra_scripts\\n    /opt/ghidra/Ghidra/Debug/Debugger/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/Decompiler/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/FunctionID/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/PDB/ghidra_scripts\\n    /opt/ghidra/Ghidra/Processors/8051/ghidra_scripts\\n    /opt/ghidra/Ghidra/Processors/PIC/ghidra_scripts\\n    /home/andlua/.npm/_npx/af752b90495482d7/node_modules/rea-agents/bridge/ghidra\\n    /opt/ghidra/Ghidra/Features/FileFormats/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/BSim/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/BytePatterns/ghidra_scripts (HeadlessAnalyzer)  \\nINFO  HEADLESS: execution starts (HeadlessAnalyzer)  \\nINFO  Creating temporary project: /tmp/rea-ghidra-qsmovv/project/rea-project (HeadlessAnalyzer)  \\nINFO  Creating project: /tmp/rea-ghidra-qsmovv/project/rea-project (DefaultProject)  \\nINFO  REPORT: Processing input files:  (HeadlessAnalyzer)  \\nINFO       project: /tmp/rea-ghidra-qsmovv/project/rea-project (HeadlessAnalyzer)  \\nINFO  IMPORTING: file:///tmp/rea-ghidra-qsmovv/target-2e2efde1a103.so (HeadlessAnalyzer)  \\nINFO  Using Loader: Executable and Linking Format (ELF) (ProgramLoader)  \\nINFO  Using Language/Compiler: AARCH64:LE:64:v8A:default (ProgramLoader)  \\nINFO  Using Library Search Path: [., /bin, /lib, /lib64, /lib/x86_64-linux-gnu, /lib/aarch64-linux-gnu, /usr/bin, /usr/lib, /usr/X11R6/bin, /usr/X11R6/lib, /usr/java/packages/lib, /usr/lib64] (ProgramLoader)  \\nERROR Failed to process DT_PLTGOT(0x00000003): Index 2657 out of bounds for length 2656 (ElfDefaultGotPltMarkup) java.lang.ArrayIndexOutOfBoundsException: Index 2657 out of bounds for length 2656\\n\\tat ghidra.app.util.bin.format.elf.ElfDefaultGotPltMarkup.processDynamicPLTGOT(ElfDefaultGotPltMarkup.java:185)\\n\\tat ghidra.app.util.bin.format.elf.ElfDefaultGotPltMarkup.process(ElfDefaultGotPltMarkup.java:65)\\n\\tat ghidra.app.util.bin.format.elf.extend.ElfLoadAdapter.processGotPlt(ElfLoadAdapter.java:311)\\n\\tat ghidra.app.util.opinion.ElfProgramBuilder.load(ElfProgramBuilder.java:181)\\n\\tat ghidra.app.util.opinion.ElfProgramBuilder.loadElf(ElfProgramBuilder.java:111)\\n\\tat ghidra.app.util.opinion.ElfLoader.load(ElfLoader.java:153)\\n\\tat ghidra.app.util.opinion.AbstractLibrarySupportLoader.doLoad(AbstractLibrarySupportLoader.java:876)\\n\\tat ghidra.app.util.opinion.AbstractLibrarySupportLoader.loadProgram(AbstractLibrarySupportLoader.java:148)\\n\\tat ghidra.app.util.opinion.AbstractProgramLoader.load(AbstractProgramLoader.java:100)\\n\\tat ghidra.app.util.importer.ProgramLoader$Builder.load(ProgramLoader.java:497)\\n\\tat ghidra.app.util.importer.ProgramLoader$Builder.load(ProgramLoader.java:439)\\n\\tat ghidra.app.util.headless.HeadlessAnalyzer.processFileWithImport(HeadlessAnalyzer.java:1568)\\n\\tat ghidra.app.util.headless.HeadlessAnalyzer.processWithLoader(HeadlessAnalyzer.java:1755)\\n\\tat ghidra.app.util.headless.HeadlessAnalyzer.processWithImport(HeadlessAnalyzer.java:1696)\\n\\tat ghidra.app.util.headless.HeadlessAnalyzer.processWithImport(HeadlessAnalyzer.java:1780)\\n\\tat ghidra.app.util.headless.HeadlessAnalyzer.processLocal(HeadlessAnalyzer.java:464)\\n\\tat ghidra.app.util.headless.AnalyzeHeadless.launch(AnalyzeHeadless.java:199)\\n\\tat ghidra.GhidraLauncher.launch(GhidraLauncher.java:81)\\n\\tat ghidra.Ghidra.main(Ghidra.java:54)\\n \\nINFO  Additional info:\\nLoading file:///tmp/rea-ghidra-qsmovv/target-2e2efde1a103.so?MD5=551d6230bfbd07803a5bb3b9c7934be1...\\nELF Relocation Error: Type = 1025 (0x401) at 04c2cfd0 (Symbol = <no name>) - Invalid symbol index (2662)\\nELF Relocation Error: Type = 1025 (0x401) at 04c2cff0 (Symbol = <no name>) - Invalid symbol index (2665)\\nELF Relocation Error: Type = 1026 (0x402) at 04c2cf88 (Symbol = <no name>) - Invalid symbol index (2657)\\nELF Relocation Error: Type = 1026 (0x402) at 04c2cf90 (Symbol = <no name>) - Invalid symbol index (2658)\\nELF Relocation Error: Type = 1026 (0x402) at 04c2cf98 (Symbol = <no name>) - Invalid symbol index (2659)\\nELF Relocation Error: Type = 1026 (0x402) at 04c2cfa0 (Symbol = <no name>) - Invalid symbol index (2660)\\nELF Relocation Error: Type = 1026 (0x402) at 04c2cfa8 (Symbol = <no name>) - Invalid symbol index (2661)\\nELF Relocation Error: Type = 1026 (0x402) at 04c2cfb0 (Symbol = <no name>) - Invalid symbol index (2663)\\nELF Relocation Error: Type = 1026 (0x402) at 04c2cfb8 (Symbol = <no name>) - Invalid symbol index (2664)\\nELF Relocation Error: Type = 1026 (0x402) at 04c2cfc0 (Symbol = <no name>) - Invalid symbol index (2666)\\nFailed to process DT_PLTGOT(0x00000003): Index 2657 out of bounds for length 2656\\nSetting block segment_1 to read-only (block split was required)\\n------------------------------------------------\\n\\nLinking the External Programs of 'target-2e2efde1a103.so' to imported libraries...\\n  [liblog.so] -> not found in project\\n  [libm.so] -> not found in project\\n  [libdl.so] -> not found in project\\n  [libc.so] -> not found in project\\n  [libstdc++.so] -> not found in project\\n  [libanort.so] -> not found in project\\n------------------------------------------------\\n\\nResolving External Symbols of [/target-2e2efde1a103.so] - 293 unresolved symbols, no external libraries configured - skipping\\n (ProgramLoader)  \\nINFO  IMPORTING: Loaded 0 additional files (HeadlessAnalyzer)  \\nINFO  ANALYZING all memory and code: file:///tmp/rea-ghidra-qsmovv/target-2e2efde1a103.so (HeadlessAnalyzer)  \\nWARN  Decompiling 04c2a410, pcode error at 04c2a544: Unable to resolve constructor at 04c2a544 (DecompileCallback)  \\n\",\"bytes\":7345,\"retained_bytes\":7345},\"stderr\":{\"text\":\"NOTE: Picked up JDK_JAVA_OPTIONS: \\nPicked up JAVA_TOOL_OPTIONS: \\nPicked up _JAVA_OPTIONS: \\nopenjdk version \\\"27\\\" 2026-09-15\\nOpenJDK Runtime Environment (build 27)\\nOpenJDK 64-Bit Server VM (build 27, mixed mode)\\nWARNING: Final field name in class ghidra.util.charset.CharsetInfo has been mutated reflectively by class com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$2 in unnamed module @58695725 (file:/opt/ghidra/Ghidra/Framework/Generic/lib/gson-2.13.2.jar)\\nWARNING: Use --enable-final-field-mutation=ALL-UNNAMED to avoid a warning\\nWARNING: Mutating final fields will be blocked in a future release unless final field mutation is enabled\\nWARNING: A terminally deprecated method in sun.misc.Unsafe has been called\\nWARNING: sun.misc.Unsafe::staticFieldOffset has been called by org.apache.felix.framework.util.SecureAction (file:/opt/ghidra/Ghidra/Features/Base/lib/org.apache.felix.framework-7.0.5.jar)\\nWARNING: Please consider reporting this to the maintainers of class org.apache.felix.framework.util.SecureAction\\nWARNING: sun.misc.Unsafe::staticFieldOffset will be removed in a future release\\n\",\"bytes\":1106,\"retained_bytes\":1106},\"failure_output\":{\"stdout\":{\"text\":\"INFO  Using log config file: jar:file:/opt/ghidra/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  \\nINFO  Using log file: /tmp/rea-ghidra-qsmovv/ghidra.log (LoggingInitialization)  \\nINFO  Loading user preferences: /tmp/rea-ghidra-qsmovv/config/andlua-ghidra/ghidra_12.1.2_DEV/preferences (Preferences)  \\nINFO  Searching for classes... (ClassSearcher)  \\nINFO  Class search complete (658 ms) (ClassSearcher)  \\nINFO  Initializing SSL Context (DefaultSSLContextInitializer)  \\nINFO  Initializing Random Number Generator... (SecureRandomFactory)  \\nINFO  Random Number Generator initialization complete: NativePRNGNonBlocking (SecureRandomFactory)  \\nINFO  Trust manager disabled, cacerts have not been set (DefaultTrustManagerFactory)  \\nINFO  Starting cache cleanup: /tmp/rea-ghidra-qsmovv/cache/andlua-ghidra/fscache2 (FileCacheMaintenanceDaemon)  \\nINFO  Finished cache cleanup, estimated storage used: 0 (FileCacheMaintenanceDaemon)  \\nINFO  Headless startup complete (1591 ms) (AnalyzeHeadless)  \\nINFO  Class searcher loaded 59 extension points (20 false positives) (ClassSearcher)  \\nINFO  HEADLESS Script Paths:\\n    /opt/ghidra/Ghidra/Features/SystemEmulation/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/GnuDemangler/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/WildcardAssembler/ghidra_scripts\\n    /opt/ghidra/Ghidra/Processors/DATA/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/DecompilerDependent/ghidra_scripts\\n    /opt/ghidra/Ghidra/Processors/JVM/ghidra_scripts\\n    /opt/ghidra/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/VersionTracking/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/PyGhidra/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/SwiftDemangler/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/Base/ghidra_scripts\\n    /opt/ghidra/Ghidra/Processors/Atmel/ghidra_scripts\\n    /opt/ghidra/Ghidra/Debug/Debugger/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/Decompiler/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/FunctionID/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/PDB/ghidra_scripts\\n    /opt/ghidra/Ghidra/Processors/8051/ghidra_scripts\\n    /opt/ghidra/Ghidra/Processors/PIC/ghidra_scripts\\n    /home/andlua/.npm/_npx/af752b90495482d7/node_modules/rea-agents/bridge/ghidra\\n    /opt/ghidra/Ghidra/Features/FileFormats/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/BSim/ghidra_scripts\\n    /opt/ghidra/Ghidra/Features/BytePatterns/ghidra_scripts (HeadlessAnalyzer)  \\nINFO  HEADLESS: execution starts (HeadlessAnalyzer)  \\nINFO  Creating temporary project: /tmp/rea-ghidra-qsmovv/project/rea-project (HeadlessAnalyzer)  \\nINFO  Creating project: /tmp/rea-ghidra-qsmovv/project/rea-project (DefaultProject)  \\nINFO  REPORT: Processing input files:  (HeadlessAnalyzer)  \\nINFO       project: /tmp/rea-ghidra-qsmovv/project/rea-project (HeadlessAnalyzer)  \\nINFO  IMPORTING: file:///tmp/rea-ghidra-qsmovv/target-2e2efde1a103.so (HeadlessAnalyzer)  \\nINFO  Using Loader: Executable and Linking Format (ELF) (ProgramLoader)  \\nINFO  Using Language/Compiler: AARCH64:LE:64:v8A:default (ProgramLoader)  \\nINFO  Using Library Search Path: [., /bin, /lib, /lib64, /lib/x86_64-linux-gnu, /lib/aarch64-linux-gnu, /usr/bin, /usr/lib, /usr/X11R6/bin, /usr/X11R6/lib, /usr/java/packages/lib, /usr/lib64] (ProgramLoader)  \\nERROR Failed to process DT_PLTGOT(0x00000003): Index 2657 out of bounds for length 2656 (ElfDefaultGotPltMarkup) java.lang.ArrayIndexOutOfBoundsException: Index 2657 out of bounds for length 2656\\n\\tat ghidra.app.util.bin.format.elf.ElfDefaultGotPltMarkup.processDynamicPLTGOT(ElfDefaultGotPltMarkup.java:185)\\n\\tat ghidra.app.util.bin.format.elf.ElfDefaultGotPltMarkup.process(ElfDefaultGotPltMarkup.java:65)\\n\\tat ghidra.app.util.bin.format.elf.extend.ElfLoadAdapter.processGotPlt(ElfLoadAdapter.java:311)\\n\\tat ghidra.app.util.opinion.ElfProgramBuilder.load(ElfProgramBuilder.java:181)\\n\\tat ghidra.app.util.opinion.ElfProgramBuilder.loadElf(ElfProgramBuilder.java:111)\\n\\tat ghidra.app.util.opinion.ElfLoader.load(ElfLoader.java:153)\\n\\tat ghidra.app.util.opinion.AbstractLibrarySupportLoader.doLoad(AbstractLibrarySupportLoader.java:876)\\n\\tat ghidra.app.util.opinion.AbstractLibrarySupportLoader.loadProgram(AbstractLibrarySupportLoader.java:148)\\n\\tat ghidra.app.util.opinion.AbstractProgramLoader.load(AbstractProgramLoader.java:100)\\n\\tat ghidra.app.util.importer.ProgramLoader$Builder.load(ProgramLoader.java:497)\\n\\tat ghidra.app.util.importer.ProgramLoader$Builder.load(ProgramLoader.java:439)\\n\\tat ghidra.app.util.headless.HeadlessAnalyzer.processFileWithImport(HeadlessAnalyzer.java:1568)\\n\\tat ghidra.app.util.headless.HeadlessAnalyzer.processWithLoader(HeadlessAnalyzer.java:1755)\\n\\tat ghidra.app.util.headless.HeadlessAnalyzer.processWithImport(HeadlessAnalyzer.java:1696)\\n\\tat ghidra.app.util.headless.HeadlessAnalyzer.processWithImport(HeadlessAnalyzer.java:1780)\\n\\tat ghidra.app.util.headless.HeadlessAnalyzer.processLocal(HeadlessAnalyzer.java:464)\\n\\tat ghidra.app.util.headless.AnalyzeHeadless.launch(AnalyzeHeadless.java:199)\\n\\tat ghidra.GhidraLauncher.launch(GhidraLauncher.java:81)\\n\\tat ghidra.Ghidra.main(Ghidra.java:54)\\n \\nINFO  Additional info:\\nLoading file:///tmp/rea-ghidra-qsmovv/target-2e2efde1a103.so?MD5=551d6230bfbd07803a5bb3b9c7934be1...\\nELF Relocation Error: Type = 1025 (0x401) at 04c2cfd0 (Symbol = <no name>) - Invalid symbol index (2662)\\nELF Relocation Error: Type = 1025 (0x401) at 04c2cff0 (Symbol = <no name>) - Invalid symbol index (2665)\\nELF Relocation Error: Type = 1026 (0x402) at 04c2cf88 (Symbol = <no name>) - Invalid symbol index (2657)\\nELF Relocation Error: Type = 1026 (0x402) at 04c2cf90 (Symbol = <no name>) - Invalid symbol index (2658)\\nELF Relocation Error: Type = 1026 (0x402) at 04c2cf98 (Symbol = <no name>) - Invalid symbol index (2659)\\nELF Relocation Error: Type = 1026 (0x402) at 04c2cfa0 (Symbol = <no name>) - Invalid symbol index (2660)\\nELF Relocation Error: Type = 1026 (0x402) at 04c2cfa8 (Symbol = <no name>) - Invalid symbol index (2661)\\nELF Relocation Error: Type = 1026 (0x402) at 04c2cfb0 (Symbol = <no name>) - Invalid symbol index (2663)\\nELF Relocation Error: Type = 1026 (0x402) at 04c2cfb8 (Symbol = <no name>) - Invalid symbol index (2664)\\nELF Relocation Error: Type = 1026 (0x402) at 04c2cfc0 (Symbol = <no name>) - Invalid symbol index (2666)\\nFailed to process DT_PLTGOT(0x00000003): Index 2657 out of bounds for length 2656\\nSetting block segment_1 to read-only (block split was required)\\n------------------------------------------------\\n\\nLinking the External Programs of 'target-2e2efde1a103.so' to imported libraries...\\n  [liblog.so] -> not found in project\\n  [libm.so] -> not found in project\\n  [libdl.so] -> not found in project\\n  [libc.so] -> not found in project\\n  [libstdc++.so] -> not found in project\\n  [libanort.so] -> not found in project\\n------------------------------------------------\\n\\nResolving External Symbols of [/target-2e2efde1a103.so] - 293 unresolved symbols, no external libraries configured - skipping\\n (ProgramLoader)  \\nINFO  IMPORTING: Loaded 0 additional files (HeadlessAnalyzer)  \\nINFO  ANALYZING all memory and code: file:///tmp/rea-ghidra-qsmovv/target-2e2efde1a103.so (HeadlessAnalyzer)  \\nWARN  Decompiling 04c2a410, pcode error at 04c2a544: Unable to resolve constructor at 04c2a544 (DecompileCallback)  \\n\",\"bytes\":7345,\"retained_bytes\":7345},\"stderr\":{\"text\":\"NOTE: Picked up JDK_JAVA_OPTIONS: \\nPicked up JAVA_TOOL_OPTIONS: \\nPicked up _JAVA_OPTIONS: \\nopenjdk version \\\"27\\\" 2026-09-15\\nOpenJDK Runtime Environment (build 27)\\nOpenJDK 64-Bit Server VM (build 27, mixed mode)\\nWARNING: Final field name in class ghidra.util.charset.CharsetInfo has been mutated reflectively by class com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$2 in unnamed module @58695725 (file:/opt/ghidra/Ghidra/Framework/Generic/lib/gson-2.13.2.jar)\\nWARNING: Use --enable-final-field-mutation=ALL-UNNAMED to avoid a warning\\nWARNING: Mutating final fields will be blocked in a future release unless final field mutation is enabled\\nWARNING: A terminally deprecated method in sun.misc.Unsafe has been called\\nWARNING: sun.misc.Unsafe::staticFieldOffset has been called by org.apache.felix.framework.util.SecureAction (file:/opt/ghidra/Ghidra/Features/Base/lib/org.apache.felix.framework-7.0.5.jar)\\nWARNING: Please consider reporting this to the maintainers of class org.apache.felix.framework.util.SecureAction\\nWARNING: sun.misc.Unsafe::staticFieldOffset will be removed in a future release\\n\",\"bytes\":1106,\"retained_bytes\":1106},\"complete\":false,\"observed_oome\":[]},\"failure_kind\":\"timeout\",\"failure_message\":\"Ghidra startup deadline elapsed\"}}}}"
+        }
+      ],
+      "isError": true
+    },
+    "body_parts_pseudo_retry": {
+      "content": [
+        {
+          "type": "text",
+          "text": "tool call error: tool call failed for `rea/procedure_pseudo_code`\n\nCaused by:\n    timed out awaiting tools/call after 450s"
+        }
+      ],
+      "isError": true
+    },
+    "rig_ghidra_timeout_update": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"revision\":1,\"scope\":\"rea-runtime\",\"active_values\":{\"status\":\"not_observed\"},\"settings\":[{\"setting\":\"ghidra.startup_timeout_ms\",\"value\":900000,\"launch_value\":330000,\"default_value\":330000,\"source\":\"runtime\",\"unit\":\"ms\",\"minimum\":1,\"maximum\":2147483647,\"applies_at\":\"next_startup\",\"provider\":\"ghidra\",\"operations\":[\"binary_overview\",\"list_documents\",\"list_procedures\",\"search_procedures\",\"list_strings\",\"search_strings\",\"procedure_pseudo_code\",\"procedure_assembly\",\"analyze_function\",\"decompile_all\",\"trace_native_values\"],\"environment\":\"REA_GHIDRA_STARTUP_TIMEOUT_MS\",\"agent_editable\":true}],\"changed\":true,\"changes\":[{\"setting\":\"ghidra.startup_timeout_ms\",\"old_value\":330000,\"new_value\":900000}],\"active_work_changed\":false,\"rea_restart_required\":false}"
+        }
+      ],
+      "structuredContent": {
+        "revision": 1,
+        "scope": "rea-runtime",
+        "active_values": {
+          "status": "not_observed"
+        },
+        "settings": [
+          {
+            "setting": "ghidra.startup_timeout_ms",
+            "value": 900000,
+            "launch_value": 330000,
+            "default_value": 330000,
+            "source": "runtime",
+            "unit": "ms",
+            "minimum": 1,
+            "maximum": 2147483647,
+            "applies_at": "next_startup",
+            "provider": "ghidra",
+            "operations": [
+              "binary_overview",
+              "list_documents",
+              "list_procedures",
+              "search_procedures",
+              "list_strings",
+              "search_strings",
+              "procedure_pseudo_code",
+              "procedure_assembly",
+              "analyze_function",
+              "decompile_all",
+              "trace_native_values"
+            ],
+            "environment": "REA_GHIDRA_STARTUP_TIMEOUT_MS",
+            "agent_editable": true
+          }
+        ],
+        "changed": true,
+        "changes": [
+          {
+            "setting": "ghidra.startup_timeout_ms",
+            "old_value": 330000,
+            "new_value": 900000
+          }
+        ],
+        "active_work_changed": false,
+        "rea_restart_required": false
+      }
+    }
+  },
+  "after_first_timeout": {
+    "open": true,
+    "path": "/tmp/codex-minimap-review/libil2cpp.so",
+    "sha256": "2e2efde1a103549694b17b361cacc18faa5714d06c444945e44b30f1377e2b3c",
+    "cleanup_pending": false,
+    "analysis_run": {
+      "run_id": "314e2a5e-090d-4ffa-af67-c1cf18196795",
+      "process_lineage": {
+        "status": "not_observed"
+      }
+    },
+    "analysis_activity": {
+      "status": "not_observed",
+      "providers": []
+    },
+    "provider_operation_health": null,
+    "analysis_provider_binding": {
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.2"
+      },
+      "selection_source": "request",
+      "analysis_profile": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.2"
+        },
+        "parameters": {
+          "target_kind": "executable",
+          "target_format": "elf",
+          "architecture": "arm64",
+          "available_architectures": [
+            "arm64"
+          ],
+          "import_mode": "ephemeral-source-immutable",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-without-synthetic-entry-v2",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v4",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "decompiler_jump_loads": true,
+          "loader": "auto-from-header",
+          "language_id": "auto-from-header",
+          "compiler_spec_id": "auto-default",
+          "analyzer_preset": "ghidra-default",
+          "function_coordinate_context": {
+            "kind": "native-function-coordinate-context-v1",
+            "selected_image": null,
+            "mapping_sha256": "55a7964dc0bcdf067484a281c658e6ca8457a49405e0ea9dbd080366ee4c3198"
+          }
+        },
+        "digest": "aa6b460c4341e4a6332973d9a44eba475741ef1608f6bdccfcad33bac281879c"
+      }
+    }
+  },
+  "after_host_timeout": {
+    "open": true,
+    "path": "/tmp/codex-minimap-review/libil2cpp.so",
+    "sha256": "2e2efde1a103549694b17b361cacc18faa5714d06c444945e44b30f1377e2b3c",
+    "cleanup_pending": false,
+    "analysis_run": {
+      "run_id": "314e2a5e-090d-4ffa-af67-c1cf18196795",
+      "process_lineage": {
+        "status": "not_observed"
+      }
+    },
+    "analysis_activity": {
+      "status": "not_observed",
+      "providers": []
+    },
+    "provider_operation_health": null,
+    "analysis_provider_binding": {
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.2"
+      },
+      "selection_source": "request",
+      "analysis_profile": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.2"
+        },
+        "parameters": {
+          "target_kind": "executable",
+          "target_format": "elf",
+          "architecture": "arm64",
+          "available_architectures": [
+            "arm64"
+          ],
+          "import_mode": "ephemeral-source-immutable",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-without-synthetic-entry-v2",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v4",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "decompiler_jump_loads": true,
+          "loader": "auto-from-header",
+          "language_id": "auto-from-header",
+          "compiler_spec_id": "auto-default",
+          "analyzer_preset": "ghidra-default",
+          "function_coordinate_context": {
+            "kind": "native-function-coordinate-context-v1",
+            "selected_image": null,
+            "mapping_sha256": "55a7964dc0bcdf067484a281c658e6ca8457a49405e0ea9dbd080366ee4c3198"
+          }
+        },
+        "digest": "aa6b460c4341e4a6332973d9a44eba475741ef1608f6bdccfcad33bac281879c"
+      }
+    }
+  },
+  "conclusion": "No pseudocode obtained. Initial provider startup timeout 330000 ms; raised to 900000 ms; retry hit 450 s host tool deadline. No duplicate cold import. The resumed session reported no cleanup pending and no observed analysis activity."
+}

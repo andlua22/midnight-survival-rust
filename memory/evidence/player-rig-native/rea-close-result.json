@@ -1,0 +1,17 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"result\":{\"path\":\"/home/andlua/Project/Midnight-Survival-Rust/memory/evidence/player-rig-native/rea-native-snapshot-2026-11-12.json\",\"bytes\":1999,\"primitive_entries\":0,\"workflow_entries\":0,\"evidence_records\":0}}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "path": "/home/andlua/Project/Midnight-Survival-Rust/memory/evidence/player-rig-native/rea-native-snapshot-2026-11-12.json",
+      "bytes": 1999,
+      "primitive_entries": 0,
+      "workflow_entries": 0,
+      "evidence_records": 0
+    }
+  }
+}

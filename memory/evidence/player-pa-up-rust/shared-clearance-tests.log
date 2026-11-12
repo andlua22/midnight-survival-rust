@@ -1,0 +1,22 @@
+   Compiling midnight_map_data v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/map_data)
+   Compiling midnight_game_data v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/game_data)
+   Compiling shared v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/shared)
+    Finished `test` profile [optimized] target(s) in 15.43s
+     Running unittests src/lib.rs (target/debug/deps/shared-486dc5a9c673a231)
+
+running 12 tests
+test physics::source_clearance::tests::pa_up_ground_triggers_are_checked_after_the_head_query ... ok
+test physics::source_clearance::tests::pa_up_does_not_infer_self_exclusion_or_classify_prototype_players ... ok
+test physics::source_clearance::tests::independent_shared_worlds_agree_and_queries_leave_players_unchanged ... ok
+test physics::source_clearance::tests::pa_up_checks_only_the_nearest_ground_hit_and_shared_worlds_agree ... ok
+test physics::source_clearance::tests::pa_up_head_hit_precedes_player_transform_layer_and_component_reads ... ok
+test physics::source_clearance::tests::pa_up_ground_ray_uses_its_own_layer_and_conditional_component_result ... ok
+test physics::source_clearance::tests::pa_up_is_not_the_root_bone_pa_to_stand_cast ... ok
+test physics::source_clearance::tests::exact_unity_layers_filter_both_sweep_and_initial_overlap ... ok
+test physics::source_clearance::tests::source_cast_radius_lengths_and_root_bone_origin_determine_clearance ... ok
+test physics::source_clearance::tests::pa_up_missing_dependencies_are_errors_only_when_their_stage_is_reached ... ok
+test physics::source_clearance::tests::unknown_layers_triggers_and_initial_overlap_never_imply_clearance ... ok
+test physics::source_clearance::tests::pa_up_ray_overlap_and_equal_hits_remain_unresolved ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 74 filtered out; finished in 0.00s
+

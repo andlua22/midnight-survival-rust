@@ -1,0 +1,3 @@
+    Finished `dev` profile [optimized] target(s) in 0.03s
+     Running `tools/asset_unpacker/target/debug/asset_unpacker --apk export/lite4.0.apk --verify-package .local/map-import-backups/1794435897062652886/terrain --report memory/evidence/terrain-collision-source/legacy-schema2-verification.json`
+Verified 288 terrain instances and 112 other instances (400 render parts) from APK SHA-256 2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df

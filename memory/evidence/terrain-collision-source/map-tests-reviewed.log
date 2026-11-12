@@ -1,0 +1,51 @@
+   Compiling midnight_map_data v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/map_data)
+    Finished `test` profile [optimized] target(s) in 3.26s
+     Running unittests src/lib.rs (target/debug/deps/midnight_map_data-50ec716f7112d114)
+
+running 37 tests
+test package::tests::independent_collision_schema_and_metadata_reject_invalid_admission ... ok
+test package::tests::refuses_changed_geometry_even_when_the_archive_still_parses ... ok
+test prefab::tests::composes_unsorted_hierarchy_preserving_scale_reflection_and_active_parent ... ok
+test prefab::tests::rejects_derived_activity_and_transform_differing_from_source_fields ... ok
+test prefab::tests::verifies_retained_supermarket_prefab ... ignored, requires retained supermarket source prefab package
+test prefab::tests::rejects_changed_evidence_geometry_and_escaping_paths ... ok
+test package::tests::loaded_geometry_keeps_its_world_coordinates_and_qualified_source_ids ... ok
+test prefab::tests::rejects_retained_symlink_escaping_package ... ok
+test terrain::tests::normal_residual_targets_encoded_layer_zero_and_preserves_three_layer_alpha ... ok
+test terrain::tests::residual_is_an_interpolation_and_weights_are_not_normalized ... ok
+test terrain::tests::three_layer_alpha_changes_the_residual_without_adding_a_color ... ok
+test prefab::tests::rejects_missing_collision_mesh_and_cross_owned_component ... ok
+test terrain_collision::tests::collision_archive_preserves_local_geometry_without_renderer_attributes ... ok
+test terrain_collision::tests::collision_archive_rejects_truncation_overflow_duplicates_and_invalid_geometry ... ok
+test tests::package_paths_cannot_escape_the_map_directory ... ok
+test tests::preserves_geometry_and_attributes_losslessly ... ok
+test tests::preserves_source_tangent_absence_and_rejects_partial_channels ... ok
+test tests::refuses_every_truncated_prefix_and_trailing_bytes ... ok
+test tests::refuses_out_of_range_indices_and_non_finite_vertices ... ok
+test tests::refuses_unknown_vertex_attribute_flags ... ok
+test texture::tests::preserves_distinct_source_levels_with_non_square_dimensions ... ok
+test texture::tests::refuses_missing_levels_trailing_bytes_and_invalid_headers ... ok
+test prefab::tests::rejects_material_order_and_cross_mesh_part_substitution ... ok
+test package::tests::refuses_missing_records_wrong_bounds_and_unsupported_frame ... ok
+test prefab::tests::placement_replaces_serialized_root_transform_and_never_reflects_again ... ok
+test package::tests::normal_map_keywords_preserve_absent_tangents_and_still_validate_samplers ... ok
+test package::tests::independent_collider_table_preserves_render_geometry_and_collision_only_buffers ... ok
+test prefab::tests::rejects_cycles_duplicate_links_missing_roots_and_nonaffine_transforms ... ok
+test package::tests::layer_json_rejects_negative_overflow_fractional_and_non_numeric_values ... ok
+test package::tests::null_terrain_samplers_require_a_supported_shader_default ... ok
+test package::tests::collisions_follow_source_component_flags_including_roads ... ok
+test package::tests::source_mip_archive_must_match_declared_texture_dimensions_and_count ... ok
+test package::tests::independent_collision_payload_checksum_and_reference_coverage_are_enforced ... ok
+test package::tests::legacy_unknown_layers_and_schema_three_zero_preserve_mesh_archive_bytes ... ok
+test package::tests::schema_layers_reject_legacy_claims_missing_metadata_and_invalid_ranges ... ok
+test package::tests::checks_decoded_preview_source_mips_and_complete_encoded_payload ... ok
+test package::tests::submesh_layers_agree_for_qualified_game_objects_and_collider_components ... ok
+
+test result: ok. 36 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests midnight_map_data
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,20 @@
+    Checking midnight_map_data v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/map_data)
+error: unnecessary use of `clone` to create a slice from a reference
+   --> crates/map_data/src/terrain_collision.rs:381:45
+    |
+381 |         write_collision_archive(&mut bytes, &[original.clone()]).unwrap();
+    |                                             ^^^^^^^^^^^^^^^^^^^ help: try: `std::slice::from_ref(&original)`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#cloned_ref_to_slice_refs
+    = note: `-D clippy::cloned-ref-to-slice-refs` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::cloned_ref_to_slice_refs)]`
+
+error: unnecessary use of `clone` to create a slice from a reference
+   --> crates/map_data/src/terrain_collision.rs:393:45
+    |
+393 |         write_collision_archive(&mut bytes, &[original.clone()]).unwrap();
+    |                                             ^^^^^^^^^^^^^^^^^^^ help: try: `std::slice::from_ref(&original)`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#cloned_ref_to_slice_refs
+
+error: could not compile `midnight_map_data` (lib test) due to 2 previous errors

@@ -1,0 +1,279 @@
+{
+  "apk": "export/lite4.0.apk",
+  "assets": [
+    {
+      "cab": "CAB-397fbd765aa2a6eebaaa229ecd396871",
+      "class_counts": {
+        "1": 385,
+        "114": 60,
+        "115": 7,
+        "134": 1,
+        "136": 32,
+        "142": 1,
+        "23": 4,
+        "33": 4,
+        "4": 385,
+        "54": 2,
+        "64": 4,
+        "65": 4,
+        "74": 955,
+        "90": 1,
+        "91": 3,
+        "95": 5
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-21ef67c2f7342daf0978d880a66baeb4/CAB-21ef67c2f7342daf0978d880a66baeb4",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [
+        {
+          "byte_count": 48,
+          "class_id": 64,
+          "path_id": "-4945272530125947147",
+          "properties": {
+            "m_Convex": false,
+            "m_CookingOptions": 30,
+            "m_Enabled": false,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": -2325357888144807193
+            },
+            "m_IsTrigger": false,
+            "m_Material": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 10209
+            }
+          }
+        },
+        {
+          "byte_count": 48,
+          "class_id": 64,
+          "path_id": "-2558774663283267737",
+          "properties": {
+            "m_Convex": false,
+            "m_CookingOptions": 30,
+            "m_Enabled": false,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": -6097804001911668898
+            },
+            "m_IsTrigger": false,
+            "m_Material": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 10209
+            }
+          }
+        },
+        {
+          "byte_count": 52,
+          "class_id": 65,
+          "path_id": "981116659273648993",
+          "properties": {
+            "m_Center": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_Enabled": true,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": -6093918286740935979
+            },
+            "m_IsTrigger": true,
+            "m_Material": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_Size": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 48,
+          "class_id": 64,
+          "path_id": "1189302017624247979",
+          "properties": {
+            "m_Convex": false,
+            "m_CookingOptions": 30,
+            "m_Enabled": false,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": -4132544845475435953
+            },
+            "m_IsTrigger": false,
+            "m_Material": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 10209
+            }
+          }
+        },
+        {
+          "byte_count": 48,
+          "class_id": 64,
+          "path_id": "1574886982443839505",
+          "properties": {
+            "m_Convex": false,
+            "m_CookingOptions": 30,
+            "m_Enabled": false,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 4236718113543993710
+            },
+            "m_IsTrigger": false,
+            "m_Material": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_Mesh": {
+              "m_FileID": 1,
+              "m_PathID": 10209
+            }
+          }
+        },
+        {
+          "byte_count": 52,
+          "class_id": 65,
+          "path_id": "7123339276281001234",
+          "properties": {
+            "m_Center": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_Enabled": true,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 745567381275562490
+            },
+            "m_IsTrigger": true,
+            "m_Material": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_Size": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 52,
+          "class_id": 65,
+          "path_id": "8563490636217361153",
+          "properties": {
+            "m_Center": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_Enabled": true,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": -3979868994658779659
+            },
+            "m_IsTrigger": true,
+            "m_Material": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_Size": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        },
+        {
+          "byte_count": 52,
+          "class_id": 65,
+          "path_id": "8959159350861998876",
+          "properties": {
+            "m_Center": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "m_Enabled": true,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 5212813585661978497
+            },
+            "m_IsTrigger": true,
+            "m_Material": {
+              "m_FileID": 0,
+              "m_PathID": 0
+            },
+            "m_Size": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
+            }
+          }
+        }
+      ],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    }
+  ],
+  "bundle": "assets/role/role.ab"
+}

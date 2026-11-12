@@ -1,0 +1,414 @@
+{
+  "apk": "export/lite4.0.apk",
+  "assets": [
+    {
+      "cab": "CAB-397fbd765aa2a6eebaaa229ecd396871",
+      "class_counts": {
+        "1": 385,
+        "114": 60,
+        "115": 7,
+        "134": 1,
+        "136": 32,
+        "142": 1,
+        "23": 4,
+        "33": 4,
+        "4": 385,
+        "54": 2,
+        "64": 4,
+        "65": 4,
+        "74": 955,
+        "90": 1,
+        "91": 3,
+        "95": 5
+      },
+      "externals": [
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "Library/unity default resources",
+          "temp_empty": "",
+          "type_": 0
+        },
+        {
+          "guid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "path": "archive:/CAB-21ef67c2f7342daf0978d880a66baeb4/CAB-21ef67c2f7342daf0978d880a66baeb4",
+          "temp_empty": "",
+          "type_": 0
+        }
+      ],
+      "objects": [
+        {
+          "byte_count": 56,
+          "class_id": 95,
+          "path_id": "-3534057742751487357",
+          "properties": {
+            "m_AllowConstantClipSamplingOptimization": true,
+            "m_ApplyRootMotion": false,
+            "m_Avatar": {
+              "m_FileID": 0,
+              "m_PathID": -1391617649792846704
+            },
+            "m_Controller": {
+              "m_FileID": 0,
+              "m_PathID": 7747773043563079501
+            },
+            "m_CullingMode": 0,
+            "m_Enabled": 1,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": -1477803233009464859
+            },
+            "m_HasTransformHierarchy": true,
+            "m_KeepAnimatorStateOnDisable": false,
+            "m_LinearVelocityBlending": false,
+            "m_StabilizeFeet": false,
+            "m_UpdateMode": 0,
+            "m_WriteDefaultValuesOnDisable": false
+          }
+        },
+        {
+          "byte_count": 56,
+          "class_id": 95,
+          "path_id": "-3440103722149768464",
+          "properties": {
+            "m_AllowConstantClipSamplingOptimization": true,
+            "m_ApplyRootMotion": false,
+            "m_Avatar": {
+              "m_FileID": 0,
+              "m_PathID": -1391617649792846704
+            },
+            "m_Controller": {
+              "m_FileID": 0,
+              "m_PathID": 7898361955103934130
+            },
+            "m_CullingMode": 1,
+            "m_Enabled": 1,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 4711256185142922242
+            },
+            "m_HasTransformHierarchy": true,
+            "m_KeepAnimatorStateOnDisable": false,
+            "m_LinearVelocityBlending": false,
+            "m_StabilizeFeet": false,
+            "m_UpdateMode": 0,
+            "m_WriteDefaultValuesOnDisable": false
+          }
+        },
+        {
+          "byte_count": 36,
+          "class_id": 54,
+          "path_id": "-1639255568707051262",
+          "properties": {
+            "m_AngularDrag": 999.0,
+            "m_CollisionDetection": 1,
+            "m_Constraints": 112,
+            "m_Drag": 0.0,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 4711256185142922242
+            },
+            "m_Interpolate": 0,
+            "m_IsKinematic": false,
+            "m_Mass": 10.0,
+            "m_UseGravity": true
+          }
+        },
+        {
+          "byte_count": 56,
+          "class_id": 95,
+          "path_id": "-484257321815537853",
+          "properties": {
+            "m_AllowConstantClipSamplingOptimization": true,
+            "m_ApplyRootMotion": false,
+            "m_Avatar": {
+              "m_FileID": 0,
+              "m_PathID": -1391617649792846704
+            },
+            "m_Controller": {
+              "m_FileID": 0,
+              "m_PathID": 2715349160060482404
+            },
+            "m_CullingMode": 1,
+            "m_Enabled": 1,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": -4167672166741421703
+            },
+            "m_HasTransformHierarchy": true,
+            "m_KeepAnimatorStateOnDisable": false,
+            "m_LinearVelocityBlending": false,
+            "m_StabilizeFeet": false,
+            "m_UpdateMode": 0,
+            "m_WriteDefaultValuesOnDisable": false
+          }
+        },
+        {
+          "byte_count": 60676,
+          "class_id": 142,
+          "path_id": "1",
+          "properties": {
+            "m_AssetBundleName": "role/role.ab",
+            "m_Container": [
+              [
+                "assets/roles/role/monsterrole.prefab",
+                {
+                  "asset": {
+                    "m_FileID": 0,
+                    "m_PathID": -4167672166741421703
+                  },
+                  "preloadIndex": 2712,
+                  "preloadSize": 1256
+                }
+              ],
+              [
+                "assets/roles/role/monsterrole_new.prefab",
+                {
+                  "asset": {
+                    "m_FileID": 0,
+                    "m_PathID": 4626456471872296026
+                  },
+                  "preloadIndex": 3968,
+                  "preloadSize": 1054
+                }
+              ],
+              [
+                "assets/roles/role/role.prefab",
+                {
+                  "asset": {
+                    "m_FileID": 0,
+                    "m_PathID": -9012125821768259591
+                  },
+                  "preloadIndex": 1429,
+                  "preloadSize": 1283
+                }
+              ],
+              [
+                "assets/roles/role/role_new.prefab",
+                {
+                  "asset": {
+                    "m_FileID": 0,
+                    "m_PathID": 4711256185142922242
+                  },
+                  "preloadIndex": 0,
+                  "preloadSize": 1081
+                }
+              ],
+              [
+                "assets/roles/role/rolehand.prefab",
+                {
+                  "asset": {
+                    "m_FileID": 0,
+                    "m_PathID": -1477803233009464859
+                  },
+                  "preloadIndex": 1081,
+                  "preloadSize": 348
+                }
+              ]
+            ],
+            "m_Dependencies": [
+              "role/animationbundle.ab"
+            ],
+            "m_ExplicitDataLayout": 0,
+            "m_IsStreamedSceneAssetBundle": false,
+            "m_MainAsset": {
+              "asset": {
+                "m_FileID": 0,
+                "m_PathID": 0
+              },
+              "preloadIndex": 0,
+              "preloadSize": 0
+            },
+            "m_Name": "role/role.ab",
+            "m_PathFlags": 7,
+            "m_PreloadTable": {
+              "item_count": 5022,
+              "preview": [
+                {
+                  "m_FileID": 1,
+                  "m_PathID": 10209
+                },
+                {
+                  "m_FileID": 0,
+                  "m_PathID": -9128906992323480044
+                },
+                {
+                  "m_FileID": 0,
+                  "m_PathID": -9123509329891771743
+                },
+                {
+                  "m_FileID": 0,
+                  "m_PathID": -9109305445993749785
+                },
+                {
+                  "m_FileID": 0,
+                  "m_PathID": -9101667775232703965
+                },
+                {
+                  "m_FileID": 0,
+                  "m_PathID": -9100631995620300857
+                },
+                {
+                  "m_FileID": 0,
+                  "m_PathID": -9091761644963089148
+                },
+                {
+                  "m_FileID": 0,
+                  "m_PathID": -9087707547745791016
+                },
+                {
+                  "m_FileID": 0,
+                  "m_PathID": -9079527301609208962
+                },
+                {
+                  "m_FileID": 0,
+                  "m_PathID": -9054915086113718260
+                },
+                {
+                  "m_FileID": 0,
+                  "m_PathID": -9048134428608956165
+                },
+                {
+                  "m_FileID": 0,
+                  "m_PathID": -9037002194879331252
+                },
+                {
+                  "m_FileID": 0,
+                  "m_PathID": -9021848640440670802
+                },
+                {
+                  "m_FileID": 0,
+                  "m_PathID": -9012934379937836029
+                },
+                {
+                  "m_FileID": 0,
+                  "m_PathID": -9009878409981429022
+                },
+                {
+                  "m_FileID": 0,
+                  "m_PathID": -8978805847403177730
+                }
+              ],
+              "truncated": true
+            },
+            "m_RuntimeCompatibility": 1,
+            "m_SceneHashes": []
+          }
+        },
+        {
+          "byte_count": 36,
+          "class_id": 54,
+          "path_id": "3047568321749177993",
+          "properties": {
+            "m_AngularDrag": 999.0,
+            "m_CollisionDetection": 1,
+            "m_Constraints": 112,
+            "m_Drag": 0.0,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": -9012125821768259591
+            },
+            "m_Interpolate": 0,
+            "m_IsKinematic": false,
+            "m_Mass": 10.0,
+            "m_UseGravity": true
+          }
+        },
+        {
+          "byte_count": 56,
+          "class_id": 95,
+          "path_id": "3832722680313186150",
+          "properties": {
+            "m_AllowConstantClipSamplingOptimization": true,
+            "m_ApplyRootMotion": false,
+            "m_Avatar": {
+              "m_FileID": 0,
+              "m_PathID": -1391617649792846704
+            },
+            "m_Controller": {
+              "m_FileID": 0,
+              "m_PathID": 2715349160060482404
+            },
+            "m_CullingMode": 1,
+            "m_Enabled": 1,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": -9012125821768259591
+            },
+            "m_HasTransformHierarchy": true,
+            "m_KeepAnimatorStateOnDisable": false,
+            "m_LinearVelocityBlending": false,
+            "m_StabilizeFeet": false,
+            "m_UpdateMode": 0,
+            "m_WriteDefaultValuesOnDisable": false
+          }
+        },
+        {
+          "byte_count": 56,
+          "class_id": 95,
+          "path_id": "4400071598414891953",
+          "properties": {
+            "m_AllowConstantClipSamplingOptimization": true,
+            "m_ApplyRootMotion": false,
+            "m_Avatar": {
+              "m_FileID": 0,
+              "m_PathID": -1391617649792846704
+            },
+            "m_Controller": {
+              "m_FileID": 0,
+              "m_PathID": 7898361955103934130
+            },
+            "m_CullingMode": 1,
+            "m_Enabled": 1,
+            "m_GameObject": {
+              "m_FileID": 0,
+              "m_PathID": 4626456471872296026
+            },
+            "m_HasTransformHierarchy": true,
+            "m_KeepAnimatorStateOnDisable": false,
+            "m_LinearVelocityBlending": false,
+            "m_StabilizeFeet": false,
+            "m_UpdateMode": 0,
+            "m_WriteDefaultValuesOnDisable": false
+          }
+        }
+      ],
+      "type_tree_enabled": true,
+      "unity_version": "2021.3.23f1c1"
+    }
+  ],
+  "bundle": "assets/role/role.ab"
+}

@@ -404,7 +404,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         "bevy_version": "0.20.1", "target_size": size.to_array(), "texture_format": "Rgba8UnormSrgb",
         "directional_illuminance": 10_000.0, "ambient_brightness": 80.0, "shadows": false, "tonemapping": "AgX",
         "source_mip_textures_by_level_count": source_mip_textures,
-        "manifest_schema": midnight_map_data::TERRAIN_MANIFEST_VERSION,
+        "manifest_schema": app.world().resource::<Package>().0.manifest.schema_version,
         "views": views,
         "limitations": ["These are renderer validation images, not screenshots of the APK.",
             "Lighting is a fixed Bevy probe setup. Original lighting, mip sampling and non-terrain shaders remain unverified.",

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "authority": "Static native bytes and retained source declarations; not runtime parity or REA provider Evidence",
+  "source_apk": {
+    "path": "export/lite4.0.apk",
+    "sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df",
+    "identity_source": "memory/evidence/player-clearance-native/manifest.json"
+  },
+  "identities": [
+    {
+      "sha256": "2e2efde1a103549694b17b361cacc18faa5714d06c444945e44b30f1377e2b3c",
+      "path": "/tmp/codex-minimap-review/libil2cpp.so"
+    },
+    {
+      "sha256": "000d6b773e4f8ed574b62b1803a1d4d1314bd0178262359cb3a176a5ac7fd8e9",
+      "path": "/tmp/codex-minimap-review/native"
+    },
+    {
+      "sha256": "91d59a9b3b42ca2e4af1880151decd98b5c00d982978c4e5a9848f8eea03bf18",
+      "path": "/tmp/codex-minimap-review/native.rs"
+    },
+    {
+      "sha256": "f1a0cb28aad296e6dd9b669296190efbb8daf2f3cd0a27c4bad2c3c42e5984a7",
+      "path": "export/BattleScMgr.cs"
+    },
+    {
+      "sha256": "c835524a62f5b674c36cc3772ba5de1b3ba191de52699889266df34a2a34bd56",
+      "path": "export/PlayerController.cs"
+    },
+    {
+      "sha256": "b7c0074ee9c6926fb755e71cca26d25713502ea6ba27a88e535f5eb513ec8aa2",
+      "path": "memory/evidence/player-clearance-native/check-can-pa-up.asm"
+    },
+    {
+      "sha256": "17106b7e6423670be710d165706197112c620d6e400b69fbb281783c03e22eea",
+      "path": "memory/evidence/player-clearance-native/vector3-static-initializer.asm"
+    },
+    {
+      "sha256": "f8328fe89e7fc21f87c7c9543e42d2d8e8e4e0c961778f885c6c2e834337fb70",
+      "path": "memory/evidence/player-clearance-native/clearance-radius-and-direction.words"
+    },
+    {
+      "sha256": "71fd4b070d59395ebd7b840237b669ea4cbd0598f5f5b6681c23e4cf30bde48d",
+      "path": "memory/evidence/player-clearance-native/pa-up-distance.words"
+    },
+    {
+      "sha256": "660b3ba55dd35387db1247eb4cd15cc83ca6c3f7e20f601fd00738a202fa6c1e",
+      "path": "memory/evidence/player-clearance-native/pa-up-extra-constants.words"
+    },
+    {
+      "sha256": "1c1a53c1c3c9b93ce7e6c20ab1a6872fc1ed9e24d79dc927b764dd3c903e6f77",
+      "path": "memory/evidence/player-pa-up-native/battle-sc-mgr-cctor.asm"
+    },
+    {
+      "sha256": "f3eb637bde992915423ddc771201ec618209a2c8e5e5dceac9a5948e53abdb52",
+      "path": "memory/evidence/player-pa-up-native/getcomponentinparent-generic.asm"
+    },
+    {
+      "sha256": "e0887a15ba873bff97ffb2ea8dc85776f8e5ecd4652b42f5cc1b987432ff9c20",
+      "path": "memory/evidence/player-pa-up-native/getcomponentinparent-type.asm"
+    },
+    {
+      "sha256": "16b489158ec89221913f049a0e94e7d7e5aff8b6d146225c4243523a37903d82",
+      "path": "memory/evidence/player-pa-up-native/physics-scene-raycast.asm"
+    },
+    {
+      "sha256": "1a5676d3598e0d05fffc661e92d7c1455edff982eff2573b307c5686f9dfc8ad",
+      "path": "memory/evidence/player-pa-up-native/raycast-default-trigger.asm"
+    },
+    {
+      "sha256": "9c09616071db1722374b257c2dfe38e696ee27fa7b131cc75d4e7770a85465ed",
+      "path": "memory/evidence/player-pa-up-native/raycasthit-rigidbody.asm"
+    },
+    {
+      "sha256": "fe26da8c0829d62e508e2ecbbfcc1af7b8dfea0b4495553bcd1e63db7516244c",
+      "path": "memory/evidence/player-pa-up-native/raycasthit-transform.asm"
+    },
+    {
+      "sha256": "7b64a09b8ec57108f338cea3f9eadfc5a858b0fcb03a314b58a920781d4f6fef",
+      "path": "memory/evidence/player-pa-up-native/attached-rigidbody-name.txt"
+    },
+    {
+      "sha256": "d41e16aee30ff5304c3e4fc5e4ade3caef46ea30a5fc90ded1c17be5e7e970d8",
+      "path": "memory/evidence/player-pa-up-native/battle-sc-mgr-layer-fields.txt"
+    },
+    {
+      "sha256": "aaad66418fc22ce2ea2c6eeaa440b1ac02aa2a27306674de3de1b9aaabf18b94",
+      "path": "memory/evidence/player-pa-up-native/component-gameobject-name.txt"
+    },
+    {
+      "sha256": "f4d247add2690ee3d81a49fb0c30dbae27fc0688fe56cfcda6e991419aa40373",
+      "path": "memory/evidence/player-pa-up-native/getcomponentinparent-name.txt"
+    },
+    {
+      "sha256": "936ab54399a3fa3a6d06aa469b7fff8e03101c1f1a570fe03f7f9c30ecac3400",
+      "path": "memory/evidence/player-pa-up-native/raycast-injected-name.txt"
+    }
+  ],
+  "slices": [
+    {
+      "path": "memory/evidence/player-pa-up-native/battle-sc-mgr-cctor.asm",
+      "operation": "disasm",
+      "rva": "0x217352c",
+      "length_bytes": 400
+    },
+    {
+      "path": "memory/evidence/player-pa-up-native/raycast-default-trigger.asm",
+      "operation": "disasm",
+      "rva": "0x3477b60",
+      "length_bytes": 204
+    },
+    {
+      "path": "memory/evidence/player-pa-up-native/physics-scene-raycast.asm",
+      "operation": "disasm",
+      "rva": "0x34779f8",
+      "length_bytes": 360
+    },
+    {
+      "path": "memory/evidence/player-pa-up-native/raycasthit-transform.asm",
+      "operation": "disasm",
+      "rva": "0x347aaac",
+      "length_bytes": 220
+    },
+    {
+      "path": "memory/evidence/player-pa-up-native/raycasthit-rigidbody.asm",
+      "operation": "disasm",
+      "rva": "0x347ab88",
+      "length_bytes": 188
+    },
+    {
+      "path": "memory/evidence/player-pa-up-native/getcomponentinparent-generic.asm",
+      "operation": "disasm",
+      "rva": "0x25811ec",
+      "length_bytes": 200
+    },
+    {
+      "path": "memory/evidence/player-pa-up-native/getcomponentinparent-type.asm",
+      "operation": "disasm",
+      "rva": "0x342a67c",
+      "length_bytes": 136
+    },
+    {
+      "path": "memory/evidence/player-pa-up-native/attached-rigidbody-name.txt",
+      "operation": "text",
+      "rva": "0x3714d81",
+      "length_bytes": 150
+    },
+    {
+      "path": "memory/evidence/player-pa-up-native/component-gameobject-name.txt",
+      "operation": "text",
+      "rva": "0x37088c0",
+      "length_bytes": 150
+    },
+    {
+      "path": "memory/evidence/player-pa-up-native/getcomponentinparent-name.txt",
+      "operation": "text",
+      "rva": "0x370776d",
+      "length_bytes": 150
+    },
+    {
+      "path": "memory/evidence/player-pa-up-native/raycast-injected-name.txt",
+      "operation": "text",
+      "rva": "0x3715685",
+      "length_bytes": 256
+    }
+  ],
+  "source_slices": [
+    {
+      "path": "memory/evidence/player-pa-up-native/battle-sc-mgr-layer-fields.txt",
+      "source_path": "export/BattleScMgr.cs",
+      "first_line": 190,
+      "last_line": 273
+    }
+  ],
+  "observations": {
+    "method": "PlayerController.CheckCanPaUp",
+    "rva": "0x1ec332c",
+    "ifix_id": 3312,
+    "head_sphere": {
+      "origin": "HeadTop.position",
+      "radius_bits": "0x3dcccccd",
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "max_distance_bits": "0x3fa66666",
+      "layer_mask": "0x40080001",
+      "query_trigger_interaction": 0
+    },
+    "ground_ray": {
+      "evaluated_only_when": "head sphere misses",
+      "origin": "PlayerTransform.position + Vector3.up * 0.3",
+      "offset_y_bits": "0x3e99999a",
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "max_distance": 1,
+      "layer_field": "BattleScMgr.DefaultLayer",
+      "class_slot": "0x46283d0",
+      "static_field_offset": "0x28",
+      "mask": "1 << (effective DefaultLayer & 31)",
+      "query_trigger_interaction": 0
+    },
+    "ground_hit": {
+      "transform": "attached Rigidbody.transform when non-null, otherwise collider.transform",
+      "component": "GetComponentInParent<T>(includeInactive: false)",
+      "generic_method_slot": "0x45d63f0",
+      "component_type": "unresolved",
+      "rejection": "component != Unity null"
+    }
+  },
+  "limitations": [
+    "Unpatched base procedures only; IFix runtime state not observed.",
+    "Effective BattleScMgr.DefaultLayer and queriesHitTriggers remain supplied runtime inputs.",
+    "Generic component type and per-hit runtime component/transform identity remain unresolved.",
+    "Original collider coverage, activation, PhysX overlap/contact/tolerance/backface semantics and equal-distance hit arbitration remain unverified.",
+    "No active source FSM, player control, audio, camera, protocol or movement integration."
+  ]
+}

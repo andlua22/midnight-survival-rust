@@ -1,0 +1,5 @@
+   Compiling asset_unpacker v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/tools/asset_unpacker)
+    Finished `dev` profile [optimized] target(s) in 8.14s
+     Running `tools/asset_unpacker/target/debug/asset_unpacker --apk export/lite4.0.apk --out-dir assets --enrich-terrain-layers --report memory/evidence/terrain-layers-source/enrichment.json`
+Previous package archived at .local/map-import-backups/1794435897062652886/terrain
+Verified terrain layers: 400 GameObjects, 400 render records, 21 omitted source colliders; already enriched: false

@@ -10,7 +10,7 @@ use std::{
 
 use glam::{Mat4, Vec3};
 use midnight_map_data::{
-    FileIdentity, MeshRecord, SceneMesh, SourceCollider, TERRAIN_MAGIC, TERRAIN_MANIFEST_VERSION,
+    FileIdentity, MeshRecord, SceneMesh, SourceCollider, TERRAIN_MAGIC,
     TerrainManifest, file_sha256, load_terrain_package, package_path, write_mesh_archive,
 };
 use serde::Serialize;
@@ -115,6 +115,7 @@ fn collect_scene(
             continue;
         }
         let source_object = resolver.object(&game_object)?;
+        let layer = crate::terrain_layers::game_object_layer(&source_object)?;
         if property(&source_object, "m_IsActive")?.as_bool() == Some(false) {
             continue;
         }
@@ -159,6 +160,7 @@ fn collect_scene(
                 SceneMesh {
                     source: mesh_id.source(),
                     game_object: game_object.source(),
+                    layer: Some(layer),
                     world_transform: world.to_cols_array(),
                     bounds: mesh::bounds(&record),
                     material,
@@ -247,7 +249,7 @@ fn import(apk: &Path, output: &Path) -> Result<(), Error> {
     write_mesh_archive(&mut writer, TERRAIN_MAGIC, &records)?;
     writer.flush()?;
     writer.get_ref().sync_all()?;
-    let manifest = TerrainManifest { schema_version: TERRAIN_MANIFEST_VERSION, source_apk: source,
+    let manifest = TerrainManifest { schema_version: 3, source_apk: source, collision:None,
         coordinate_frame: "bevy_right_handed_y_up".into(), uv_origin: "top_left".into(),
         geometry: FileIdentity { path: "meshes.bin".into(), sha256: hash(&staged.join("meshes.bin"))? }, meshes: scene_meshes,
         limitations: vec![
@@ -367,6 +369,9 @@ pub fn augment(apk_path: &Path, output: &Path, member: &str) -> Result<TerrainAu
             verification,
         });
     }
+    if previous.manifest.collision.is_some() {
+        return Err(invalid("scene augmentation requires a separately rebuilt independent collision table"));
+    }
     let expected_previous = all_members
         .iter()
         .filter(|name| name.as_str() != member)
@@ -426,6 +431,14 @@ pub fn augment(apk_path: &Path, output: &Path, member: &str) -> Result<TerrainAu
         .filter(|name| !previous.manifest.meshes.contains_key(*name))
         .cloned()
         .collect::<Vec<_>>();
+    // Legacy augmentation preserves unknown layers; enrichment is a separate action.
+    if manifest.schema_version == 2 {
+        for name in &added_records {
+            if let Some(mesh) = manifest.meshes.get_mut(name) {
+                mesh.layer = None;
+            }
+        }
+    }
     if added_records.len() != 1 {
         return Err(invalid(
             "audited Z-01 scene must add exactly one terrain mesh record",

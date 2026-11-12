@@ -1,7 +1,8 @@
 //! Source prefab collision preparation is shared by server and prediction.
 //! Callers supply a separately authenticated placement; packages supply local geometry.
+use super::source_geometry::{source_box_builder, source_trimesh_builder};
 use super::*;
-use midnight_map_data::{ArchiveError, PrefabPackage, SourceObject, prefab_transform_point};
+use midnight_map_data::{ArchiveError, PrefabPackage, SourceObject};
 
 #[derive(Debug, Default)]
 pub struct PrefabCollisionReport {
@@ -71,34 +72,11 @@ impl CollisionWorld {
                     continue;
                 }
                 let builder = match component.class_id {
-                    65 => {
-                        let mut center = component.vector3("m_Center")?;
-                        center[2] = -center[2]; // Raw primitive fields are still Unity-local.
-                        let size = component.vector3("m_Size")?;
-                        if size.iter().any(|v| *v <= 0.) {
-                            return Err(invalid("source box has nonpositive size"));
-                        }
-                        // Baking all eight corners preserves parent rotation and
-                        // nonuniform scale without reducing the box to world AABB.
-                        let mut points = Vec::with_capacity(8);
-                        for x in [-0.5, 0.5] {
-                            for y in [-0.5, 0.5] {
-                                for z in [-0.5, 0.5] {
-                                    let point = [
-                                        center[0] + x * size[0],
-                                        center[1] + y * size[1],
-                                        center[2] + z * size[2],
-                                    ];
-                                    points.push(Vec3::from_array(prefab_transform_point(
-                                        &pose.world_transform,
-                                        point,
-                                    )?));
-                                }
-                            }
-                        }
-                        ColliderBuilder::convex_hull(&points)
-                            .ok_or_else(|| invalid("source box convex hull failed"))?
-                    }
+                    65 => source_box_builder(
+                        component.vector3("m_Center")?,
+                        component.vector3("m_Size")?,
+                        &pose.world_transform,
+                    )?,
                     64 => {
                         if component.boolean("m_Convex")? {
                             return Err(invalid(
@@ -109,34 +87,12 @@ impl CollisionWorld {
                         let mesh = meshes
                             .get(&mesh_id)
                             .ok_or_else(|| invalid("source mesh collider is missing"))?;
-                        if mesh.indices.is_empty()
-                            || !mesh.indices.len().is_multiple_of(3)
-                            || mesh
-                                .indices
-                                .iter()
-                                .any(|&i| i as usize >= mesh.positions.len())
-                        {
-                            return Err(invalid("invalid source collider triangle indices"));
-                        }
-                        let vertices = mesh
-                            .positions
-                            .iter()
-                            .map(|&p| {
-                                prefab_transform_point(&pose.world_transform, p)
-                                    .map(Vec3::from_array)
-                            })
-                            .collect::<Result<Vec<_>, _>>()?;
-                        let mut triangles = mesh.indices.as_chunks::<3>().0.to_vec();
-                        let m = pose.world_transform;
-                        let determinant = Vec3::new(m[0], m[1], m[2])
-                            .cross(Vec3::new(m[4], m[5], m[6]))
-                            .dot(Vec3::new(m[8], m[9], m[10]));
-                        if determinant < 0. {
-                            for triangle in &mut triangles {
-                                triangle.swap(1, 2);
-                            }
-                        }
-                        ColliderBuilder::trimesh(vertices, triangles).map_err(|error| {
+                        source_trimesh_builder(
+                            &mesh.positions,
+                            &mesh.indices,
+                            &pose.world_transform,
+                        )
+                        .map_err(|error| {
                             invalid(format!(
                                 "source collider {}: {error}",
                                 component.source.path_id

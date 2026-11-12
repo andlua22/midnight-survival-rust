@@ -1,0 +1,15 @@
+   Compiling midnight_game_data v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/game_data)
+    Finished `test` profile [optimized] target(s) in 2.47s
+     Running unittests src/lib.rs (target/debug/deps/midnight_game_data-1dd8fed0be1911fb)
+
+running 7 tests
+test clearance::tests::pa_up_keeps_distinct_head_and_player_transform_queries ... ok
+test clearance::tests::pa_up_rejects_non_finite_pose_in_both_spaces ... ok
+test posture::tests::crouched_clearance_blocks_or_switches_self_then_plays_audio_after_return ... ok
+test clearance::tests::pa_up_preserves_signed_source_layer_shift_without_guessing_a_default ... ok
+test clearance::tests::unity_root_position_is_reflected_once_without_an_actor_offset ... ok
+test clearance::tests::non_finite_rig_pose_is_rejected_in_each_coordinate_frame ... ok
+test clearance::tests::source_methods_preserve_rig_origin_and_distinct_cast_lengths ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 40 filtered out; finished in 0.00s
+

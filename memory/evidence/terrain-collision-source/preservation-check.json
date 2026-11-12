@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "renderer_records_unchanged": 400,
+  "source_apk_identity_unchanged": true,
+  "render_geometry_identity_unchanged": true,
+  "preserved_payloads": 970,
+  "current_and_backup_payload_hashes_checked": 1940,
+  "preserved_payload_bytes": 603921092,
+  "all_payload_hashes_match": true,
+  "collision_archive_hash_matches": true,
+  "manifest_hashes_match": true,
+  "repeat_already_imported": true,
+  "repeat_created_backup": false,
+  "repeat_manifest_unchanged": true,
+  "repeat_source_capture_unchanged": true,
+  "repeat_preserved_payloads_including_collision": 971
+}

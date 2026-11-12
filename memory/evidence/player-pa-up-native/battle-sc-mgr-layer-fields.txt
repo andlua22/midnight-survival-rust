@@ -1,0 +1,84 @@
+
+	[Token(Token = "0x4000553")]
+	[FieldOffset(Offset = "0x0")]
+	public static int PlayerLayer;
+
+	[Token(Token = "0x4000554")]
+	[FieldOffset(Offset = "0x4")]
+	public static int SelfPlayerLayer;
+
+	[Token(Token = "0x4000555")]
+	[FieldOffset(Offset = "0x8")]
+	public static int SelfPlayerColliderLayer;
+
+	[Token(Token = "0x4000556")]
+	[FieldOffset(Offset = "0xC")]
+	public static int OtherPlayerColliderLayer;
+
+	[Token(Token = "0x4000557")]
+	[FieldOffset(Offset = "0x10")]
+	public static int CarForBulletLayer;
+
+	[Token(Token = "0x4000558")]
+	[FieldOffset(Offset = "0x14")]
+	public static int StopBulletLayer;
+
+	[Token(Token = "0x4000559")]
+	[FieldOffset(Offset = "0x18")]
+	public static int CarLayer;
+
+	[Token(Token = "0x400055A")]
+	[FieldOffset(Offset = "0x1C")]
+	public static int CarTriggerLayer;
+
+	[Token(Token = "0x400055B")]
+	[FieldOffset(Offset = "0x20")]
+	public static int DoorLayer;
+
+	[Token(Token = "0x400055C")]
+	[FieldOffset(Offset = "0x24")]
+	public static int WindowLayer;
+
+	[Token(Token = "0x400055D")]
+	[FieldOffset(Offset = "0x28")]
+	public static int DefaultLayer;
+
+	[Token(Token = "0x400055E")]
+	[FieldOffset(Offset = "0x2C")]
+	public static int OutlineLayer;
+
+	[Token(Token = "0x400055F")]
+	[FieldOffset(Offset = "0x30")]
+	public static int WaterLayer;
+
+	[Token(Token = "0x4000560")]
+	[FieldOffset(Offset = "0x34")]
+	public static int BulletLayer;
+
+	[Token(Token = "0x4000561")]
+	[FieldOffset(Offset = "0x38")]
+	public static int GunLayer;
+
+	[Token(Token = "0x4000562")]
+	[FieldOffset(Offset = "0x40")]
+	public static long RoomId;
+
+	[Token(Token = "0x4000563")]
+	[FieldOffset(Offset = "0x48")]
+	public static long LastExitBattleRoomId;
+
+	[Token(Token = "0x4000564")]
+	[FieldOffset(Offset = "0x50")]
+	public static int IgnoreRaycastLayer;
+
+	[Token(Token = "0x4000565")]
+	[FieldOffset(Offset = "0x54")]
+	public static int MonsterLayer;
+
+	[Token(Token = "0x4000566")]
+	[FieldOffset(Offset = "0x58")]
+	public static int BuildingLayer;
+
+	[Token(Token = "0x4000567")]
+	[FieldOffset(Offset = "0x5C")]
+	public static int SceneLayerMask;

@@ -1,0 +1,68 @@
+    Checking memchr v2.8.3
+    Checking serde_json v1.0.154
+    Checking midnight_map_data v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/map_data)
+error: this `if` statement can be collapsed
+   --> crates/map_data/src/package.rs:111:9
+    |
+111 | /         if let Some(collider) = &source.collider {
+112 | |             if collider.mesh != source.source || collider.convex {
+113 | |                 return Err(invalid(format!(
+114 | |                     "{}: separate/convex collision mesh requires its own import",
+...   |
+118 | |         }
+    | |_________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#collapsible_if
+    = note: `-D clippy::collapsible-if` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::collapsible_if)]`
+help: collapse nested if block
+    |
+111 ~         if let Some(collider) = &source.collider
+112 ~             && (collider.mesh != source.source || collider.convex) {
+113 |                 return Err(invalid(format!(
+...
+116 |                 )));
+117 ~             }
+    |
+
+error: this `if` statement can be collapsed
+   --> crates/map_data/src/package.rs:149:21
+    |
+149 | /                     if let Some(previous) = textures.insert(&identity.path, &identity.sha256) {
+150 | |                         if previous != &identity.sha256 {
+151 | |                             return Err(invalid("conflicting texture file identities"));
+152 | |                         }
+153 | |                     }
+    | |_____________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#collapsible_if
+help: collapse nested if block
+    |
+149 ~                     if let Some(previous) = textures.insert(&identity.path, &identity.sha256)
+150 ~                         && previous != &identity.sha256 {
+151 |                             return Err(invalid("conflicting texture file identities"));
+152 ~                         }
+    |
+
+error: this `if` statement can be collapsed
+   --> crates/map_data/src/package.rs:156:17
+    |
+156 | /                 if let Some(previous) = mip_metadata.insert(&gpu.path, metadata) {
+157 | |                     if previous != metadata {
+158 | |                         return Err(invalid("conflicting decoded mip metadata"));
+159 | |                     }
+160 | |                 }
+    | |_________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#collapsible_if
+help: collapse nested if block
+    |
+156 ~                 if let Some(previous) = mip_metadata.insert(&gpu.path, metadata)
+157 ~                     && previous != metadata {
+158 |                         return Err(invalid("conflicting decoded mip metadata"));
+159 ~                     }
+    |
+
+error: could not compile `midnight_map_data` (lib) due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `midnight_map_data` (lib test) due to 3 previous errors

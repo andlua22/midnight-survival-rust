@@ -1,0 +1,26 @@
+{
+  "package": "assets/imported_player/2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df-v1-8f9ff6f7af363045",
+  "manifest_sha256": "8f9ff6f7af36304555572821e11896316e1012cc207a12175591f8fa6ac74cdd",
+  "source_bundles": 5,
+  "source_objects": 6186,
+  "roots": [
+    "assets/roles/role/role.prefab",
+    "assets/roles/role/role_new.prefab",
+    "assets/roles/role/rolehand.prefab"
+  ],
+  "nodes": 229,
+  "colliders": 30,
+  "animators": 3,
+  "decoded_avatars": 1,
+  "decoded_clips": 10,
+  "empty_override_clips": 10,
+  "verified_files": 585,
+  "already_imported": false,
+  "limitations": [
+    "Serialized root transforms, collider flags and numeric GameObject layers are retained separately from runtime posture overrides and activation.",
+    "RootBone=Bip001, HeadTop=Head and PlayerCollider=Collider follow unpatched native lookup strings. Ambiguous lookup names reject admission. Runtime dictionary mutations remain unobserved.",
+    "The selected role prefabs contain no serialized SkinnedMeshRenderer. Native InitPrototyle adds it; runtime dressing/model choices and skin assembly require additional source evidence.",
+    "Default-controller and explicitly selected clips are decoded; other clip objects and unsupported records remain in byte-identical source bundles. Animator arbitration, opaque motion channels, animation events and source frame/fixed timing are not activated.",
+    "This package establishes source extraction integrity and diagnostic rest/track poses, not original-runtime rendering, collision or movement parity."
+  ]
+}

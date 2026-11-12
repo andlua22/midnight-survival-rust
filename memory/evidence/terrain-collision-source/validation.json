@@ -1,0 +1,564 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "scope": "Independent schema-4 saved terrain Mesh/Box collision table, collision-only geometry import and shared insertion; no original-runtime parity",
+  "source_apk": {
+    "path": "export/lite4.0.apk",
+    "sha256": "2e480f42335ef1eb73fa54743f7511757211f3bc62af7114820f6410387ba3df",
+    "byte_count": 1115839572
+  },
+  "package": {
+    "path": "assets/imported_map/terrain",
+    "backup": ".local/map-import-backups/1794438051734897066/terrain",
+    "previous_manifest_schema": 3,
+    "manifest_schema": 4,
+    "previous_manifest_sha256": "2cf1a5100b16516ad9ebaf19d6fab467bd6fac7e93e13b9e30f4e2fe6a0a98cf",
+    "manifest_sha256": "88e8da4f66c27a75a74cf418725a3f3b8b2a683f4b57817a11314979e10aea18",
+    "renderer_geometry_format": "MSMAP003",
+    "renderer_geometry_sha256": "ab54dffcd939dd6bde74e05b115436f94d514c76825aaf5b57b3c5118dda4836",
+    "collision_geometry_format": "MSCOL001",
+    "collision_geometry": {
+      "path": "collision-meshes.bin",
+      "sha256": "50b0246734ab71ccc20ef43292805e33d0c5ce2471dc237d265e08b7c076edbf"
+    },
+    "already_imported": false,
+    "render_records": 400,
+    "source_bundles": 242,
+    "retained_payload_files": 970,
+    "collision_mesh_records": 364,
+    "collision_mesh_vertices": 559815,
+    "collision_mesh_triangles": 994873,
+    "preserved_payload_identity_report": "import.json",
+    "preservation_check": {
+      "report": "preservation-check.json",
+      "schema_version": 1,
+      "renderer_records_unchanged": 400,
+      "source_apk_identity_unchanged": true,
+      "render_geometry_identity_unchanged": true,
+      "preserved_payloads": 970,
+      "current_and_backup_payload_hashes_checked": 1940,
+      "preserved_payload_bytes": 603921092,
+      "all_payload_hashes_match": true,
+      "collision_archive_hash_matches": true,
+      "manifest_hashes_match": true,
+      "repeat_already_imported": true,
+      "repeat_created_backup": false,
+      "repeat_manifest_unchanged": true,
+      "repeat_source_capture_unchanged": true,
+      "repeat_preserved_payloads_including_collision": 971
+    },
+    "repeat": {
+      "report": "repeat-import.json",
+      "already_imported": true,
+      "backup": null,
+      "manifest_unchanged": true,
+      "source_capture_unchanged": true,
+      "preserved_payloads_including_collision": 971
+    },
+    "legacy_verification": [
+      {
+        "report": "legacy-schema3-verification.json",
+        "manifest_schema": 3,
+        "known_layer_records": 400,
+        "unknown_layer_records": 0,
+        "source_layer_values_verified": true,
+        "source_collision_values_verified": false,
+        "independent_collision_entries": 0,
+        "render_records": 400,
+        "renderer_collision_records": 383
+      },
+      {
+        "report": "legacy-schema2-verification.json",
+        "manifest_schema": 2,
+        "known_layer_records": 0,
+        "unknown_layer_records": 400,
+        "source_layer_values_verified": false,
+        "source_collision_values_verified": false,
+        "independent_collision_entries": 0,
+        "render_records": 400,
+        "renderer_collision_records": 383
+      }
+    ]
+  },
+  "source_collision": {
+    "source_entries": 404,
+    "source_class_counts": {
+      "64": 387,
+      "65": 17
+    },
+    "active_solid_entries": 389,
+    "active_trigger_entries": 12,
+    "inactive_or_disabled_entries": 3,
+    "previously_unrepresented_entries": 21,
+    "restored_active_solid_components": [
+      {
+        "source": {
+          "bundle": "assets/scene/a-46.ab",
+          "cab": "BuildPlayer-A-46",
+          "path_id": "34"
+        },
+        "kind": "box",
+        "layer": 0
+      },
+      {
+        "source": {
+          "bundle": "assets/scene/b-32.ab",
+          "cab": "BuildPlayer-B-32",
+          "path_id": "10"
+        },
+        "kind": "mesh",
+        "layer": 0
+      },
+      {
+        "source": {
+          "bundle": "assets/scene/z-01.ab",
+          "cab": "BuildPlayer-Z-01",
+          "path_id": "34"
+        },
+        "kind": "box",
+        "layer": 0
+      },
+      {
+        "source": {
+          "bundle": "assets/scene/z-01.ab",
+          "cab": "BuildPlayer-Z-01",
+          "path_id": "35"
+        },
+        "kind": "box",
+        "layer": 0
+      },
+      {
+        "source": {
+          "bundle": "assets/scene/z-01.ab",
+          "cab": "BuildPlayer-Z-01",
+          "path_id": "36"
+        },
+        "kind": "box",
+        "layer": 0
+      },
+      {
+        "source": {
+          "bundle": "assets/scene/z-01.ab",
+          "cab": "BuildPlayer-Z-01",
+          "path_id": "37"
+        },
+        "kind": "box",
+        "layer": 0
+      }
+    ],
+    "qualified_component_identity_retained": true,
+    "saved_ancestor_activity_and_rigidbody_ancestry_checked": true,
+    "source_values_verified": true,
+    "full_runtime_collision_parity_verified": false
+  },
+  "source_verification": {
+    "report": "source-verification.json",
+    "source_layer_values_verified": true,
+    "source_collision_values_verified": true,
+    "independent_collision_entries": 404,
+    "independent_active_solids": 389,
+    "independent_active_triggers": 12,
+    "independent_inactive_or_disabled": 3
+  },
+  "production_review": {
+    "report": "importer-review.md",
+    "attachment_admission_finding": "Require qualified collider/selected Transform attachment exactly once and each ancestor Transform exactly once in its owner",
+    "finding_resolved_by_root": true,
+    "follow_up_review_blockers": 0,
+    "static_review_only": true
+  },
+  "identities": [
+    {
+      "path": "crates/map_data/src/lib.rs",
+      "sha256": "14ac73a0fed3347080a7cf8a4b47ff69211a50915a78a768b8207b62966ffafe"
+    },
+    {
+      "path": "crates/map_data/src/package.rs",
+      "sha256": "63fdda31097a50bd56532541248b92d6ca851b09393c2633f10bc94334728c92"
+    },
+    {
+      "path": "crates/map_data/src/terrain_collision.rs",
+      "sha256": "4ea86f7010d1e03b28b6a8f089029c7ba6c1aebebdc7309337ddfceab4121de2"
+    },
+    {
+      "path": "crates/map_data/src/terrain_layers.rs",
+      "sha256": "f74b26443d676a72777b10cc2c1d613ac9ec551ab33a3a958954ec781d505023"
+    },
+    {
+      "path": "crates/shared/src/physics.rs",
+      "sha256": "8dbe2bc5ca7003f1414702405af6609983fb4e30df62875d5363fc719f1965ee"
+    },
+    {
+      "path": "crates/shared/src/physics/source_geometry.rs",
+      "sha256": "e1c87c4d821086a93549d8d6944bca9d539933e7c02ae96d22522e700c7be698"
+    },
+    {
+      "path": "crates/shared/src/physics/source_terrain.rs",
+      "sha256": "f69c880b7ce27a74dbec5cddcfbaf6d36c89ce7c45595ea9330c968e60fe8c8b"
+    },
+    {
+      "path": "crates/shared/src/physics/source_clearance.rs",
+      "sha256": "6a90c5a66c58a16cde72500d6f3a6c13799c704a3506740dc7e1bbb761d550f2"
+    },
+    {
+      "path": "crates/shared/src/physics/source_prefabs.rs",
+      "sha256": "294a84258053c55f8b6c3e1a4e9b2223b13611f403ec8370a5735f3085bded61"
+    },
+    {
+      "path": "crates/client_core/examples/terrain_probe.rs",
+      "sha256": "cedf265e855080c5e604e512461489a86e25239c3c178ba224c914121b29835f"
+    },
+    {
+      "path": "tools/asset_unpacker/src/main.rs",
+      "sha256": "3505aeb87c7aa105b90b6eedd07cd6e1ec6748fe5b21b58b7e31273305854e97"
+    },
+    {
+      "path": "tools/asset_unpacker/src/pass2_terrain.rs",
+      "sha256": "b307dc354958f8eab11a9bcfab43923533d22a5778395bc59c50bf02e1559c6b"
+    },
+    {
+      "path": "tools/asset_unpacker/src/resolver.rs",
+      "sha256": "83c1da1c585d127e797a84b511270ffb25d1e728609460749bc25096ee51168f"
+    },
+    {
+      "path": "tools/asset_unpacker/src/terrain_collisions.rs",
+      "sha256": "d9ef3d7c36b0ae0327898a367a514955c93b72677b4f48de1b1003fee4eeced6"
+    },
+    {
+      "path": "tools/asset_unpacker/src/terrain_layers.rs",
+      "sha256": "156ee846336b7437d75b097de136feff558d51f59ed569638d7a66c5c095affe"
+    },
+    {
+      "path": "tools/asset_unpacker/src/terrain_verification.rs",
+      "sha256": "5ab6ce2894ab26a945f49f1825d41ba81fb501df1073748c2c7386aa90a89f25"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/extractor-clippy-reviewed.log",
+      "sha256": "b836ac1c1b9e56aa3bc51b824d33c6d80cd997866f5b9182496b205d69c93e7f"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/workspace-check.log",
+      "sha256": "457ecba7f2f295c52c50ebadfda58dcb0483d1b19cb37d601b0f24ad527239df"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/canonical-world-tests.log",
+      "sha256": "ec90469f7a3ff6c29a1cc3814c99754d8ddd522270477f9529fac2016df21b74"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/map-tests-reviewed.log",
+      "sha256": "f54e1573d5e3457eac55770d6a28002d03a8e034c3a99b718f46e5a5af148733"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/extractor-tests-reviewed.log",
+      "sha256": "415ce8db23afc59c2827918206f925dcb201a5d18dd1df4ce7679b41718b8394"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/rustfmt-check-reviewed.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/retained-layer-tests.log",
+      "sha256": "0c97349b960dd8ec6c8100890a2200756d344985d674957a2fa9e9b53df3d4e2"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/import.log",
+      "sha256": "6122ef0c0c2e9c6c5d6bdc3ee8bf78982931ff553c9a97b1b55e70447b41b8fa"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/retained-collision-tests.log",
+      "sha256": "1ff9200d0780f4632f67250bdf69191815a9aeca97fccb92dd1b2b64c37638b3"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/extractor-tests-final.log",
+      "sha256": "787cfa47729b8f3dbc8ce964c96e1b8cf8f71cd297e43221f469e06719163269"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/shared-clippy.log",
+      "sha256": "6f461842148e01a870e6e7f05b4618bc4b2cb5e2328332497deaa8cc14f25213"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/map-shared-tests.log",
+      "sha256": "6478b0bcd70b2fdc4075c980ecd93ead7d736e6324063374eb6c28b3ea889404"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/diff-check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/preservation-check.log",
+      "sha256": "441d92ab73e2603e215dc384f755eb30f05bedddcc732d2c10c17eb34b6eedd4"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/map-clippy-strict.log",
+      "sha256": "f02e723e6500824306e5c5bc4077cdb96f3684fd8f3220a330dabdaaa039893e"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/source-verification.log",
+      "sha256": "6e0d74e93c86e4f89d6056c7c06c9794cf24fedea0492416f1e1924c3afc532c"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/import.json",
+      "sha256": "8c61369943ed55f28e27086d43b9cf84bdba2a415c8be917732255c41b68b7c3"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/repeat-import.log",
+      "sha256": "34a8356bb271d1e0cd00bb3d124e8aa8154e562112329cf6af6e55a9887d921a"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/repeat-import.json",
+      "sha256": "a6917f648df6e7adc04c2e8b39333325d6664c8f6a7d73495a80b25afa443a42"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/preservation-check.json",
+      "sha256": "441d92ab73e2603e215dc384f755eb30f05bedddcc732d2c10c17eb34b6eedd4"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/workspace-tests.log",
+      "sha256": "30882069ef5742dbaaa2a836cbef86b6441a018e843b324fbca492890e69fe05"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/map-clippy-baseline-reviewed.log",
+      "sha256": "faf9e510207980c73723e960e9b44c0c5210115a34bfeaebfbe059b3b7bee7a7"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/legacy-schema3-verification.log",
+      "sha256": "62ea89a082e7bb981de316e04a8bbde19e6718d1d347553f78abed41912d9e24"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/legacy-schema3-verification.json",
+      "sha256": "1e7d01a837e986bc4f739119413ca28c1eca0150dd64bae03a9d68a42a3968d6"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/importer-review.md",
+      "sha256": "086d5d6aecf1781e3af2d3f5df2213b2cc475c4773d3282068ef65f234681fc0"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/extractor-clippy.log",
+      "sha256": "1ee01f3dc422ddaed4d4d8ba40d68faca5aaab04813ddd1de16d6e5b4ba273d0"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/source-verification.json",
+      "sha256": "c9170b0a75982bf513492e50bd1541902ffd761dfe97df31c37f89602cde9b0f"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/check-preservation.cjs",
+      "sha256": "faa40c88d324a5230128cd52d384152e70c4bb4826d1e580ec7517193849636a"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/legacy-schema2-verification.json",
+      "sha256": "0204ae6c0e8cbe9f96985272d1055bab5e0d54a61d09c5bcd2f69bf5e107b7a3"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/map-clippy-baseline.log",
+      "sha256": "c71fc1b7601dac62539b3a7b5d72b154551068a7bcef29bb2b237deaf673eac9"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/extractor-tests.log",
+      "sha256": "1411a94d7f01b4804919c64425eb21e8738d5190f376613ff41ab1d2fe5e6de1"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/rustfmt-check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "memory/evidence/terrain-collision-source/legacy-schema2-verification.log",
+      "sha256": "c2ce0cc88d503e9c254ced8c48a026352ada0fd709183eb2562de78385652d16"
+    }
+  ],
+  "checks": [
+    {
+      "command": "cargo test --offline --locked --manifest-path tools/asset_unpacker/Cargo.toml",
+      "command_kind": "reproduction; original shell invocation not retained in log",
+      "exit_code": 0,
+      "passed_tests": 50,
+      "ignored_tests": 0,
+      "log": "extractor-tests-reviewed.log",
+      "earlier_logs_preserved": [
+        "extractor-tests.log",
+        "extractor-tests-final.log"
+      ]
+    },
+    {
+      "command": "cargo clippy --offline --locked --manifest-path tools/asset_unpacker/Cargo.toml --all-targets -- -D warnings",
+      "command_kind": "reproduction; original shell invocation not retained in log",
+      "exit_code": 0,
+      "log": "extractor-clippy-reviewed.log",
+      "earlier_logs_preserved": [
+        "extractor-clippy.log"
+      ]
+    },
+    {
+      "command": "cargo test --offline --locked -p midnight_map_data -p shared",
+      "command_kind": "reproduction; original shell invocation not retained in log",
+      "exit_code": 0,
+      "passed_tests": {
+        "midnight_map_data": 36,
+        "shared": 73
+      },
+      "ignored_tests": {
+        "midnight_map_data": 1,
+        "shared": 5
+      },
+      "log": "map-shared-tests.log"
+    },
+    {
+      "command": "tools/asset_unpacker/target/debug/asset_unpacker --apk export/lite4.0.apk --out-dir assets --import-terrain-collision --report memory/evidence/terrain-collision-source/import.json",
+      "command_kind": "recorded launched binary invocation via Cargo",
+      "exit_code": 0,
+      "report": "import.json",
+      "log": "import.log"
+    },
+    {
+      "command": "cargo run --offline --locked --manifest-path tools/asset_unpacker/Cargo.toml -- --apk export/lite4.0.apk --out-dir assets --verify --report memory/evidence/terrain-collision-source/source-verification.json",
+      "command_kind": "recorded invocation",
+      "report": "source-verification.json",
+      "log": "source-verification.log",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo run --offline --locked --manifest-path tools/asset_unpacker/Cargo.toml -- --apk export/lite4.0.apk --out-dir assets --import-terrain-collision --report memory/evidence/terrain-collision-source/repeat-import.json",
+      "command_kind": "recorded invocation",
+      "exit_code": 0,
+      "already_imported": true,
+      "additional_backup": false,
+      "log": "repeat-import.log",
+      "report": "repeat-import.json"
+    },
+    {
+      "command": "tools/asset_unpacker/target/debug/asset_unpacker --apk export/lite4.0.apk --verify-package .local/map-import-backups/1794438051734897066/terrain --report memory/evidence/terrain-collision-source/legacy-schema3-verification.json",
+      "command_kind": "recorded launched binary invocation via Cargo",
+      "exit_code": 0,
+      "log": "legacy-schema3-verification.log",
+      "report": "legacy-schema3-verification.json"
+    },
+    {
+      "command": "tools/asset_unpacker/target/debug/asset_unpacker --apk export/lite4.0.apk --verify-package .local/map-import-backups/1794435897062652886/terrain --report memory/evidence/terrain-collision-source/legacy-schema2-verification.json",
+      "command_kind": "recorded launched binary invocation via Cargo",
+      "exit_code": 0,
+      "log": "legacy-schema2-verification.log",
+      "report": "legacy-schema2-verification.json"
+    },
+    {
+      "command": "node memory/evidence/terrain-collision-source/check-preservation.cjs",
+      "command_kind": "recorded invocation",
+      "exit_code": 0,
+      "log": "preservation-check.log",
+      "report": "preservation-check.json"
+    },
+    {
+      "command": "cargo test --offline --locked -p shared retained_independent_terrain_collider_table_is_complete -- --ignored --nocapture",
+      "command_kind": "recorded invocation",
+      "exit_code": 0,
+      "passed_tests": 1,
+      "solid_handles": 389,
+      "source_entries": 404,
+      "skipped_source_triggers": 12,
+      "b32_components_10_and_11_separately_represented": true,
+      "log": "retained-collision-tests.log"
+    },
+    {
+      "command": "cargo test --offline --locked -p shared retained_terrain_layers_populate_shared_collision -- --ignored --nocapture",
+      "command_kind": "recorded invocation",
+      "exit_code": 0,
+      "passed_tests": 1,
+      "classified_solid_handles": 389,
+      "skipped_source_triggers": 12,
+      "log": "retained-layer-tests.log"
+    },
+    {
+      "command": "cargo test --offline --locked -p shared canonical_world_rebuilds_identical_collision_and_spawn -- --ignored --nocapture",
+      "command_kind": "recorded invocation",
+      "exit_code": 0,
+      "passed_tests": 1,
+      "log": "canonical-world-tests.log"
+    },
+    {
+      "command": "cargo test --offline --locked --workspace",
+      "command_kind": "recorded invocation",
+      "exit_code": 0,
+      "passed_tests": 218,
+      "failed_tests": 0,
+      "ignored_tests": 12,
+      "result_summaries": 20,
+      "log": "workspace-tests.log"
+    },
+    {
+      "command": "rustfmt --edition 2024 --config skip_children=true --check crates/map_data/src/lib.rs crates/map_data/src/package.rs crates/map_data/src/terrain_layers.rs crates/map_data/src/terrain_collision.rs crates/shared/src/physics/source_geometry.rs crates/shared/src/physics/source_terrain.rs tools/asset_unpacker/src/resolver.rs tools/asset_unpacker/src/main.rs tools/asset_unpacker/src/terrain_layers.rs tools/asset_unpacker/src/terrain_collisions.rs tools/asset_unpacker/src/terrain_verification.rs",
+      "command_kind": "recorded invocation",
+      "exit_code": 0,
+      "scoped_files": 11,
+      "log": "rustfmt-check.log"
+    },
+    {
+      "command": "cargo check --offline --locked --workspace --all-targets",
+      "command_kind": "recorded invocation",
+      "exit_code": 0,
+      "log": "workspace-check.log"
+    },
+    {
+      "command": "cargo clippy --offline --locked --no-deps -p shared --lib -- -D warnings",
+      "command_kind": "reproduction; complete original shell invocation not retained in log",
+      "exit_code": 0,
+      "log": "shared-clippy.log"
+    },
+    {
+      "command": "cargo clippy --offline --locked --no-deps -p midnight_map_data --all-targets -- -D warnings",
+      "command_kind": "reproduction; original shell invocation not retained in log",
+      "exit_code": 101,
+      "inherited_collapsible_if_diagnostics": 3,
+      "new_cloned_ref_to_slice_refs_diagnostics": 2,
+      "new_diagnostics_subsequently_fixed": true,
+      "log": "map-clippy-strict.log"
+    },
+    {
+      "command": "cargo clippy --offline --locked --no-deps -p midnight_map_data --all-targets -- -D warnings -A clippy::collapsible_if",
+      "command_kind": "reproduction; original shell invocation not retained in log",
+      "exit_code": 101,
+      "stage": "Before the two test-only clone sites were fixed",
+      "log": "map-clippy-baseline.log"
+    },
+    {
+      "command": "cargo clippy --offline --locked --no-deps -p midnight_map_data --all-targets -- -D warnings -A clippy::collapsible_if",
+      "command_kind": "recorded invocation",
+      "exit_code": 0,
+      "stage": "After the two test-only clone sites were fixed; inherited collapsible_if allowance retained",
+      "log": "map-clippy-baseline-reviewed.log"
+    },
+    {
+      "command": "cargo test --offline --locked -p midnight_map_data",
+      "command_kind": "recorded invocation",
+      "exit_code": 0,
+      "passed_tests": 36,
+      "failed_tests": 0,
+      "ignored_tests": 1,
+      "stage": "Final map-only rerun after two test-only clone sites were replaced with slice::from_ref",
+      "log": "map-tests-reviewed.log"
+    },
+    {
+      "command": "rustfmt --edition 2024 --config skip_children=true --check crates/map_data/src/lib.rs crates/map_data/src/package.rs crates/map_data/src/terrain_layers.rs crates/map_data/src/terrain_collision.rs crates/shared/src/physics/source_geometry.rs crates/shared/src/physics/source_terrain.rs tools/asset_unpacker/src/resolver.rs tools/asset_unpacker/src/main.rs tools/asset_unpacker/src/terrain_layers.rs tools/asset_unpacker/src/terrain_collisions.rs tools/asset_unpacker/src/terrain_verification.rs",
+      "command_kind": "recorded invocation",
+      "exit_code": 0,
+      "scoped_files": 11,
+      "stage": "Final reviewed code",
+      "log": "rustfmt-check-reviewed.log"
+    },
+    {
+      "command": "git diff --check",
+      "command_kind": "recorded invocation",
+      "exit_code": 0,
+      "log": "diff-check.log"
+    }
+  ],
+  "limitations": [
+    "Captured saved collision covers supported Mesh/Box classes in selected shipped scenes; other collider classes and streamed/generated collision remain separate acceptance work",
+    "Saved ancestor activity and absent Rigidbody ancestry do not establish runtime activation or patch state",
+    "Source triggers retained as query metadata with no inferred gameplay effects; runtime queriesHitTriggers remains a host dependency",
+    "PhysX cooking, contact/overlap tolerance and IFix runtime parity unverified",
+    "Original player rig, posture/FSM binding and exact MapObject placements remain separate implementation work",
+    "No Android build, original-game execution, Python, cleanup or new GUI/GPU probe claimed",
+    "Map-data all-target Clippy passes with explicit inherited clippy::collapsible_if allowance; the initial unconditional strict run fails, so no unconditional strict package pass is claimed"
+  ],
+  "post_workspace_validation_change": "Two test-only cloned slice constructions replaced by slice::from_ref; final map-only tests, allowed-baseline all-target Clippy and scoped formatting passed",
+  "disk_free_reported_gib": 126
+}
+

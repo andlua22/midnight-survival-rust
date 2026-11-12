@@ -1,0 +1,84 @@
+    Checking midnight_map_data v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/map_data)
+error: this `if` statement can be collapsed
+   --> crates/map_data/src/package.rs:114:9
+    |
+114 | /         if let Some(collider) = &source.collider {
+115 | |             if collider.mesh != source.source || collider.convex {
+116 | |                 return Err(invalid(format!(
+117 | |                     "{}: separate/convex collision mesh requires its own import",
+...   |
+121 | |         }
+    | |_________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#collapsible_if
+    = note: `-D clippy::collapsible-if` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::collapsible_if)]`
+help: collapse nested if block
+    |
+114 ~         if let Some(collider) = &source.collider
+115 ~             && (collider.mesh != source.source || collider.convex) {
+116 |                 return Err(invalid(format!(
+...
+119 |                 )));
+120 ~             }
+    |
+
+error: this `if` statement can be collapsed
+   --> crates/map_data/src/package.rs:152:21
+    |
+152 | /                     if let Some(previous) = textures.insert(&identity.path, &identity.sha256) {
+153 | |                         if previous != &identity.sha256 {
+154 | |                             return Err(invalid("conflicting texture file identities"));
+155 | |                         }
+156 | |                     }
+    | |_____________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#collapsible_if
+help: collapse nested if block
+    |
+152 ~                     if let Some(previous) = textures.insert(&identity.path, &identity.sha256)
+153 ~                         && previous != &identity.sha256 {
+154 |                             return Err(invalid("conflicting texture file identities"));
+155 ~                         }
+    |
+
+error: this `if` statement can be collapsed
+   --> crates/map_data/src/package.rs:159:17
+    |
+159 | /                 if let Some(previous) = mip_metadata.insert(&gpu.path, metadata) {
+160 | |                     if previous != metadata {
+161 | |                         return Err(invalid("conflicting decoded mip metadata"));
+162 | |                     }
+163 | |                 }
+    | |_________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#collapsible_if
+help: collapse nested if block
+    |
+159 ~                 if let Some(previous) = mip_metadata.insert(&gpu.path, metadata)
+160 ~                     && previous != metadata {
+161 |                         return Err(invalid("conflicting decoded mip metadata"));
+162 ~                     }
+    |
+
+error: could not compile `midnight_map_data` (lib) due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: unnecessary use of `clone` to create a slice from a reference
+   --> crates/map_data/src/terrain_collision.rs:381:45
+    |
+381 |         write_collision_archive(&mut bytes, &[original.clone()]).unwrap();
+    |                                             ^^^^^^^^^^^^^^^^^^^ help: try: `std::slice::from_ref(&original)`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#cloned_ref_to_slice_refs
+    = note: `-D clippy::cloned-ref-to-slice-refs` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::cloned_ref_to_slice_refs)]`
+
+error: unnecessary use of `clone` to create a slice from a reference
+   --> crates/map_data/src/terrain_collision.rs:393:45
+    |
+393 |         write_collision_archive(&mut bytes, &[original.clone()]).unwrap();
+    |                                             ^^^^^^^^^^^^^^^^^^^ help: try: `std::slice::from_ref(&original)`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#cloned_ref_to_slice_refs
+
+error: could not compile `midnight_map_data` (lib test) due to 5 previous errors

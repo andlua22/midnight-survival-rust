@@ -1,0 +1,142 @@
+   Compiling midnight_map_data v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/map_data)
+   Compiling shared v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/shared)
+    Finished `test` profile [optimized] target(s) in 6.41s
+     Running unittests src/lib.rs (target/debug/deps/midnight_map_data-1d48a0aed6da9c66)
+
+running 37 tests
+test prefab::tests::composes_unsorted_hierarchy_preserving_scale_reflection_and_active_parent ... ok
+test prefab::tests::placement_replaces_serialized_root_transform_and_never_reflects_again ... ok
+test prefab::tests::rejects_changed_evidence_geometry_and_escaping_paths ... ok
+test package::tests::refuses_changed_geometry_even_when_the_archive_still_parses ... ok
+test package::tests::independent_collision_schema_and_metadata_reject_invalid_admission ... ok
+test package::tests::loaded_geometry_keeps_its_world_coordinates_and_qualified_source_ids ... ok
+test prefab::tests::rejects_cycles_duplicate_links_missing_roots_and_nonaffine_transforms ... ok
+test package::tests::refuses_missing_records_wrong_bounds_and_unsupported_frame ... ok
+test prefab::tests::rejects_derived_activity_and_transform_differing_from_source_fields ... ok
+test prefab::tests::verifies_retained_supermarket_prefab ... ignored, requires retained supermarket source prefab package
+test terrain::tests::normal_residual_targets_encoded_layer_zero_and_preserves_three_layer_alpha ... ok
+test terrain::tests::residual_is_an_interpolation_and_weights_are_not_normalized ... ok
+test terrain::tests::three_layer_alpha_changes_the_residual_without_adding_a_color ... ok
+test terrain_collision::tests::collision_archive_preserves_local_geometry_without_renderer_attributes ... ok
+test terrain_collision::tests::collision_archive_rejects_truncation_overflow_duplicates_and_invalid_geometry ... ok
+test tests::package_paths_cannot_escape_the_map_directory ... ok
+test tests::preserves_geometry_and_attributes_losslessly ... ok
+test tests::preserves_source_tangent_absence_and_rejects_partial_channels ... ok
+test tests::refuses_out_of_range_indices_and_non_finite_vertices ... ok
+test package::tests::layer_json_rejects_negative_overflow_fractional_and_non_numeric_values ... ok
+test tests::refuses_every_truncated_prefix_and_trailing_bytes ... ok
+test tests::refuses_unknown_vertex_attribute_flags ... ok
+test texture::tests::preserves_distinct_source_levels_with_non_square_dimensions ... ok
+test texture::tests::refuses_missing_levels_trailing_bytes_and_invalid_headers ... ok
+test prefab::tests::rejects_retained_symlink_escaping_package ... ok
+test prefab::tests::rejects_missing_collision_mesh_and_cross_owned_component ... ok
+test package::tests::legacy_unknown_layers_and_schema_three_zero_preserve_mesh_archive_bytes ... ok
+test package::tests::independent_collider_table_preserves_render_geometry_and_collision_only_buffers ... ok
+test prefab::tests::rejects_material_order_and_cross_mesh_part_substitution ... ok
+test package::tests::null_terrain_samplers_require_a_supported_shader_default ... ok
+test package::tests::source_mip_archive_must_match_declared_texture_dimensions_and_count ... ok
+test package::tests::normal_map_keywords_preserve_absent_tangents_and_still_validate_samplers ... ok
+test package::tests::collisions_follow_source_component_flags_including_roads ... ok
+test package::tests::independent_collision_payload_checksum_and_reference_coverage_are_enforced ... ok
+test package::tests::schema_layers_reject_legacy_claims_missing_metadata_and_invalid_ranges ... ok
+test package::tests::checks_decoded_preview_source_mips_and_complete_encoded_payload ... ok
+test package::tests::submesh_layers_agree_for_qualified_game_objects_and_collider_components ... ok
+
+test result: ok. 36 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/shared-486dc5a9c673a231)
+
+running 78 tests
+test authority::tests::sustained_crowd_of_150 ... ignored, CPU-only 60s simulation stress and timing; run in release with --ignored --nocapture
+test authority::tests::reset_rejects_old_epoch_and_nonfinite_input ... ok
+test authority::tests::duplicates_late_input_and_gaps_do_not_repeat_jump_or_keep_walking ... ok
+test capsule_query::tests::flat_box_face_hits_match_geometry_and_edges_use_the_general_cast ... ok
+test capsule_query::tests::grazing_near_contact_and_vertical_rays_hit_the_capsule_boundary ... ok
+test authority::tests::source_inventory_requires_admission_and_is_removed_on_player_departure ... ok
+test input::tests::focus_loss_discards_pending_actions_but_preserves_tick_sequence ... ok
+test input::tests::one_shot_input_waits_for_a_tick_and_is_not_replayed ... ok
+test level::tests::sector_labels_match_xapk_quadrants ... ok
+test input::tests::diagonal_and_untrusted_axes_are_bounded ... ok
+test map_projection::tests::overview_places_north_at_top_and_east_at_right ... ok
+test map_projection::tests::overview_round_trips_off_center_and_out_of_bounds_coordinates ... ok
+test map_projection::tests::radar_marker_matches_its_location_in_the_overview_crop ... ok
+test map_projection::tests::radar_places_north_and_east_relative_to_an_off_center_player ... ok
+test map_projection::tests::world_bearings_use_the_same_cardinal_axes_as_the_map ... ok
+test map_projection::tests::camera_heading_agrees_with_projected_simulation_forward_motion ... ok
+test movement::tests::diagonal_distance_matches_straight_and_sprint_has_explicit_speed ... ok
+test capsule_query::tests::upright_cast_matches_reference_for_sides_caps_and_separating_motion ... ok
+test movement::tests::jumping_requires_ground_contact_and_ceiling_stops_upward_velocity ... ok
+test movement::tests::look_clamps_pitch_and_ignores_non_finite_input ... ok
+test movement::tests::rendering_frequency_does_not_change_distance_or_total_look ... ok
+test physics::source_clearance::tests::source_cast_radius_lengths_and_root_bone_origin_determine_clearance ... ok
+test physics::source_clearance::tests::exact_unity_layers_filter_both_sweep_and_initial_overlap ... ok
+test physics::source_clearance::tests::unknown_layers_triggers_and_initial_overlap_never_imply_clearance ... ok
+test physics::source_clearance::tests::independent_shared_worlds_agree_and_queries_leave_players_unchanged ... ok
+test physics::source_prefabs::tests::retained_supermarket_builds_identical_shared_collision ... ignored, requires retained supermarket source prefab package
+test physics::source_prefabs::tests::box_collision_uses_placement_scale_and_reflects_raw_center_once ... ok
+test physics::source_prefabs::tests::rotated_child_box_retains_shape_and_inherits_parent_activity ... ok
+test physics::source_prefabs::tests::failed_replacement_preserves_collision_and_success_refreshes_bvh ... ok
+test physics::source_prefabs::tests::separate_mesh_collision_applies_converted_vertices_once ... ok
+test physics::source_prefabs::tests::skips_inactive_disabled_and_trigger_collision ... ok
+test physics::source_prefabs::tests::source_layer_and_trigger_metadata_follow_instance_replacement_and_removal ... ok
+test physics::source_terrain::tests::independent_box_uses_raw_center_reflection_and_complete_affine_transform ... ok
+test physics::source_terrain::tests::independent_mesh_reflection_preserves_vertices_and_reverses_winding_once ... ok
+test physics::source_terrain::tests::retained_independent_terrain_collider_table_is_complete ... ignored, requires the verified independent source terrain collision table
+test physics::source_terrain::tests::retained_terrain_layers_populate_shared_collision ... ignored, requires the separately verified terrain layer metadata package
+test physics::source_terrain::tests::legacy_terrain_keeps_solid_and_skipped_trigger_layers_explicitly_unknown ... ok
+test physics::source_terrain::tests::invalid_layer_or_late_geometry_failure_rolls_back_shapes_and_metadata ... ok
+test physics::source_terrain::tests::skipped_terrain_triggers_are_filtered_and_deduplicated_by_source_identity ... ok
+test physics::source_prefabs::tests::invalid_layer_and_late_shape_failure_preserve_existing_metadata_atomically ... ok
+test physics::source_terrain::tests::installed_terrain_preserves_unity_mask_in_independent_query_worlds ... ok
+test physics::source_terrain::tests::independent_table_filters_solid_and_trigger_layers_by_the_native_mask ... ok
+test physics::source_terrain::tests::independent_table_rolls_back_invalid_or_convex_shapes_and_preserves_other_state ... ok
+test physics::tests::invalid_or_empty_replacement_preserves_the_previous_collision_world ... ok
+test prediction::tests::remote_history_reorders_samples_and_bounds_extrapolation ... ok
+test physics::tests::canonical_map_replaces_demo_geometry_and_resources_but_keeps_players ... ok
+test physics::source_terrain::tests::terrain_replacement_cleans_its_metadata_and_preserves_prefabs_and_players ... ok
+test source_inventory::tests::independent_worlds_apply_the_same_source_state_and_ignore_noop_changes ... ok
+test replication::tests::hysteresis_crosses_negative_cells_and_does_not_cap_a_crowd ... ok
+test physics::tests::source_road_collision_sets_spawn_height_and_disabled_or_trigger_surfaces_do_not ... ok
+test physics::source_terrain::tests::independent_table_keeps_identical_components_separate_and_does_not_add_render_records ... ok
+test source_inventory::tests::wrong_players_malformed_bodies_and_invalid_clocks_preserve_state_and_revision ... ok
+test prediction::tests::acknowledging_substituted_ticks_does_not_double_apply_movement ... ok
+test prediction::tests::missing_history_requires_reset_and_old_epochs_cannot_overwrite_it ... ok
+test prediction::tests::replay_keeps_remote_blocking_and_departure_removes_it ... ok
+test source_inventory::tests::bevy_message_path_applies_bodies_and_reports_errors_without_default_players ... ok
+test world::tests::canonical_world_rebuilds_identical_collision_and_spawn ... ignored, requires the retained APK terrain package
+test survival::tests::hybrid_ballistics_ranged_weapons_consume_ammo_and_score_headshot_damage ... ok
+test survival::tests::biomes_weather_day_night_and_campfire_regulate_body_temperature ... ok
+test survival::tests::building_plan_places_structures_hammer_upgrades_and_tc_protects_territory ... ok
+test survival::tests::consumables_restore_vitals_and_low_hydration_blocks_sprint ... ok
+test survival::tests::harvesting_tree_and_rock_yields_resources_and_schedules_respawn ... ok
+test survival::tests::phase5_c4_destroys_bradley_apc_and_nuclear_strike_shockwave_levels_twig_structures ... ok
+test world::tests::imported_selection_never_substitutes_fixture_geometry ... ok
+test survival::tests::phase5_vehicles_mount_drive_refuel_and_patrol_heli_aggression_rule ... ok
+test survival::tests::starter_inventory_stacks_crafts_and_swaps_slots ... ok
+test survival::tests::radtown_radiation_fuse_keycard_puzzle_and_recycler_workflow ... ok
+test survival::tests::wall_socket_snapping_and_90_degree_rotation_across_foundation_edges ... ok
+test world::tests::fixtures_are_explicit_and_content_identity_is_checked ... ok
+test physics::tests::a_character_lands_on_the_imported_surface_at_its_actual_height ... ok
+test physics::tests::opposing_capsules_cannot_exchange_sides_or_overlap ... ok
+test simulation::tests::jump_rises_then_lands_without_repeating ... ok
+test simulation::tests::controller_climbs_test_stairs ... ok
+test authority::tests::capacity_cleanup_and_clock_do_not_depend_on_clients ... ok
+test simulation::tests::capsule_lands_on_floor_and_cannot_pass_through_wall ... ok
+test physics::tests::step_benchmark_reports_timings ... ok
+test authority::tests::dense_crowd_of_150_keeps_finite_nonintersecting_capsules ... ok
+test level::tests::imported_map_archives_parse_cleanly_if_present ... ok
+
+test result: ok. 73 passed; 0 failed; 5 ignored; 0 measured; 0 filtered out; finished in 1.10s
+
+   Doc-tests midnight_map_data
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests shared
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

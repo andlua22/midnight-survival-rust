@@ -1,0 +1,16 @@
+MetadataRegistration=0x4502208 methodSpecs=0x37783a4 specsCount=82482 genericInsts=0x4482320
+raw-spec index=79665 address=0x38619f0 source=(115124,-1,7090) counterpart=(134859196,-134744073,134747066)
+spec-index=79665 address=0x38619f0 source-equal=false method-index=115124 name=UnityEngine.Component::GetComponentInParent class-inst=-1 method-inst=7090
+method-inst index=7090 pointer-slot=0x44900b0 address=0x447c330 count=1 argv=0x4755420
+type-record address=0x480d288 counterpart-data=0x259 counterpart-attributes=0x120000 source-data=0x7f7b78410b80 source-attributes=0x120000
+method-argument[0]=ElevatorCabin
+raw-spec index=79506 address=0x386127c source=(115114,-1,7305) counterpart=(134859170,-134744073,134747265)
+spec-index=79506 address=0x386127c source-equal=false method-index=115114 name=UnityEngine.Component::GetComponent class-inst=-1 method-inst=7305
+method-inst index=7305 pointer-slot=0x4490768 address=0x447d0a0 count=1 argv=0x4755ad8
+type-record address=0x4814768 counterpart-data=0x62f counterpart-attributes=0x120000 source-data=0x7f7b78425d10 source-attributes=0x120000
+method-argument[0]=GameObjectData
+raw-spec index=80782 address=0x3864e4c source=(114904,-1,152) counterpart=(134858960,-134744073,134744208)
+spec-index=80782 address=0x3864e4c source-equal=false method-index=114904 name=UnityEngine.GameObject::GetComponentsInChildren class-inst=-1 method-inst=152
+method-inst index=152 pointer-slot=0x44827e0 address=0x4461190 count=1 argv=0x4742950
+type-record address=0x47f69d8 counterpart-data=0x3ccb counterpart-attributes=0x120000 source-data=0x7f7b785522b0 source-attributes=0x120000
+method-argument[0]=UnityEngine.Transform

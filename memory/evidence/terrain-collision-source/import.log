@@ -1,0 +1,5 @@
+   Compiling asset_unpacker v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/tools/asset_unpacker)
+    Finished `dev` profile [optimized] target(s) in 8.01s
+     Running `tools/asset_unpacker/target/debug/asset_unpacker --apk export/lite4.0.apk --out-dir assets --import-terrain-collision --report memory/evidence/terrain-collision-source/import.json`
+Previous package archived at .local/map-import-backups/1794438051734897066/terrain
+Verified independent terrain collision: 404 components, 389 active solids, 12 triggers, 3 inactive/disabled; already imported: false

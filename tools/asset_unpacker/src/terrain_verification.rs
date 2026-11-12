@@ -24,6 +24,16 @@ pub struct ShaderCoverage {
 
 #[derive(Debug, Serialize)]
 pub struct TerrainVerification {
+    pub manifest_schema_version: u32,
+    pub known_layer_records: usize,
+    pub unknown_layer_records: usize,
+    /// Only true after comparison with actual source class-1 GameObjects.
+    pub source_layer_values_verified: bool,
+    pub source_collision_values_verified: bool,
+    pub independent_collision_entries: usize,
+    pub independent_active_solids: usize,
+    pub independent_active_triggers: usize,
+    pub independent_inactive_or_disabled: usize,
     pub source_apk: SourceApk,
     pub geometry: FileIdentity,
     pub coordinate_frame: String,
@@ -88,6 +98,8 @@ pub fn verify_loaded(
         )));
     }
     let manifest = &package.manifest;
+    manifest.validate_layers()?;
+    package.validate_collision_geometry()?;
     let terrain = instances_by_scene(
         manifest
             .meshes
@@ -196,6 +208,38 @@ pub fn verify_loaded(
         }
     }
     Ok(TerrainVerification {
+        manifest_schema_version: manifest.schema_version,
+        known_layer_records: manifest
+            .meshes
+            .values()
+            .filter(|mesh| mesh.layer.is_some())
+            .count(),
+        unknown_layer_records: manifest
+            .meshes
+            .values()
+            .filter(|mesh| mesh.layer.is_none())
+            .count(),
+        source_layer_values_verified: false,
+        source_collision_values_verified: false,
+        independent_collision_entries: manifest.collision.as_ref().map_or(0, |c| c.colliders.len()),
+        independent_active_solids: manifest.collision.as_ref().map_or(0, |c| {
+            c.colliders
+                .iter()
+                .filter(|e| e.active_in_hierarchy && e.enabled && !e.is_trigger)
+                .count()
+        }),
+        independent_active_triggers: manifest.collision.as_ref().map_or(0, |c| {
+            c.colliders
+                .iter()
+                .filter(|e| e.active_in_hierarchy && e.enabled && e.is_trigger)
+                .count()
+        }),
+        independent_inactive_or_disabled: manifest.collision.as_ref().map_or(0, |c| {
+            c.colliders
+                .iter()
+                .filter(|e| !e.active_in_hierarchy || !e.enabled)
+                .count()
+        }),
         source_apk: source.clone(),
         geometry: manifest.geometry.clone(),
         coordinate_frame: manifest.coordinate_frame.clone(),
@@ -264,7 +308,16 @@ pub fn verify(package: &Path, apk: &Path) -> Result<TerrainVerification, Error> 
         .into_iter()
         .filter(|member| is_chunk(member))
         .collect();
-    verify_loaded(&package, &source, &members)
+    let mut verification = verify_loaded(&package, &source, &members)?;
+    verification.source_layer_values_verified =
+        crate::terrain_layers::verify_source_layers(&package, apk)?;
+    verification.source_collision_values_verified =
+        crate::terrain_collisions::verify_source_collision(&package, apk)?;
+    let after = source_apk(apk)?;
+    if after.sha256 != source.sha256 || after.byte_count != source.byte_count {
+        return Err(invalid("source APK changed during terrain verification"));
+    }
+    Ok(verification)
 }
 
 #[cfg(test)]

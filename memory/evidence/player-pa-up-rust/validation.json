@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-12",
+  "new_tests": 11,
+  "checks": [
+    {
+      "command": "cargo test -p midnight_game_data --lib clearance",
+      "passed": 7,
+      "failed": 0,
+      "ignored": 0
+    },
+    {
+      "command": "cargo test -p shared --lib source_clearance",
+      "passed": 12,
+      "failed": 0,
+      "ignored": 0
+    },
+    {
+      "command": "cargo clippy -p midnight_game_data -p shared --lib --no-deps -- -D warnings",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check -- crates/game_data/src/clearance.rs crates/shared/src/physics.rs crates/shared/src/physics/source_clearance.rs",
+      "exit_code": 0
+    }
+  ],
+  "identities": [
+    {
+      "sha256": "a7f4dbe47c9bde68dedb635a6dcfa4a2ab02aa36246edf0651c62cc6be812572",
+      "path": "crates/game_data/src/clearance.rs"
+    },
+    {
+      "sha256": "78a77d893c4d0793a313e85858e0cb55ffd2c679d671e3408284e2c23651ce98",
+      "path": "crates/shared/src/physics/source_clearance.rs"
+    },
+    {
+      "sha256": "c6dfb035d64c8e081f46dde8be613a639565bf5d221c7998655a3ffe95d86b2a",
+      "path": "memory/evidence/player-pa-up-rust/game-data-tests.log"
+    },
+    {
+      "sha256": "1f071a684725ed8fe3ec12c9c4a6a2e6b319ed5bea3649f32c5e596fc15ed5d5",
+      "path": "memory/evidence/player-pa-up-rust/shared-clearance-tests.log"
+    },
+    {
+      "sha256": "0e08e238f3b0129028994706bcd7500537e889a87c85d500ac5dbf367a67e7ee",
+      "path": "memory/evidence/player-pa-up-rust/focused-clippy.log"
+    }
+  ],
+  "limitations": [
+    "Strict Clippy including local dependencies reports three inherited collapsible_if findings in crates/map_data/src/package.rs:114,152,159; focused --no-deps check passes.",
+    "These synthetic tests validate recovered argument/order rules and shared query behavior, not original runtime parity.",
+    "Native source generic parent-component type and effective runtime query policy/layers require evidence before activation."
+  ]
+}

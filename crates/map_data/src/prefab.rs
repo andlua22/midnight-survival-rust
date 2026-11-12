@@ -66,7 +66,7 @@ impl SourceComponent {
     }
 }
 
-fn resolved_reference(value: &Value) -> Result<SourceObject, ArchiveError> {
+pub(crate) fn resolved_reference(value: &Value) -> Result<SourceObject, ArchiveError> {
     if value.get("state").and_then(Value::as_str) != Some("resolved") {
         return Err(invalid("required source reference is not resolved"));
     }
@@ -283,7 +283,7 @@ pub fn prefab_transform_point(
     Ok(result)
 }
 
-fn validate_source(source: &SourceObject) -> Result<(), ArchiveError> {
+pub(crate) fn validate_source(source: &SourceObject) -> Result<(), ArchiveError> {
     if source.bundle.is_empty()
         || source.cab.is_empty()
         || source.path_id.parse::<i64>().ok().is_none_or(|id| id == 0)
@@ -293,14 +293,14 @@ fn validate_source(source: &SourceObject) -> Result<(), ArchiveError> {
     Ok(())
 }
 
-fn valid_hash(hash: &str) -> bool {
+pub(crate) fn valid_hash(hash: &str) -> bool {
     hash.len() == 64
         && hash
             .bytes()
             .all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))
 }
 
-fn contained_path(root: &Path, relative: &str) -> Result<PathBuf, ArchiveError> {
+pub(crate) fn contained_path(root: &Path, relative: &str) -> Result<PathBuf, ArchiveError> {
     let path = package_path(root, relative)?;
     let canonical = path.canonicalize()?;
     if !canonical.starts_with(root) {
@@ -309,7 +309,7 @@ fn contained_path(root: &Path, relative: &str) -> Result<PathBuf, ArchiveError> 
     Ok(canonical)
 }
 
-fn read_bounded(path: &Path, limit: u64) -> Result<Vec<u8>, ArchiveError> {
+pub(crate) fn read_bounded(path: &Path, limit: u64) -> Result<Vec<u8>, ArchiveError> {
     let file = File::open(path)?;
     if file.metadata()?.len() > limit {
         return Err(invalid("prefab file exceeds byte limit"));
@@ -322,11 +322,11 @@ fn read_bounded(path: &Path, limit: u64) -> Result<Vec<u8>, ArchiveError> {
     Ok(bytes)
 }
 
-fn retained_identity(
-    manifest: &PrefabManifest,
+pub(crate) fn retained_identity(
+    retained_files: &BTreeMap<String, String>,
     identity: &FileIdentity,
 ) -> Result<(), ArchiveError> {
-    if manifest.retained_files.get(&identity.path) != Some(&identity.sha256) {
+    if retained_files.get(&identity.path) != Some(&identity.sha256) {
         return Err(invalid(format!(
             "{}: conflicting or missing retained identity",
             identity.path
@@ -335,21 +335,21 @@ fn retained_identity(
     Ok(())
 }
 
-fn validate_field_blobs(manifest: &PrefabManifest, value: &Value) -> Result<(), ArchiveError> {
+fn validate_field_blobs(retained_files: &BTreeMap<String, String>, value: &Value) -> Result<(), ArchiveError> {
     match value {
         Value::Object(fields) => {
             if let Some(blob) = fields.get("unity_bytes") {
                 let identity: FileIdentity = serde_json::from_value(blob.clone())
                     .map_err(|error| invalid(format!("source blob identity: {error}")))?;
-                retained_identity(manifest, &identity)?;
+                retained_identity(retained_files, &identity)?;
             }
             for value in fields.values() {
-                validate_field_blobs(manifest, value)?;
+                validate_field_blobs(retained_files, value)?;
             }
         }
         Value::Array(values) => {
             for value in values {
-                validate_field_blobs(manifest, value)?;
+                validate_field_blobs(retained_files, value)?;
             }
         }
         _ => {}
@@ -357,18 +357,18 @@ fn validate_field_blobs(manifest: &PrefabManifest, value: &Value) -> Result<(), 
     Ok(())
 }
 
-fn validate_component(
-    manifest: &PrefabManifest,
+pub(crate) fn validate_component(
+    retained_files: &BTreeMap<String, String>,
     component: &SourceComponent,
 ) -> Result<(), ArchiveError> {
     validate_source(&component.source)?;
-    retained_identity(manifest, &component.serialized)?;
-    validate_field_blobs(manifest, &component.fields)
+    retained_identity(retained_files, &component.serialized)?;
+    validate_field_blobs(retained_files, &component.fields)
 }
 
 fn validate_node_evidence(
     node: &PrefabNode,
-    manifest: &PrefabManifest,
+    nodes: &[PrefabNode],
     ids: &BTreeMap<&SourceObject, usize>,
 ) -> Result<(), ArchiveError> {
     let game_object = node
@@ -463,7 +463,7 @@ fn validate_node_evidence(
         return Err(invalid("prefab translation differs from source position"));
     }
     if let Some(parent) = &node.parent {
-        if transform.reference("m_Father")? != manifest.nodes[ids[parent]].transform {
+        if transform.reference("m_Father")? != nodes[ids[parent]].transform {
             return Err(invalid("source Transform parent differs"));
         }
     } else if transform
@@ -484,26 +484,29 @@ fn validate_node_evidence(
         return Err(invalid("source Transform child count differs"));
     }
     for (pointer, child) in children.iter().zip(&node.children) {
-        if resolved_reference(pointer)? != manifest.nodes[ids[child]].transform {
+        if resolved_reference(pointer)? != nodes[ids[child]].transform {
             return Err(invalid("source Transform child order differs"));
         }
     }
     Ok(())
 }
 
-fn hierarchy(manifest: &PrefabManifest) -> Result<Vec<PrefabNodePose>, ArchiveError> {
-    let ids = manifest
-        .nodes
+pub(crate) fn source_hierarchy(
+    nodes: &[PrefabNode],
+    declared_roots: &[SourceObject],
+    retained_files: &BTreeMap<String, String>,
+) -> Result<Vec<PrefabNodePose>, ArchiveError> {
+    let ids = nodes
         .iter()
         .enumerate()
         .map(|(i, n)| (&n.source, i))
         .collect::<BTreeMap<_, _>>();
-    if ids.len() != manifest.nodes.len() || ids.is_empty() {
+    if ids.len() != nodes.len() || ids.is_empty() {
         return Err(invalid("duplicate/empty prefab hierarchy"));
     }
     let mut transforms = BTreeSet::new();
     let mut roots = BTreeSet::new();
-    for node in &manifest.nodes {
+    for node in nodes {
         validate_source(&node.source)?;
         validate_source(&node.transform)?;
         validate_prefab_affine(&node.bevy_local_transform)?;
@@ -513,7 +516,7 @@ fn hierarchy(manifest: &PrefabManifest) -> Result<Vec<PrefabNodePose>, ArchiveEr
         if let Some(parent) = &node.parent {
             if ids
                 .get(parent)
-                .is_none_or(|&i| !manifest.nodes[i].children.contains(&node.source))
+                .is_none_or(|&i| !nodes[i].children.contains(&node.source))
             {
                 return Err(invalid("prefab parent/child links differ"));
             }
@@ -526,7 +529,7 @@ fn hierarchy(manifest: &PrefabManifest) -> Result<Vec<PrefabNodePose>, ArchiveEr
         for child in &node.children {
             if ids
                 .get(child)
-                .is_none_or(|&i| manifest.nodes[i].parent.as_ref() != Some(&node.source))
+                .is_none_or(|&i| nodes[i].parent.as_ref() != Some(&node.source))
             {
                 return Err(invalid("prefab child/parent links differ"));
             }
@@ -536,7 +539,7 @@ fn hierarchy(manifest: &PrefabManifest) -> Result<Vec<PrefabNodePose>, ArchiveEr
             if !components.insert(&component.source) {
                 return Err(invalid("duplicate node component"));
             }
-            validate_component(manifest, component)?;
+            validate_component(retained_files, component)?;
             if component.class_id != 1 && component.reference("m_GameObject")? != node.source {
                 return Err(invalid("component belongs to another GameObject"));
             }
@@ -552,16 +555,16 @@ fn hierarchy(manifest: &PrefabManifest) -> Result<Vec<PrefabNodePose>, ArchiveEr
         {
             return Err(invalid("missing source GameObject/Transform evidence"));
         }
-        validate_node_evidence(node, manifest, &ids)?;
+        validate_node_evidence(node, nodes, &ids)?;
     }
     if roots.is_empty()
-        || roots.len() != manifest.roots.len()
-        || roots != manifest.roots.iter().collect::<BTreeSet<_>>()
+        || roots.len() != declared_roots.len()
+        || roots != declared_roots.iter().collect::<BTreeSet<_>>()
     {
         return Err(invalid("prefab root inventory differs"));
     }
-    let mut poses = Vec::with_capacity(manifest.nodes.len());
-    for index in 0..manifest.nodes.len() {
+    let mut poses = Vec::with_capacity(nodes.len());
+    for index in 0..nodes.len() {
         let mut path = Vec::new();
         let mut visited = BTreeSet::new();
         let mut current = Some(index);
@@ -570,26 +573,49 @@ fn hierarchy(manifest: &PrefabManifest) -> Result<Vec<PrefabNodePose>, ArchiveEr
                 return Err(invalid("cyclic/deep prefab hierarchy"));
             }
             path.push(i);
-            current = manifest.nodes[i]
+            current = nodes[i]
                 .parent
                 .as_ref()
                 .and_then(|p| ids.get(p).copied());
         }
         let root = path.pop().ok_or_else(|| invalid("empty prefab path"))?;
         let mut pose = PrefabNodePose {
-            world_transform: manifest.nodes[root].bevy_local_transform,
-            active_in_hierarchy: manifest.nodes[root].active_self,
+            world_transform: nodes[root].bevy_local_transform,
+            active_in_hierarchy: nodes[root].active_self,
         };
         for i in path.into_iter().rev() {
             pose.world_transform = prefab_affine_product(
                 &pose.world_transform,
-                &manifest.nodes[i].bevy_local_transform,
+                &nodes[i].bevy_local_transform,
             )?;
-            pose.active_in_hierarchy &= manifest.nodes[i].active_self;
+            pose.active_in_hierarchy &= nodes[i].active_self;
         }
         poses.push(pose);
     }
     Ok(poses)
+}
+
+/// Common bounded payload verification for source prefab and player packages.
+pub(crate) fn verify_retained_files(
+    root: &Path,
+    retained_files: &BTreeMap<String, String>,
+) -> Result<(), ArchiveError> {
+    let mut total = 0u64;
+    for (relative, hash) in retained_files {
+        if relative == "manifest.json" || !valid_hash(hash) {
+            return Err(invalid("invalid retained source identity"));
+        }
+        let bytes = read_bounded(&contained_path(root, relative)?, 256 * 1024 * 1024)?;
+        total = total.checked_add(bytes.len() as u64)
+            .ok_or_else(|| invalid("source package bytes overflow"))?;
+        if total > 1024 * 1024 * 1024 {
+            return Err(invalid("source package exceeds byte limit"));
+        }
+        if format!("{:x}", Sha256::digest(&bytes)) != *hash {
+            return Err(invalid(format!("source retained checksum differs: {relative}")));
+        }
+    }
+    Ok(())
 }
 
 /// Hash every retained file and validate all executable render/collision references.
@@ -610,26 +636,9 @@ pub fn load_prefab_package(package: &Path) -> Result<PrefabPackage, ArchiveError
     {
         return Err(invalid("unsupported prefab conventions/version/limits"));
     }
-    retained_identity(&manifest, &manifest.geometry)?;
-    let poses = hierarchy(&manifest)?;
-    let mut total = 0u64;
-    for (relative, hash) in &manifest.retained_files {
-        if relative == "manifest.json" || !valid_hash(hash) {
-            return Err(invalid("invalid retained prefab identity"));
-        }
-        let bytes = read_bounded(&contained_path(&root, relative)?, 256 * 1024 * 1024)?;
-        total = total
-            .checked_add(bytes.len() as u64)
-            .ok_or_else(|| invalid("prefab bytes overflow"))?;
-        if total > 1024 * 1024 * 1024 {
-            return Err(invalid("prefab package exceeds byte limit"));
-        }
-        if format!("{:x}", Sha256::digest(&bytes)) != *hash {
-            return Err(invalid(format!(
-                "prefab retained checksum differs: {relative}"
-            )));
-        }
-    }
+    retained_identity(&manifest.retained_files, &manifest.geometry)?;
+    let poses = source_hierarchy(&manifest.nodes, &manifest.roots, &manifest.retained_files)?;
+    verify_retained_files(&root, &manifest.retained_files)?;
     let geometry = read_bounded(
         &contained_path(&root, &manifest.geometry.path)?,
         256 * 1024 * 1024,
@@ -712,14 +721,14 @@ pub fn load_prefab_package(package: &Path) -> Result<PrefabPackage, ArchiveError
             {
                 return Err(invalid("non-finite prefab material parameters"));
             }
-            validate_component(&manifest, &material.evidence)?;
+            validate_component(&manifest.retained_files, &material.evidence)?;
             if material.evidence.class_id != 21
                 || material.evidence.source != material.material.source
             {
                 return Err(invalid("material evidence identity differs"));
             }
             for component in material.unsupported_textures.values() {
-                validate_component(&manifest, component)?;
+                validate_component(&manifest.retained_files, component)?;
             }
             for binding in material.material.textures.values() {
                 if binding
@@ -737,7 +746,7 @@ pub fn load_prefab_package(package: &Path) -> Result<PrefabPackage, ArchiveError
                         .as_ref()
                         .ok_or_else(|| invalid("missing prefab source mip chain"))?;
                     for identity in [&texture.file, &texture.encoded, gpu] {
-                        retained_identity(&manifest, identity)?;
+                        retained_identity(&manifest.retained_files, identity)?;
                     }
                     let metadata = (texture.width, texture.height, texture.mip_count);
                     if mips

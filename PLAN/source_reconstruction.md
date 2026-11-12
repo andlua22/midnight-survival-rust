@@ -23,6 +23,8 @@ separate acceptance stages.
 | Environment | Half-resolution world-space volume ray marching, opaque-depth clipping, bounded quality, below-horizon sun/night handling, cascaded shadow maps; artifact-producing contact shadows disabled on desktop | `crates/client_core/src/environment.rs`, `assets/shaders/volumetric_clouds.wesl` |
 | MapObject extraction pilot | Verified supermarket hierarchy, render parts/materials and exact mesh-collider data | `memory/evidence/prefab-supermarket-import.json` |
 | Omitted terrain scene | Source Z-01 geometry, four-layer material/mips and solid MeshCollider added; 400 render instances/383 colliders across 242 terrain scenes; previous package preserved | `memory/terrain-z01-2026-11-11.md` |
+| Terrain source layers | Compatible schema-3 enrichment with 400 verified GameObject layers, unchanged geometry/textures, atomic shared terrain metadata and full selected-scene collider inventory exposing 21 omissions | `memory/implementation-terrain-layers-2026-11-12.md`, `tools/asset_unpacker/src/terrain_layers.rs` |
+| Independent terrain collision | Schema-4 table retains 404 source components, installs 389 active solids and preserves 12 triggers/three inactive records; six omitted solids restored without changing 400 visible records or retained payloads | `memory/implementation-terrain-collision-2026-11-12.md`, `tools/asset_unpacker/src/terrain_collisions.rs` |
 | Shared prefab runtime boundary | Hash-verified reader, source-field/hierarchy/material/mesh checks, Bevy diagnostic renderer and LOD selection, atomic shared Box/Mesh query collision | `crates/map_data/src/prefab.rs`, `crates/client_core/src/source_prefabs.rs`, `crates/shared/src/physics/source_prefabs.rs` |
 | Placement discovery/readers | Bounded APK/metadata/cache audit; strict SceneInfo/CellSceneInfo reader preserves signed indices, typed lists, source values and byte spans | `memory/world-placements-2026-11-11.md`, `memory/mapobjects-source-2026-11-11.md` |
 | Low-disk operation | Compact dev profiles; read-only storage/build-reserve gate; precise cache inventory | `tools/storage_audit.sh`, `memory/storage-2026-11-11.md` |
@@ -104,6 +106,20 @@ or initial overlaps. The callback preserves fresh state reads, separate player
 targets and audio/switch order without committing a state. CheckCanPaUp remains
 distinct and externally supplied. No active source posture binding is inferred.
 
+[Terrain layer enrichment](../memory/implementation-terrain-layers-2026-11-12.md)
+removed the missing-layer dependency for the 400 retained terrain records.
+All values match the APK (113 layer 0, 287 layer 18). The subsequent
+[independent collision import](../memory/implementation-terrain-collision-2026-11-12.md)
+now retains all 404 Mesh/Box components from the selected terrain scenes:
+389 active solids, 12 skipped triggers and three inactive records. A-46 Box 34,
+Z-01 Boxes 34–37 and B-32 MeshCollider 10 are restored on layer 0, with saved
+ancestor activity and complete transforms. B-32 components 10/11 retain separate
+identities while sharing one decoded mesh. Manifest schema 4 and 364 unique
+collision mesh payloads leave all 400 visible records and 970 retained files
+unchanged; schemas 2/3 remain readable and the predecessor is archived.
+Runtime trigger/activation and PhysX semantics remain open before full
+standing-query or original collision parity can be claimed.
+
 `SetQuickUseItem`, `SyncBagItem` and `ClearAllBag` decode but application is
 explicitly rejected. Their full swap/coffer, consumer and weapon/extra-data
 effects remain unresolved. Expiry, use-item effects and original crafting
@@ -112,10 +128,10 @@ are not imposed on incoming state because community overrides are observed.
 
 Continue with these concrete steps:
 
-1. Identify/import the actual player rig and RootBone/HeadTop references;
-   recover effective transforms/scaling and retain terrain GameObject layers
-   through a verified compatible collision-package import. Current terrain
-   and provisional player colliders lack source layers for standing queries.
+1. Identify/import the actual player rig and recover RootBone/HeadTop references,
+   effective runtime transforms/scaling and player collision layers. Establish
+   source runtime binding and activation using the independent terrain table;
+   its saved hierarchy activity is retained, while runtime changes remain open.
 2. Resolve runtime queriesHitTriggers, required collider/trigger coverage and
    PhysX initial-overlap/contact semantics. Finish CheckCanPaUp's separate
    HeadTop sphere cast and downward ray layer/component conditions.

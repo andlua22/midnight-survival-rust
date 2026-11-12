@@ -10,8 +10,12 @@ mod packed_mesh;
 mod pass1_index;
 mod pass2_terrain;
 mod pass3_ui;
+mod player;
+mod player_animation;
 mod prefab;
 mod resolver;
+mod terrain_collisions;
+mod terrain_layers;
 mod terrain_verification;
 mod texture;
 mod unity;
@@ -22,7 +26,7 @@ mod world_scene;
 #[command(
     name = "asset_unpacker",
     about = "Native Rust offline asset unpacker & global PathID resolver",
-    group(ArgGroup::new("action").args(["pass1", "pass2", "pass3", "all", "inspect_bundle", "prefab_bundle", "verify", "verify_package", "promote_terrain", "verify_ui", "discover_world", "verify_prefab", "augment_terrain_scene"]).required(true).multiple(true))
+    group(ArgGroup::new("action").args(["pass1", "pass2", "pass3", "all", "inspect_bundle", "prefab_bundle", "verify", "verify_package", "promote_terrain", "verify_ui", "discover_world", "verify_prefab", "augment_terrain_scene", "enrich_terrain_layers", "import_terrain_collision", "import_player", "verify_player"]).required(true).multiple(true))
 )]
 pub struct Cli {
     #[arg(short, long, default_value = "export/lite4.0.apk")]
@@ -79,6 +83,26 @@ pub struct Cli {
     #[arg(long, conflicts_with_all = ["pass1", "pass2", "pass3", "all", "inspect_bundle", "prefab_bundle", "verify", "verify_package", "promote_terrain", "verify_ui", "discover_world", "verify_prefab"])]
     pub augment_terrain_scene: Option<String>,
 
+    /// Verify and retain source terrain GameObject layers without decoding meshes/textures.
+    #[arg(long, conflicts_with_all = ["pass1", "pass2", "pass3", "all", "inspect_bundle", "prefab_bundle", "verify", "verify_package", "promote_terrain", "verify_ui", "discover_world", "verify_prefab", "augment_terrain_scene"])]
+    pub enrich_terrain_layers: bool,
+
+    /// Import an independent source collider table, preserving visible terrain and its predecessor.
+    #[arg(long, conflicts_with_all = ["pass1", "pass2", "pass3", "all", "inspect_bundle", "prefab_bundle", "verify", "verify_package", "promote_terrain", "verify_ui", "discover_world", "verify_prefab", "augment_terrain_scene", "enrich_terrain_layers"])]
+    pub import_terrain_collision: bool,
+
+    /// Import the exact role/role_new/rolehand roots and their default animation dependencies.
+    #[arg(long, conflicts_with_all = ["pass1", "pass2", "pass3", "all", "inspect_bundle", "prefab_bundle", "verify", "verify_package", "promote_terrain", "verify_ui", "discover_world", "verify_prefab", "augment_terrain_scene", "enrich_terrain_layers", "import_terrain_collision", "verify_player"])]
+    pub import_player: bool,
+
+    /// Add an exact controller-linked clip (APK member#signed-PathID); names can be ambiguous.
+    #[arg(long, requires = "import_player")]
+    pub player_clip: Vec<String>,
+
+    /// Verify a separate player package against the exact APK without activating it.
+    #[arg(long, conflicts_with_all = ["pass1", "pass2", "pass3", "all", "inspect_bundle", "prefab_bundle", "verify", "verify_package", "promote_terrain", "verify_ui", "discover_world", "verify_prefab", "augment_terrain_scene", "enrich_terrain_layers", "import_terrain_collision", "import_player"])]
+    pub verify_player: Option<PathBuf>,
+
     /// Unity class IDs to include in the inspection report (comma separated).
     #[arg(long, value_delimiter = ',')]
     pub inspect_classes: Vec<i32>,
@@ -119,6 +143,43 @@ fn write_report<T: serde::Serialize>(
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args = Cli::parse();
+    if args.import_player || args.verify_player.is_some() {
+        let report = if let Some(package) = &args.verify_player {
+            player::verify(&args.apk, package)
+        } else {
+            player::import(&args.apk, &args.out_dir, &args.player_clip)
+        }.map_err(|error| error as Box<dyn std::error::Error>)?;
+        write_report(args.report.as_deref(), &report)?;
+        serde_json::to_writer_pretty(std::io::stdout().lock(), &report)?;
+        return Ok(());
+    }
+    if args.import_terrain_collision {
+        let report = terrain_collisions::import(&args.apk, &args.out_dir)
+            .map_err(|error| error as Box<dyn std::error::Error>)?;
+        write_report(args.report.as_deref(), &report)?;
+        println!(
+            "Verified independent terrain collision: {} components, {} active solids, {} triggers, {} inactive/disabled; already imported: {}",
+            report.source_entries,
+            report.active_solid_entries,
+            report.active_trigger_entries,
+            report.inactive_or_disabled_entries,
+            report.already_imported
+        );
+        return Ok(());
+    }
+    if args.enrich_terrain_layers {
+        let report = terrain_layers::enrich(&args.apk, &args.out_dir)
+            .map_err(|error| error as Box<dyn std::error::Error>)?;
+        write_report(args.report.as_deref(), &report)?;
+        println!(
+            "Verified terrain layers: {} GameObjects, {} render records, {} omitted source colliders; already enriched: {}",
+            report.source_audit.game_objects.len(),
+            report.verification.known_layer_records,
+            report.source_audit.omitted_colliders.len(),
+            report.already_enriched
+        );
+        return Ok(());
+    }
     if let Some(member) = &args.augment_terrain_scene {
         let report = pass2_terrain::augment(&args.apk, &args.out_dir, member)
             .map_err(|error| error as Box<dyn std::error::Error>)?;
@@ -280,6 +341,19 @@ mod cli_tests {
 
     #[test]
     fn explicit_actions_are_scoped_and_reject_mixed_imports() {
+        assert!(Cli::try_parse_from(["asset_unpacker", "--import-terrain-collision"]).is_ok());
+        for action in ["--all", "--pass2", "--verify", "--enrich-terrain-layers"] {
+            assert!(
+                Cli::try_parse_from(["asset_unpacker", "--import-terrain-collision", action])
+                    .is_err()
+            );
+        }
+        assert!(Cli::try_parse_from(["asset_unpacker", "--enrich-terrain-layers"]).is_ok());
+        for action in ["--all", "--pass2", "--verify", "--discover-world"] {
+            assert!(
+                Cli::try_parse_from(["asset_unpacker", "--enrich-terrain-layers", action]).is_err()
+            );
+        }
         assert!(Cli::try_parse_from(["asset_unpacker", "--discover-world"]).is_ok());
         assert!(Cli::try_parse_from(["asset_unpacker", "--discover-world", "--pass2"]).is_err());
         assert!(

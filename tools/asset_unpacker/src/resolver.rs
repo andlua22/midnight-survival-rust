@@ -74,7 +74,10 @@ impl<'a> Resolver<'a> {
         self.bundles.stats()
     }
 
-    pub fn object(&mut self, id: &ObjectId) -> Result<UnityObject, Error> {
+    fn object_location(
+        &mut self,
+        id: &ObjectId,
+    ) -> Result<(Arc<AssetBundle>, usize, usize), Error> {
         let bundle = self.bundle(&id.bundle)?;
         let asset_index = bundle
             .asset_names
@@ -82,12 +85,24 @@ impl<'a> Resolver<'a> {
             .position(|name| cab_name(name) == id.cab)
             .ok_or_else(|| invalid(format!("{}: missing CAB {}", id.bundle, id.cab)))?;
         let asset = &bundle.assets[asset_index];
-        let info = asset
+        let object_index = asset
             .objects
             .iter()
-            .find(|object| object.path_id == id.path_id)
+            .position(|object| object.path_id == id.path_id)
             .ok_or_else(|| invalid(format!("{}:{}: missing object", id.cab, id.path_id)))?;
-        read_object(asset, info)
+        Ok((bundle, asset_index, object_index))
+    }
+
+    /// Inspect component identity without decoding unrelated custom TypeTrees.
+    pub fn class_id(&mut self, id: &ObjectId) -> Result<i32, Error> {
+        let (bundle, asset_index, object_index) = self.object_location(id)?;
+        Ok(bundle.assets[asset_index].objects[object_index].type_id)
+    }
+
+    pub fn object(&mut self, id: &ObjectId) -> Result<UnityObject, Error> {
+        let (bundle, asset_index, object_index) = self.object_location(id)?;
+        let asset = &bundle.assets[asset_index];
+        read_object(asset, &asset.objects[object_index])
     }
 
     /// Supply an external vertex stream to the decoder without modifying retained source bytes.

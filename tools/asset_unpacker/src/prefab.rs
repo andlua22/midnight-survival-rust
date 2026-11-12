@@ -44,7 +44,7 @@ fn reflection() -> Mat4 {
     Mat4::from_scale(Vec3::new(1.0, 1.0, -1.0))
 }
 
-fn convert_local(
+pub(crate) fn convert_local(
     position: [f32; 3],
     rotation: [f32; 4],
     scale: [f32; 3],
@@ -71,7 +71,7 @@ fn convert_local(
     .to_cols_array())
 }
 
-fn store(output: &Path, category: &str, bytes: &[u8]) -> Result<FileIdentity, Error> {
+pub(crate) fn store(output: &Path, category: &str, bytes: &[u8]) -> Result<FileIdentity, Error> {
     let hash = format!("{:x}", Sha256::digest(bytes));
     let relative = format!("{category}/{hash}.bin");
     let path = output.join(&relative);
@@ -96,6 +96,7 @@ fn source_fields(
     value: &UnityValue,
     output: &Path,
     depth: usize,
+    verify_only: bool,
 ) -> Result<Value, Error> {
     if depth > 128 {
         return Err(invalid("prefab field depth exceeds limit"));
@@ -108,12 +109,12 @@ fn source_fields(
             json!({"unity_non_finite_f64": {"parsed_bits_hex": format!("{:016x}", value.to_bits())}})
         }
         UnityValue::Bytes(bytes) => {
-            json!({"unity_bytes": store(output, "source/blobs", bytes)?, "byte_count": bytes.len()})
+            json!({"unity_bytes": source_payload(output, "source/blobs", bytes, verify_only)?, "byte_count": bytes.len()})
         }
         UnityValue::Array(items) => Value::Array(
             items
                 .iter()
-                .map(|item| source_fields(resolver, owner, item, output, depth + 1))
+                .map(|item| source_fields(resolver, owner, item, output, depth + 1, verify_only))
                 .collect::<Result<_, _>>()?,
         ),
         UnityValue::Object(fields)
@@ -139,7 +140,7 @@ fn source_fields(
                 .map(|(name, value)| {
                     Ok((
                         name.clone(),
-                        source_fields(resolver, owner, value, output, depth + 1)?,
+                        source_fields(resolver, owner, value, output, depth + 1, verify_only)?,
                     ))
                 })
                 .collect::<Result<_, Error>>()?,
@@ -148,10 +149,26 @@ fn source_fields(
     })
 }
 
-fn raw_component(
+pub(crate) fn raw_component(
     resolver: &mut Resolver<'_>,
     id: &ObjectId,
     output: &Path,
+) -> Result<SourceComponent, Error> {
+    raw_component_mode(resolver, id, output, false)
+}
+
+fn source_payload(output: &Path, category: &str, bytes: &[u8], verify_only: bool) -> Result<FileIdentity, Error> {
+    if !verify_only { return store(output, category, bytes); }
+    let sha256 = format!("{:x}", Sha256::digest(bytes));
+    let path = format!("{category}/{sha256}.bin");
+    if file_sha256(&output.join(&path))? != sha256 {
+        return Err(invalid("retained source payload differs"));
+    }
+    Ok(FileIdentity {path,sha256})
+}
+
+fn raw_component_mode(
+    resolver: &mut Resolver<'_>, id: &ObjectId, output: &Path, verify_only: bool,
 ) -> Result<SourceComponent, Error> {
     let object = resolver.object(id)?;
     let bundle = resolver.bundle(&id.bundle)?;
@@ -166,13 +183,14 @@ fn raw_component(
         .iter()
         .find(|info| info.path_id == id.path_id)
         .ok_or_else(|| invalid("component object absent"))?;
-    let serialized = store(output, "source/objects", asset.object_bytes(info)?)?;
+    let serialized = source_payload(output, "source/objects", asset.object_bytes(info)?, verify_only)?;
     let fields = source_fields(
         resolver,
         id,
         &UnityValue::Object(object.class.properties().clone()),
         output,
         0,
+        verify_only,
     )?;
     Ok(SourceComponent {
         source: id.source(),
@@ -182,7 +200,75 @@ fn raw_component(
     })
 }
 
-fn list_files(
+pub(crate) fn verify_raw_component(
+    resolver: &mut Resolver<'_>, component: &SourceComponent, output: &Path,
+) -> Result<(), Error> {
+    let id = ObjectId {bundle:component.source.bundle.clone(),cab:component.source.cab.clone(),path_id:component.source.path_id.parse()?};
+    let actual = raw_component_mode(resolver,&id,output,true)?;
+    if actual.source != component.source || actual.class_id != component.class_id
+        || actual.fields != component.fields || actual.serialized.path != component.serialized.path
+        || actual.serialized.sha256 != component.serialized.sha256
+    { return Err(invalid(format!("retained player fields differ from source {}:{}",id.cab,id.path_id))); }
+    Ok(())
+}
+
+/// Read one complete node; callers choose the root set and traversal boundary.
+pub(crate) fn source_node(
+    resolver: &mut Resolver<'_>,
+    id: &ObjectId,
+    output: &Path,
+) -> Result<PrefabNode, Error> {
+    let object = resolver.object(id)?;
+    if object.info.type_id != 1 {
+        return Err(invalid("hierarchy node is not a GameObject"));
+    }
+    let mut components = vec![raw_component(resolver, id, output)?];
+    let mut transform_id = None;
+    for pointer in array(property(&object, "m_Component")?)? {
+        let pointer = pointer.as_object().and_then(|f| f.get("component")).unwrap_or(pointer);
+        let component_id = resolver.required_ref(id, pointer)?;
+        let component = raw_component(resolver, &component_id, output)?;
+        if matches!(component.class_id, 4 | 224)
+            && transform_id.replace(component_id).is_some()
+        {
+            return Err(invalid("multiple node Transforms"));
+        }
+        components.push(component);
+    }
+    let transform_id = transform_id.ok_or_else(|| invalid("GameObject has no Transform"))?;
+    let transform = resolver.object(&transform_id)?;
+    let parent = resolver.resolve(&transform_id, property(&transform, "m_Father")?)?
+        .map(|id| transform_game_object(resolver, &id)).transpose()?;
+    let children = array(property(&transform, "m_Children")?)?.iter().map(|pointer| {
+        let id = resolver.required_ref(&transform_id, pointer)?;
+        transform_game_object(resolver, &id).map(|id| id.source())
+    }).collect::<Result<Vec<_>, Error>>()?;
+    Ok(PrefabNode {
+        source: id.source(),
+        name: text(property(&object, "m_Name")?)?.into(),
+        active_self: boolean(property(&object, "m_IsActive")?)?,
+        layer: integer(property(&object, "m_Layer")?)?,
+        transform: transform_id.source(),
+        parent: parent.map(|id| id.source()),
+        children,
+        bevy_local_transform: convert_local(
+            vector(property(&transform, "m_LocalPosition")?, ["x", "y", "z"])?,
+            vector(property(&transform, "m_LocalRotation")?, ["x", "y", "z", "w"])?,
+            vector(property(&transform, "m_LocalScale")?, ["x", "y", "z"])?,
+        )?,
+        components,
+    })
+}
+
+fn transform_game_object(resolver: &mut Resolver<'_>, id: &ObjectId) -> Result<ObjectId, Error> {
+    let transform = resolver.object(id)?;
+    if !matches!(transform.info.type_id, 4 | 224) {
+        return Err(invalid("hierarchy reference is not a Transform"));
+    }
+    resolver.required_ref(id, property(&transform, "m_GameObject")?)
+}
+
+pub(crate) fn list_files(
     root: &Path,
     directory: &Path,
     result: &mut BTreeMap<String, String>,
@@ -281,7 +367,6 @@ pub fn run(apk_path: &Path, member: &str, output_root: &Path) -> Result<PrefabRe
     let canonical = imported.join(format!("{stem}-{}", &bundle_hash[..12]));
     let mut classes = BTreeMap::new();
     let mut game_objects = Vec::new();
-    let mut transforms = BTreeMap::new();
     for (cab, asset) in bundle.asset_names.iter().zip(&bundle.assets) {
         for info in &asset.objects {
             *classes.entry(info.type_id).or_default() += 1;
@@ -292,10 +377,6 @@ pub fn run(apk_path: &Path, member: &str, output_root: &Path) -> Result<PrefabRe
             };
             if info.type_id == 1 {
                 game_objects.push(id);
-            } else if matches!(info.type_id, 4 | 224) {
-                let object = resolver.object(&id)?;
-                let game_object = resolver.required_ref(&id, property(&object, "m_GameObject")?)?;
-                transforms.insert(id, game_object);
             }
         }
     }
@@ -304,52 +385,18 @@ pub fn run(apk_path: &Path, member: &str, output_root: &Path) -> Result<PrefabRe
     let mut collision_meshes = BTreeMap::<ObjectId, PrefabCollisionMesh>::new();
     let mut meshes = BTreeMap::<String, MeshRecord>::new();
     for id in game_objects {
-        let object = resolver.object(&id)?;
-        let mut components = Vec::new();
+        let node = source_node(&mut resolver, &id, &candidate)?;
         let mut component_ids = Vec::new();
-        for pointer in array(property(&object, "m_Component")?)? {
-            let pointer = pointer
-                .as_object()
-                .and_then(|fields| fields.get("component"))
-                .unwrap_or(pointer);
-            component_ids.push(resolver.required_ref(&id, pointer)?);
+        for component in node.components.iter().skip(1) {
+            component_ids.push(ObjectId {
+                bundle: component.source.bundle.clone(),
+                cab: component.source.cab.clone(),
+                path_id: component.source.path_id.parse()?,
+            });
         }
-        let transform_id = component_ids
-            .iter()
-            .find(|id| transforms.contains_key(*id))
-            .ok_or_else(|| invalid("prefab GameObject has no Transform"))?;
-        let transform = resolver.object(transform_id)?;
-        let parent = resolver
-            .resolve(transform_id, property(&transform, "m_Father")?)?
-            .map(|parent| {
-                transforms
-                    .get(&parent)
-                    .cloned()
-                    .ok_or_else(|| invalid("parent transform outside source prefab"))
-            })
-            .transpose()?;
-        let children = array(property(&transform, "m_Children")?)?
-            .iter()
-            .map(|pointer| {
-                let child = resolver.required_ref(transform_id, pointer)?;
-                transforms
-                    .get(&child)
-                    .map(|id| id.source())
-                    .ok_or_else(|| invalid("child transform outside source prefab"))
-            })
-            .collect::<Result<Vec<_>, Error>>()?;
-        let local = convert_local(
-            vector(property(&transform, "m_LocalPosition")?, ["x", "y", "z"])?,
-            vector(
-                property(&transform, "m_LocalRotation")?,
-                ["x", "y", "z", "w"],
-            )?,
-            vector(property(&transform, "m_LocalScale")?, ["x", "y", "z"])?,
-        )?;
         let mut filter = None;
         let mut renderer = None;
-        for component in &component_ids {
-            let source_component = raw_component(&mut resolver, component, &candidate)?;
+        for (component, source_component) in component_ids.iter().zip(node.components.iter().skip(1)) {
             match source_component.class_id {
                 33 => filter = Some(component.clone()),
                 23 => renderer = Some(component.clone()),
@@ -371,10 +418,7 @@ pub fn run(apk_path: &Path, member: &str, output_root: &Path) -> Result<PrefabRe
                 }
                 _ => {}
             }
-            components.push(source_component);
         }
-        // Retain the GameObject itself as well as every ordered component.
-        components.insert(0, raw_component(&mut resolver, &id, &candidate)?);
         if let (Some(filter), Some(renderer)) = (filter, renderer) {
             let filter_object = resolver.object(&filter)?;
             let renderer_object = resolver.object(&renderer)?;
@@ -425,17 +469,7 @@ pub fn run(apk_path: &Path, member: &str, output_root: &Path) -> Result<PrefabRe
                 materials,
             });
         }
-        nodes.push(PrefabNode {
-            source: id.source(),
-            name: text(property(&object, "m_Name")?)?.into(),
-            active_self: boolean(property(&object, "m_IsActive")?)?,
-            layer: integer(property(&object, "m_Layer")?)?,
-            transform: transform_id.source(),
-            parent: parent.map(|parent| parent.source()),
-            children,
-            bevy_local_transform: local,
-            components,
-        });
+        nodes.push(node);
     }
     nodes.sort_by(|a, b| a.source.cmp(&b.source));
     let roots = validate_hierarchy(&nodes)?;

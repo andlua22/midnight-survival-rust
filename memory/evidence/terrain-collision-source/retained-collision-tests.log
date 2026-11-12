@@ -1,0 +1,9 @@
+    Finished `test` profile [optimized] target(s) in 0.09s
+     Running unittests src/lib.rs (target/debug/deps/shared-486dc5a9c673a231)
+
+running 1 test
+Independent terrain collision: 400 visible records, 389 solid components, 12 skipped source triggers, 404 source entries; B-32 components10/11 both represented
+test physics::source_terrain::tests::retained_independent_terrain_collider_table_is_complete ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 77 filtered out; finished in 1.58s
+

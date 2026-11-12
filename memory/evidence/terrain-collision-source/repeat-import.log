@@ -1,0 +1,3 @@
+    Finished `dev` profile [optimized] target(s) in 0.03s
+     Running `tools/asset_unpacker/target/debug/asset_unpacker --apk export/lite4.0.apk --out-dir assets --import-terrain-collision --report memory/evidence/terrain-collision-source/repeat-import.json`
+Verified independent terrain collision: 404 components, 389 active solids, 12 triggers, 3 inactive/disabled; already imported: true

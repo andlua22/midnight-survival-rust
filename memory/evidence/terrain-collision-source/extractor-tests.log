@@ -1,0 +1,65 @@
+   Compiling midnight_map_data v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/map_data)
+   Compiling midnight_ui_data v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/crates/ui_data)
+   Compiling asset_unpacker v0.1.0 (/home/andlua/Project/Midnight-Survival-Rust/tools/asset_unpacker)
+warning: unused import: `SourceObject`
+  --> src/terrain_collisions.rs:13:19
+   |
+13 |     FileIdentity, SourceObject, TERRAIN_MANIFEST_VERSION, TerrainCollisionEntry,
+   |                   ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: `asset_unpacker` (bin "asset_unpacker" test) generated 1 warning (run `cargo fix --bin "asset_unpacker" -p asset_unpacker --tests` to apply 1 suggestion)
+    Finished `test` profile [optimized] target(s) in 7.27s
+     Running unittests src/main.rs (tools/asset_unpacker/target/debug/deps/asset_unpacker-61c59e0e76045d1c)
+
+running 46 tests
+test bundle_cache::tests::large_bundle_is_returnable_but_never_retained_above_cache_budget ... ok
+test bundle_cache::tests::hot_dependencies_survive_eviction_and_caller_handles_remain_valid ... ok
+test cli_tests::selected_index_cannot_replace_a_full_import_dependency_index ... ok
+test mesh::tests::scene_rotation_world_mirror_and_uv_conversion_are_applied_once ... ok
+test mesh::tests::source_collider_without_normals_or_uvs_keeps_its_exact_triangles ... ok
+test cli_tests::extraction_requires_an_explicit_action ... ok
+test package_publish::tests::failed_publication_restores_predecessor_without_destroying_candidate ... ok
+test package_publish::tests::successful_publication_archives_predecessor_and_rejects_self_promotion ... ok
+test package_publish::tests::existing_backup_or_missing_candidate_preserves_every_package ... ok
+test packed_mesh::tests::unpacking_crosses_byte_boundaries_and_rejects_truncation ... ok
+test pass1_index::tests::duplicate_cab_ownership_cannot_silently_replace_resolution ... ok
+test pass1_index::tests::bare_path_collisions_are_omitted_and_qualified_entries_survive ... ok
+test pass2_terrain::tests::terrain_inventory_includes_exact_z01_and_excludes_menu_scenes ... ok
+test cli_tests::explicit_actions_are_scoped_and_reject_mixed_imports ... ok
+test pass3_ui::font::tests::font_reader_rejects_truncated_data_and_incorrect_element_types ... ok
+test pass3_ui::importer::tests::explicit_panel_selection_preserves_baseline_and_checks_conflicts ... ok
+test pass3_ui::importer::tests::false_source_flags_and_zero_fill_remain_zero ... ok
+test pass3_ui::importer::tests::hierarchy_rejects_cycles_and_duplicate_children_with_qualified_identity ... ok
+test pass3_ui::importer::tests::non_finite_source_values_have_explicit_json_tags_and_parsed_bits ... ok
+test pass3_ui::importer::tests::qualified_ids_and_explicit_unresolved_states_survive_json ... ok
+test pass3_ui::importer::tests::source_rotation_and_rect_fields_are_preserved_without_defaults ... ok
+test pass3_ui::sprite::tests::atlas_lookup_uses_the_entire_guid_and_local_id_key ... ok
+test pass3_ui::sprite::tests::packing_rotation_and_separate_alpha_are_explicit ... ok
+test pass3_ui::sprite::tests::bottom_left_rect_is_converted_once_for_an_asymmetric_texture ... ok
+test pass3_ui::sprite::tests::fractional_bounds_preserve_touched_pixels_and_invalid_bounds_fail ... ok
+test prefab::tests::prefab_transform_reflects_translation_and_keeps_nonuniform_scale_once ... ok
+test pass3_ui::importer::tests::only_explicitly_empty_font_atlases_are_deferred ... ok
+test terrain_layers::tests::enrichment_preserves_all_source_metadata_and_applies_one_owner_layer_to_submeshes ... ok
+test terrain_layers::tests::qualified_object_ids_preserve_signed_values_and_reject_ambiguous_text ... ok
+test terrain_layers::tests::source_layer_parser_rejects_missing_range_and_non_integer_values ... ok
+test terrain_verification::tests::identical_path_ids_in_different_cabs_or_bundles_do_not_alias ... ok
+test terrain_verification::tests::submeshes_are_one_source_instance_but_distinct_placements_remain_distinct ... ok
+test terrain_layers::tests::source_collider_comparison_checks_every_submesh_occurrence ... ok
+test texture::tests::asymmetric_astc_color_preserves_rgba_and_partial_edge_blocks ... ok
+test pass3_ui::verifier::tests::nested_blob_integrity_rejects_wrong_counts_conflicting_hashes_and_tampering ... ok
+test terrain_layers::tests::incomplete_source_layers_or_changed_verified_layer_reject_without_mutating_input ... ok
+test texture::tests::rgba_mips_flip_each_source_level_without_regenerating_pixels ... ok
+test world_scene::tests::preserves_distinct_prefab_tables_nonuniform_scale_ids_and_exact_spans ... ok
+test pass1_index::tests::failed_bundle_scan_reports_coverage_and_preserves_previous_index ... ok
+test world_scene::tests::retains_grass_stealth_objects_occlusion_and_packed_lightmap_uv_bytes ... ok
+test world_scene::tests::validates_counts_before_allocating ... ok
+test world_scene::tests::rejects_truncation_trailing_bytes_nonfinite_values_and_invalid_source_indices ... ok
+test texture::tests::source_astc_mips_keep_distinct_colors_and_partial_blocks ... ok
+test unity::tests::zip_member_limit_is_checked_before_payload_parsing ... ok
+test pass3_ui::font::tests::large_font_bytes_and_fields_survive_without_a_global_limit_change ... ok
+test unity::tests::china_texture_layout_matches_the_base_release ... ok
+
+test result: ok. 46 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
